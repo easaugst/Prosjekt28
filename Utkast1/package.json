@@ -1,0 +1,22 @@
+{
+  "name": "desktop-application",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron -r @babel/register ."
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "electron": "^4.0.2",
+    "electron-reload": "^1.4.0",
+    "mysql": "^2.16.0",
+    "react-router-dom": "^4.3.1",
+    "react-simplified": "^1.5.2"
+  }
+}
