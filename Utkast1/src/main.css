@@ -35,10 +35,6 @@
   background-color: lightslategrey;
 }
 
-.sideKnapp:hover {
-  filter: brightness(85%);
-}
-
 .sideMeny {
   position: absolute;
   top: 10vh;
@@ -49,6 +45,11 @@
   font-family: 'Trebuchet MS';
 }
 
+.sideKnapp {
+  margin-top: 5vh;
+  list-style: none;
+}
+
 .meny {
   border-style: double;
   padding-top: 2vh;
@@ -57,16 +58,15 @@
   padding-left: 2vw;
   text-align: center;
   background-color: lightsteelblue;
-  width: 10%;
+  width: 20%;
+  position: absolute;
+}
+
+.sideKnapp:hover {
+  filter: brightness(85%);
 }
 
 a {
   text-decoration: none;
   color: #f8f8ff;
-}
-
-.sideKnapp {
-  margin-top: 5vh;
-  list-style: none;
-  float: left;
 }
