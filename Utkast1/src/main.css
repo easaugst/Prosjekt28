@@ -10,19 +10,20 @@
   top: 3vh;
   left: 24vw;
   font-family: sans-serif;
-  width: 100%;
+  width: 50%;
 }
 
 .meny2 {
   position: relative;
   padding-top: 2vw;
-  padding-left: 4vw;
-  padding-right: 4vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
   padding-bottom: 2vw;
   border: black solid;
   background-color: lightgrey;
   width: 15%;
   float: left;
+  text-align: center;
 }
 
 .sideMeny {
