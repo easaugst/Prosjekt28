@@ -24,6 +24,7 @@
   width: 15%;
   float: left;
   text-align: center;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .sideMeny {
