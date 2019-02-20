@@ -8,7 +8,7 @@ const history = createHashHistory();
 class Menu extends Component {
   render() {
     return (
-      <div>
+      <div class="hovedMeny">
         <NavLink to="/oversikt">Oversikt</NavLink>
         &nbsp;&nbsp;
         <NavLink to="/utleie">Utleie</NavLink>
