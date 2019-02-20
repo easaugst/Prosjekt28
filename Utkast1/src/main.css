@@ -43,7 +43,7 @@
   position: absolute;
   top: 10vh;
   left: 5vw;
-  font-family: sans-serif;
+  width: 100%;
   font-size: 0.8em;
   margin-top: 3em;
   font-family: 'Trebuchet MS';
@@ -53,12 +53,11 @@
   border-style: double;
   padding-top: 2vh;
   padding-bottom: 2vh;
-  list-style: none;
   padding-right: 2vw;
   padding-left: 2vw;
   text-align: center;
-  margin-top: 1vh;
   background-color: lightsteelblue;
+  width: 10%;
 }
 
 a {
@@ -67,4 +66,7 @@ a {
 }
 
 .sideKnapp {
+  margin-top: 5vh;
+  list-style: none;
+  float: left;
 }
