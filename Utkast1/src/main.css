@@ -9,7 +9,7 @@
   position: absolute;
   top: 3vh;
   left: 24vw;
-  font-family: sans-serif;
+  font-family: 'Trebuchet MS';
   width: 50%;
 }
 
@@ -20,11 +20,23 @@
   padding-right: 2vw;
   padding-bottom: 2vw;
   border: black solid;
-  background-color: lightgrey;
+  background-color: lightsteelblue;
   width: 15%;
   float: left;
   text-align: center;
   box-shadow: 5px 5px 5px grey;
+}
+
+.meny2:hover {
+  filter: brightness(85%);
+}
+
+.active {
+  background-color: lightslategrey;
+}
+
+.sideKnapp:hover {
+  filter: brightness(85%);
 }
 
 .sideMeny {
@@ -34,6 +46,7 @@
   font-family: sans-serif;
   font-size: 0.8em;
   margin-top: 3em;
+  font-family: 'Trebuchet MS';
 }
 
 .meny {
@@ -42,6 +55,7 @@
 
 a {
   text-decoration: none;
+  color: #f8f8ff;
 }
 
 .sideKnapp {
@@ -53,4 +67,5 @@ a {
   padding-left: 2vw;
   text-align: center;
   margin-top: 1vh;
+  background-color: lightsteelblue;
 }
