@@ -124,12 +124,26 @@ class EndringVertMenu extends Component {
   }
 }
 
+class Utstyr extends Component {
+
+  render() {
+    return(
+      <div className="mainView">
+
+      Test
+
+      </div>
+    )
+  }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
+      <Route path="/oversikt/utstyr" component={Utstyr} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route exact path="/utleie/kundereg" component={KundeReg} />
@@ -141,6 +155,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+
 
     </div>
   </HashRouter>,
