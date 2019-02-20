@@ -1,8 +1,8 @@
 import { connection } from './mysql_connection';
 
 class UtstyrService {
-  getSykkel(success) {
-      connection.query('SELECT * FROM Utstyr', (error, results) => {
+  getUtstyr(utstyrsid, success) {
+      connection.query('SELECT utstyrsid, utstyrstype FROM Utstyr', [utstyrsid], (error, results) => {
 
         if(error) return console.error(error);
 
@@ -10,3 +10,38 @@ class UtstyrService {
       });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+export let utstyrService = new UtstyrService();
