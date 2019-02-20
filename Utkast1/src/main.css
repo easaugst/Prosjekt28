@@ -4,3 +4,9 @@
   top: 15vh;
   height: 50vh;
 }
+
+.hovedMeny {
+  position: absolute;
+  margin: 2em;
+  padding: 2em;
+}
