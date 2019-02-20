@@ -10,7 +10,6 @@
   top: 3vh;
   left: 22vw;
   font-family: sans-serif;
-  text-decoration: none;
 }
 
 .sideMeny {
@@ -18,10 +17,14 @@
   top: 8vh;
   left: 5vw;
   font-family: sans-serif;
-  text-decoration: none;
 }
 
 a {
+<<<<<<< HEAD
+  text-decoration: none;
+=======
 
 text-decoration: none;
+
+>>>>>>> efbd57230f3cd5cda7cc93973edd2046a938e835
 }
