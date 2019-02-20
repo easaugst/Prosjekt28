@@ -50,15 +50,6 @@
 }
 
 .meny {
-  margin-top: 5vw;
-}
-
-a {
-  text-decoration: none;
-  color: #f8f8ff;
-}
-
-.sideKnapp {
   border-style: double;
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -68,4 +59,12 @@ a {
   text-align: center;
   margin-top: 1vh;
   background-color: lightsteelblue;
+}
+
+a {
+  text-decoration: none;
+  color: #f8f8ff;
+}
+
+.sideKnapp {
 }
