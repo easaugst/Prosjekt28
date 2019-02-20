@@ -9,10 +9,12 @@
   position: absolute;
   top: 3vh;
   left: 22vw;
+  font-family: sans-serif;
 }
 
 .sideMeny {
   position: absolute;
   top: 8vh;
   left: 5vw;
+  font-family: sans-serif;
 }
