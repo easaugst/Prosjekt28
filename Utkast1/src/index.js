@@ -185,35 +185,38 @@ class EndringVertMenu extends Component {
 }
 
 class Utstyr extends Component {
-  uId = '';
-  uType = '';
+  uId ="";
+  uType = "";
+  uArray= [];
 
   render() {
-    return (
+    return(
       <div className="mainView">
         <table border="1">
-          <tbody>
-            <tr>
-              <td>Utstyrsid</td>
-              <td>Utstyrstype</td>
+        <tbody>
+          {this.uArray.map(utstyr => (
+            <tr key={utstyr.utstyrsid}>
+              <td>{utstyr.utstyrsid}</td>
             </tr>
-            <tr>
-              <td>{this.uId}</td>
-              <td>{this.uType}</td>
-            </tr>
-          </tbody>
+          ))}
+        </tbody>
         </table>
-      </div>
-    );
-  }
+
+
+
+    </div>
+  )
+
+}
   mounted() {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
-      for (var i = 0; i <= utstyr.length; i++) {
-        this.uId += utstyr[i].utstyrsid;
-        this.uType += utstyr[i].utstyrstype;
-      }
+
+      this.uArray = utstyr;
+
     });
   }
+
+
 }
 
 ReactDOM.render(
