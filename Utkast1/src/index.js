@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { UtstyrService } from './services';
 const history = createHashHistory();
 
 class Menu extends Component {

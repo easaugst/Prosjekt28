@@ -1,6 +1,6 @@
 import { connection } from './mysql_connection';
 
-class SykkelService {
+class UtstyrService {
   getSykkel(success) {
       connection.query('SELECT * FROM Utstyr', (error, results) => {
 
