@@ -49,14 +49,14 @@
   list-style: none;
 }
 .meny {
-  border-style: double;
+  border: solid black 1px;
   padding-top: 2vh;
   padding-bottom: 2vh;
   padding-right: 2vw;
   padding-left: 2vw;
   text-align: center;
   background-color: lightsteelblue;
-  width: 20%;
+  width: 13%;
   position: absolute;
 }
 
