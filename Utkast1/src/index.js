@@ -126,25 +126,25 @@ class RegVertMenu extends Component {
       <div className="sideMeny">
         <li className="sideKnapp">
           <NavLink className="meny" to="/registrering/bestilling">
-            Bestillinger
+            Registrere ansatt
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/registrering/kunde">
-            Kunder
+            Registrere kunder
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/registrering/sykkel">
-            Sykler
+            Registrere sykler
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/registrering/utstyr">
-            Utstyr
+            Registrere utstyr
           </NavLink>
         </li>
       </div>
@@ -158,25 +158,25 @@ class EndringVertMenu extends Component {
       <div className="sideMeny">
         <li className="sideKnapp">
           <NavLink className="meny" to="/endring/kunde">
-            Kundeinformasjon
+            Endre kundeinformasjon
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/endring/bestillinger">
-            Kunder
+            Endre bestilling
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/endring/sykkel">
-            Sykler
+            Endre sykler
           </NavLink>
         </li>
         <br />
         <li className="sideKnapp">
           <NavLink className="meny" to="/endring/utstyr">
-            Utstyr
+            Endre utstyr
           </NavLink>
         </li>
       </div>
