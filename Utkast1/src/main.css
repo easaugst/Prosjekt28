@@ -14,11 +14,13 @@
 
 .meny2 {
   padding: 2vw;
+  border: black solid;
+  margin-bottom: 2em;
 }
 
 .sideMeny {
   position: absolute;
-  top: 8vh;
+  top: 10vh;
   left: 5vw;
   font-family: sans-serif;
 }
