@@ -13,7 +13,7 @@ class Menu extends Component {
         &nbsp;&nbsp;
         <NavLink to="/utleie">Utleie</NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/endring">Endring2</NavLink>
+        <NavLink to="/endring">Endring</NavLink>
         &nbsp;&nbsp;
         <NavLink to="/registrering">Registrering</NavLink>
       </div>
