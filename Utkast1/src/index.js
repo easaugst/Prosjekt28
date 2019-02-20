@@ -9,13 +9,13 @@ class Menu extends Component {
   render() {
     return (
       <div className="hovedMeny">
-        <NavLink to="/oversikt">Oversikt</NavLink>
+        <NavLink to="/oversikt" className = "meny2">Oversikt</NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/utleie">Utleie</NavLink>
+        <NavLink to="/utleie" className = "meny2">Utleie</NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/endring">Endring</NavLink>
+        <NavLink to="/endring" className = "meny2">Endring</NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/registrering">Registrering</NavLink>
+        <NavLink to="/registrering" className = "meny2">Registrering</NavLink>
       </div>
     );
   }
