@@ -204,6 +204,7 @@ class Utstyr extends Component {
 
 
 
+
     </div>
   )
 
