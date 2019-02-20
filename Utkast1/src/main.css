@@ -6,20 +6,22 @@
 }
 
 .hovedMeny {
-  position: relative;
+  position: absolute;
   top: 3vh;
   left: 24vw;
   font-family: sans-serif;
+  width: 100%;
 }
 
 .meny2 {
+  position: relative;
   padding-top: 2vw;
   padding-left: 4vw;
   padding-right: 4vw;
   padding-bottom: 2vw;
   border: black solid;
   background-color: lightgrey;
-  width: 14%;
+  width: 15%;
   float: left;
 }
 
