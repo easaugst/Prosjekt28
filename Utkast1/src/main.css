@@ -30,6 +30,8 @@
   top: 10vh;
   left: 5vw;
   font-family: sans-serif;
+  font-size: 0.8em;
+  margin-top: 3em;
 }
 
 .meny {
@@ -37,5 +39,16 @@
 }
 
 a {
-text-decoration: none;
+  text-decoration: none;
+}
+
+.sideKnapp {
+  border-style: double;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  list-style: none;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  text-align: center;
+  margin-top: 1vh;
 }

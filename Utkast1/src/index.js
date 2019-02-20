@@ -10,13 +10,21 @@ class Menu extends Component {
   render() {
     return (
       <div className="hovedMeny">
-        <NavLink to="/oversikt" className = "meny2">Oversikt</NavLink>
+        <NavLink to="/oversikt" className="meny2">
+          Oversikt
+        </NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/utleie" className = "meny2">Utleie</NavLink>
+        <NavLink to="/utleie" className="meny2">
+          Utleie
+        </NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/endring" className = "meny2">Endring</NavLink>
+        <NavLink to="/endring" className="meny2">
+          Endring
+        </NavLink>
         &nbsp;&nbsp;
-        <NavLink to="/registrering" className = "meny2">Registrering</NavLink>
+        <NavLink to="/registrering" className="meny2">
+          Registrering
+        </NavLink>
       </div>
     );
   }
@@ -32,9 +40,11 @@ class Utleie extends Component {
   render() {
     return (
       <div className="mainView">
-        <NavLink to="/utleie/kundereg"><button>Ny kunde</button></NavLink>
+        <NavLink to="/utleie/kundereg">
+          <button>Ny kunde</button>
+        </NavLink>
       </div>
-  );  //Button inni NavLink: Tommel opp
+    ); //Button inni NavLink: Tommel opp
   }
 }
 
@@ -42,9 +52,11 @@ class returnUtleie extends Component {
   render() {
     return (
       <div className="mainView">
-        <NavLink to="/utleie"><button>Gå tilbake</button></NavLink>
+        <NavLink to="/utleie">
+          <button>Gå tilbake</button>
+        </NavLink>
       </div>
-    )
+    );
   }
 }
 
@@ -65,11 +77,11 @@ class KundeReg extends Component {
     return (
       <div className="mainView">
         <form>
-        <input type="text" placeholder="Fornavn" />
-        &nbsp;
-        <input type="text" placeholder="Etternavn" />
-        <br /> <br />
-        <input type="text" maxLength="8" placeholder="12345678" />
+          <input type="text" placeholder="Fornavn" />
+          &nbsp;
+          <input type="text" placeholder="Etternavn" />
+          <br /> <br />
+          <input type="text" maxLength="8" placeholder="12345678" />
         </form>
       </div>
     );
@@ -79,61 +91,102 @@ class KundeReg extends Component {
 class OversiktVertMenu extends Component {
   render() {
     return (
-    <div className="sideMeny">
-    <NavLink to="/oversikt/bestilling" className="meny">Bestillinger</NavLink>
-    <br />
-    <NavLink to="/oversikt/kunde" className="meny">Kunder</NavLink>
-    <br />
-    <NavLink to="/oversikt/sykkel" className="meny">Sykler</NavLink>
-    <br />
-    <NavLink to="/oversikt/utstyr" className="meny">Utstyr</NavLink>
-    </div>
-  );
+      <div className="sideMeny">
+        <li className="sideKnapp">
+          <NavLink to="/oversikt/bestilling" className="meny">
+            Bestillinger
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink to="/oversikt/kunde" className="meny">
+            Kunder
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink to="/oversikt/sykkel" className="meny">
+            Sykler
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink to="/oversikt/utstyr" className="meny">
+            Utstyr
+          </NavLink>
+        </li>
+      </div>
+    );
   }
 }
 
 class RegVertMenu extends Component {
   render() {
     return (
-    <div className="sideMeny">
-    <NavLink className="meny" to="/registrering/bestilling">Bestillinger</NavLink>
-    <br />
-    <NavLink className="meny" to="/registrering/kunde">Kunder</NavLink>
-    <br />
-    <NavLink className="meny" to="/registrering/sykkel">Sykler</NavLink>
-    <br />
-    <NavLink className="meny" to="/registrering/utstyr">Utstyr</NavLink>
-    </div>
-  );
+      <div className="sideMeny">
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/registrering/bestilling">
+            Bestillinger
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/registrering/kunde">
+            Kunder
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/registrering/sykkel">
+            Sykler
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/registrering/utstyr">
+            Utstyr
+          </NavLink>
+        </li>
+      </div>
+    );
   }
 }
 
 class EndringVertMenu extends Component {
   render() {
     return (
-    <div className="sideMeny">
-    <NavLink className="meny" to="/endring/kunde">Kundeinformasjon</NavLink>
-    <br />
-    <NavLink className="meny" to="/endring/bestillinger">Kunder</NavLink>
-    <br />
-    <NavLink className="meny" to="/endring/sykkel">Sykler</NavLink>
-    <br />
-    <NavLink className="meny" to="/endring/utstyr">Utstyr</NavLink>
-    </div>
-  );
+      <div className="sideMeny">
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/endring/kunde">
+            Kundeinformasjon
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/endring/bestillinger">
+            Kunder
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/endring/sykkel">
+            Sykler
+          </NavLink>
+        </li>
+        <br />
+        <li className="sideKnapp">
+          <NavLink className="meny" to="/endring/utstyr">
+            Utstyr
+          </NavLink>
+        </li>
+      </div>
+    );
   }
 }
 
 class Utstyr extends Component {
-
   render() {
-    return(
-      <div className="mainView">
-
-      Test
-
-      </div>
-    )
+    return <div className="mainView">Test</div>;
   }
 }
 
@@ -155,8 +208,6 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
-
-
     </div>
   </HashRouter>,
   document.getElementById('root')
