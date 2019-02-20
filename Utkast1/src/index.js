@@ -78,7 +78,7 @@ class KundeReg extends Component {
 class OversiktVertMenu extends Component {
   render() {
     return (
-    <div>
+    <div class="sideMeny">
     <NavLink className="meny" to="/oversikt/bestilling">Bestillinger</NavLink>
     <br />
     <NavLink className="meny" to="/oversikt/kunde">Kunder</NavLink>
@@ -94,7 +94,7 @@ class OversiktVertMenu extends Component {
 class RegVertMenu extends Component {
   render() {
     return (
-    <div>
+    <div class="sideMeny">
     <NavLink className="meny" to="/registrering/bestilling">Bestillinger</NavLink>
     <br />
     <NavLink className="meny" to="/registrering/kunde">Kunder</NavLink>
@@ -110,7 +110,7 @@ class RegVertMenu extends Component {
 class EndringVertMenu extends Component {
   render() {
     return (
-    <div>
+    <div class="sideMeny">
     <NavLink className="meny" to="/endring/kunde">Kundeinformasjon</NavLink>
     <br />
     <NavLink className="meny" to="/endring/bestillinger">Kunder</NavLink>

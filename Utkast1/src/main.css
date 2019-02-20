@@ -8,6 +8,10 @@
 
 .hovedMeny {
   position: absolute;
-  margin: 2em;
-  padding: 2em;
+  padding: 1vw;
+}
+
+.sideMeny {
+  position: absolute;
+  top: 8vh;
 }
