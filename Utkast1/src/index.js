@@ -79,13 +79,13 @@ class OversiktVertMenu extends Component {
   render() {
     return (
     <div className="sideMeny">
-    <NavLink className="meny" to="/oversikt/bestilling">Bestillinger</NavLink>
+    <NavLink to="/oversikt/bestilling" className="meny">Bestillinger</NavLink>
     <br />
-    <NavLink className="meny" to="/oversikt/kunde">Kunder</NavLink>
+    <NavLink to="/oversikt/kunde" className="meny">Kunder</NavLink>
     <br />
-    <NavLink className="meny" to="/oversikt/sykkel">Sykler</NavLink>
+    <NavLink to="/oversikt/sykkel" className="meny">Sykler</NavLink>
     <br />
-    <NavLink className="meny" to="/oversikt/utstyr">Utstyr</NavLink>
+    <NavLink to="/oversikt/utstyr" className="meny">Utstyr</NavLink>
     </div>
   );
   }
