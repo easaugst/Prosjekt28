@@ -1,9 +1,9 @@
 /* Tekst forside */
 .mainView {
   position: absolute;
-  right: 5vw;
-  top: 15vh;
-  height: 50vh;
+  left: 24vw;
+  top: 20vh;
+  height: 70%;
 }
 
 /* Oversikt header */
