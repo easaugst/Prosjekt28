@@ -7,10 +7,12 @@
 
 .hovedMeny {
   position: absolute;
-  padding: 1vw;
+  top: 3vh;
+  left: 22vw;
 }
 
 .sideMeny {
   position: absolute;
   top: 8vh;
+  left: 5vw;
 }
