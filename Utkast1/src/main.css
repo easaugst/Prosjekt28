@@ -12,11 +12,19 @@
   font-family: sans-serif;
 }
 
+.meny2 {
+  padding: 2vw;
+}
+
 .sideMeny {
   position: absolute;
   top: 8vh;
   left: 5vw;
   font-family: sans-serif;
+}
+
+.meny {
+  padding-top: 5vw;
 }
 
 a {
