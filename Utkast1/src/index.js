@@ -5,6 +5,8 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 import { utstyrService } from './services';
 import { sykkelService } from './services';
+import { kundeService } from './services';
+import { bestillingsService } from './services';
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -57,10 +59,10 @@ class returnUtleie extends Component {
       <div className="mainView">
         <div className="utleieMainView">
           <NavLink to="/utleie" className="tilbakeMeny">
-            Avbryt registrering
+            Gå tilbake
           </NavLink>
           <NavLink to="/utleie" className="tilbakeMeny2">
-            Registrer kunde
+            Neste
           </NavLink>
         </div>
       </div>
@@ -229,7 +231,6 @@ class UtstyrOversikt extends Component {
 }
 
 class SykkelOversikt extends Component {
-
   sArray = [];
 
   render() {
@@ -269,6 +270,84 @@ class SykkelOversikt extends Component {
   }
 }
 
+class KundeOversikt extends Component {
+  kArray = [];
+
+  render() {
+    return (
+      <div className="mainView">
+        <table border="1">
+          <tbody>
+            <tr>
+              <th>Kundenummer</th>
+              <th>Fornavn</th>
+              <th>Etternavn</th>
+              <th>E-post</th>
+              <th>Telefonnummer</th>
+            </tr>
+            {this.kArray.map(kunde => (
+              <tr key={kunde.kundenr}>
+                <td>{kunde.kundenr}</td>
+                <td>{kunde.fnavn}</td>
+                <td>{kunde.enavn}</td>
+                <td>{kunde.epost}</td>
+                <td>{kunde.tlf}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  mounted() {
+    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+      this.kArray = kunde;
+    });
+  }
+}
+
+class BestillingOversikt extends Component {
+  bArray = [];
+
+  render() {
+    return (
+      <div className="mainView">
+        <table border="1">
+          <tbody>
+            <tr>
+              <th>Bestillingsnummer</th>
+              <th>Kundenummer</th>
+              <th>Utleietype</th>
+              <th>Kontant</th>
+              <th>Tidspunkt bestilling</th>
+              <th>Fra</th>
+              <th>Til</th>
+              <th>Gruppe</th>
+            </tr>
+            {this.bArray.map(bestilling => (
+              <tr key={bestilling.bestillingsid}>
+                <td>{bestilling.kundeid}</td>
+                <td>{bestilling.utleietype}</td>
+                <td>{bestilling.kontant}</td>
+                <td>{bestilling.btid}</td>
+                <td>{bestilling.ftid}</td>
+                <td>{bestilling.ttid}</td>
+                <td>{bestilling.gruppe}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  mounted() {
+    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
+      this.bArray = bestilling;
+    });
+  }
+}
+
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -277,6 +356,8 @@ ReactDOM.render(
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
       <Route path="/oversikt/sykkel" component={SykkelOversikt} />
+      <Route path="/oversikt/kunde" component={KundeOversikt} />
+      <Route path="/oversikt/bestilling" component={BestillingOversikt} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route exact path="/utleie/kundereg" component={KundeReg} />

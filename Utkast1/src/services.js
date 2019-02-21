@@ -24,7 +24,7 @@ class SykkelService {
 
 
 class KundeService {
-  getKunde(kundeid, success) {
+  getKunde(kundenr, success) {
     connection.query('SELECT * FROM Kunde', [kundenr], (error, results) => {
 
       if(error) return console.error(error);
