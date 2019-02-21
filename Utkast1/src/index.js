@@ -56,7 +56,7 @@ class returnUtleie extends Component {
       <div className="mainView">
       <div className="utleieMainView">
         <NavLink to="/utleie">
-          <button>Gå tilbake</button>
+          <button id="tilbake">Gå tilbake</button>
         </NavLink>
       </div>
       </div>

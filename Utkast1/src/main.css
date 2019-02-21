@@ -76,6 +76,22 @@ a {
 /* Gå tilbake fra utleieknapp */
 .utleieMainView {
   padding-top: 20vh;
+  position: absolute;
+  width: 100%;
+  font-size: 0.8em;
+  margin-top: 3em;
+  font-family: 'Trebuchet MS';
+}
+#tilbake {
+  border: solid black 1px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  text-align: center;
+  background-color: lightsteelblue;
+  width: 30%;
+  position: absolute;
 }
 /* Kunderegistrering */
 .kundereg {
