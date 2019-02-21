@@ -77,10 +77,22 @@ a {
 .utleieMainView {
   padding-top: 20vh;
   position: absolute;
-  width: 50%;
+  width: 100%;
   font-size: 0.8em;
   margin-top: 3em;
   font-family: 'Trebuchet MS';
+}
+.tilbakeMeny {
+  border: solid black 1px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-right: 7vw;
+  padding-left: 4vw;
+  text-align: center;
+  background-color: lightsteelblue;
+  width: 100%;
+  position: absolute;
+  float: left;
 }
 /* Kunderegistrering */
 .kundereg {
