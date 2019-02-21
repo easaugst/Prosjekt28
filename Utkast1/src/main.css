@@ -86,15 +86,13 @@ a {
   border: solid black 1px;
   padding-top: 2vh;
   padding-bottom: 2vh;
-  padding-right: 7vw;
+  padding-right: 4vw;
   padding-left: 4vw;
   text-align: center;
   background-color: lightsteelblue;
-  width: 100%;
+  width: 5vw;
   position: absolute;
-  float: left;
 }
 /* Kunderegistrering */
 .kundereg {
-
 }
