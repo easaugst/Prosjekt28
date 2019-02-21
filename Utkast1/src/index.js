@@ -134,7 +134,7 @@ class UtleieVertMenu extends Component {
       <div className="sideMeny">
         <li className="sideKnapp">
           <NavLink to="/utleie/KundeReg" className="meny">
-            Ny kunde
+            Registrer kunde
           </NavLink>
         </li>
       </div>
