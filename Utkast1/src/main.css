@@ -105,6 +105,12 @@ a {
   width: 5vw;
   position: absolute;
 }
+.tilbakeMeny:hover {
+  filter: brightness(85%);
+}
+.tilbakeMeny2:hover {
+  filter: brightness(85%);
+}
 /* Kunderegistrering */
 .kundereg {
 }
