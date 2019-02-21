@@ -185,12 +185,12 @@ class EndringVertMenu extends Component {
 }
 
 class UtstyrOversikt extends Component {
-  uId ="";
-  uType = "";
-  uArray= [];
+  uId = '';
+  uType = '';
+  uArray = [];
 
   render() {
-    return(
+    return (
       <div className="mainView">
         <table border="1">
           <tbody>
@@ -198,20 +198,19 @@ class UtstyrOversikt extends Component {
               <th>Utstyrsnr</th>
               <th>Utstyrstype</th>
             </tr>
-          {this.uArray.map(utstyr => (
-            <tr key={utstyr.utstyrsid}>
-              <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.utstyrstype}</td>
-            </tr>
-          ))}
+            {this.uArray.map(utstyr => (
+              <tr key={utstyr.utstyrsid}>
+                <td>{utstyr.utstyrsid}</td>
+                <td>{utstyr.utstyrstype}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-  )
-}
+    );
+  }
   mounted() {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
-
       this.uArray = utstyr;
     });
   }
