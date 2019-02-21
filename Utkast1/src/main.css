@@ -26,6 +26,7 @@
   float: left;
   text-align: center;
   box-shadow: 5px 5px 5px grey;
+  font-size: 1.3vw;
 }
 .meny2:hover {
   filter: brightness(85%);
@@ -38,9 +39,9 @@
 .sideMeny {
   position: absolute;
   top: 10vh;
-  left: 5vw;
+  left: 3vw;
   width: 100%;
-  font-size: 0.8em;
+  font-size: 1.2vw;
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
@@ -56,7 +57,7 @@
   padding-left: 2vw;
   text-align: center;
   background-color: lightsteelblue;
-  width: 13%;
+  width: 14%;
   position: absolute;
 }
 
