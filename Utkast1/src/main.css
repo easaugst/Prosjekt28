@@ -93,6 +93,18 @@ a {
   width: 5vw;
   position: absolute;
 }
+.tilbakeMeny2 {
+  margin-left: 14vw;
+  border: solid black 1px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-right: 4vw;
+  padding-left: 4vw;
+  text-align: center;
+  background-color: lightsteelblue;
+  width: 5vw;
+  position: absolute;
+}
 /* Kunderegistrering */
 .kundereg {
 }

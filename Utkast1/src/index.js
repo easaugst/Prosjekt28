@@ -59,6 +59,9 @@ class returnUtleie extends Component {
           <NavLink to="/utleie" className="tilbakeMeny">
             Gå tilbake
           </NavLink>
+          <NavLink to="/utleie" className="tilbakeMeny2">
+            Neste
+          </NavLink>
         </div>
       </div>
     );
