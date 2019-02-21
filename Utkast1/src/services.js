@@ -11,6 +11,30 @@ class UtstyrService {
   }
 }
 
+class SykkelService {
+  getSykkel(sykkelid, success) {
+    connection.query('SELECT * FROM Sykkel', [sykkelid], (error, results) => {
+
+      if(error) return console.error(error);
+
+      success(results);
+    });
+  }
+}
+
+
+class KundeService {
+  getKunde(kundeid, success) {
+    connection.query('SELECT * FROM Kunde', [kundeid], (error, results) => {
+
+      if(error) return console.error(error);
+
+      success(results);
+    });
+  }
+}
+
+
 
 
 
@@ -45,3 +69,5 @@ class UtstyrService {
 //LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 export let utstyrService = new UtstyrService();
+export let sykkelService = new SykkelService();
+export let kundeService = new KundeService();
