@@ -86,7 +86,8 @@ class KundeReg extends Component {
             <br /> <br />
             <input type="text" maxLength="12" placeholder="12345678" />
             <br /> <br />
-            <input type="text" placeholder="Epost" />
+            <input type="text" placeholder="Epost" /> &nbsp;
+            Nyhetsbrev: <input type="checkbox" id="checkBox"/>
             <br /> <br />
             <input type="date" placeholder="Fødselsdato" />
           </form>
