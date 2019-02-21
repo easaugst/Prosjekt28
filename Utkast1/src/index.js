@@ -335,9 +335,9 @@ class BestillingOversikt extends Component {
                 <td>{bestilling.kundeid}</td>
                 <td>{bestilling.utleietype}</td>
                 <td>{bestilling.kontant}</td>
-                <td>{bestilling.btid}</td>
-                <td>{bestilling.ftid}</td>
-                <td>{bestilling.ttid}</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>{bestilling.gruppe}</td>
               </tr>
             ))}
