@@ -112,5 +112,6 @@ a {
   filter: brightness(85%);
 }
 /* Kunderegistrering */
-.kundereg {
+.KundeReg {
+  padding: 1vw;
 }
