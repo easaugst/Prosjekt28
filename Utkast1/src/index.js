@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 import { utstyrService } from './services';
+import { sykkelService } from './services';
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -226,6 +227,53 @@ class UtstyrOversikt extends Component {
   }
 }
 
+class SykkelOversikt extends Component {
+  sId = '';
+  sType = '';
+  befinnelse = '';
+  status = '';
+  beskrivelse = '';
+  bestillingsId = '';
+  utleieNavn = '';
+  sArray = [];
+
+  render() {
+    return (
+      <div className="mainView">
+        <table border="1">
+          <tbody>
+            <tr>
+              <th>Reg nr.</th>
+              <th>Sykkeltype</th>
+              <th>Befinnelse</th>
+              <th>Status</th>
+              <th>Beskrivelse</th>
+              <th>Nåværende bestilling</th>
+              <th>Tilhører utleiested</th>
+            </tr>
+            {this.sArray.map(sykkel => (
+              <tr key={sykkel.regnr}>
+                <td>{sykkel.regnr}</td>
+                <td>{sykkel.sykkeltypenavn}</td>
+                <td>{sykkel.befinnelse}</td>
+                <td>{sykkel.status}</td>
+                <td>{sykkel.beskrivelse}</td>
+                <td>{sykkel.bestillingsid}</td>
+                <td>{sykkel.utleienavn}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  mounted() {
+    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+      this.sArray = sykkel;
+    });
+  }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -233,6 +281,7 @@ ReactDOM.render(
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
+      <Route path="/oversikt/sykkel" component={SykkelOversikt} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route exact path="/utleie/kundereg" component={KundeReg} />
