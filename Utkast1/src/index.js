@@ -199,8 +199,6 @@ class EndringVertMenu extends Component {
 }
 
 class UtstyrOversikt extends Component {
-  uId = '';
-  uType = '';
   uArray = [];
 
   render() {
@@ -215,7 +213,7 @@ class UtstyrOversikt extends Component {
             {this.uArray.map(utstyr => (
               <tr key={utstyr.utstyrsid}>
                 <td>{utstyr.utstyrsid}</td>
-                <td>{utstyr.utstyrstype}</td>
+                <td>{utstyr.navn}</td>
               </tr>
             ))}
           </tbody>
@@ -231,13 +229,7 @@ class UtstyrOversikt extends Component {
 }
 
 class SykkelOversikt extends Component {
-  sId = '';
-  sType = '';
-  befinnelse = '';
-  status = '';
-  beskrivelse = '';
-  bestillingsId = '';
-  utleieNavn = '';
+
   sArray = [];
 
   render() {
