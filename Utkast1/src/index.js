@@ -41,15 +41,7 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   render() {
-    return (
-      <div className="sideMeny">
-        <li className="sideKnapp">
-          <NavLink to="/utleie/kundereg" className="meny">
-            Ny kunde{' '}
-          </NavLink>
-        </li>
-      </div>
-    ); //Button inni NavLink: Tommel opp
+    return <div className="mainView">Her får vi en oversikt over utleie</div>;
   }
 }
 
@@ -129,6 +121,20 @@ class OversiktVertMenu extends Component {
         <li className="sideKnapp">
           <NavLink to="/oversikt/utstyr" className="meny">
             Utstyr
+          </NavLink>
+        </li>
+      </div>
+    );
+  }
+}
+
+class UtleieVertMenu extends Component {
+  render() {
+    return (
+      <div className="sideMeny">
+        <li className="sideKnapp">
+          <NavLink to="/utleie/KundeReg" className="meny">
+            Ny kunde
           </NavLink>
         </li>
       </div>
@@ -360,6 +366,7 @@ ReactDOM.render(
       <Route path="/oversikt/bestilling" component={BestillingOversikt} />
 
       <Route exact path="/utleie" component={Utleie} />
+      <Route path="/utleie" component={UtleieVertMenu} />
       <Route exact path="/utleie/kundereg" component={KundeReg} />
       <Route exact path="/utleie/kundereg" component={returnUtleie} />
 
