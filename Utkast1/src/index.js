@@ -54,11 +54,19 @@ class returnUtleie extends Component {
   render() {
     return (
       <div className="mainView">
+<<<<<<< HEAD
         <div className="utleieMainView">
           <NavLink to="/utleie">
             <button>Gå tilbake</button>
           </NavLink>
         </div>
+=======
+      <div className="utleieMainView">
+        <NavLink to="/utleie">
+          <button id="tilbake">Gå tilbake</button>
+        </NavLink>
+      </div>
+>>>>>>> decfc9ae4c960de2e9ea347f86e45d36151eb8cc
       </div>
     );
   }
