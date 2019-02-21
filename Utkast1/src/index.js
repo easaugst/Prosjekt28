@@ -39,10 +39,12 @@ class Oversikt extends Component {
 class Utleie extends Component {
   render() {
     return (
-      <div className="mainView">
-        <NavLink to="/utleie/kundereg">
-          <button>Ny kunde</button>
-        </NavLink>
+      <div className="sideMeny">
+        <li className="sideKnapp">
+          <NavLink to="/utleie/kundereg" className="meny">
+            Ny kunde{' '}
+          </NavLink>
+        </li>
       </div>
     ); //Button inni NavLink: Tommel opp
   }
