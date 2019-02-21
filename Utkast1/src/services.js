@@ -82,4 +82,4 @@ class BestillingsService {
 export let utstyrService = new UtstyrService();
 export let sykkelService = new SykkelService();
 export let kundeService = new KundeService();
-export let bestillingsService new BestillingsService();
+export let bestillingsService = new BestillingsService();
