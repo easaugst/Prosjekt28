@@ -51,10 +51,10 @@ class returnUtleie extends Component {
       <div className="mainView">
         <div className="utleieMainView">
           <NavLink to="/utleie" className="tilbakeMeny">
-            Gå tilbake
+            Avbryt registrering
           </NavLink>
           <NavLink to="/utleie" className="tilbakeMeny2">
-            Neste
+            Registrer kunde
           </NavLink>
         </div>
       </div>
