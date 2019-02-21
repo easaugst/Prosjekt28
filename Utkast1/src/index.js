@@ -54,11 +54,11 @@ class returnUtleie extends Component {
   render() {
     return (
       <div className="mainView">
-      <div className="utleieMainView">
-        <NavLink to="/utleie">
-          <button>Gå tilbake</button>
-        </NavLink>
-      </div>
+        <div className="utleieMainView">
+          <NavLink to="/utleie">
+            <button>Gå tilbake</button>
+          </NavLink>
+        </div>
       </div>
     );
   }
@@ -80,15 +80,19 @@ class KundeReg extends Component {
   render() {
     return (
       <div className="mainView">
-      <div className="KundeReg">
-        <form>
-          <input type="text" placeholder="Fornavn" />
-          &nbsp;
-          <input type="text" placeholder="Etternavn" />
-          <br /> <br />
-          <input type="text" maxLength="12" placeholder="12345678" />
-        </form>
-      </div>
+        <div className="KundeReg">
+          <form>
+            <input type="text" placeholder="Fornavn" />
+            &nbsp;
+            <input type="text" placeholder="Etternavn" />
+            <br /> <br />
+            <input type="text" maxLength="12" placeholder="12345678" />
+            <br /> <br />
+            <input type="text" placeholder="Epost" />
+            <br /> <br />
+            <input type="date" placeholder="Fødselsdato" />
+          </form>
+        </div>
       </div>
     );
   }
