@@ -2,7 +2,7 @@ import { connection } from './mysql_connection';
 
 class UtstyrService {
   getUtstyr(utstyrsid, success) {
-      connection.query('SELECT utstyrsid, utstyrstype FROM Utstyr', [utstyrsid], (error, results) => {
+      connection.query('SELECT * FROM Utstyr U, Utstyrstype UT WHERE U.utstyrstype = UT.utstyrstypeid', [utstyrsid], (error, results) => {
 
         if(error) return console.error(error);
 
