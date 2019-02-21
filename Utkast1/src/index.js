@@ -62,6 +62,23 @@ class returnUtleie extends Component {
   }
 }
 
+class returnUtleie2 extends Component {
+  render() {
+    return (
+      <div className="mainView">
+        <div className="utleieMainView">
+          <NavLink to="/registrering" className="tilbakeMeny">
+            Avbryt registrering
+          </NavLink>
+          <NavLink to="/registrering" className="tilbakeMeny2">
+            Registrer kunde
+          </NavLink>
+        </div>
+      </div>
+    );
+  }
+}
+
 class Endring extends Component {
   render() {
     return <div className="mainView">Her kan vi endre informasjonen på registreringer</div>;
@@ -378,6 +395,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route exact path="/registrering/kunde" component={returnUtleie2} />
     </div>
   </HashRouter>,
   document.getElementById('root')
