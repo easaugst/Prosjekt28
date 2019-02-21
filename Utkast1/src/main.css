@@ -73,11 +73,11 @@ a {
   color: #f8f8ff;
 }
 
-/* Utleie */
+/* Gå tilbake fra utleieknapp */
 .utleieMainView {
-
+  padding-top: 20vh;
 }
 /* Kunderegistrering */
 .kundereg {
-  
+
 }
