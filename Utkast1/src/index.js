@@ -86,7 +86,7 @@ class KundeReg extends Component {
           &nbsp;
           <input type="text" placeholder="Etternavn" />
           <br /> <br />
-          <input type="text" maxLength="8" placeholder="12345678" />
+          <input type="text" maxLength="12" placeholder="12345678" />
         </form>
       </div>
       </div>
