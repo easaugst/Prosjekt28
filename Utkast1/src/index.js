@@ -40,7 +40,6 @@ class Oversikt extends Component {
 class Utleie extends Component {
   render() {
     return (
-      <div className="mainView"> Her kan vi skrive hva faen vi vil</div>;
       <div className="sideMeny">
         <li className="sideKnapp">
           <NavLink to="/utleie/kundereg" className="meny">
