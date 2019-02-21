@@ -184,7 +184,7 @@ class EndringVertMenu extends Component {
   }
 }
 
-class Utstyr extends Component {
+class UtstyrOversikt extends Component {
   uId ="";
   uType = "";
   uArray= [];
@@ -193,31 +193,28 @@ class Utstyr extends Component {
     return(
       <div className="mainView">
         <table border="1">
-        <tbody>
+          <tbody>
+            <tr>
+              <th>Utstyrsnr</th>
+              <th>Utstyrstype</th>
+            </tr>
           {this.uArray.map(utstyr => (
             <tr key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.utstyrstype}</td>
             </tr>
           ))}
-        </tbody>
+          </tbody>
         </table>
-
-
-
-
-    </div>
+      </div>
   )
-
 }
   mounted() {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
 
       this.uArray = utstyr;
-
     });
   }
-
-
 }
 
 ReactDOM.render(
@@ -226,7 +223,7 @@ ReactDOM.render(
       <Menu />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
-      <Route path="/oversikt/utstyr" component={Utstyr} />
+      <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route exact path="/utleie/kundereg" component={KundeReg} />
