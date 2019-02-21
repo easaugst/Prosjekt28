@@ -332,6 +332,7 @@ class BestillingOversikt extends Component {
             </tr>
             {this.bArray.map(bestilling => (
               <tr key={bestilling.bestillingsid}>
+                <td>{bestilling.bestillingsid}</td>
                 <td>{bestilling.kundeid}</td>
                 <td>{bestilling.utleietype}</td>
                 <td>{bestilling.kontant}</td>
