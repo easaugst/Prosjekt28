@@ -80,6 +80,7 @@ class KundeReg extends Component {
   render() {
     return (
       <div className="mainView">
+      <div className="KundeReg">
         <form>
           <input type="text" placeholder="Fornavn" />
           &nbsp;
@@ -87,6 +88,7 @@ class KundeReg extends Component {
           <br /> <br />
           <input type="text" maxLength="8" placeholder="12345678" />
         </form>
+      </div>
       </div>
     );
   }
