@@ -12,7 +12,7 @@
   top: 3vh;
   left: 24vw;
   font-family: 'Trebuchet MS';
-  width: 50%;
+  width: 100%;
 }
 .meny2 {
   position: relative;
@@ -22,7 +22,7 @@
   padding-bottom: 2vw;
   border: black solid;
   background-color: lightsteelblue;
-  width: 15%;
+  width: 10%;
   float: left;
   text-align: center;
   box-shadow: 5px 5px 5px grey;
