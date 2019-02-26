@@ -114,7 +114,7 @@ export class NavCol extends Component {
   }
 }
 
-class TableOvrsRad extends Component {
+class TableRad extends Component {
   render() {
     return (
       <tr>
@@ -124,8 +124,8 @@ class TableOvrsRad extends Component {
   }
 }
 
-export class TableOvrs extends Component {
-  static Rad = TableOvrsRad;
+export class Table extends Component {
+  static Rad = TableRad;
 
   render() {
     return (

@@ -7,7 +7,7 @@ import { utstyrService } from './services';
 import { sykkelService } from './services';
 import { kundeService } from './services';
 import { bestillingsService } from './services';
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, TableOvrs } from './widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -141,18 +141,18 @@ class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <TableOvrs>
-          <TableOvrs.Rad>
+        <Table>
+          <Table.Rad>
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
-          </TableOvrs.Rad>
+          </Table.Rad>
           {this.uArray.map(utstyr => (
-            <TableOvrs.Rad key={utstyr.utstyrsid}>
+            <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
-            </TableOvrs.Rad>
+            </Table.Rad>
           ))}
-        </TableOvrs>
+        </Table>
       </div>
     );
   }
@@ -169,8 +169,8 @@ class SykkelOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <TableOvrs>
-          <TableOvrs.Rad>
+        <Table>
+          <Table.Rad>
             <th>Reg nr.</th>
             <th>Sykkeltype</th>
             <th>Befinnelse</th>
@@ -178,9 +178,9 @@ class SykkelOversikt extends Component {
             <th>Beskrivelse</th>
             <th>Nåværende bestilling</th>
             <th>Tilhører utleiested</th>
-          </TableOvrs.Rad>
+          </Table.Rad>
           {this.sArray.map(sykkel => (
-            <TableOvrs.Rad key={sykkel.regnr}>
+            <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
               <td>{sykkel.sykkeltypenavn}</td>
               <td>{sykkel.befinnelse}</td>
@@ -188,9 +188,9 @@ class SykkelOversikt extends Component {
               <td>{sykkel.beskrivelse}</td>
               <td>{sykkel.bestillingsid}</td>
               <td>{sykkel.utleienavn}</td>
-            </TableOvrs.Rad>
+            </Table.Rad>
           ))}
-        </TableOvrs>
+        </Table>
       </div>
     );
   }
@@ -207,24 +207,24 @@ class KundeOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <TableOvrs>
-          <TableOvrs.Rad>
+        <Table>
+          <Table.Rad>
             <th>Kundenummer</th>
             <th>Fornavn</th>
             <th>Etternavn</th>
             <th>E-post</th>
             <th>Telefonnummer</th>
-          </TableOvrs.Rad>
+          </Table.Rad>
           {this.kArray.map(kunde => (
-            <TableOvrs.Rad key={kunde.kundenr}>
+            <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
               <td>{kunde.fnavn}</td>
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
-            </TableOvrs.Rad>
+            </Table.Rad>
           ))}
-        </TableOvrs>
+        </Table>
       </div>
     );
   }
@@ -241,8 +241,8 @@ class BestillingOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <TableOvrs>
-          <TableOvrs.Rad>
+        <Table>
+          <Table.Rad>
             <th>Bestillingsnummer</th>
             <th>Kundenummer</th>
             <th>Utleietype</th>
@@ -251,9 +251,9 @@ class BestillingOversikt extends Component {
             <th>Fra</th>
             <th>Til</th>
             <th>Gruppe</th>
-          </TableOvrs.Rad>
+          </Table.Rad>
           {this.bArray.map(bestilling => (
-            <TableOvrs.Rad key={bestilling.bestillingsid}>
+            <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
@@ -262,9 +262,9 @@ class BestillingOversikt extends Component {
               <td></td>
               <td></td>
               <td>{bestilling.gruppe}</td>
-            </TableOvrs.Rad>
+            </Table.Rad>
           ))}
-        </TableOvrs>
+        </Table>
       </div>
     );
   }
