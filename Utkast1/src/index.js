@@ -102,13 +102,9 @@ class OversiktVertMenu extends Component {
 class UtleieVertMenu extends Component {
   render() {
     return (
-      <div className="sideMeny">
-        <li className="sideKnapp">
-          <NavLink to="/utleie/KundeReg" className="meny">
-            Registrer kunde
-          </NavLink>
-        </li>
-      </div>
+      <NavCol>
+        <NavCol.Link to="/uteie/kundereg">Registrer kunde</NavCol.Link>
+      </NavCol>
     );
   }
 }
@@ -116,31 +112,12 @@ class UtleieVertMenu extends Component {
 class RegVertMenu extends Component {
   render() {
     return (
-      <div className="sideMeny">
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/registrering/bestilling">
-            Registrere ansatt
-          </NavLink>{' '}
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/registrering/kunde">
-            Registrere kunde
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/registrering/sykkel">
-            Registrere sykler
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/registrering/utstyr">
-            Registrere utstyr
-          </NavLink>
-        </li>
-      </div>
+      <NavCol>
+        <NavCol.Link to="/registrering/bestilling">Registrere Ansatt</NavCol.Link>
+        <NavCol.Link to="/registrering/kunde">Registrere kunde</NavCol.Link>
+        <NavCol.Link to="/registrering/sykkel">Registrere sykler</NavCol.Link>
+        <NavCol.Link to="/registrering/utstyr">Registrere utstyr</NavCol.Link>
+      </NavCol>
     );
   }
 }
@@ -148,31 +125,12 @@ class RegVertMenu extends Component {
 class EndringVertMenu extends Component {
   render() {
     return (
-      <div className="sideMeny">
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/endring/kunde">
-            Endre kundeinformasjon
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/endring/bestillinger">
-            Endre bestilling
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/endring/sykkel">
-            Endre sykler
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink className="meny" to="/endring/utstyr">
-            Endre utstyr
-          </NavLink>
-        </li>
-      </div>
+      <NavCol>
+        <NavCol.Link to="/endring/kunde">Endre kundeinformasjon</NavCol.Link>
+        <NavCol.Link to="/endring/bestillinger">Endre bestilling</NavCol.Link>
+        <NavCol.Link to="/endring/sykkel">Endre sykler</NavCol.Link>
+        <NavCol.Link to="/endring/utstyr">Endre utstyr</NavCol.Link>
+      </NavCol>
     );
   }
 }
@@ -183,20 +141,18 @@ class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table className="table table-striped">
-          <tbody>
-            <tr>
-              <th>Utstyrsnr</th>
-              <th>Utstyrstype</th>
-            </tr>
-            {this.uArray.map(utstyr => (
-              <tr key={utstyr.utstyrsid}>
-                <td>{utstyr.utstyrsid}</td>
-                <td>{utstyr.navn}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableOvrs>
+          <TableOvrs.Rad>
+            <th>Utstyrsnr</th>
+            <th>Utstyrstype</th>
+          </TableOvrs.Rad>
+          {this.uArray.map(utstyr => (
+            <TableOvrs.Rad>
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.navn}</td>
+            </TableOvrs.Rad>
+          ))}
+        </TableOvrs>
       </div>
     );
   }
@@ -213,30 +169,28 @@ class SykkelOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table className="table table-striped">
-          <tbody>
-            <tr>
-              <th>Reg nr.</th>
-              <th>Sykkeltype</th>
-              <th>Befinnelse</th>
-              <th>Status</th>
-              <th>Beskrivelse</th>
-              <th>Nåværende bestilling</th>
-              <th>Tilhører utleiested</th>
-            </tr>
-            {this.sArray.map(sykkel => (
-              <tr key={sykkel.regnr}>
-                <td>{sykkel.regnr}</td>
-                <td>{sykkel.sykkeltypenavn}</td>
-                <td>{sykkel.befinnelse}</td>
-                <td>{sykkel.status}</td>
-                <td>{sykkel.beskrivelse}</td>
-                <td>{sykkel.bestillingsid}</td>
-                <td>{sykkel.utleienavn}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableOvrs>
+          <TableOvrs.Rad>
+            <th>Reg nr.</th>
+            <th>Sykkeltype</th>
+            <th>Befinnelse</th>
+            <th>Status</th>
+            <th>Beskrivelse</th>
+            <th>Nåværende bestilling</th>
+            <th>Tilhører utleiested</th>
+          </TableOvrs.Rad>
+          {this.sArray.map(sykkel => (
+            <TableOvrs.Rad key={sykkel.regnr}>
+              <td>{sykkel.regnr}</td>
+              <td>{sykkel.sykkeltypenavn}</td>
+              <td>{sykkel.befinnelse}</td>
+              <td>{sykkel.status}</td>
+              <td>{sykkel.beskrivelse}</td>
+              <td>{sykkel.bestillingsid}</td>
+              <td>{sykkel.utleienavn}</td>
+            </TableOvrs.Rad>
+          ))}
+        </TableOvrs>
       </div>
     );
   }
@@ -253,26 +207,24 @@ class KundeOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table className="table table-striped">
-          <tbody>
-            <tr>
-              <th>Kundenummer</th>
-              <th>Fornavn</th>
-              <th>Etternavn</th>
-              <th>E-post</th>
-              <th>Telefonnummer</th>
-            </tr>
-            {this.kArray.map(kunde => (
-              <tr key={kunde.kundenr}>
-                <td>{kunde.kundenr}</td>
-                <td>{kunde.fnavn}</td>
-                <td>{kunde.enavn}</td>
-                <td>{kunde.epost}</td>
-                <td>{kunde.tlf}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableOvrs>
+          <TableOvrs.Rad>
+            <th>Kundenummer</th>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>E-post</th>
+            <th>Telefonnummer</th>
+          </TableOvrs.Rad>
+          {this.kArray.map(kunde => (
+            <TableOvrs.Rad key={kunde.kundenr}>
+              <td>{kunde.kundenr}</td>
+              <td>{kunde.fnavn}</td>
+              <td>{kunde.enavn}</td>
+              <td>{kunde.epost}</td>
+              <td>{kunde.tlf}</td>
+            </TableOvrs.Rad>
+          ))}
+        </TableOvrs>
       </div>
     );
   }
