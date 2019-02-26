@@ -147,7 +147,7 @@ class UtstyrOversikt extends Component {
             <th>Utstyrstype</th>
           </TableOvrs.Rad>
           {this.uArray.map(utstyr => (
-            <TableOvrs.Rad>
+            <TableOvrs.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
             </TableOvrs.Rad>
