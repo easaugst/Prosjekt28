@@ -7,44 +7,15 @@
   font-family: sans-serif;
 }
 
-/* Oversikt header */
-.hovedMeny {
-  position: absolute;
-  top: 3vh;
-  left: 24vw;
-  font-family: 'Trebuchet MS';
-  width: 100%;
-}
-.meny2 {
-  position: relative;
-  padding-top: 2vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  padding-bottom: 2vw;
-  border: black solid;
-  background-color: lightsteelblue;
-  width: 10%;
-  float: left;
-  text-align: center;
-  box-shadow: 5px 5px 5px grey;
-  font-size: 1.3vw;
-}
-.meny2:hover {
-  filter: brightness(85%);
-}
-.active {
-  background-color: lightslategrey;
-}
-
 /* Oversikt sidemeny */
 .sideMeny {
   position: absolute;
   top: 10vh;
-  left: 3vw;
-  width: 100%;
+  left: 1vw;
+  width: 20%;
   font-size: 1.2vw;
-  margin-top: 3em;
-  font-family: 'Trebuchet MS';
+  margin-top: 2em;
+  /* font-family: 'Trebuchet MS'; */
 }
 .sideKnapp {
   margin-top: 5vh;
@@ -65,15 +36,12 @@
 .sideKnapp:hover {
   filter: brightness(85%);
 }
-.active {
-  background-color: lightslategrey;
-}
 
 /* NavLink farge og understrek */
-a {
+/* a {
   text-decoration: none;
   color: #f8f8ff;
-}
+} */
 
 /* Gå tilbake fra utleieknapp */
 .utleieMainView {

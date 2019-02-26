@@ -7,28 +7,18 @@ import { utstyrService } from './services';
 import { sykkelService } from './services';
 import { kundeService } from './services';
 import { bestillingsService } from './services';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, TableOvrs } from './widgets';
 const history = createHashHistory();
 
 class Menu extends Component {
   render() {
     return (
-      <div className="hovedMeny">
-        <NavLink to="/oversikt" className="meny2">
-          Oversikt
-        </NavLink>
-        &nbsp;&nbsp;
-        <NavLink to="/utleie" className="meny2">
-          Utleie
-        </NavLink>
-        &nbsp;&nbsp;
-        <NavLink to="/endring" className="meny2">
-          Endring
-        </NavLink>
-        &nbsp;&nbsp;
-        <NavLink to="/registrering" className="meny2">
-          Registrering
-        </NavLink>
-      </div>
+      <NavBar brand="Sykkelutleie 9000">
+        <NavBar.Link to="/oversikt">Oversikt</NavBar.Link>
+        <NavBar.Link to="/utleie">Utleie</NavBar.Link>
+        <NavBar.Link to="/endring">Endring</NavBar.Link>
+        <NavBar.Link to="/registrering">Registrering</NavBar.Link>
+      </NavBar>
     );
   }
 }
@@ -99,31 +89,12 @@ class KundeReg extends Component {
 class OversiktVertMenu extends Component {
   render() {
     return (
-      <div className="sideMeny">
-        <li className="sideKnapp">
-          <NavLink to="/oversikt/bestilling" className="meny">
-            Bestillinger
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink to="/oversikt/kunde" className="meny">
-            Kunder
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink to="/oversikt/sykkel" className="meny">
-            Sykler
-          </NavLink>
-        </li>
-        <br />
-        <li className="sideKnapp">
-          <NavLink to="/oversikt/utstyr" className="meny">
-            Utstyr
-          </NavLink>
-        </li>
-      </div>
+      <NavCol>
+        <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
+        <NavCol.Link to="/oversikt/kunde">Kunde</NavCol.Link>
+        <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
+        <NavCol.Link to="/oversikt/utstyr">Utstyr</NavCol.Link>
+      </NavCol>
     );
   }
 }
@@ -212,7 +183,7 @@ class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table border="1">
+        <table className="table table-striped">
           <tbody>
             <tr>
               <th>Utstyrsnr</th>
@@ -242,7 +213,7 @@ class SykkelOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table border="1">
+        <table className="table table-striped">
           <tbody>
             <tr>
               <th>Reg nr.</th>
@@ -282,7 +253,7 @@ class KundeOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table border="1">
+        <table className="table table-striped">
           <tbody>
             <tr>
               <th>Kundenummer</th>
@@ -318,35 +289,34 @@ class BestillingOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <table border="1">
-          <tbody>
-            <tr>
-              <th>Bestillingsnummer</th>
-              <th>Kundenummer</th>
-              <th>Utleietype</th>
-              <th>Kontant</th>
-              <th>Tidspunkt bestilling</th>
-              <th>Fra</th>
-              <th>Til</th>
-              <th>Gruppe</th>
-            </tr>
-            {this.bArray.map(bestilling => (
-              <tr key={bestilling.bestillingsid}>
-                <td>{bestilling.bestillingsid}</td>
-                <td>{bestilling.kundeid}</td>
-                <td>{bestilling.utleietype}</td>
-                <td>{bestilling.kontant}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>{bestilling.gruppe}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TableOvrs>
+          <TableOvrs.Rad>
+            <th>Bestillingsnummer</th>
+            <th>Kundenummer</th>
+            <th>Utleietype</th>
+            <th>Kontant</th>
+            <th>Tidspunkt bestilling</th>
+            <th>Fra</th>
+            <th>Til</th>
+            <th>Gruppe</th>
+          </TableOvrs.Rad>
+          {this.bArray.map(bestilling => (
+            <TableOvrs.Rad key={bestilling.bestillingsid}>
+              <td>{bestilling.bestillingsid}</td>
+              <td>{bestilling.kundeid}</td>
+              <td>{bestilling.utleietype}</td>
+              <td>{bestilling.kontant}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{bestilling.gruppe}</td>
+            </TableOvrs.Rad>
+          ))}
+        </TableOvrs>
       </div>
     );
   }
+
   mounted() {
     bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
       this.bArray = bestilling;
@@ -398,7 +368,3 @@ ReactDOM.render(
   </HashRouter>,
   document.getElementById('root')
 );
-
-function goBack() {
-  window.history.back();
-}
