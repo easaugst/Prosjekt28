@@ -137,15 +137,17 @@ class EndringVertMenu extends Component {
   }
 }
 
+/*Alle oversiktklassene (UtstyrOversikt, SykkelOversikt, KundeOversikt, BestillingOversikt) er skrevet på denne måten*/
+/*Table widget med bootstrap klasser allerede valgt. Standard tabell med stripet visning*/
+/*Lager en ny rad, har ingen spesielle klasser (enda). Kan altså erstattes med vanlige <tr>*/
 class UtstyrOversikt extends Component {
   uArray = [];
 
   render() {
     return (
       <div className="mainView">
-      {/*Alle oversiktklassene (UtstyrOversikt, SykkelOversikt, KundeOversikt, BestillingOversikt) er skrevet på denne måten*/}
-        <Table>   {/*Table widget med bootstrap klasser allerede valgt. Standard tabell med stripet visning*/}
-          <Table.Rad>   {/*Lager en ny rad, har ingen spesielle klasser (enda). Kan altså erstattes med vanlige <tr>*/}
+      <Table>
+          <Table.Rad>
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
             <th>Status</th>
