@@ -302,7 +302,7 @@ ReactDOM.render(
 
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
-      <Route path="/registrering/kundereg" component={KundeReg} />
+      <Route path="/registrering/kunde" component={KundeReg} />
     </div>
   </HashRouter>,
   document.getElementById('root')
