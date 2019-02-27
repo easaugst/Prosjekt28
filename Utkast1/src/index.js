@@ -105,7 +105,7 @@ class UtleieVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/uteie/kundereg">Registrer kunde</NavCol.Link>
+        <NavCol.Link to="/utleie/kundereg">Registrer kunde</NavCol.Link>
       </NavCol>
     );
   }
@@ -148,11 +148,13 @@ class UtstyrOversikt extends Component {
           <Table.Rad>   {/*Lager en ny rad, har ingen spesielle klasser (enda). Kan altså erstattes med vanlige <tr>*/}
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
+            <th>Status</th>
           </Table.Rad>
           {this.uArray.map(utstyr => (    /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
+              <td>{utstyr.ustatus}</td>
             </Table.Rad>
           ))}
         </Table>
@@ -300,7 +302,7 @@ ReactDOM.render(
 
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
-      <Route path="/registrering/kunde" component={KundeReg} />
+      <Route path="/registrering/kundereg" component={KundeReg} />
     </div>
   </HashRouter>,
   document.getElementById('root')
