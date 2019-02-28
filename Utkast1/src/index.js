@@ -224,9 +224,7 @@ class KundeOversikt extends Component {
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <td>
-                <input type="text" className="form-control-plaintext" value={kunde.fnavn} />
-              </td>
+              <td>{kunde.fnavn}</td>
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
@@ -287,14 +285,42 @@ class BestillingOversikt extends Component {
 
 class KundeEndring extends Component {
 
-  render(){
+  kArray = [];
+  tid = '';
 
-  return (
-      <div className ="mainView">d</div>
+  render() {
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Kundenummer</th>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>E-post</th>
+            <th>Telefonnummer</th>
+            <th>Tid registrert</th>
+          </Table.Rad>
+          {this.kArray.map(kunde => (
+            <Table.Rad key={kunde.kundenr}>
+              <td>{kunde.kundenr}</td>
+              <td>
+                <input type="text" className="form-control-plaintext" value={kunde.fnavn} onChange={event => (kunde.fnavn = event.target.value)}/>
+              </td>
+              <td>{kunde.enavn}</td>
+              <td>{kunde.epost}</td>
+              <td>{kunde.tlf}</td>
+              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
     );
-
   }
-
+  mounted() {
+    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+      this.kArray = kunde;
+    });
+  }
 }
 
 class BestillingsEndring extends Component {
