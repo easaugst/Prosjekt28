@@ -39,16 +39,12 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView">
-          <div className="tilbakeMeny">
-            <NavLink to="/utleie" className="btn btn-danger">
-              Avbryt registrering
-            </NavLink>
-          </div>
-          <div className="tilbakeMeny2">
-            <NavLink to="/utleie" className="btn btn-success">
-              Registrer kunde
-            </NavLink>
-          </div>
+          <NavLink to="/utleie" class="btn btn-danger">
+            Avbryt registrering
+          </NavLink>
+          <NavLink to="/utleie" class="btn btn-success">
+            Registrer kunde
+          </NavLink>
         </div>
       </div>
     );
@@ -289,6 +285,54 @@ class BestillingOversikt extends Component {
   }
 }
 
+class KundeEndring extends Component {
+
+  render(){
+
+  return (
+      <div className ="mainView">d</div>
+    );
+
+  }
+
+}
+
+class BestillingsEndring extends Component {
+
+  render(){
+
+  return (
+      <div className ="mainView">c</div>
+    );
+
+  }
+
+}
+
+class SykkelEndring extends Component {
+
+  render(){
+
+  return (
+      <div className ="mainView">b</div>
+    );
+
+  }
+
+}
+
+class UtstyrEndring extends Component {
+
+  render(){
+
+  return (
+      <div className ="mainView">a</div>
+    );
+
+  }
+
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -299,6 +343,11 @@ ReactDOM.render(
       <Route path="/oversikt/sykkel" component={SykkelOversikt} />
       <Route path="/oversikt/kunde" component={KundeOversikt} />
       <Route path="/oversikt/bestilling" component={BestillingOversikt} />
+
+      <Route path="/endring/kunde" component={KundeEndring} />
+      <Route path="/endring/sykkel" component={SykkelEndring} />
+      <Route path="/endring/utstyr" component={UtstyrEndring} />
+      <Route path="/endring/bestillinger" component={BestillingsEndring} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
