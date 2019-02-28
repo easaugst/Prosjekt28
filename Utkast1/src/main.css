@@ -33,11 +33,9 @@
   width: 14%;
   position: absolute;
 }
-
 .sideKnapp:hover {
   filter: brightness(85%);
 }
-
 /* NavLink farge og understrek */
 /* a {
   text-decoration: none;
@@ -54,6 +52,8 @@
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
+
+/* CSS for registre og avbrytknapp*/
 .tilbakeMeny {
   text-align: center;
   width: 5vw;
@@ -63,13 +63,29 @@
   text-align: center;
   width: 5vw;
 }
+
 .tilbakeMeny:hover {
   filter: brightness(85%);
 }
 .tilbakeMeny2:hover {
   filter: brightness(85%);
 }
+
 /* Kunderegistrering */
 .KundeReg {
   padding: 1vw;
+}
+
+.fontNavbar {
+  font-size: 1.7vw;
+  font-family: 'Trebuchet MS';
+}
+
+.fontSideMeny {
+  font-size: 1.4vw;
+  font-family: 'Trebuchet MS';
+}
+
+.bootStrapIkon {
+  padding-right: 0.5vw;
 }

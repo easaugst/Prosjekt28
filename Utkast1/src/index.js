@@ -39,15 +39,10 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView btn-group">
-        <div className="tilbakeMeny2">
-        <NavLink to="/utleie" className="btn btn-success">
-          Registrer kunde
-        </NavLink>
-        </div>
-        <div className="tilbakeMeny">
-          <NavLink to="/utleie" className="btn btn-outline-danger">
-            Avbryt registrering
-          </NavLink>
+          <div className="tilbakeMeny">
+            <NavLink to="/utleie" className="btn btn-outline-danger">
+              Avbryt registrering
+            </NavLink>
           </div>
         </div>
       </div>
@@ -68,35 +63,95 @@ class Registrering extends Component {
 }
 
 class KundeReg extends Component {
+  kundenr = '';
+  fdag = '';
+  fnavn = '';
+  enavn = '';
+  epost = '';
+  tlf = '';
+
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <input type="text" placeholder="Fornavn" />
+            <input
+              type="text"
+              placeholder="Fornavn"
+              value={this.fnavn}
+              onChange={event => (this.fnavn = event.target.value)}
+            />
             &nbsp;
-            <input type="text" placeholder="Etternavn" />
+            <input
+              type="text"
+              placeholder="Etternavn"
+              value={this.enavn}
+              onChange={event => (this.enavn = event.target.value)}
+            />
             <br /> <br />
-            <input type="text" maxLength="12" placeholder="12345678" />
+            <input
+              type="text"
+              maxLength="12"
+              placeholder="12345678"
+              value={this.tlf}
+              onChange={event => (this.tlf = event.target.value)}
+            />
             <br /> <br />
-            <input type="text" placeholder="Epost" />
+            <input
+              type="text"
+              placeholder="Epost"
+              value={this.epost}
+              onChange={event => (this.epost = event.target.value)}
+            />
             <br /> <br />
-            <input type="date" placeholder="Fødselsdato" />
+            <input
+              type="date"
+              placeholder="Fødselsdato"
+              value={this.fdag}
+              onChange={event => (this.fdag = event.target.value)}
+            />
+            <div className="tilbakeMeny2">
+              <button type="button" className="btn btn-success" onClick={this.add}>
+                Registrer kunde
+              </button>
+            </div>
           </form>
         </div>
       </div>
     );
   }
+
+  /*add() {
+    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
+      history.push(/kunder);
+    });
+  }*/
 }
 
 class OversiktVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
-        <NavCol.Link to="/oversikt/kunde">Kunde</NavCol.Link>
-        <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
-        <NavCol.Link to="/oversikt/utstyr">Utstyr</NavCol.Link>
+        <NavCol.Link to="/oversikt/bestilling">
+          {' '}
+          <ion-icon name="create"></ion-icon>
+          Bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/kunde">
+          <ion-icon name="people" className="bootStrapIkon"></ion-icon>
+          Kunde
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/sykkel">
+          <ion-icon name="bicycle"></ion-icon>
+          Sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/utstyr">
+          <ion-icon name="cube"></ion-icon>
+          Utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -106,7 +161,10 @@ class UtleieVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/utleie/kundereg">Registrer kunde</NavCol.Link>
+        <NavCol.Link to="/utleie/kundereg">
+          <ion-icon name="person-add"></ion-icon>
+          Registrer kunde
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -129,10 +187,26 @@ class EndringVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/endring/kunde">Endre kundeinformasjon</NavCol.Link>
-        <NavCol.Link to="/endring/bestillinger">Endre bestilling</NavCol.Link>
-        <NavCol.Link to="/endring/sykkel">Endre sykler</NavCol.Link>
-        <NavCol.Link to="/endring/utstyr">Endre utstyr</NavCol.Link>
+        <NavCol.Link to="/endring/bestillinger">
+          {' '}
+          <span class="glyphicon glyphicon-edit bootStrapIkon " />
+          Endre bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/kunde">
+          <span class="glyphicon glyphicon-user bootStrapIkon" />
+          Endre kundeinformasjon
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/sykkel">
+          {' '}
+          <span class="glyphicon glyphicon-plane bootStrapIkon" />
+          Endre sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/utstyr">
+          <span class="glyphicon glyphicon-briefcase bootStrapIkon"> </span>Endre utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -228,11 +302,17 @@ class KundeOversikt extends Component {
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <td>{kunde.fnavn}</td>
+              <td>
+                <input type="text" className="form-control-plaintext" value={kunde.fnavn} />
+              </td>
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
-              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>
+                {JSON.stringify(kunde.rtid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
             </Table.Rad>
           ))}
         </Table>
@@ -269,9 +349,21 @@ class BestillingOversikt extends Component {
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
-              <td>{JSON.stringify(bestilling.btid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ftid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ttid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>
+                {JSON.stringify(bestilling.btid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ftid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ttid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
               <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
@@ -288,79 +380,27 @@ class BestillingOversikt extends Component {
 }
 
 class KundeEndring extends Component {
-
-  kArray = [];
-  tid = '';
-
   render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Kundenummer</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>E-post</th>
-            <th>Telefonnummer</th>
-            <th>Tid registrert</th>
-          </Table.Rad>
-          {this.kArray.map(kunde => (
-            <Table.Rad key={kunde.kundenr}>
-              <td>{kunde.kundenr}</td>
-              <td>
-                <input type="text" className="form-control-plaintext" value={kunde.fnavn} onChange={event => (kunde.fnavn = event.target.value)}/>
-              </td>
-              <td>{kunde.enavn}</td>
-              <td>{kunde.epost}</td>
-              <td>{kunde.tlf}</td>
-              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-  mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.kArray = kunde;
-    });
+    return <div className="mainView">d</div>;
   }
 }
 
 class BestillingsEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">c</div>
-    );
-
+  render() {
+    return <div className="mainView">c</div>;
   }
-
 }
 
 class SykkelEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">b</div>
-    );
-
+  render() {
+    return <div className="mainView">b</div>;
   }
-
 }
 
 class UtstyrEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">a</div>
-    );
-
+  render() {
+    return <div className="mainView">a</div>;
   }
-
 }
 
 ReactDOM.render(
@@ -390,6 +430,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route exact path="/kunder" component={KundeOversikt} />
     </div>
   </HashRouter>,
   document.getElementById('root')
