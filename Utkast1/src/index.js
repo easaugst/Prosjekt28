@@ -207,6 +207,7 @@ class SykkelOversikt extends Component {
 
 class KundeOversikt extends Component {
   kArray = [];
+  tid = '';
 
   render() {
     return (
@@ -218,6 +219,7 @@ class KundeOversikt extends Component {
             <th>Etternavn</th>
             <th>E-post</th>
             <th>Telefonnummer</th>
+            <th>Tid registrert</th>
           </Table.Rad>
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
@@ -226,6 +228,7 @@ class KundeOversikt extends Component {
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
+              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
             </Table.Rad>
           ))}
         </Table>
