@@ -228,7 +228,9 @@ class KundeOversikt extends Component {
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <td>{kunde.fnavn}</td>
+              <td>
+                <input type="text" className="form-control-plaintext" value={kunde.fnavn} />
+              </td>
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
@@ -269,9 +271,9 @@ class BestillingOversikt extends Component {
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
-              <td />
-              <td />
-              <td />
+              <td>{JSON.stringify(bestilling.btid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>{JSON.stringify(bestilling.ftid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>{JSON.stringify(bestilling.ttid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
               <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
