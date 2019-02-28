@@ -52,7 +52,7 @@
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
-.tilbakeMeny {
+/*.tilbakeMeny {
   border: solid black 1px;
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -75,6 +75,7 @@
   width: 5vw;
   position: absolute;
 }
+*/
 .tilbakeMeny:hover {
   filter: brightness(85%);
 }
