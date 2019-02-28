@@ -39,11 +39,7 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView btn-group">
-        <div className="tilbakeMeny2">
-        <NavLink to="/utleie" className="btn btn-success">
-          Registrer kunde
-        </NavLink>
-        </div>
+    
         <div className="tilbakeMeny">
           <NavLink to="/utleie" className="btn btn-outline-danger">
             Avbryt registrering
@@ -88,6 +84,12 @@ class KundeReg extends Component {
             <input type="text" placeholder="Epost" value={this.epost} onChange={event => (this.epost = event.target.value)} />
             <br /> <br />
             <input type="date" placeholder="Fødselsdato" value={this.fdag} onChange={event => (this.fdag = event.target.value)}/>
+
+            <div className="tilbakeMeny2">
+              <NavLink to="/utleie" className="btn btn-success">
+                Registrer kunde
+                </NavLink>
+            </div>
           </form>
         </div>
       </div>
