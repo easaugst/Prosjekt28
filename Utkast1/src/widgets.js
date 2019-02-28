@@ -80,7 +80,7 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm bg-light navbar-light">
+      <nav className="navbar navbar-expand-sm bg-light navbar-light fontNavbar">
         {
           <NavLink className="navbar-brand" activeClassName="active" exact to="/">
             {this.props.brand}
@@ -95,7 +95,13 @@ export class NavBar extends Component {
 class NavColLink extends Component {
   render() {
     return (
-      <NavLink className="nav-link" data-toggle="pill" activeClassName="active" exact={this.props.exact} to={this.props.to}>
+      <NavLink
+        className="nav-link fontSideMeny"
+        data-toggle="pill"
+        activeClassName="active"
+        exact={this.props.exact}
+        to={this.props.to}
+      >
         {this.props.children}
       </NavLink>
     );
@@ -116,11 +122,7 @@ export class NavCol extends Component {
 
 class TableRad extends Component {
   render() {
-    return (
-      <tr>
-        {this.props.children}
-      </tr>
-    );
+    return <tr>{this.props.children}</tr>;
   }
 }
 
