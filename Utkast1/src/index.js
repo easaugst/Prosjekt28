@@ -39,10 +39,10 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView btn-group">
-        <div className="tilbakeMeny">
-          <NavLink to="/utleie" className="btn btn-outline-danger">
-            Avbryt registrering
-          </NavLink>
+          <div className="tilbakeMeny">
+            <NavLink to="/utleie" className="btn btn-outline-danger">
+              Avbryt registrering
+            </NavLink>
           </div>
         </div>
       </div>
@@ -75,20 +75,45 @@ class KundeReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <input type="text" placeholder="Fornavn" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+            <input
+              type="text"
+              placeholder="Fornavn"
+              value={this.fnavn}
+              onChange={event => (this.fnavn = event.target.value)}
+            />
             &nbsp;
-            <input type="text" placeholder="Etternavn" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+            <input
+              type="text"
+              placeholder="Etternavn"
+              value={this.enavn}
+              onChange={event => (this.enavn = event.target.value)}
+            />
             <br /> <br />
-            <input type="text" maxLength="12" placeholder="12345678" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
+            <input
+              type="text"
+              maxLength="12"
+              placeholder="12345678"
+              value={this.tlf}
+              onChange={event => (this.tlf = event.target.value)}
+            />
             <br /> <br />
-            <input type="text" placeholder="Epost" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+            <input
+              type="text"
+              placeholder="Epost"
+              value={this.epost}
+              onChange={event => (this.epost = event.target.value)}
+            />
             <br /> <br />
-            <input type="date" placeholder="Fødselsdato" value={this.fdag} onChange={event => (this.fdag = event.target.value)}/>
-
+            <input
+              type="date"
+              placeholder="Fødselsdato"
+              value={this.fdag}
+              onChange={event => (this.fdag = event.target.value)}
+            />
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer kunde
-                </button>
+              </button>
             </div>
           </form>
         </div>
@@ -108,9 +133,15 @@ class OversiktVertMenu extends Component {
     return (
       <NavCol>
         <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
-        <NavCol.Link to="/oversikt/kunde">Kunde</NavCol.Link>
+        <NavCol.Link to="/oversikt/kunde">
+          {' '}
+          <span class="glyphicon glyphicon-user" />
+          Kunde
+        </NavCol.Link>
         <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
-        <NavCol.Link to="/oversikt/utstyr">Utstyr</NavCol.Link>
+        <NavCol.Link to="/oversikt/utstyr">
+          <span class="glyphicon glyphicon-briefcase"> </span> Utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -248,7 +279,11 @@ class KundeOversikt extends Component {
               <td>{kunde.enavn}</td>
               <td>{kunde.epost}</td>
               <td>{kunde.tlf}</td>
-              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>
+                {JSON.stringify(kunde.rtid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
             </Table.Rad>
           ))}
         </Table>
@@ -285,9 +320,21 @@ class BestillingOversikt extends Component {
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
-              <td>{JSON.stringify(bestilling.btid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ftid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ttid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>
+                {JSON.stringify(bestilling.btid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ftid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ttid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
               <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
@@ -304,51 +351,27 @@ class BestillingOversikt extends Component {
 }
 
 class KundeEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">d</div>
-    );
-
+  render() {
+    return <div className="mainView">d</div>;
   }
-
 }
 
 class BestillingsEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">c</div>
-    );
-
+  render() {
+    return <div className="mainView">c</div>;
   }
-
 }
 
 class SykkelEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">b</div>
-    );
-
+  render() {
+    return <div className="mainView">b</div>;
   }
-
 }
 
 class UtstyrEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">a</div>
-    );
-
+  render() {
+    return <div className="mainView">a</div>;
   }
-
 }
 
 ReactDOM.render(
