@@ -39,10 +39,10 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView">
-          <NavLink to="/utleie" className="tilbakeMeny">
+          <NavLink to="/utleie" class="btn btn-danger">
             Avbryt registrering
           </NavLink>
-          <NavLink to="/utleie" className="tilbakeMeny2">
+          <NavLink to="/utleie" class="btn btn-success">
             Registrer kunde
           </NavLink>
         </div>
