@@ -98,7 +98,7 @@ class KundeReg extends Component {
 
   /*add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-      history.push(/kArray);
+      history.push(/kunder);
     });
   }*/
 }
@@ -378,6 +378,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route exact path="/kunder" component={KundeOversikt} />
     </div>
   </HashRouter>,
   document.getElementById('root')
