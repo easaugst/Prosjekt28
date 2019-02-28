@@ -49,6 +49,14 @@ class KundeService {
     success();
   });
 }
+
+  addKunde(kundenr, fnavn, enavn, epost, tlf, success) {
+    connection.query('insert into Kunde (kundenr, fnavn, enavn, epost, tlf) values (?, ?, ?, ?, ?)', [kundenr, fnavn, enavn, epost, tlf], (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
 }
 
 class BestillingsService {

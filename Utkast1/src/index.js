@@ -38,15 +38,15 @@ class returnUtleie extends Component {
   render() {
     return (
       <div className="mainView">
-        <div className="utleieMainView">
+        <div className="utleieMainView btn-group">
+        <div className="tilbakeMeny2">
+        <NavLink to="/utleie" className="btn btn-success">
+          Registrer kunde
+        </NavLink>
+        </div>
         <div className="tilbakeMeny">
           <NavLink to="/utleie" className="btn btn-outline-danger">
             Avbryt registrering
-          </NavLink>
-          </div>
-          <div className="tilbakeMeny2">
-          <NavLink to="/utleie" className="btn btn-success">
-            Registrer kunde
           </NavLink>
           </div>
         </div>

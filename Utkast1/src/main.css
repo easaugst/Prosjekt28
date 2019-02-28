@@ -54,30 +54,15 @@
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
-/*.tilbakeMeny {
-  border: solid black 1px;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-right: 4vw;
-  padding-left: 4vw;
+.tilbakeMeny {
   text-align: center;
-  background-color: lightsteelblue;
   width: 5vw;
-  position: absolute;
+  margin-left: 7vw;
 }
 .tilbakeMeny2 {
-  margin-left: 14vw;
-  border: solid black 1px;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-right: 4vw;
-  padding-left: 4vw;
   text-align: center;
-  background-color: lightsteelblue;
   width: 5vw;
-  position: absolute;
 }
-*/
 .tilbakeMeny:hover {
   filter: brightness(85%);
 }
