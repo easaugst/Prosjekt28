@@ -68,7 +68,7 @@ class Registrering extends Component {
 }
 
 class KundeReg extends Component {
-  kundenr = '';
+  fdag = '';
   fnavn = '';
   enavn = '';
   epost = '';
@@ -79,15 +79,15 @@ class KundeReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <input type="text" placeholder="Fornavn" />
+            <input type="text" placeholder="Fornavn" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
             &nbsp;
-            <input type="text" placeholder="Etternavn" />
+            <input type="text" placeholder="Etternavn" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
             <br /> <br />
-            <input type="text" maxLength="12" placeholder="12345678" />
+            <input type="text" maxLength="12" placeholder="12345678" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
             <br /> <br />
-            <input type="text" placeholder="Epost" />
+            <input type="text" placeholder="Epost" value={this.epost} onChange={event => (this.epost = event.target.value)} />
             <br /> <br />
-            <input type="date" placeholder="Fødselsdato" />
+            <input type="date" placeholder="Fødselsdato" value={this.fdag} onChange={event => (this.fdag = event.target.value)}/>
           </form>
         </div>
       </div>
