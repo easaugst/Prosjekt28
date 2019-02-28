@@ -39,7 +39,6 @@ class returnUtleie extends Component {
     return (
       <div className="mainView">
         <div className="utleieMainView btn-group">
-    
         <div className="tilbakeMeny">
           <NavLink to="/utleie" className="btn btn-outline-danger">
             Avbryt registrering
@@ -64,6 +63,7 @@ class Registrering extends Component {
 }
 
 class KundeReg extends Component {
+  kundenr = '';
   fdag = '';
   fnavn = '';
   enavn = '';
@@ -86,7 +86,7 @@ class KundeReg extends Component {
             <input type="date" placeholder="Fødselsdato" value={this.fdag} onChange={event => (this.fdag = event.target.value)}/>
 
             <div className="tilbakeMeny2">
-              <NavLink to="/utleie" className="btn btn-success">
+              <NavLink to="/utleie" className="btn btn-success" onClick={this.add}>
                 Registrer kunde
                 </NavLink>
             </div>
@@ -94,6 +94,12 @@ class KundeReg extends Component {
         </div>
       </div>
     );
+  }
+
+  add() {
+    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
+      history.push(/kArray);
+    });
   }
 }
 
