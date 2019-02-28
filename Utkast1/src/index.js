@@ -183,10 +183,26 @@ class EndringVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/endring/kunde">Endre kundeinformasjon</NavCol.Link>
-        <NavCol.Link to="/endring/bestillinger">Endre bestilling</NavCol.Link>
-        <NavCol.Link to="/endring/sykkel">Endre sykler</NavCol.Link>
-        <NavCol.Link to="/endring/utstyr">Endre utstyr</NavCol.Link>
+        <NavCol.Link to="/endring/bestillinger">
+          {' '}
+          <span class="glyphicon glyphicon-edit bootStrapIkon " />
+          Endre bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/kunde">
+          <span class="glyphicon glyphicon-user bootStrapIkon" />
+          Endre kundeinformasjon
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/sykkel">
+          {' '}
+          <span class="glyphicon glyphicon-plane bootStrapIkon" />
+          Endre sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/utstyr">
+          <span class="glyphicon glyphicon-briefcase bootStrapIkon"> </span>Endre utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
