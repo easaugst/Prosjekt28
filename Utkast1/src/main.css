@@ -47,6 +47,7 @@
 /* Gå tilbake fra utleieknapp */
 .utleieMainView {
   padding-top: 25vh;
+  left: 1vw;
   position: absolute;
   width: 100%;
   font-size: 0.8em;
