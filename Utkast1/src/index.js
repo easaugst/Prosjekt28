@@ -3,20 +3,17 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {
-   utstyrService,
-   sykkelService,
-   kundeService,
-   bestillingsService
- } from './services';
+import { utstyrService, sykkelService, kundeService, bestillingsService } from './services';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
 class Menu extends Component {
   render() {
     return (
-      <NavBar brand="Sykkelutleie 9000">    {/*Container for den horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
-        <NavBar.Link to="/oversikt">Oversikt</NavBar.Link>    {/*Navbar.Link er hvert alternativ i menyen*/}
+      <NavBar brand="Sykkelutleie 9000">
+        {' '}
+        {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
+        <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
         <NavBar.Link to="/utleie">Utleie</NavBar.Link>
         <NavBar.Link to="/endring">Endring</NavBar.Link>
         <NavBar.Link to="/registrering">Registrering</NavBar.Link>
@@ -146,13 +143,13 @@ class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-      <Table>
+        <Table>
           <Table.Rad>
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
             <th>Status</th>
           </Table.Rad>
-          {this.uArray.map(utstyr => (    /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/
+          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
@@ -265,9 +262,9 @@ class BestillingOversikt extends Component {
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td />
+              <td />
+              <td />
               <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
