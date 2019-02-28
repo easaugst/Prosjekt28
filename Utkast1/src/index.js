@@ -134,22 +134,23 @@ class OversiktVertMenu extends Component {
       <NavCol>
         <NavCol.Link to="/oversikt/bestilling">
           {' '}
-          <span class="glyphicon glyphicon-edit bootStrapIkon " />
+          <ion-icon name="create"></ion-icon>
           Bestilling
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/kunde">
-          <span class="glyphicon glyphicon-user bootStrapIkon" />
+          <ion-icon name="people" className="bootStrapIkon"></ion-icon>
           Kunde
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/sykkel">
-          <span class="glyphicon glyphicon-plane bootStrapIkon" />
+          <ion-icon name="bicycle"></ion-icon>
           Sykler
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/utstyr">
-          <span class="glyphicon glyphicon-briefcase"> </span> Utstyr
+          <ion-icon name="cube"></ion-icon>
+          Utstyr
         </NavCol.Link>
       </NavCol>
     );
@@ -160,7 +161,10 @@ class UtleieVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/utleie/kundereg">Registrer kunde</NavCol.Link>
+        <NavCol.Link to="/utleie/kundereg">
+          <ion-icon name="person-add"></ion-icon>
+          Registrer kunde
+        </NavCol.Link>
       </NavCol>
     );
   }
