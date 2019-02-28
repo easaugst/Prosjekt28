@@ -42,8 +42,8 @@ class KundeService {
   });
 }
 
-  addKunde(kundenr, fnavn, enavn, epost, tlf, success) {
-    connection.query('insert into Kunde (kundenr, fnavn, enavn, epost, tlf) values (?, ?, ?, ?, ?)', [kundenr, fnavn, enavn, epost, tlf], (error, results) => {
+  addKunde(kundenr, fnavn, enavn, epost, tlf, fdag, success) {
+    connection.query('insert into Kunde (kundenr, fnavn, enavn, epost, tlf, fdag) values (?, ?, ?, ?, ?, ?)', [kundenr, fnavn, enavn, epost, tlf, fdag], (error, results) => {
       if (error) return console.error(error);
 
       success();
