@@ -68,6 +68,12 @@ class Registrering extends Component {
 }
 
 class KundeReg extends Component {
+  kundenr = '';
+  fnavn = '';
+  enavn = '';
+  epost = '';
+  tlf = '';
+
   render() {
     return (
       <div className="mainView">
