@@ -86,9 +86,9 @@ class KundeReg extends Component {
             <input type="date" placeholder="Fødselsdato" value={this.fdag} onChange={event => (this.fdag = event.target.value)}/>
 
             <div className="tilbakeMeny2">
-              <NavLink to="/utleie" className="btn btn-success" onClick={this.add}>
+              <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer kunde
-                </NavLink>
+                </button>
             </div>
           </form>
         </div>
