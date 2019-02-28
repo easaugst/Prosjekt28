@@ -132,13 +132,22 @@ class OversiktVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
-        <NavCol.Link to="/oversikt/kunde">
+        <NavCol.Link to="/oversikt/bestilling">
           {' '}
+          <span class="glyphicon glyphicon-edit bootStrapIkon " />
+          Bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/kunde">
           <span class="glyphicon glyphicon-user bootStrapIkon" />
           Kunde
         </NavCol.Link>
-        <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
+
+        <NavCol.Link to="/oversikt/sykkel">
+          <span class="glyphicon glyphicon-plane bootStrapIkon" />
+          Sykler
+        </NavCol.Link>
+
         <NavCol.Link to="/oversikt/utstyr">
           <span class="glyphicon glyphicon-briefcase"> </span> Utstyr
         </NavCol.Link>
