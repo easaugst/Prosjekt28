@@ -135,7 +135,7 @@ class OversiktVertMenu extends Component {
         <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
         <NavCol.Link to="/oversikt/kunde">
           {' '}
-          <span class="glyphicon glyphicon-user" />
+          <span class="glyphicon glyphicon-user bootStrapIkon" />
           Kunde
         </NavCol.Link>
         <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
