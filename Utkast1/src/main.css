@@ -7,7 +7,7 @@
   font-family: sans-serif;
 }
 
-/* Oversikt sidemeny
+/* Oversikt sidemeny */
 .sideMeny {
   position: absolute;
   top: 10vh;
@@ -15,8 +15,9 @@
   width: 20%;
   font-size: 1.2vw;
   margin-top: 2em;
-  font-family: 'Trebuchet MS';
+  /* font-family: 'Trebuchet MS'; */
 }
+/*
 .sideKnapp {
   margin-top: 5vh;
   list-style: none;
@@ -36,7 +37,6 @@
 .sideKnapp:hover {
   filter: brightness(85%);
 }
-*/
 
 /* NavLink farge og understrek */
 /* a {
