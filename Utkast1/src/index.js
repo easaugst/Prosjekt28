@@ -96,11 +96,11 @@ class KundeReg extends Component {
     );
   }
 
-  add() {
+  /*add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
       history.push(/kArray);
     });
-  }
+  }*/
 }
 
 class OversiktVertMenu extends Component {
