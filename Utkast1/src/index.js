@@ -30,24 +30,28 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   render() {
-    return <div className="mainView">Her får vi en oversikt over utleie</div>;
-  }
-}
-
-class returnUtleie extends Component {
-  render() {
-    return (
-      <div className="mainView">
-        <div className="utleieMainView">
-          <NavLink to="/utleie" class="btn btn-danger">
-            Avbryt registrering
-          </NavLink>
-          <NavLink to="/utleie" class="btn btn-success">
-            Registrer kunde
-          </NavLink>
-        </div>
-      </div>
-    );
+    return <div className="mainView">
+            <div className="mainViewUtleie">
+              <form>
+                <div className="form-group">
+                  <label>Telefonnummer</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    placeholder="Telefonnummer"
+                    value=""
+                    onChange=""
+                  />
+                  <label>Sykkeltype</label>
+                  <select className="form-control">
+                    <option>Terrengsykkel</option>
+                    <option>Landeveisykkel</option>
+                    <option>Tandemsykkel</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>;
   }
 }
 
@@ -63,36 +67,30 @@ class Registrering extends Component {
   }
 }
 
-class KundeReg extends Component {
-  render() {
-    return (
-      <div className="mainView">
-        <div className="KundeReg">
-          <form>
-            <input type="text" placeholder="Fornavn" />
-            &nbsp;
-            <input type="text" placeholder="Etternavn" />
-            <br /> <br />
-            <input type="text" maxLength="12" placeholder="12345678" />
-            <br /> <br />
-            <input type="text" placeholder="Epost" />
-            <br /> <br />
-            <input type="date" placeholder="Fødselsdato" />
-          </form>
-        </div>
-      </div>
-    );
-  }
-}
-
 class OversiktVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/oversikt/bestilling">Bestilling</NavCol.Link>
-        <NavCol.Link to="/oversikt/kunde">Kunde</NavCol.Link>
-        <NavCol.Link to="/oversikt/sykkel">Sykler</NavCol.Link>
-        <NavCol.Link to="/oversikt/utstyr">Utstyr</NavCol.Link>
+        <NavCol.Link to="/oversikt/bestilling">
+          {' '}
+          <ion-icon name="create" />
+          Bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/kunde">
+          <ion-icon name="people" className="bootStrapIkon" />
+          Kunde
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/sykkel">
+          <ion-icon name="bicycle" />
+          Sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/oversikt/utstyr">
+          <ion-icon name="cube" />
+          Utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -102,7 +100,10 @@ class UtleieVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/utleie/kundereg">Registrer kunde</NavCol.Link>
+        <NavCol.Link to="/utleie/kundereg">
+          <ion-icon name="person-add" />
+          Registrer kunde
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -112,10 +113,25 @@ class RegVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/registrering/bestilling">Registrere Ansatt</NavCol.Link>
-        <NavCol.Link to="/registrering/kunde">Registrere kunde</NavCol.Link>
-        <NavCol.Link to="/registrering/sykkel">Registrere sykler</NavCol.Link>
-        <NavCol.Link to="/registrering/utstyr">Registrere utstyr</NavCol.Link>
+        <NavCol.Link to="/registrering/bestilling">
+          <ion-icon name="contacts" />
+          Registrere Ansatt
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/kunde">
+          <ion-icon name="person-add" />
+          Registrere kunde
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/sykkel">
+          <ion-icon name="bicycle" />
+          Registrere sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/utstyr">
+          <ion-icon name="cube" />
+          Registrere utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -125,10 +141,27 @@ class EndringVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/endring/kunde">Endre kundeinformasjon</NavCol.Link>
-        <NavCol.Link to="/endring/bestillinger">Endre bestilling</NavCol.Link>
-        <NavCol.Link to="/endring/sykkel">Endre sykler</NavCol.Link>
-        <NavCol.Link to="/endring/utstyr">Endre utstyr</NavCol.Link>
+        <NavCol.Link to="/endring/bestillinger">
+          {' '}
+          <ion-icon name="create" />
+          Endre bestilling
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/kunde">
+          <ion-icon name="people" />
+          Endre kundeinformasjon
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/sykkel">
+          {' '}
+          <ion-icon name="bicycle" />
+          Endre sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/endring/utstyr">
+          <ion-icon name="cube" />
+          Endre utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -265,9 +298,21 @@ class BestillingOversikt extends Component {
               <td>{bestilling.kundeid}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
-              <td>{JSON.stringify(bestilling.btid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ftid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
-              <td>{JSON.stringify(bestilling.ttid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
+              <td>
+                {JSON.stringify(bestilling.btid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ftid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ttid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
               <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
@@ -284,51 +329,140 @@ class BestillingOversikt extends Component {
 }
 
 class KundeEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">d</div>
-    );
-
+  render() {
+    return <div className="mainView">d</div>;
   }
-
 }
 
 class BestillingsEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">c</div>
-    );
-
+  render() {
+    return <div className="mainView">c</div>;
   }
-
 }
 
 class SykkelEndring extends Component {
-
-  render(){
-
-  return (
-      <div className ="mainView">b</div>
-    );
-
+  render() {
+    return <div className="mainView">b</div>;
   }
-
 }
 
 class UtstyrEndring extends Component {
+  uArray = [];
 
-  render(){
-
-  return (
-      <div className ="mainView">a</div>
+  render() {
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Utstyrsnr</th>
+            <th>Utstyrstype</th>
+            <th>Status</th>
+          </Table.Rad>
+          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+            <Table.Rad key={utstyr.utstyrsid}>
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.navn}</td>
+              <td>
+                <input
+                  type="text"
+                  className="form-control-plaintext"
+                  value={utstyr.ustatus}
+                  onChange={event => (utstyr.ustatus = event.target.value)}
+                />
+              </td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
     );
+  }
+  mounted() {
+    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+      this.uArray = utstyr;
+    });
+  }
+}
 
+class KundeReg extends Component {
+  kundenr = '';
+  fdag = '';
+  fnavn = '';
+  enavn = '';
+  epost = '';
+  tlf = '';
+
+  render() {
+    return (
+      <div className="mainView">
+        <div className="KundeReg">
+          <form>
+            <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Fornavn"
+              value={this.fnavn}
+              onChange={event => (this.fnavn = event.target.value)}
+            />
+            &nbsp;
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Etternavn"
+              value={this.enavn}
+              onChange={event => (this.enavn = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              className="form-control"
+              type="text"
+              maxLength="12"
+              placeholder="12345678"
+              value={this.tlf}
+              onChange={event => (this.tlf = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Epost"
+              value={this.epost}
+              onChange={event => (this.epost = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              className="form-control"
+              type="date"
+              placeholder="Fødselsdato"
+              value={this.fdag}
+              onChange={event => (this.fdag = event.target.value)}
+            />
+            <div className="tilbakeMeny2">
+              <button type="button" className="btn btn-success" onClick={this.add}>
+                Registrer kunde
+              </button>
+            </div>
+            <div className="tilbakeMeny">
+              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                Avbryt registrering
+                </button>
+            </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
   }
 
+  add() {
+    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
+        history.goBack();
+    });
+  }
+
+  cancel() {
+    history.goBack();
+  }
 }
 
 ReactDOM.render(
@@ -349,8 +483,7 @@ ReactDOM.render(
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
-      <Route exact path="/utleie/kundereg" component={KundeReg} />
-      <Route exact path="/utleie/kundereg" component={returnUtleie} />
+      <Route path="/utleie/kundereg" component={KundeReg} />
 
       <Route exact path="/endring" component={Endring} />
       <Route path="/endring" component={EndringVertMenu} />
@@ -358,6 +491,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route exact path="/kunder" component={KundeOversikt} />
     </div>
   </HashRouter>,
   document.getElementById('root')

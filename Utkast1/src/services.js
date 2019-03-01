@@ -41,6 +41,14 @@ class KundeService {
     success();
   });
 }
+
+  addKunde(kundenr, fnavn, enavn, epost, tlf, fdag, success) {
+    connection.query('insert into Kunde (fnavn, enavn, tlf, epost, fdag) values (?, ?, ?, ?, ?)', [kundenr, fnavn, enavn, epost, tlf, fdag], (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
 }
 
 class BestillingsService {
@@ -53,20 +61,6 @@ class BestillingsService {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

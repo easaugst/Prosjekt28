@@ -33,11 +33,9 @@
   width: 14%;
   position: absolute;
 }
-
 .sideKnapp:hover {
   filter: brightness(85%);
 }
-
 /* NavLink farge og understrek */
 /* a {
   text-decoration: none;
@@ -47,43 +45,47 @@
 /* Gå tilbake fra utleieknapp */
 .utleieMainView {
   padding-top: 25vh;
+  left: 1vw;
   position: absolute;
   width: 100%;
   font-size: 0.8em;
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
-/*.tilbakeMeny {
-  border: solid black 1px;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-right: 4vw;
-  padding-left: 4vw;
+
+/* CSS for registre og avbrytknapp*/
+.tilbakeMeny {
   text-align: center;
-  background-color: lightsteelblue;
   width: 5vw;
-  position: absolute;
+  margin-left: 7vw;
 }
 .tilbakeMeny2 {
-  margin-left: 14vw;
-  border: solid black 1px;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-right: 4vw;
-  padding-left: 4vw;
   text-align: center;
-  background-color: lightsteelblue;
   width: 5vw;
-  position: absolute;
 }
-*/
+
 .tilbakeMeny:hover {
   filter: brightness(85%);
 }
 .tilbakeMeny2:hover {
   filter: brightness(85%);
 }
+
 /* Kunderegistrering */
 .KundeReg {
   padding: 1vw;
+}
+
+.fontNavbar {
+  font-size: 1.7vw;
+  font-family: 'Trebuchet MS';
+}
+
+.fontSideMeny {
+  font-size: 1.4vw;
+  font-family: 'Trebuchet MS';
+}
+
+.bootStrapIkon {
+  padding-right: 0.5vw;
 }
