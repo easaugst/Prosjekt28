@@ -51,6 +51,7 @@ class Utleie extends Component {
                 <option>Sykkelveske</option>
               </select>
               <select className="form-control" placeholder="Antall">
+                <option>Ingen</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -668,7 +669,7 @@ class AnsattReg extends Component {
               value={this.ustatus}
               onChange={event => (this.ustatus = event.target.value)}
             />
-            
+
             <div className="tilbakeMeny">
               <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                 Avbryt registrering
