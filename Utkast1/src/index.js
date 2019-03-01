@@ -578,14 +578,14 @@ class SykkelReg extends Component {
 }
 
 class UtstyrReg extends Component {
-  utstyrstype = '';
+  utstyrstypeid = '';
   ustatus = '';
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <select form="formen" onChange={event => (this.utstyrstype = event.target.value)}>
+          <select form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
             <option>Velg type her</option>
             <option value="1">Hjelm</option>
             <option value="2">Lappesett</option>
@@ -616,7 +616,7 @@ class UtstyrReg extends Component {
   }
 
   add() {
-    utstyrService.addUtstyr(this.utstyrstype, this.ustatus, this.props.match.params.id, () => {
+    utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
       history.goBack();
     });
   }
