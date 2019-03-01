@@ -38,6 +38,18 @@ class SykkelService {
       }
     );
   }
+
+  addSykkel(sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
+    connection.query(
+      'insert into Sykkel (sykkeltypeid, befinnelse, status, beskrivelse, utleienavn) values (?, ?, ?, ?, ?)',
+      [sykkeltypeid, befinnelse, status, beskrivelse, utleienavn],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
 }
 
 class KundeService {

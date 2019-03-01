@@ -479,6 +479,92 @@ class KundeReg extends Component {
   }
 }
 
+class SykkelReg extends Component {
+  regnr = '';
+  sykkeltypeid = '';
+  befinnelse = '';
+  status = '';
+  beskrivelse = '';
+  bestilling = '';
+  utleienavn = '';
+
+  render() {
+    return (
+      <div className="mainView">
+        <div className="KundeReg">
+          <form>
+            <select
+              placeholder="Sykkeltype"
+              value={this.sykkeltypeid}
+              onChange={event => (this.sykkeltypeid = event.target.value)}
+            >
+              <option value="0">Sykkeltype</option>
+              <option value="1">Terrengsykkel</option>
+              <option value="2">Landeveissykkel</option>
+              <option value="3">Tandemsykkel</option>
+            </select>
+            &nbsp;
+            <input
+              type="text"
+              placeholder="Befinnelse"
+              value={this.befinnelse}
+              onChange={event => (this.befinnelse = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              placeholder="Status"
+              value={this.status}
+              onChange={event => (this.status = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              placeholder="Beskrivelse"
+              value={this.beskrivelse}
+              onChange={event => (this.beskrivelse = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              placeholder="Tilhører utleiested"
+              value={this.utleienavn}
+              onChange={event => (this.utleienavn = event.target.value)}
+            />
+            <div className="tilbakeMeny2">
+              <button type="button" className="btn btn-success" onClick={this.add}>
+                Registrer sykkel
+              </button>
+            </div>
+            <div className="tilbakeMeny">
+              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                Avbryt registrering
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  add() {
+    sykkelService.addSykkel(
+      this.sykkeltypeid,
+      this.befinnelse,
+      this.status,
+      this.beskrivelse,
+      this.utleienavn,
+      this.props.match.params.id,
+      () => {
+        history.goBack();
+      }
+    );
+  }
+  cancel() {
+    history.goBack();
+  }
+}
+
 class UtstyrReg extends Component {
   utstyrstype = '';
   ustatus = '';
@@ -556,6 +642,7 @@ ReactDOM.render(
       <Route path="/registrering/kunde" component={KundeReg} />
       <Route path="/registrering/utstyr" component={UtstyrReg} />
       <Route exact path="/kunder" component={KundeOversikt} />
+      <Route path="/registrering/sykkel" component={SykkelReg} />
     </div>
   </HashRouter>,
   document.getElementById('root')
