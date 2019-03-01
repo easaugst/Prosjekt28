@@ -729,7 +729,6 @@ class AnsattReg extends Component {
 
   add() {
     ansattService.addAnsatt(
-      this.ansattnr,
       this.tlfnr,
       this.epost,
       this.fnavn,
