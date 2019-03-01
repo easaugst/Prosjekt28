@@ -315,7 +315,7 @@ class BestillingOversikt extends Component {
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
-              <td>{bestilling.kundeid}</td>
+              <td>{bestilling.kundenr}</td>
               <Table.Input>{bestilling.utleietype}</Table.Input>
               <Table.Input>{bestilling.kontant}</Table.Input>
               <td>
@@ -580,13 +580,14 @@ class SykkelReg extends Component {
 }
 
 class UtstyrReg extends Component {
-  utstyrstype = '';
+  utstyrstypeid = '';
   ustatus = '';
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
+<<<<<<< HEAD
           <form>
             <div className="form-group">
               <select
@@ -608,6 +609,22 @@ class UtstyrReg extends Component {
               />
             </div>
             <br />
+=======
+          <select form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
+            <option>Velg type her</option>
+            <option value="1">Hjelm</option>
+            <option value="2">Lappesett</option>
+          </select>
+          <form id="formen">
+            &nbsp;
+            <input
+              type="text"
+              placeholder="Status"
+              value={this.ustatus}
+              onChange={event => (this.ustatus = event.target.value)}
+            />
+            <br /> <br />
+>>>>>>> ef337c0ce880cd5da18cac53da3554c3d8bb3f03
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer utstyr
@@ -625,7 +642,7 @@ class UtstyrReg extends Component {
   }
 
   add() {
-    utstyrService.addUtstyr(this.utstyrstype, this.ustatus, this.props.match.params.id, () => {
+    utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
       history.goBack();
     });
   }

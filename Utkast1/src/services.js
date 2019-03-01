@@ -3,7 +3,7 @@ import { connection } from './mysql_connection';
 class UtstyrService {
   getUtstyr(utstyrsid, success) {
     connection.query(
-      'SELECT * FROM Utstyr U, Utstyrstype UT WHERE U.utstyrstype = UT.utstyrstypeid',
+      'SELECT * FROM Utstyr U, Utstyrstype UT WHERE U.utstyrstypeid = UT.utstyrstypeid',
       [utstyrsid],
       (error, results) => {
         if (error) return console.error(error);
@@ -13,10 +13,10 @@ class UtstyrService {
     );
   }
 
-  addUtstyr(utstyrsid, utstyrstype, ustatus, success) {
+  addUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
     connection.query(
-      'insert into Utstyr (utstyrstype, ustatus) values (?, ?)',
-      [utstyrsid, utstyrstype, ustatus],
+      'insert into Utstyr (utstyrstypeid, ustatus) values (?, ?)',
+      [utstyrsid, utstyrstypeid, ustatus],
       (error, results) => {
         if (error) return console.error(error);
 
