@@ -26,7 +26,6 @@ class Oversikt extends Component {
   render() {
     return <div className="mainView">Her får vi en oversikt over bestillinger, kunder, sykler og utstyr</div>;
   }
-  
 }
 
 class Utleie extends Component {
