@@ -583,7 +583,7 @@ class SykkelReg extends Component {
       this.utleienavn,
       this.props.match.params.id,
       () => {
-        history.push("/registrering/sykkel");
+        history.goBack();
       }
     );
   }
