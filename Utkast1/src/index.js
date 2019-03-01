@@ -48,6 +48,13 @@ class Utleie extends Component {
                     <option>Landeveisykkel</option>
                     <option>Tandemsykkel</option>
                   </select>
+                  <label>Utstyr</label>
+                  <select className="form-control">
+                    <option>Ingen</option>
+                    <option>Hjelm</option>
+                    <option>Bagasjebrett</option>
+                    <option>Sykkelveske</option>
+                  </select>
                 </div>
               </form>
             </div>
