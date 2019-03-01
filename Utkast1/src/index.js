@@ -30,7 +30,31 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   render() {
-    return <div className="mainView">Her får vi en oversikt over utleie</div>;
+    return <div className="mainView">
+            <div className="mainViewUtleie">
+              <form>
+                <div className="form-group">
+                  <label>Telefonnummer</label>
+                  <input
+                    type="number"
+                    placeholder="Telefonnummer"
+                    value=""
+                    onChange=""
+                  />
+                </div>
+                <div className="dropdown">
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button
+                  </button>
+                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a className="dropdown-item" href="#">Action</a>
+                    <a className="dropdown-item" href="#">Another action</a>
+                    <a className="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>;
   }
 }
 
