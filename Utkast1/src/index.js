@@ -195,8 +195,8 @@ class UtstyrOversikt extends Component {
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.navn}</td>
-              <td>{utstyr.ustatus}</td>
+              <Table.Input>{utstyr.navn}</Table.Input>
+              <Table.Input>{utstyr.ustatus}</Table.Input>
             </Table.Rad>
           ))}
         </Table>
@@ -229,12 +229,12 @@ class SykkelOversikt extends Component {
           {this.sArray.map(sykkel => (
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
-              <td>{sykkel.sykkeltypenavn}</td>
-              <td>{sykkel.befinnelse}</td>
-              <td>{sykkel.status}</td>
-              <td>{sykkel.beskrivelse}</td>
-              <td>{sykkel.bestillingsid}</td>
-              <td>{sykkel.utleienavn}</td>
+              <Table.Input>{sykkel.sykkeltypenavn}</Table.Input>
+              <Table.Input>{sykkel.befinnelse}</Table.Input>
+              <Table.Input>{sykkel.status}</Table.Input>
+              <Table.Input>{sykkel.beskrivelse}</Table.Input>
+              <Table.Input>{sykkel.bestillingsid}</Table.Input>
+              <Table.Input>{sykkel.utleienavn}</Table.Input>
             </Table.Rad>
           ))}
         </Table>
@@ -316,8 +316,8 @@ class BestillingOversikt extends Component {
             <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
               <td>{bestilling.kundeid}</td>
-              <td>{bestilling.utleietype}</td>
-              <td>{bestilling.kontant}</td>
+              <Table.Input>{bestilling.utleietype}</Table.Input>
+              <Table.Input>{bestilling.kontant}</Table.Input>
               <td>
                 {JSON.stringify(bestilling.btid)
                   .replace(/T|Z|"/g, ' ')
@@ -333,7 +333,7 @@ class BestillingOversikt extends Component {
                   .replace(/T|Z|"/g, ' ')
                   .slice(0, -6)}
               </td>
-              <td>{bestilling.gruppe}</td>
+              <Table.Input>{bestilling.gruppe}</Table.Input>
             </Table.Rad>
           ))}
         </Table>
@@ -499,44 +499,50 @@ class SykkelReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <select
-              placeholder="Sykkeltype"
-              value={this.sykkeltypeid}
-              onChange={event => (this.sykkeltypeid = event.target.value)}
-            >
-              <option value="0">Sykkeltype</option>
-              <option value="1">Terrengsykkel</option>
-              <option value="2">Landeveissykkel</option>
-              <option value="3">Tandemsykkel</option>
-            </select>
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Befinnelse"
-              value={this.befinnelse}
-              onChange={event => (this.befinnelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Status"
-              value={this.status}
-              onChange={event => (this.status = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Beskrivelse"
-              value={this.beskrivelse}
-              onChange={event => (this.beskrivelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Tilhører utleiested"
-              value={this.utleienavn}
-              onChange={event => (this.utleienavn = event.target.value)}
-            />
+            <div className="form-group">
+              <select
+                className="form-control"
+                value={this.sykkeltypeid}
+                onChange={event => (this.sykkeltypeid = event.target.value)}
+              >
+                <option value="0">Sykkeltype</option>
+                <option value="1">Terrengsykkel</option>
+                <option value="2">Landeveissykkel</option>
+                <option value="3">Tandemsykkel</option>
+              </select>
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Befinnelse"
+                value={this.befinnelse}
+                onChange={event => (this.befinnelse = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Status"
+                value={this.status}
+                onChange={event => (this.status = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Beskrivelse"
+                value={this.beskrivelse}
+                onChange={event => (this.beskrivelse = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Tilhører utleiested"
+                value={this.utleienavn}
+                onChange={event => (this.utleienavn = event.target.value)}
+              />
+            </div>
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer sykkel

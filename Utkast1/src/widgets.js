@@ -120,6 +120,19 @@ export class NavCol extends Component {
   }
 }
 
+class TableInput extends Component {
+  render() {
+    return (
+      <td>
+        <input
+        type="text"
+        className="form-control-plaintext"
+        value={this.props.children}
+        kundenr={this.props.knr}/>
+      </td>
+    )
+  }
+}
 class TableRad extends Component {
   render() {
     return <tr>{this.props.children}</tr>;
