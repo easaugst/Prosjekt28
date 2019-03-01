@@ -418,7 +418,7 @@ class KundeReg extends Component {
                 value={this.fnavn}
                 onChange={event => (this.fnavn = event.target.value)}
               />
-              &nbsp;
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -426,7 +426,7 @@ class KundeReg extends Component {
                 value={this.enavn}
                 onChange={event => (this.enavn = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -435,7 +435,7 @@ class KundeReg extends Component {
                 value={this.tlf}
                 onChange={event => (this.tlf = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -443,7 +443,7 @@ class KundeReg extends Component {
                 value={this.epost}
                 onChange={event => (this.epost = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="date"
@@ -451,6 +451,8 @@ class KundeReg extends Component {
                 value={this.fdag}
                 onChange={event => (this.fdag = event.target.value)}
               />
+              <br />
+
               <div className="tilbakeMeny2">
                 <button type="button" className="btn btn-success" onClick={this.add}>
                   Registrer kunde
