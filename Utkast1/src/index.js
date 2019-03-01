@@ -649,18 +649,17 @@ class UtstyrReg extends Component {
 }
 
 class AnsattReg extends Component {
-  utstyrstypeid = '';
-  ustatus = '';
+    tlfnr = "";
+    epost = "";
+    fnavn = "";
+    enavn = "";
+    admin = "";
+    utleienavn = "";
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <select form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
-            <option>Velg type her</option>
-            <option value="1">Hjelm</option>
-            <option value="2">Lappesett</option>
-          </select>
           <form id="formen">
             &nbsp;
             <input
@@ -669,12 +668,7 @@ class AnsattReg extends Component {
               value={this.ustatus}
               onChange={event => (this.ustatus = event.target.value)}
             />
-            <br /> <br />
-            <div className="tilbakeMeny2">
-              <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer utstyr
-              </button>
-            </div>
+            
             <div className="tilbakeMeny">
               <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                 Avbryt registrering
