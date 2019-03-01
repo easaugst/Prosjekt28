@@ -309,7 +309,7 @@ class BestillingOversikt extends Component {
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
-              <td>{bestilling.kundeid}</td>
+              <td>{bestilling.kundenr}</td>
               <Table.Input>{bestilling.utleietype}</Table.Input>
               <Table.Input>{bestilling.kontant}</Table.Input>
               <td>
