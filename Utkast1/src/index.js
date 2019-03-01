@@ -582,7 +582,7 @@ class SykkelReg extends Component {
       this.utleienavn,
       this.props.match.params.id,
       () => {
-        history.goBack();
+        history.push("/registrering/sykkel");
       }
     );
   }
@@ -668,7 +668,7 @@ class AnsattReg extends Component {
               value={this.ustatus}
               onChange={event => (this.ustatus = event.target.value)}
             />
-            
+
             <div className="tilbakeMeny">
               <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                 Avbryt registrering
