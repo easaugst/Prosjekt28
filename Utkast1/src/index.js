@@ -34,21 +34,7 @@ class Utleie extends Component {
   }
 }
 
-class returnUtleie extends Component {
-  render() {
-    return (
-      <div className="mainView">
-        <div className="utleieMainView btn-group">
-          <div className="tilbakeMeny">
-            <NavLink to="/utleie" className="btn btn-outline-danger">
-              Avbryt registrering
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+
 
 class Endring extends Component {
   render() {
@@ -121,11 +107,11 @@ class KundeReg extends Component {
     );
   }
 
-  /*add() {
+  add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-      history.push(/kunder);
+    //  history.push(/kunder);
     });
-  }*/
+  }
 }
 
 class OversiktVertMenu extends Component {
@@ -414,8 +400,34 @@ class SykkelEndring extends Component {
 }
 
 class UtstyrEndring extends Component {
+  uArray = [];
+
   render() {
-    return <div className="mainView">a</div>;
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Utstyrsnr</th>
+            <th>Utstyrstype</th>
+            <th>Status</th>
+          </Table.Rad>
+          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+            <Table.Rad key={utstyr.utstyrsid}>
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.navn}</td>
+              <td>
+                <input type="text" className="form-control-plaintext" value={utstyr.ustatus} onChange={event => (utstyr.ustatus =  event.target.value)} />
+              </td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+  mounted() {
+    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+      this.uArray = utstyr;
+    });
   }
 }
 
@@ -437,8 +449,7 @@ ReactDOM.render(
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
-      <Route exact path="/utleie/kundereg" component={KundeReg} />
-      <Route exact path="/utleie/kundereg" component={returnUtleie} />
+      <Route exact="/utleie/kundereg" component={KundeReg} />
 
       <Route exact path="/endring" component={Endring} />
       <Route path="/endring" component={EndringVertMenu} />
