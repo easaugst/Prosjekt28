@@ -592,7 +592,7 @@ class UtstyrReg extends Component {
               <select
                 className="form-control"
                 form="formen"
-                onChange={event => (this.utstyrstype = event.target.value)}
+                onChange={event => (this.utstyrstypeid = event.target.value)}
               >
                 <option>Velg type her</option>
                 <option value="1">Hjelm</option>
