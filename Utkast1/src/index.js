@@ -576,6 +576,7 @@ class SykkelReg extends Component {
 
   add() {
     sykkelService.addSykkel(
+      this.sykkeltypeid,
       this.befinnelse,
       this.status,
       this.beskrivelse,
