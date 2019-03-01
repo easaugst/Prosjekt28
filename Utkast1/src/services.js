@@ -96,9 +96,25 @@ class BestillingsService {
   }
 }
 
+class AnsattService {
+  addAnsatt(ansattnr, tlfnr, epost, fnavn,  enavn, admin, utleienavn, success) {
+    connection.query(
+      'insert into FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn) values (?, ?, ?, ?, ?,?)',
+      [ansattnr, tlfnr, epost, fnavn,  enavn, admin, utleienavn],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
+
+}
+
 //LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 export let utstyrService = new UtstyrService();
 export let sykkelService = new SykkelService();
 export let kundeService = new KundeService();
 export let bestillingsService = new BestillingsService();
+export let ansattService = new AnsattService();
