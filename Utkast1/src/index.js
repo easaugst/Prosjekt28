@@ -30,7 +30,42 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   render() {
-    return <div className="mainView">Her får vi en oversikt over utleie</div>;
+    return <div className="mainView">
+            <div className="mainViewUtleie">
+              <form>
+                <div className="form-group">
+                  <label>Telefonnummer</label>
+                  <input
+                    className="form-control"
+                    type="number"
+                    placeholder="Telefonnummer"
+                    value=""
+                    onChange=""
+                  />
+                  <label>Sykkeltype</label>
+                  <select className="form-control">
+                    <option>Terrengsykkel</option>
+                    <option>Landeveisykkel</option>
+                    <option>Tandemsykkel</option>
+                  </select>
+                  <label>Utstyr</label>
+                  <select className="form-control">
+                    <option>Ingen</option>
+                    <option>Hjelm</option>
+                    <option>Bagasjebrett</option>
+                    <option>Sykkelveske</option>
+                  </select>
+                  <label>Type leie</label>
+                  <select className="form-control">
+                    <option>Timesutleie</option>
+                    <option>Dagsutleie</option>
+                    <option>3-dagersutleie</option>
+                    <option>Ukesleie</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>;
   }
 }
 
@@ -236,17 +271,11 @@ class KundeOversikt extends Component {
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <td>
-                <input type="text" className="form-control-plaintext" value={kunde.fnavn} />
-              </td>
-              <td>{kunde.enavn}</td>
-              <td>{kunde.epost}</td>
-              <td>{kunde.tlf}</td>
-              <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
+              <Table.Input knr={kunde.kundenr}>{kunde.fnavn}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.enavn}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.epost}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.tlf}</Table.Input>
+              <td>{JSON.stringify(kunde.rtid).replace(/T|Z|"/g, " ").slice(0, -6)}</td>
             </Table.Rad>
           ))}
         </Table>
@@ -381,7 +410,9 @@ class KundeReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
+            <div className="form-group">
             <input
+              className="form-control"
               type="text"
               placeholder="Fornavn"
               value={this.fnavn}
@@ -389,6 +420,7 @@ class KundeReg extends Component {
             />
             &nbsp;
             <input
+              className="form-control"
               type="text"
               placeholder="Etternavn"
               value={this.enavn}
@@ -396,6 +428,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="text"
               maxLength="12"
               placeholder="12345678"
@@ -404,6 +437,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="text"
               placeholder="Epost"
               value={this.epost}
@@ -411,6 +445,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="date"
               placeholder="Fødselsdato"
               value={this.fdag}
@@ -425,6 +460,7 @@ class KundeReg extends Component {
               <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                 Avbryt registrering
                 </button>
+            </div>
             </div>
           </form>
         </div>
