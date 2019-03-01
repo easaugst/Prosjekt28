@@ -46,81 +46,6 @@ class Registrering extends Component {
   }
 }
 
-class KundeReg extends Component {
-  kundenr = '';
-  fdag = '';
-  fnavn = '';
-  enavn = '';
-  epost = '';
-  tlf = '';
-
-  render() {
-    return (
-      <div className="mainView">
-        <div className="KundeReg">
-          <form>
-            <input
-              type="text"
-              placeholder="Fornavn"
-              value={this.fnavn}
-              onChange={event => (this.fnavn = event.target.value)}
-            />
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Etternavn"
-              value={this.enavn}
-              onChange={event => (this.enavn = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              maxLength="12"
-              placeholder="12345678"
-              value={this.tlf}
-              onChange={event => (this.tlf = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Epost"
-              value={this.epost}
-              onChange={event => (this.epost = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="date"
-              placeholder="Fødselsdato"
-              value={this.fdag}
-              onChange={event => (this.fdag = event.target.value)}
-            />
-            <div className="tilbakeMeny2">
-              <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer kunde
-              </button>
-            </div>
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-                </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
-  }
-
-  add() {
-    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-        history.push('/utleie');
-    });
-  }
-
-  cancel() {
-    history.push('/utleie/kundereg' + this.props.match.params.id);
-  }
-}
-
 class OversiktVertMenu extends Component {
   render() {
     return (
@@ -440,6 +365,81 @@ class UtstyrEndring extends Component {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
       this.uArray = utstyr;
     });
+  }
+}
+
+class KundeReg extends Component {
+  kundenr = '';
+  fdag = '';
+  fnavn = '';
+  enavn = '';
+  epost = '';
+  tlf = '';
+
+  render() {
+    return (
+      <div className="mainView">
+        <div className="KundeReg">
+          <form>
+            <input
+              type="text"
+              placeholder="Fornavn"
+              value={this.fnavn}
+              onChange={event => (this.fnavn = event.target.value)}
+            />
+            &nbsp;
+            <input
+              type="text"
+              placeholder="Etternavn"
+              value={this.enavn}
+              onChange={event => (this.enavn = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              maxLength="12"
+              placeholder="12345678"
+              value={this.tlf}
+              onChange={event => (this.tlf = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="text"
+              placeholder="Epost"
+              value={this.epost}
+              onChange={event => (this.epost = event.target.value)}
+            />
+            <br /> <br />
+            <input
+              type="date"
+              placeholder="Fødselsdato"
+              value={this.fdag}
+              onChange={event => (this.fdag = event.target.value)}
+            />
+            <div className="tilbakeMeny2">
+              <button type="button" className="btn btn-success" onClick={this.add}>
+                Registrer kunde
+              </button>
+            </div>
+            <div className="tilbakeMeny">
+              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                Avbryt registrering
+                </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  add() {
+    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
+        history.push('/utleie');
+    });
+  }
+
+  cancel() {
+    history.push('/utleie/kundereg' + this.props.match.params.id);
   }
 }
 
