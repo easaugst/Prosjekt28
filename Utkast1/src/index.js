@@ -262,15 +262,21 @@ class KundeOversikt extends Component {
             <th>Etternavn</th>
             <th>E-post</th>
             <th>Telefonnummer</th>
+            <th>Fødselsdato</th>
             <th>Tid registrert</th>
           </Table.Rad>
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <Table.Input knr={kunde.kundenr}>{kunde.fnavn}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.enavn}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.epost}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.tlf}</Table.Input>
+              <td>{kunde.fnavn}</td>
+              <td>{kunde.enavn}</td>
+              <td>{kunde.epost}</td>
+              <td>{kunde.tlf}</td>
+              <td>
+                {JSON.stringify(kunde.fdag)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -15)}
+              </td>
               <td>
                 {JSON.stringify(kunde.rtid)
                   .replace(/T|Z|"/g, ' ')
