@@ -34,21 +34,7 @@ class Utleie extends Component {
   }
 }
 
-class returnUtleie extends Component {
-  render() {
-    return (
-      <div className="mainView">
-        <div className="utleieMainView btn-group">
-          <div className="tilbakeMeny">
-            <NavLink to="/utleie" className="btn btn-outline-danger">
-              Avbryt registrering
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+
 
 class Endring extends Component {
   render() {
@@ -414,7 +400,7 @@ class UtstyrEndring extends Component {
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
               <td>
-                <input type="text" className="form-control-plaintext" value={utstyr.ustatus} onChange={event => (utstyr.ustatus =  event.target.value)} />  
+                <input type="text" className="form-control-plaintext" value={utstyr.ustatus} onChange={event => (utstyr.ustatus =  event.target.value)} />
               </td>
             </Table.Rad>
           ))}
@@ -447,8 +433,7 @@ ReactDOM.render(
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
-      <Route exact path="/utleie/kundereg" component={KundeReg} />
-      <Route exact path="/utleie/kundereg" component={returnUtleie} />
+      <Route exact="/utleie/kundereg" component={KundeReg} />
 
       <Route exact path="/endring" component={Endring} />
       <Route path="/endring" component={EndringVertMenu} />
