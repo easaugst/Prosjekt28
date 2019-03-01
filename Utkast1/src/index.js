@@ -107,11 +107,11 @@ class KundeReg extends Component {
     );
   }
 
-  /*add() {
+  add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-      history.push(/kunder);
+    //  history.push(/kunder);
     });
-  }*/
+  }
 }
 
 class OversiktVertMenu extends Component {
