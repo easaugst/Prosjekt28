@@ -34,8 +34,6 @@ class Utleie extends Component {
   }
 }
 
-
-
 class Endring extends Component {
   render() {
     return <div className="mainView">Her kan vi endre informasjonen på registreringer</div>;
@@ -109,7 +107,7 @@ class KundeReg extends Component {
 
   add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-    //  history.push(/kunder);
+      //  history.push(/kunder);
     });
   }
 }
@@ -416,7 +414,12 @@ class UtstyrEndring extends Component {
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
               <td>
-                <input type="text" className="form-control-plaintext" value={utstyr.ustatus} onChange={event => (utstyr.ustatus =  event.target.value)} />
+                <input
+                  type="text"
+                  className="form-control-plaintext"
+                  value={utstyr.ustatus}
+                  onChange={event => (utstyr.ustatus = event.target.value)}
+                />
               </td>
             </Table.Rad>
           ))}
@@ -449,7 +452,7 @@ ReactDOM.render(
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
-      <Route exact="/utleie/kundereg" component={KundeReg} />
+      <Route path="/utleie/kundereg" component={KundeReg} />
 
       <Route exact path="/endring" component={Endring} />
       <Route path="/endring" component={EndringVertMenu} />
