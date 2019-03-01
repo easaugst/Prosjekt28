@@ -195,8 +195,8 @@ class UtstyrOversikt extends Component {
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
-              <Table.Input>{utstyr.navn}</Table.Input>
-              <Table.Input>{utstyr.ustatus}</Table.Input>
+              <td>{utstyr.navn}</td>
+              <td>{utstyr.ustatus}</td>
             </Table.Rad>
           ))}
         </Table>
@@ -229,12 +229,12 @@ class SykkelOversikt extends Component {
           {this.sArray.map(sykkel => (
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
-              <Table.Input>{sykkel.sykkeltypenavn}</Table.Input>
-              <Table.Input>{sykkel.befinnelse}</Table.Input>
-              <Table.Input>{sykkel.status}</Table.Input>
-              <Table.Input>{sykkel.beskrivelse}</Table.Input>
-              <Table.Input>{sykkel.bestillingsid}</Table.Input>
-              <Table.Input>{sykkel.utleienavn}</Table.Input>
+              <td>{sykkel.sykkeltypenavn}</td>
+              <td>{sykkel.befinnelse}</td>
+              <td>{sykkel.status}</td>
+              <td>{sykkel.beskrivelse}</td>
+              <td>{sykkel.bestillingsid}</td>
+              <td>{sykkel.utleienavn}</td>
             </Table.Rad>
           ))}
         </Table>
@@ -316,8 +316,8 @@ class BestillingOversikt extends Component {
             <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
               <td>{bestilling.kundenr}</td>
-              <Table.Input>{bestilling.utleietype}</Table.Input>
-              <Table.Input>{bestilling.kontant}</Table.Input>
+              <td>{bestilling.utleietype}</td>
+              <td>{bestilling.kontant}</td>
               <td>
                 {JSON.stringify(bestilling.btid)
                   .replace(/T|Z|"/g, ' ')
@@ -333,7 +333,7 @@ class BestillingOversikt extends Component {
                   .replace(/T|Z|"/g, ' ')
                   .slice(0, -6)}
               </td>
-              <Table.Input>{bestilling.gruppe}</Table.Input>
+              <td>{bestilling.gruppe}</td>
             </Table.Rad>
           ))}
         </Table>
