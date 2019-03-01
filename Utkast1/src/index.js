@@ -650,30 +650,76 @@ class UtstyrReg extends Component {
 }
 
 class AnsattReg extends Component {
-    tlfnr = "";
-    epost = "";
-    fnavn = "";
-    enavn = "";
-    admin = "";
-    utleienavn = "";
+  tlfnr = '';
+  epost = '';
+  fnavn = '';
+  enavn = '';
+  admin = '';
+  utleienavn = '';
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <form id="formen">
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Status"
-              value={this.ustatus}
-              onChange={event => (this.ustatus = event.target.value)}
-            />
+          <form>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="number"
+                placeholder="Tlf. nr."
+                value={this.tlfnr}
+                onChange={event => (this.tlfnr = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Epost"
+                value={this.epost}
+                onChange={event => (this.epost = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Fornavn"
+                value={this.fnavn}
+                onChange={event => (this.fnavn = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Etternavn"
+                value={this.enavn}
+                onChange={event => (this.enavn = event.target.value)}
+              />
+              <br />
+              <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
+                <option>Er hen admin?</option>
+                <option value="0">Nei</option>
+                <option value="1">Ja</option>
+              </select>
+              <br />
 
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-              </button>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Utleienavn"
+                value={this.utleienavn}
+                onChange={event => (this.utleienavn = event.target.value)}
+              />
+              <br />
+              <div className="tilbakeMeny2">
+                <button type="button" className="btn btn-success" onClick={this.add}>
+                  Registrer utstyr
+                </button>
+              </div>
+              <div className="tilbakeMeny">
+                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                  Avbryt registrering
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -682,9 +728,19 @@ class AnsattReg extends Component {
   }
 
   add() {
-    ansattService.addAnsatt(this.ansattnr, this.tlfnr, this.epost, this.fnavn,  this.enavn, this.admin, this.utleienavn, this.props.match.params.id, () => {
-      history.goBack();
-    });
+    ansattService.addAnsatt(
+      this.ansattnr,
+      this.tlfnr,
+      this.epost,
+      this.fnavn,
+      this.enavn,
+      this.admin,
+      this.utleienavn,
+      this.props.match.params.id,
+      () => {
+        history.goBack();
+      }
+    );
   }
 
   cancel() {
