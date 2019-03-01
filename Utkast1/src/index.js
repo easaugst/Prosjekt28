@@ -493,44 +493,50 @@ class SykkelReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <select
-              placeholder="Sykkeltype"
-              value={this.sykkeltypeid}
-              onChange={event => (this.sykkeltypeid = event.target.value)}
-            >
-              <option value="0">Sykkeltype</option>
-              <option value="1">Terrengsykkel</option>
-              <option value="2">Landeveissykkel</option>
-              <option value="3">Tandemsykkel</option>
-            </select>
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Befinnelse"
-              value={this.befinnelse}
-              onChange={event => (this.befinnelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Status"
-              value={this.status}
-              onChange={event => (this.status = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Beskrivelse"
-              value={this.beskrivelse}
-              onChange={event => (this.beskrivelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Tilhører utleiested"
-              value={this.utleienavn}
-              onChange={event => (this.utleienavn = event.target.value)}
-            />
+            <div className="form-group">
+              <select
+                className="form-control"
+                value={this.sykkeltypeid}
+                onChange={event => (this.sykkeltypeid = event.target.value)}
+              >
+                <option value="0">Sykkeltype</option>
+                <option value="1">Terrengsykkel</option>
+                <option value="2">Landeveissykkel</option>
+                <option value="3">Tandemsykkel</option>
+              </select>
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Befinnelse"
+                value={this.befinnelse}
+                onChange={event => (this.befinnelse = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Status"
+                value={this.status}
+                onChange={event => (this.status = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Beskrivelse"
+                value={this.beskrivelse}
+                onChange={event => (this.beskrivelse = event.target.value)}
+              />
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Tilhører utleiested"
+                value={this.utleienavn}
+                onChange={event => (this.utleienavn = event.target.value)}
+              />
+            </div>
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer sykkel
