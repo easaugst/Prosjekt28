@@ -30,7 +30,38 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   render() {
-    return <div className="mainView">Her får vi en oversikt over utleie</div>;
+    return (
+      <div className="mainView">
+        <div className="mainViewUtleie">
+          <form>
+            <div className="form-group">
+              <label>Telefonnummer</label>
+              <input className="form-control" type="number" placeholder="Telefonnummer" value="" onChange="" />
+              <label>Sykkeltype</label>
+              <select className="form-control">
+                <option>Terrengsykkel</option>
+                <option>Landeveisykkel</option>
+                <option>Tandemsykkel</option>
+              </select>
+              <label>Utstyr</label>
+              <select className="form-control">
+                <option>Ingen</option>
+                <option>Hjelm</option>
+                <option>Bagasjebrett</option>
+                <option>Sykkelveske</option>
+              </select>
+              <label>Type leie</label>
+              <select className="form-control">
+                <option>Timesutleie</option>
+                <option>Dagsutleie</option>
+                <option>3-dagersutleie</option>
+                <option>Ukesleie</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
   }
 }
 
@@ -236,12 +267,10 @@ class KundeOversikt extends Component {
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <td>
-                <input type="text" className="form-control-plaintext" value={kunde.fnavn} />
-              </td>
-              <td>{kunde.enavn}</td>
-              <td>{kunde.epost}</td>
-              <td>{kunde.tlf}</td>
+              <Table.Input knr={kunde.kundenr}>{kunde.fnavn}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.enavn}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.epost}</Table.Input>
+              <Table.Input knr={kunde.kundenr}>{kunde.tlf}</Table.Input>
               <td>
                 {JSON.stringify(kunde.rtid)
                   .replace(/T|Z|"/g, ' ')
@@ -381,50 +410,57 @@ class KundeReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
-            <input
-              type="text"
-              placeholder="Fornavn"
-              value={this.fnavn}
-              onChange={event => (this.fnavn = event.target.value)}
-            />
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Etternavn"
-              value={this.enavn}
-              onChange={event => (this.enavn = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              maxLength="12"
-              placeholder="12345678"
-              value={this.tlf}
-              onChange={event => (this.tlf = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Epost"
-              value={this.epost}
-              onChange={event => (this.epost = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="date"
-              placeholder="Fødselsdato"
-              value={this.fdag}
-              onChange={event => (this.fdag = event.target.value)}
-            />
-            <div className="tilbakeMeny2">
-              <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer kunde
-              </button>
-            </div>
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-              </button>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Fornavn"
+                value={this.fnavn}
+                onChange={event => (this.fnavn = event.target.value)}
+              />
+              &nbsp;
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Etternavn"
+                value={this.enavn}
+                onChange={event => (this.enavn = event.target.value)}
+              />
+              <br /> <br />
+              <input
+                className="form-control"
+                type="text"
+                maxLength="12"
+                placeholder="12345678"
+                value={this.tlf}
+                onChange={event => (this.tlf = event.target.value)}
+              />
+              <br /> <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Epost"
+                value={this.epost}
+                onChange={event => (this.epost = event.target.value)}
+              />
+              <br /> <br />
+              <input
+                className="form-control"
+                type="date"
+                placeholder="Fødselsdato"
+                value={this.fdag}
+                onChange={event => (this.fdag = event.target.value)}
+              />
+              <div className="tilbakeMeny2">
+                <button type="button" className="btn btn-success" onClick={this.add}>
+                  Registrer kunde
+                </button>
+              </div>
+              <div className="tilbakeMeny">
+                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                  Avbryt registrering
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -434,70 +470,40 @@ class KundeReg extends Component {
 
   add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-      history.push('/utleie');
+      history.goBack();
     });
   }
 
   cancel() {
-    history.push('/utleie/kundereg' + this.props.match.params.id);
+    history.goBack();
   }
 }
 
-class SykkelReg extends Component {
-  regnr = '';
-  sykkeltypeid = '';
-  befinnelse = '';
-  status = '';
-  beskrivelse = '';
-  bestilling = '';
-  utleienavn = '';
+class UtstyrReg extends Component {
+  utstyrstype = '';
+  ustatus = '';
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <form>
-            <select
-              placeholder="Sykkeltype"
-              value={this.sykkeltypeid}
-              onChange={event => (this.sykkeltypeid = event.target.value)}
-            >
-              <option value="0">Sykkeltype</option>
-              <option value="1">Terrengsykkel</option>
-              <option value="2">Landeveissykkel</option>
-              <option value="3">Tandemsykkel</option>
-            </select>
+          <select form="formen" onChange={event => (this.utstyrstype = event.target.value)}>
+            <option>Velg type her</option>
+            <option value="1">Hjelm</option>
+            <option value="2">Lappesett</option>
+          </select>
+          <form id="formen">
             &nbsp;
             <input
               type="text"
-              placeholder="Befinnelse"
-              value={this.befinnelse}
-              onChange={event => (this.befinnelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
               placeholder="Status"
-              value={this.status}
-              onChange={event => (this.status = event.target.value)}
+              value={this.ustatus}
+              onChange={event => (this.ustatus = event.target.value)}
             />
             <br /> <br />
-            <input
-              type="text"
-              placeholder="Beskrivelse"
-              value={this.beskrivelse}
-              onChange={event => (this.beskrivelse = event.target.value)}
-            />
-            <br /> <br />
-            <input
-              type="text"
-              placeholder="Tilhører utleiested"
-              value={this.utleienavn}
-              onChange={event => (this.utleienavn = event.target.value)}
-            />
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer sykkel
+                Registrer utstyr
               </button>
             </div>
             <div className="tilbakeMeny">
@@ -512,17 +518,13 @@ class SykkelReg extends Component {
   }
 
   add() {
-    sykkelService.addSykkel(
-      this.sykkeltypeid,
-      this.befinnelse,
-      this.status,
-      this.beskrivelse,
-      this.utleienavn,
-      this.props.match.params.id,
-      () => {
-        history.goBack();
-      }
-    );
+    utstyrService.addUtstyr(this.utstyrstype, this.ustatus, this.props.match.params.id, () => {
+      history.goBack();
+    });
+  }
+
+  cancel() {
+    history.goBack();
   }
 }
 
@@ -552,8 +554,8 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route path="/registrering/utstyr" component={UtstyrReg} />
       <Route exact path="/kunder" component={KundeOversikt} />
-      <Route path="/registrering/sykkel" component={SykkelReg} />
     </div>
   </HashRouter>,
   document.getElementById('root')
