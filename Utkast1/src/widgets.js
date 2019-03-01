@@ -107,6 +107,7 @@ class NavColLink extends Component {
     );
   }
 }
+
 export class NavCol extends Component {
   static Link = NavColLink;
 
@@ -126,7 +127,7 @@ class TableInput extends Component {
         <input
         type="text"
         className="form-control-plaintext"
-        value={this.props.children} 
+        value={this.props.children}
         kundenr={this.props.knr}/>
       </td>
     )
@@ -140,7 +141,6 @@ class TableRad extends Component {
 
 export class Table extends Component {
   static Rad = TableRad;
-  static Input =TableInput;
 
   render() {
     return (
