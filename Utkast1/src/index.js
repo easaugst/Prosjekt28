@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import { utstyrService, sykkelService, kundeService, bestillingsService } from './services';
+import { utstyrService, sykkelService, kundeService, bestillingsService, ansattService } from './services';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
@@ -49,6 +49,18 @@ class Utleie extends Component {
                 <option>Hjelm</option>
                 <option>Bagasjebrett</option>
                 <option>Sykkelveske</option>
+              </select>
+              <select className="form-control" placeholder="Antall">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
               </select>
               <label>Type leie</label>
               <select className="form-control">
@@ -123,7 +135,7 @@ class RegVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/registrering/bestilling">
+        <NavCol.Link to="/registrering/ansatt">
           <ion-icon name="contacts" />
           Registrere Ansatt
         </NavCol.Link>
@@ -636,6 +648,55 @@ class UtstyrReg extends Component {
   }
 }
 
+class AnsattReg extends Component {
+  utstyrstypeid = '';
+  ustatus = '';
+
+  render() {
+    return (
+      <div className="mainView">
+        <div className="KundeReg">
+          <select form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
+            <option>Velg type her</option>
+            <option value="1">Hjelm</option>
+            <option value="2">Lappesett</option>
+          </select>
+          <form id="formen">
+            &nbsp;
+            <input
+              type="text"
+              placeholder="Status"
+              value={this.ustatus}
+              onChange={event => (this.ustatus = event.target.value)}
+            />
+            <br /> <br />
+            <div className="tilbakeMeny2">
+              <button type="button" className="btn btn-success" onClick={this.add}>
+                Registrer utstyr
+              </button>
+            </div>
+            <div className="tilbakeMeny">
+              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                Avbryt registrering
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  add() {
+    ansattService.addAnsatt(this.ansattnr, this.tlfnr, this.epost, this.fnavn,  this.enavn, this.admin, this.utleienavn, this.props.match.params.id, () => {
+      history.goBack();
+    });
+  }
+
+  cancel() {
+    history.goBack();
+  }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -665,6 +726,7 @@ ReactDOM.render(
       <Route path="/registrering/utstyr" component={UtstyrReg} />
       <Route exact path="/kunder" component={KundeOversikt} />
       <Route path="/registrering/sykkel" component={SykkelReg} />
+      <Route path="/registrering/ansatt" component={AnsattReg} />
     </div>
   </HashRouter>,
   document.getElementById('root')
