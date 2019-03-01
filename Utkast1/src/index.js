@@ -262,15 +262,21 @@ class KundeOversikt extends Component {
             <th>Etternavn</th>
             <th>E-post</th>
             <th>Telefonnummer</th>
+            <th>Fødselsdato</th>
             <th>Tid registrert</th>
           </Table.Rad>
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
-              <Table.Input knr={kunde.kundenr}>{kunde.fnavn}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.enavn}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.epost}</Table.Input>
-              <Table.Input knr={kunde.kundenr}>{kunde.tlf}</Table.Input>
+              <td>{kunde.fnavn}</td>
+              <td>{kunde.enavn}</td>
+              <td>{kunde.epost}</td>
+              <td>{kunde.tlf}</td>
+              <td>
+                {JSON.stringify(kunde.fdag)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -15)}
+              </td>
               <td>
                 {JSON.stringify(kunde.rtid)
                   .replace(/T|Z|"/g, ' ')
@@ -418,7 +424,7 @@ class KundeReg extends Component {
                 value={this.fnavn}
                 onChange={event => (this.fnavn = event.target.value)}
               />
-              &nbsp;
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -426,7 +432,7 @@ class KundeReg extends Component {
                 value={this.enavn}
                 onChange={event => (this.enavn = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -435,7 +441,7 @@ class KundeReg extends Component {
                 value={this.tlf}
                 onChange={event => (this.tlf = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="text"
@@ -443,7 +449,7 @@ class KundeReg extends Component {
                 value={this.epost}
                 onChange={event => (this.epost = event.target.value)}
               />
-              <br /> <br />
+              <br />
               <input
                 className="form-control"
                 type="date"
@@ -451,6 +457,8 @@ class KundeReg extends Component {
                 value={this.fdag}
                 onChange={event => (this.fdag = event.target.value)}
               />
+              <br />
+
               <div className="tilbakeMeny2">
                 <button type="button" className="btn btn-success" onClick={this.add}>
                   Registrer kunde
@@ -572,14 +580,14 @@ class SykkelReg extends Component {
 }
 
 class UtstyrReg extends Component {
-  utstyrstype = '';
+  utstyrstypeid = '';
   ustatus = '';
 
   render() {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <select form="formen" onChange={event => (this.utstyrstype = event.target.value)}>
+          <select form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
             <option>Velg type her</option>
             <option value="1">Hjelm</option>
             <option value="2">Lappesett</option>
@@ -610,7 +618,7 @@ class UtstyrReg extends Component {
   }
 
   add() {
-    utstyrService.addUtstyr(this.utstyrstype, this.ustatus, this.props.match.params.id, () => {
+    utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
       history.goBack();
     });
   }
