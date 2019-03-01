@@ -123,7 +123,11 @@ class TableInput extends Component {
   render() {
     return (
       <td>
-        <input type="text" className="form-control-plaintext" value={this.props.children} kundenr={this.props.knr}/>
+        <input
+        type="text"
+        className="form-control-plaintext"
+        value={this.props.children} 
+        kundenr={this.props.knr}/>
       </td>
     )
   }
