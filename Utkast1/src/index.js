@@ -587,20 +587,27 @@ class UtstyrReg extends Component {
     return (
       <div className="mainView">
         <div className="KundeReg">
-          <select form="formen" onChange={event => (this.utstyrstype = event.target.value)}>
-            <option>Velg type her</option>
-            <option value="1">Hjelm</option>
-            <option value="2">Lappesett</option>
-          </select>
-          <form id="formen">
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Status"
-              value={this.ustatus}
-              onChange={event => (this.ustatus = event.target.value)}
-            />
-            <br /> <br />
+          <form>
+            <div className="form-group">
+              <select
+                className="form-control"
+                form="formen"
+                onChange={event => (this.utstyrstype = event.target.value)}
+              >
+                <option>Velg type her</option>
+                <option value="1">Hjelm</option>
+                <option value="2">Lappesett</option>
+              </select>
+              <br />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Status"
+                value={this.ustatus}
+                onChange={event => (this.ustatus = event.target.value)}
+              />
+            </div>
+            <br />
             <div className="tilbakeMeny2">
               <button type="button" className="btn btn-success" onClick={this.add}>
                 Registrer utstyr
