@@ -434,12 +434,12 @@ class KundeReg extends Component {
 
   add() {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
-        history.push('/utleie');
+        history.goBack();
     });
   }
 
   cancel() {
-    history.push('/utleie/kundereg' + this.props.match.params.id);
+    history.goBack();
   }
 }
 
