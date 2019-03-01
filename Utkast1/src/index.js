@@ -134,22 +134,22 @@ class OversiktVertMenu extends Component {
       <NavCol>
         <NavCol.Link to="/oversikt/bestilling">
           {' '}
-          <ion-icon name="create"></ion-icon>
+          <ion-icon name="create" />
           Bestilling
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/kunde">
-          <ion-icon name="people" className="bootStrapIkon"></ion-icon>
+          <ion-icon name="people" className="bootStrapIkon" />
           Kunde
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/sykkel">
-          <ion-icon name="bicycle"></ion-icon>
+          <ion-icon name="bicycle" />
           Sykler
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/utstyr">
-          <ion-icon name="cube"></ion-icon>
+          <ion-icon name="cube" />
           Utstyr
         </NavCol.Link>
       </NavCol>
@@ -162,7 +162,7 @@ class UtleieVertMenu extends Component {
     return (
       <NavCol>
         <NavCol.Link to="/utleie/kundereg">
-          <ion-icon name="person-add"></ion-icon>
+          <ion-icon name="person-add" />
           Registrer kunde
         </NavCol.Link>
       </NavCol>
@@ -174,10 +174,25 @@ class RegVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/registrering/bestilling">Registrere Ansatt</NavCol.Link>
-        <NavCol.Link to="/registrering/kunde">Registrere kunde</NavCol.Link>
-        <NavCol.Link to="/registrering/sykkel">Registrere sykler</NavCol.Link>
-        <NavCol.Link to="/registrering/utstyr">Registrere utstyr</NavCol.Link>
+        <NavCol.Link to="/registrering/bestilling">
+          <ion-icon name="contacts" />
+          Registrere Ansatt
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/kunde">
+          <ion-icon name="person-add" />
+          Registrere kunde
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/sykkel">
+          <ion-icon name="bicycle" />
+          Registrere sykler
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/utstyr">
+          <ion-icon name="cube" />
+          Registrere utstyr
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -189,23 +204,24 @@ class EndringVertMenu extends Component {
       <NavCol>
         <NavCol.Link to="/endring/bestillinger">
           {' '}
-          <span class="glyphicon glyphicon-edit bootStrapIkon " />
+          <ion-icon name="create" />
           Endre bestilling
         </NavCol.Link>
 
         <NavCol.Link to="/endring/kunde">
-          <span class="glyphicon glyphicon-user bootStrapIkon" />
+          <ion-icon name="people" />
           Endre kundeinformasjon
         </NavCol.Link>
 
         <NavCol.Link to="/endring/sykkel">
           {' '}
-          <span class="glyphicon glyphicon-plane bootStrapIkon" />
+          <ion-icon name="bicycle" />
           Endre sykler
         </NavCol.Link>
 
         <NavCol.Link to="/endring/utstyr">
-          <span class="glyphicon glyphicon-briefcase bootStrapIkon"> </span>Endre utstyr
+          <ion-icon name="cube" />
+          Endre utstyr
         </NavCol.Link>
       </NavCol>
     );
