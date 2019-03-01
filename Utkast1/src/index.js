@@ -583,7 +583,7 @@ class SykkelReg extends Component {
       this.utleienavn,
       this.props.match.params.id,
       () => {
-        history.push("/registrering/sykkel");
+        history.goBack();
       }
     );
   }
@@ -661,7 +661,6 @@ class AnsattReg extends Component {
     return (
       <div className="mainView">
         <div className="KundeReg">
-<<<<<<< HEAD
           <form>
             <div className="form-group">
               <input
@@ -721,21 +720,6 @@ class AnsattReg extends Component {
                   Avbryt registrering
                 </button>
               </div>
-=======
-          <form id="formen">
-            &nbsp;
-            <input
-              type="text"
-              placeholder="Status"
-              value={this.ustatus}
-              onChange={event => (this.ustatus = event.target.value)}
-            />
-
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-              </button>
->>>>>>> 03f24b7801f900dfc45c3e8d2912acc64c9f1c9a
             </div>
           </form>
         </div>
