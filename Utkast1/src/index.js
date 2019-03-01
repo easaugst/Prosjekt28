@@ -36,21 +36,18 @@ class Utleie extends Component {
                 <div className="form-group">
                   <label>Telefonnummer</label>
                   <input
+                    className="form-control"
                     type="number"
                     placeholder="Telefonnummer"
                     value=""
                     onChange=""
                   />
-                </div>
-                <div className="dropdown">
-                  <button className="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-                  </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#">Action</a>
-                    <a className="dropdown-item" href="#">Another action</a>
-                    <a className="dropdown-item" href="#">Something else here</a>
-                  </div>
+                  <label>Sykkeltype</label>
+                  <select className="form-control">
+                    <option>Terrengsykkel</option>
+                    <option>Landeveisykkel</option>
+                    <option>Tandemsykkel</option>
+                  </select>
                 </div>
               </form>
             </div>
@@ -405,7 +402,9 @@ class KundeReg extends Component {
       <div className="mainView">
         <div className="KundeReg">
           <form>
+            <div className="form-group">
             <input
+              className="form-control"
               type="text"
               placeholder="Fornavn"
               value={this.fnavn}
@@ -413,6 +412,7 @@ class KundeReg extends Component {
             />
             &nbsp;
             <input
+              className="form-control"
               type="text"
               placeholder="Etternavn"
               value={this.enavn}
@@ -420,6 +420,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="text"
               maxLength="12"
               placeholder="12345678"
@@ -428,6 +429,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="text"
               placeholder="Epost"
               value={this.epost}
@@ -435,6 +437,7 @@ class KundeReg extends Component {
             />
             <br /> <br />
             <input
+              className="form-control"
               type="date"
               placeholder="Fødselsdato"
               value={this.fdag}
@@ -449,6 +452,7 @@ class KundeReg extends Component {
               <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                 Avbryt registrering
                 </button>
+            </div>
             </div>
           </form>
         </div>
