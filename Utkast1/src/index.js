@@ -443,6 +443,55 @@ class KundeReg extends Component {
   }
 }
 
+  class UtstyrReg extends Component {
+    utstyrstype = '';
+    ustatus = '';
+
+    render() {
+      return (
+        <div className="mainView">
+          <div className="KundeReg">
+            <select form="formen" onChange={event => (this.utstyrstype = event.target.value)}>
+              <option>Velg type her</option>
+              <option value="1" >Hjelm</option>
+              <option value="2">Lappesett</option>
+            </select>
+            <form id="formen">
+              &nbsp;
+              <input
+                type="text"
+                placeholder="Status"
+                value={this.ustatus}
+                onChange={event => (this.ustatus = event.target.value)}
+              />
+              <br /> <br />
+              <div className="tilbakeMeny2">
+                <button type="button" className="btn btn-success" onClick={this.add}>
+                  Registrer utstyr
+                </button>
+              </div>
+              <div className="tilbakeMeny">
+                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                  Avbryt registrering
+                  </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      );
+    }
+
+    add() {
+      utstyrService.addUtstyr(this.utstyrstype, this.ustatus, this.props.match.params.id, () => {
+          history.goBack();
+      });
+    }
+
+    cancel() {
+      history.goBack();
+    }
+}
+
 ReactDOM.render(
   <HashRouter>
     <div>
@@ -469,6 +518,7 @@ ReactDOM.render(
       <Route exact path="/registrering" component={Registrering} />
       <Route path="/registrering" component={RegVertMenu} />
       <Route path="/registrering/kunde" component={KundeReg} />
+      <Route path="/registrering/utstyr" component={UtstyrReg} />
       <Route exact path="/kunder" component={KundeOversikt} />
     </div>
   </HashRouter>,

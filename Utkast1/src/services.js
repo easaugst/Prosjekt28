@@ -10,6 +10,14 @@ class UtstyrService {
       });
   }
 
+  addUtstyr(utstyrsid, utstyrstype, ustatus, success) {
+    connection.query('insert into Utstyr (utstyrstype, ustatus) values (?, ?)', [utstyrsid, utstyrstype, ustatus], (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
+
 }
 
 class SykkelService {
