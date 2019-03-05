@@ -129,6 +129,22 @@ class UtleieService {
     });
   }
 
+  getDropdownF(kundenr, success) {
+    connection.query('SELECT kundenr FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+
+  getDropdownE(kundenr, success) {
+    connection.query('SELECT enavn FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+
 }
 
 //LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
