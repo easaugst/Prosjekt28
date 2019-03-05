@@ -2,7 +2,7 @@
 .mainView {
   position: absolute;
   left: 27vw;
-  top: 13vh;
+  top: 15vh;
   height: 70%;
   font-family: sans-serif;
   width: 70vw;
@@ -68,8 +68,8 @@
 .tilbakeMeny {
   text-align: center;
   width: 5vw;
-  margin-left: 12vw;
-  margin-top: -4.5vh;
+  margin-left: 12.5vw;
+  margin-top: 0vh;
   position: absolute;
 }
 .tilbakeMeny2 {
@@ -93,20 +93,22 @@
 
 /* CSS for header */
 .fontNavbar {
-  font-size: 1.7vw;
+  font-size: 1.4vw;
   font-family: 'Trebuchet MS';
   font-weight: bold;
 }
 a.logo {
-  font-size: 1.8vw;
+  font-size: 1.5vw;
+  position: relative;
 }
 .fontNavbarLink {
   margin-left: 3vw;
+  position: relative;
 }
 
 /* CSS for sidemenyen */
 .fontSideMeny {
-  font-size: 1.7vw;
+  font-size: 1.2vw;
   font-family: 'Trebuchet MS';
   text-align: center;
   margin-top: 1.5vh;
