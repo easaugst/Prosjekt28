@@ -85,20 +85,23 @@
   padding: 1vw;
 }
 
+/* CSS for header */
 .fontNavbar {
   font-size: 1.7vw;
   font-family: 'Trebuchet MS';
 }
+a.logo {
+  font-size: 1.8vw;
+}
+.fontNavbarLink {
+  margin-left: 3vw;
+}
 
+/* CSS for sidemenyen */
 .fontSideMeny {
   font-size: 1.4vw;
   font-family: 'Trebuchet MS';
 }
-
 .bootStrapIkon {
   padding-right: 0.5vw;
-}
-
-a.logo {
-  font-size: 1.8vw;
 }

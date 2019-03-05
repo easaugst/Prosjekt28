@@ -66,7 +66,7 @@ export class Column extends Component {
 class NavBarLink extends Component {
   render() {
     return (
-      <NavLink className="nav-link" activeClassName="active" exact={this.props.exact} to={this.props.to}>
+      <NavLink className="nav-link fontNavbarLink" activeClassName="active" exact={this.props.exact} to={this.props.to}>
         {this.props.children}
       </NavLink>
     );
