@@ -474,6 +474,7 @@ class KundeReg extends Component {
               />
               <br />
 
+              <div className="knapper">
               <div className="tilbakeMeny2">
                 <button type="button" className="btn btn-success" onClick={this.add}>
                   Registrer kunde
@@ -483,6 +484,7 @@ class KundeReg extends Component {
                 <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
                   Avbryt registrering
                 </button>
+              </div>
               </div>
             </div>
           </form>
