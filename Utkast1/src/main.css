@@ -7,6 +7,12 @@
   font-family: sans-serif;
 }
 
+/* Oversikt hovedmeny */
+.NavBar {
+  position: absolute;
+  width: 100%;
+}
+
 /* Oversikt sidemeny */
 .sideMeny {
   position: absolute;
@@ -59,10 +65,12 @@
   width: 5vw;
   margin-left: 12vw;
   margin-top: -4.5vh;
+  position: absolute;
 }
 .tilbakeMeny2 {
   text-align: center;
   width: 5vw;
+  position: absolute;
 }
 
 .tilbakeMeny:hover {

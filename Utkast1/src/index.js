@@ -10,6 +10,7 @@ const history = createHashHistory();
 class Menu extends Component {
   render() {
     return (
+      <div className="NavBar">
       <NavBar brand="Sykkelutleie 9000">
         {' '}
         {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
@@ -18,6 +19,7 @@ class Menu extends Component {
         <NavBar.Link to="/endring">Endring</NavBar.Link>
         <NavBar.Link to="/registrering">Registrering</NavBar.Link>
       </NavBar>
+      </div>
     );
   }
 }
