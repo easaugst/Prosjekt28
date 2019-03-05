@@ -562,15 +562,17 @@ class SykkelReg extends Component {
                 onChange={event => (this.utleienavn = event.target.value)}
               />
             </div>
-            <div className="tilbakeMeny2">
-              <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer sykkel
-              </button>
-            </div>
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-              </button>
+            <div className="knapper">
+              <span className="tilbakeMeny2">
+                <button type="button" className="btn btn-success" onClick={this.add}>
+                  Registrer kunde
+                </button>
+              </span>
+              <span className="tilbakeMeny">
+                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                  Avbryt registrering
+                </button>
+              </span>
             </div>
           </form>
         </div>
@@ -626,15 +628,17 @@ class UtstyrReg extends Component {
             </div>
             <br />
 
-            <div className="tilbakeMeny2">
-              <button type="button" className="btn btn-success" onClick={this.add}>
-                Registrer utstyr
-              </button>
-            </div>
-            <div className="tilbakeMeny">
-              <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                Avbryt registrering
-              </button>
+            <div className="knapper">
+              <span className="tilbakeMeny2">
+                <button type="button" className="btn btn-success" onClick={this.add}>
+                  Registrer kunde
+                </button>
+              </span>
+              <span className="tilbakeMeny">
+                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                  Avbryt registrering
+                </button>
+              </span>
             </div>
           </form>
         </div>
@@ -714,15 +718,17 @@ class AnsattReg extends Component {
                 onChange={event => (this.utleienavn = event.target.value)}
               />
               <br />
-              <div className="tilbakeMeny2">
-                <button type="button" className="btn btn-success" onClick={this.add}>
-                  Registrer utstyr
-                </button>
-              </div>
-              <div className="tilbakeMeny">
-                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                  Avbryt registrering
-                </button>
+              <div className="knapper">
+                <span className="tilbakeMeny2">
+                  <button type="button" className="btn btn-success" onClick={this.add}>
+                    Registrer kunde
+                  </button>
+                </span>
+                <span className="tilbakeMeny">
+                  <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                    Avbryt registrering
+                  </button>
+                </span>
               </div>
             </div>
           </form>
