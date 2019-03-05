@@ -116,6 +116,10 @@ class OversiktVertMenu extends Component {
           <ion-icon name="cube" />
           Utstyr
         </NavCol.Link>
+        <NavCol.Link to="/oversikt/ansatt">
+          <ion-icon name="contacts" />
+          Ansatt
+        </NavCol.Link>
       </NavCol>
     );
   }
@@ -378,6 +382,44 @@ class BestillingsEndring extends Component {
 class SykkelEndring extends Component {
   render() {
     return <div className="mainView">b</div>;
+  }
+}
+
+class AnsattOversikt extends Component {
+  aArray = [];
+
+  render() {
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Ansattnummer</th>
+            <th>Tlf.nr</th>
+            <th>Epost</th>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>Administrator</th>
+            <th>Arbeidsplass</th>
+          </Table.Rad>
+          {this.aArray.map((ansatt /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+            <Table.Rad key={ansatt.ansattnr}>
+              <td>{ansatt.ansattnr}</td>
+              <td>{ansatt.tlfnr}</td>
+              <td>{ansatt.epost}</td>
+              <td>{ansatt.fnavn}</td>
+              <td>{ansatt.enavn}</td>
+              <td>{ansatt.admin}</td>
+              <td>{ansatt.utleienavn}</td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+  mounted() {
+    ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
+      this.aArray = ansatt;
+    });
   }
 }
 
@@ -767,6 +809,7 @@ ReactDOM.render(
       <Route path="/oversikt/sykkel" component={SykkelOversikt} />
       <Route path="/oversikt/kunde" component={KundeOversikt} />
       <Route path="/oversikt/bestilling" component={BestillingOversikt} />
+      <Route path="/oversikt/ansatt" component={AnsattOversikt} />
 
       <Route path="/endring/kunde" component={KundeEndring} />
       <Route path="/endring/sykkel" component={SykkelEndring} />
