@@ -89,6 +89,7 @@
 .fontNavbar {
   font-size: 1.7vw;
   font-family: 'Trebuchet MS';
+  font-weight: bold;
 }
 a.logo {
   font-size: 1.8vw;
@@ -99,8 +100,10 @@ a.logo {
 
 /* CSS for sidemenyen */
 .fontSideMeny {
-  font-size: 1.4vw;
+  font-size: 1.7vw;
   font-family: 'Trebuchet MS';
+  text-align: center;
+  margin-top: 1.5vh
 }
 .bootStrapIkon {
   padding-right: 0.5vw;
@@ -108,4 +111,7 @@ a.logo {
 
 #fontSideMenyen.active {
   background-color: red;
+}
+.fontSideMeny:hover {
+  filter: brightness(60%);
 }
