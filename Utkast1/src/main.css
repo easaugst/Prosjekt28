@@ -114,8 +114,9 @@ a.logo {
 }
 
 #fontSideMenyen.active {
-  background-color: red;
+  background-color: white;
+  color: black;
 }
 .fontSideMeny:hover {
-  filter: brightness(60%);
+  filter: brightness(100%);
 }
