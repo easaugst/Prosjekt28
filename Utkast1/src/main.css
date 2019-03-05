@@ -60,10 +60,6 @@
   font-family: 'Trebuchet MS';
 }
 
-.mainViewUtleie {
-  width: 18vw;
-}
-
 /* CSS for registre og avbrytknapp*/
 .tilbakeMeny {
   text-align: center;
@@ -88,7 +84,6 @@
 /* Kunderegistrering */
 .KundeReg {
   padding: 1vw;
-  width: 18vw;
 }
 
 /* CSS for header */
