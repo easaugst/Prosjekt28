@@ -11,14 +11,14 @@ class Menu extends Component {
   render() {
     return (
       <div className="NavBar">
-      <NavBar brand="Sykkelutleie 9000">
-        {' '}
-        {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
-        <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
-        <NavBar.Link to="/utleie">Utleie</NavBar.Link>
-        <NavBar.Link to="/endring">Endring</NavBar.Link>
-        <NavBar.Link to="/registrering">Registrering</NavBar.Link>
-      </NavBar>
+        <NavBar brand="Sykkelutleie 9000">
+          {' '}
+          {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
+          <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
+          <NavBar.Link to="/utleie">Utleie</NavBar.Link>
+          <NavBar.Link to="/endring">Endring</NavBar.Link>
+          <NavBar.Link to="/registrering">Registrering</NavBar.Link>
+        </NavBar>
       </div>
     );
   }
@@ -475,16 +475,16 @@ class KundeReg extends Component {
               <br />
 
               <div className="knapper">
-              <div className="tilbakeMeny2">
-                <button type="button" className="btn btn-success" onClick={this.add}>
-                  Registrer kunde
-                </button>
-              </div>
-              <div className="tilbakeMeny">
-                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                  Avbryt registrering
-                </button>
-              </div>
+                <span className="tilbakeMeny2">
+                  <button type="button" className="btn btn-success" onClick={this.add}>
+                    Registrer kunde
+                  </button>
+                </span>
+                <span className="tilbakeMeny">
+                  <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+                    Avbryt registrering
+                  </button>
+                </span>
               </div>
             </div>
           </form>

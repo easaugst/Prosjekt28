@@ -63,12 +63,12 @@
 /* CSS for registre og avbrytknapp*/
 .knapper {
   position: absolute;
-  width: 40vw;
+  width: 60vw;
   height: 20vh;
 }
 .tilbakeMeny {
   text-align: center;
-  width: 5vw;
+  margin-left: 2vw;
 }
 .tilbakeMeny2 {
   text-align: center;
