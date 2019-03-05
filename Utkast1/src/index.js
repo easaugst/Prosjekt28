@@ -3,7 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import { utstyrService, sykkelService, kundeService, bestillingsService, ansattService } from './services';
+import { utstyrService, sykkelService, kundeService, bestillingsService, ansattService, utleieService } from './services';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 

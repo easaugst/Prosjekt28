@@ -119,7 +119,7 @@ class AnsattService {
 
 }
 
-class Utleieservice {
+class UtleieService {
 
   getDropdown(kundenr, success) {
     connection.query('SELECT kundenr, fnavn, enavn FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
