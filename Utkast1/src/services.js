@@ -119,6 +119,18 @@ class AnsattService {
 
 }
 
+class Utleieservice {
+
+  getDropdown(kundenr, success) {
+    connection.query('SELECT kundenr, fnavn, enavn FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+
+}
+
 //LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 export let utstyrService = new UtstyrService();
@@ -126,3 +138,4 @@ export let sykkelService = new SykkelService();
 export let kundeService = new KundeService();
 export let bestillingsService = new BestillingsService();
 export let ansattService = new AnsattService();
+export let utleieService = new UtleieService();
