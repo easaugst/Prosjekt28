@@ -5,6 +5,7 @@
   top: 13vh;
   height: 70%;
   font-family: sans-serif;
+  width: 70vw;
 }
 
 /* Oversikt hovedmeny */
@@ -59,6 +60,10 @@
   font-family: 'Trebuchet MS';
 }
 
+.mainViewUtleie {
+  width: 20vw;
+}
+
 /* CSS for registre og avbrytknapp*/
 .tilbakeMeny {
   text-align: center;
@@ -83,6 +88,7 @@
 /* Kunderegistrering */
 .KundeReg {
   padding: 1vw;
+  width: 20vw;
 }
 
 /* CSS for header */
@@ -103,7 +109,7 @@ a.logo {
   font-size: 1.7vw;
   font-family: 'Trebuchet MS';
   text-align: center;
-  margin-top: 1.5vh
+  margin-top: 1.5vh;
 }
 .bootStrapIkon {
   padding-right: 0.5vw;
