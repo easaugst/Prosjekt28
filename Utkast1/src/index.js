@@ -116,7 +116,7 @@ class OversiktVertMenu extends Component {
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/ansatt">
-          <ion-icon name="cube" />
+          <ion-icon name="contacts" />
           Ansatt
         </NavCol.Link>
       </NavCol>
