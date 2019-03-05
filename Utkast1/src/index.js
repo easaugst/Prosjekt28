@@ -115,7 +115,7 @@ class OversiktVertMenu extends Component {
           Utstyr
         </NavCol.Link>
 
-        <NavCol.Link to="/oversikt/utstyr">
+        <NavCol.Link to="/oversikt/ansatt">
           <ion-icon name="cube" />
           Ansatt
         </NavCol.Link>
@@ -399,7 +399,7 @@ class AnsattOversikt extends Component {
   }
   mounted() {
     ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
-      this.aAnsatt = ansatt;
+      this.aArray = ansatt;
     });
   }
 }
