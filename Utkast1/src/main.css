@@ -106,6 +106,6 @@ a.logo {
   padding-right: 0.5vw;
 }
 
-.fontSideMeny:hover {
+#fontSideMenyen.active {
   background-color: red;
 }

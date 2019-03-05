@@ -96,6 +96,7 @@ class NavColLink extends Component {
   render() {
     return (
       <NavLink
+        id="fontSideMenyen"
         className="nav-link fontSideMeny"
         data-toggle="pill"
         activeClassName="active"
