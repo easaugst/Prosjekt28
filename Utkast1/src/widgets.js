@@ -82,7 +82,7 @@ export class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-sm bg-light navbar-light fontNavbar">
         {
-          <NavLink className="navbar-brand" activeClassName="active" exact to="/">
+          <NavLink className="navbar-brand logo" activeClassName="active" exact to="/">
             {this.props.brand}
           </NavLink>
         }
@@ -124,12 +124,9 @@ class TableInput extends Component {
   render() {
     return (
       <td>
-        <input type="text"
-        className="form-control-plaintext"
-        value={this.props.children}
-        kundenr={this.props.knr} />
+        <input type="text" className="form-control-plaintext" value={this.props.children} kundenr={this.props.knr} />
       </td>
-    )
+    );
   }
 }
 class TableRad extends Component {
