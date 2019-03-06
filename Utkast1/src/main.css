@@ -119,3 +119,10 @@ a.logo {
 .fontSideMeny:hover {
   filter: brightness(100%);
 }
+
+.mainViewUtleie h3 {
+  font-weight: bold;
+}
+.mainView h3 {
+  font-weight: bold;
+}

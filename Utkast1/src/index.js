@@ -35,6 +35,7 @@ class Utleie extends Component {
     return (
       <div className="mainView">
         <div className="mainViewUtleie">
+          <h3>Legg til bestilling</h3>
           <form>
             <div className="form-group">
               <label>Telefonnummer</label>
@@ -471,6 +472,7 @@ class KundeReg extends Component {
   render() {
     return (
       <div className="mainView">
+        <h3>Legg til kunde</h3>
         <div className="KundeReg">
           <form>
             <div className="form-group">
@@ -559,6 +561,7 @@ class SykkelReg extends Component {
   render() {
     return (
       <div className="mainView">
+        <h3>Legg til sykkel</h3>
         <div className="KundeReg">
           <form>
             <div className="form-group">
@@ -648,6 +651,7 @@ class UtstyrReg extends Component {
   render() {
     return (
       <div className="mainView">
+        <h3>Legg til utstyr</h3>
         <div className="KundeReg">
           <form>
             <div className="form-group">
@@ -711,6 +715,7 @@ class AnsattReg extends Component {
   render() {
     return (
       <div className="mainView">
+        <h3>Legg til ansatt</h3>
         <div className="KundeReg">
           <form>
             <div className="form-group">
