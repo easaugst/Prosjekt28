@@ -501,7 +501,7 @@ class KundeReg extends Component {
               <br />
               <input
                 className="form-control"
-                type="text"
+                type="email"
                 placeholder="Epost"
                 value={this.epost}
                 onChange={event => (this.epost = event.target.value)}
@@ -539,6 +539,7 @@ class KundeReg extends Component {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
       history.goBack();
     });
+    kundeService.newDate(() => {});
   }
 
   cancel() {
