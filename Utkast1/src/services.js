@@ -24,6 +24,18 @@ class UtstyrService {
       }
     );
   }
+
+  updateUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
+    connection.query(
+      'update Utstyr set utstyrstypeid=?, ustatus=? where utstyrsid=?',
+      [utstyrstypeid, ustatus, utstyrsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    )
+  }
 }
 
 class SykkelService {
