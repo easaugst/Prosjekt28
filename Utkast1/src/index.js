@@ -564,7 +564,7 @@ class UtstyrEndring extends Component {
               <td>{utstyr.navn}</td>
               <td>{utstyr.ustatus}</td>
               <td>
-                <NavCol.Link to="/endring/edit">Rediger</NavCol.Link>
+                <NavLink to={"/endring/utstyr/" + utstyr.utstyrsid + "/"}>Rediger</NavLink>
               </td>
             </Table.Rad>
           ))}
@@ -587,7 +587,20 @@ class UtstyrEndringMeny extends Component {
 
     return (
       <div className="mainView">
-      Yo
+      <Card title="Endre utstyr">
+        <Form.Label>Utstyrstype:</Form.Label>
+        <Form.Input type="text" value={this.utstyrstypeid} onChange={event => (this.utstyrstypeid = event.target.value)} />
+        <Form.Label>Utstyrstatus:</Form.Label>
+        <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
+      </Card>
+      <Row>
+      <Column>
+        <Button.Success onClick={this.save}>Lagre</Button.Success>
+      </Column>
+      <Column right>
+        <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+      </Column>
+    </Row>
       </div>
     );
   }
@@ -595,6 +608,11 @@ class UtstyrEndringMeny extends Component {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
       this.utstyrstypeid = utstyr.utstyrstypeid;
       this.ustatus = utstyr.ustatus;
+    });
+  }
+  save() {
+    utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
+      history.push('/endring/utstyr');
     });
   }
 }
@@ -957,10 +975,10 @@ ReactDOM.render(
 
       <Route path="/endring/kunde" component={KundeEndring} />
       <Route path="/endring/sykkel" component={SykkelEndring} />
-      <Route path="/endring/utstyr" component={UtstyrEndring} />
+      <Route exact path="/endring/utstyr" component={UtstyrEndring} />
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
 
-      <Route exact path="/endring/edit" component={UtstyrEndringMeny} />
+      <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
