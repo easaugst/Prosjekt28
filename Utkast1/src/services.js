@@ -169,6 +169,18 @@ class UtleieService {
     );
   }
 
+  getBestilling(bestillingsid, success) {
+
+  connection.query(
+    'SELECT MAX(bestillingsid) FROM Bestilling',
+    [bestillignsid],
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+      }
+    );
+  }
 }
 
 //LA ATÅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
