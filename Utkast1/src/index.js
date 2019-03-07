@@ -581,10 +581,11 @@ class UtstyrEndring extends Component {
 }
 
 class UtstyrEndringMeny extends Component {
-  utstyrstypeid = '';
-  ustatus = '';
+  utstyrstypeid = null;
+  ustatus = null;
 
   render() {
+    if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
         <Card title="Endre utstyr">
