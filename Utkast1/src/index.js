@@ -368,20 +368,140 @@ class BestillingOversikt extends Component {
 }
 
 class KundeEndring extends Component {
+  kArray = [];
+  tid = '';
+
   render() {
-    return <div className="mainView">d</div>;
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Kundenummer</th>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>E-post</th>
+            <th>Telefonnummer</th>
+            <th>Fødselsdato</th>
+            <th>Tid registrert</th>
+          </Table.Rad>
+          {this.kArray.map(kunde => (
+            <Table.Rad key={kunde.kundenr}>
+              <td>{kunde.kundenr}</td>
+              <td>{kunde.fnavn}</td>
+              <td>{kunde.enavn}</td>
+              <td>{kunde.epost}</td>
+              <td>{kunde.tlf}</td>
+              <td>
+                {JSON.stringify(kunde.fdag)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -15)}
+              </td>
+              <td>
+                {JSON.stringify(kunde.rtid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+  mounted() {
+    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+      this.kArray = kunde;
+    });
   }
 }
 
 class BestillingsEndring extends Component {
+  bArray = [];
+
   render() {
-    return <div className="mainView">c</div>;
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Bestillingsnummer</th>
+            <th>Kundenummer</th>
+            <th>Utleietype</th>
+            <th>Kontant</th>
+            <th>Tidspunkt bestilling</th>
+            <th>Fra</th>
+            <th>Til</th>
+            <th>Gruppe</th>
+          </Table.Rad>
+          {this.bArray.map(bestilling => (
+            <Table.Rad key={bestilling.bestillingsid}>
+              <td>{bestilling.bestillingsid}</td>
+              <td>{bestilling.kundenr}</td>
+              <td>{bestilling.utleietype}</td>
+              <td>{bestilling.kontant}</td>
+              <td>
+                {JSON.stringify(bestilling.btid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ftid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>
+                {JSON.stringify(bestilling.ttid)
+                  .replace(/T|Z|"/g, ' ')
+                  .slice(0, -6)}
+              </td>
+              <td>{bestilling.gruppe}</td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+
+  mounted() {
+    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
+      this.bArray = bestilling;
+    });
   }
 }
 
 class SykkelEndring extends Component {
+  sArray = [];
+
   render() {
-    return <div className="mainView">b</div>;
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Reg nr.</th>
+            <th>Sykkeltype</th>
+            <th>Befinnelse</th>
+            <th>Status</th>
+            <th>Beskrivelse</th>
+            <th>Nåværende bestilling</th>
+            <th>Tilhører utleiested</th>
+          </Table.Rad>
+          {this.sArray.map(sykkel => (
+            <Table.Rad key={sykkel.regnr}>
+              <td>{sykkel.regnr}</td>
+              <td>{sykkel.sykkeltypenavn}</td>
+              <td>{sykkel.befinnelse}</td>
+              <td>{sykkel.status}</td>
+              <td>{sykkel.beskrivelse}</td>
+              <td>{sykkel.bestillingsid}</td>
+              <td>{sykkel.utleienavn}</td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+  mounted() {
+    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+      this.sArray = sykkel;
+    });
   }
 }
 
