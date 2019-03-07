@@ -37,7 +37,12 @@ class Utleie extends Component {
   kontant = '';
   ftid = '';
   gruppe = '';
+
   bId = '';
+  regnr = [];
+  uId = [];
+  detaljer = [];
+  uBestilling = [this.regnr, this.uId, this.detaljer];
 
   render() {
     return (
@@ -127,7 +132,12 @@ class Utleie extends Component {
     utleieService.addBestilling(this.kunde, this.uType, this.kontant, this.ftid, this.gruppe, () => {
       console.log(this.kunde, this.kontant, this.ftid, this.group);
     })
-    utleieService
+    utleieService.getBestilling(bestilling => {
+      this.bId = bestilling;
+    })
+    utleieService.addUBestilling(this.regnr, this.uId, this.detaljer, this.bId, () => {
+      console.log(this.regnr, this.uId, this.detaljer, this.bId);
+    })
   }
 }
 
