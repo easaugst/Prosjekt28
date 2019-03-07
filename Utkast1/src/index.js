@@ -34,16 +34,9 @@ class Utleie extends Component {
     return (
       <div className="mainView">
         <div className="mainViewUtleie">
-          <div className="ui fluid search selection dropdown">
-            <input type="hidden" name="kunde"/>
-            <i className="dropdown icon"></i>
-              <div className="default text">Velg Kunde</div>
-              <div className="menu">
-                <div className="item" data-value="af"><i className="af flag"></i>Afghanistan</div>
-                <div className="item" data-value="ax"><i className="ax flag"></i>Aland Island</div>
-                <div className="item" data-value="al"><i className="al flag"></i>Albania</div>
-              </div>
-          </div>
+          {/*Dropdown gjøres senere*/}
+          <Dropdown />
+
         </div>
       </div>
     );
