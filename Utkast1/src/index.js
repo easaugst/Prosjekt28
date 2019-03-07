@@ -214,9 +214,10 @@ class UtstyrOversikt extends Component {
           </Table.Rad>
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
-              <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.navn}</td>
-              <td>{utstyr.ustatus}</td>
+                  <List.Item key={utstyr.utstyrsid} to={"/endring/" + utstyr.utstyrsid}>
+                  <td>{utstyr.utstyrsid}</td>
+                  <td>{utstyr.navn}</td>
+                  <td>{utstyr.ustatus}</td> </List.Item>
             </Table.Rad>
           ))}
         </Table>
@@ -555,18 +556,15 @@ class UtstyrEndring extends Component {
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
             <th>Status</th>
+            <th>Rediger</th>
           </Table.Rad>
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.navn}</td>
+              <td>{utstyr.ustatus}</td>
               <td>
-                <input
-                  type="text"
-                  className="form-control-plaintext"
-                  value={utstyr.ustatus}
-                  onChange={event => (utstyr.ustatus = event.target.value)}
-                />
+                <NavCol.Link to="/endring/edit">Rediger</NavCol.Link>
               </td>
             </Table.Rad>
           ))}
@@ -577,6 +575,26 @@ class UtstyrEndring extends Component {
   mounted() {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
       this.uArray = utstyr;
+    });
+  }
+}
+
+class UtstyrEndringMeny extends Component {
+  utstyrstypeid = '';
+  ustatus = '';
+
+  render() {
+
+    return (
+      <div className="mainView">
+      Yo
+      </div>
+    );
+  }
+  mounted() {
+    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+      this.utstyrstypeid = utstyr.utstyrstypeid;
+      this.ustatus = utstyr.ustatus;
     });
   }
 }
@@ -941,6 +959,8 @@ ReactDOM.render(
       <Route path="/endring/sykkel" component={SykkelEndring} />
       <Route path="/endring/utstyr" component={UtstyrEndring} />
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
+
+      <Route exact path="/endring/edit" component={UtstyrEndringMeny} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
