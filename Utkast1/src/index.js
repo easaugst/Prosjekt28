@@ -214,11 +214,9 @@ class UtstyrOversikt extends Component {
           </Table.Rad>
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
-              <List.Item key={utstyr.utstyrsid} to={'/endring/' + utstyr.utstyrsid}>
                 <td>{utstyr.utstyrsid}</td>
                 <td>{utstyr.navn}</td>
                 <td>{utstyr.ustatus}</td>{' '}
-              </List.Item>
             </Table.Rad>
           ))}
         </Table>
@@ -585,7 +583,7 @@ class UtstyrEndringMeny extends Component {
   ustatus = null;
 
   render() {
-    if (!this.utstyrstypeid && !this.ustatus) return null;
+  //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
         <Card title="Endre utstyr">
