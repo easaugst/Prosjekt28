@@ -84,6 +84,17 @@ class KundeService {
       }
     );
   }
+  newDate(success) {
+    connection.query(
+      'UPDATE Kunde set fdag = DATE_ADD(fdag,INTERVAL 1 DAY) ORDER BY kundenr DESC LIMIT 1',
+      [],
+      (error,results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
 }
 
 class BestillingsService {
