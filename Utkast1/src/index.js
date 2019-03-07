@@ -214,10 +214,11 @@ class UtstyrOversikt extends Component {
           </Table.Rad>
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
-                  <List.Item key={utstyr.utstyrsid} to={"/endring/" + utstyr.utstyrsid}>
-                  <td>{utstyr.utstyrsid}</td>
-                  <td>{utstyr.navn}</td>
-                  <td>{utstyr.ustatus}</td> </List.Item>
+              <List.Item key={utstyr.utstyrsid} to={'/endring/' + utstyr.utstyrsid}>
+                <td>{utstyr.utstyrsid}</td>
+                <td>{utstyr.navn}</td>
+                <td>{utstyr.ustatus}</td>{' '}
+              </List.Item>
             </Table.Rad>
           ))}
         </Table>
@@ -564,7 +565,7 @@ class UtstyrEndring extends Component {
               <td>{utstyr.navn}</td>
               <td>{utstyr.ustatus}</td>
               <td>
-                <NavLink to={"/endring/utstyr/" + utstyr.utstyrsid + "/"}>Rediger</NavLink>
+                <NavLink to={'/endring/utstyr/' + utstyr.utstyrsid + '/'}>Rediger</NavLink>
               </td>
             </Table.Rad>
           ))}
@@ -584,23 +585,26 @@ class UtstyrEndringMeny extends Component {
   ustatus = '';
 
   render() {
-
     return (
       <div className="mainView">
-      <Card title="Endre utstyr">
-        <Form.Label>Utstyrstype:</Form.Label>
-        <Form.Input type="text" value={this.utstyrstypeid} onChange={event => (this.utstyrstypeid = event.target.value)} />
-        <Form.Label>Utstyrstatus:</Form.Label>
-        <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
-      </Card>
-      <Row>
-      <Column>
-        <Button.Success onClick={this.save}>Lagre</Button.Success>
-      </Column>
-      <Column right>
-        <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-      </Column>
-    </Row>
+        <Card title="Endre utstyr">
+          <Form.Label>Utstyrstype:</Form.Label>
+          <Form.Input
+            type="text"
+            value={this.utstyrstypeid}
+            onChange={event => (this.utstyrstypeid = event.target.value)}
+          />
+          <Form.Label>Utstyrstatus:</Form.Label>
+          <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
+        </Card>
+        <Row>
+          <Column>
+            <Button.Success onClick={this.save}>Lagre</Button.Success>
+          </Column>
+          <Column right>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+          </Column>
+        </Row>
       </div>
     );
   }
@@ -614,6 +618,9 @@ class UtstyrEndringMeny extends Component {
     utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
       history.push('/endring/utstyr');
     });
+  }
+  cancel() {
+    history.goBack();
   }
 }
 
