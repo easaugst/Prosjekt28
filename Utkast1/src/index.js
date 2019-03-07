@@ -32,6 +32,13 @@ class Oversikt extends Component {
 class Utleie extends Component {
   number = 1;
 
+  kunde = '';
+  uType = '';
+  kontant = '';
+  ftid = '';
+  gruppe = '';
+  bId = '';
+
   render() {
     return (
       <div className="mainView">
@@ -50,7 +57,7 @@ class Utleie extends Component {
                   <option>Ukesleie</option>
                 </select>
               <label>Bestilling begynner</label>
-                <input className="form-control" type="date" />
+                <input className="form-control" type="date" value={this.ftid} onChange={e => (this.ftid = e.target.value)} />
               {/*
                 <label>Telefonnummer</label>
                 <input className="form-control" type="number" placeholder="Telefonnummer" value="" onChange="" />
@@ -85,6 +92,9 @@ class Utleie extends Component {
                   <option>10</option>
                 </select>
             </div>
+            <div className="form-group" id="utleie3">
+              <h1>Bestillingen</h1>
+            </div>
             <Row>
               <Column>
                 <Button.Danger onClick={this.prevPage}>Avbryt</Button.Danger>
@@ -112,6 +122,12 @@ class Utleie extends Component {
     document.getElementById('utleie' + this.number).style.display = "none";
     this.number--;
     document.getElementById('utleie' + this.number).style.display = "block";
+  }
+  order() {
+    utleieService.addBestilling(this.kunde, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+      console.log(this.kunde, this.kontant, this.ftid, this.group);
+    })
+    utleieService
   }
 }
 
