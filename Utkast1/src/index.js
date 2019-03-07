@@ -30,13 +30,70 @@ class Oversikt extends Component {
 }
 
 class Utleie extends Component {
+  number = 1;
+
   render() {
     return (
       <div className="mainView">
         <div className="mainViewUtleie">
-          {/*Dropdown gjøres senere*/}
-          <Dropdown />
-
+          {/*Dropdown gjøres senere; Kundevalg*/}
+            {/*kundenr, utleietype, ftid, ttid, gruppe*/}
+          <form>
+            <div className="form-group" id="utleie1">
+              <label>Kundevalg</label>
+                <Dropdown placeholder="Velg Kunde" fluid search/>
+              <label>Type leie</label>
+                <select className="form-control">
+                  <option>Timesutleie</option>
+                  <option>Dagsutleie</option>
+                  <option>3-dagersutleie</option>
+                  <option>Ukesleie</option>
+                </select>
+              <label>Bestilling begynner</label>
+                <input className="form-control" type="date" />
+              {/*
+                <label>Telefonnummer</label>
+                <input className="form-control" type="number" placeholder="Telefonnummer" value="" onChange="" />
+                */}
+            </div>
+            <div className="form-group" id="utleie2">
+            {/**/}
+                <label>Sykkeltype</label>
+                  <select className="form-control">
+                    <option>Terrengsykkel</option>
+                    <option>Landeveisykkel</option>
+                    <option>Tandemsykkel</option>
+                  </select>
+                <label>Utstyr</label>
+                  <select className="form-control">
+                    <option>Ingen</option>
+                    <option>Hjelm</option>
+                    <option>Bagasjebrett</option>
+                    <option>Sykkelveske</option>
+                  </select>
+                <select className="form-control" placeholder="Antall">
+                  <option>Ingen</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+            </div>
+            <Row>
+              <Column>
+                <Button.Danger onClick={this.prevPage}>Avbryt</Button.Danger>
+              </Column>
+              <Column>
+                <Button.Success onClick={this.nextPage}>Neste side</Button.Success>
+              </Column>
+            </Row>
+          </form>
         </div>
       </div>
     );
@@ -45,6 +102,16 @@ class Utleie extends Component {
     kundeService.getKunde(this.props.match.params.kundenr, kunde => {
       this.kArray = kunde;
     })
+  }
+  nextPage() {
+    document.getElementById('utleie' + this.number).style.display = "none";
+    this.number++;
+    document.getElementById('utleie' + this.number).style.display = "block";
+  }
+  prevPage() {
+    document.getElementById('utleie' + this.number).style.display = "none";
+    this.number--;
+    document.getElementById('utleie' + this.number).style.display = "block";
   }
 }
 
