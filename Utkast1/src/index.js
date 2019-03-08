@@ -214,9 +214,9 @@ class UtstyrOversikt extends Component {
           </Table.Rad>
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
-                <td>{utstyr.utstyrsid}</td>
-                <td>{utstyr.navn}</td>
-                <td>{utstyr.ustatus}</td>{' '}
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.navn}</td>
+              <td>{utstyr.ustatus}</td>{' '}
             </Table.Rad>
           ))}
         </Table>
@@ -583,16 +583,16 @@ class UtstyrEndringMeny extends Component {
   ustatus = null;
 
   render() {
-  //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
         <Card title="Endre utstyr">
           <Form.Label>Utstyrstype:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.utstyrstypeid}
-            onChange={event => (this.utstyrstypeid = event.target.value)}
-          />
+          <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
+            <option>Velg type her</option>
+            <option value="1">Hjelm</option>
+            <option value="2">Lappesett</option>
+          </select>
           <Form.Label>Utstyrstatus:</Form.Label>
           <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
         </Card>
