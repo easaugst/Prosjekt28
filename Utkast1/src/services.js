@@ -88,7 +88,7 @@ class KundeService {
   updateKunde(kundenr, fnavn, enavn, epost, tlf, success) {
     connection.query(
       'update Kunde set fnavn=?, enavn =?, epost=?, tlf =? where kundenr=?',
-      [fnavn, enavn, epost, tlf, kundenr],
+      [kundenr, fnavn, enavn, epost, tlf],
       (error, results) => {
         if (error) return console.error(error);
 
