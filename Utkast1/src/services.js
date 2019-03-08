@@ -173,7 +173,7 @@ class UtleieService {
 
   connection.query(
     'SELECT MAX(bestillingsid) FROM Bestilling',
-    [bestillignsid],
+    [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 

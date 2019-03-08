@@ -39,10 +39,12 @@ class Utleie extends Component {
   gruppe = '';
 
   bId = '';
+  sType = '';
+  uType = '';
+
   regnr = [];
   uId = [];
-  detaljer = [];
-  uBestilling = [this.regnr, this.uId, this.detaljer];
+  uBestilling = [this.regnr, this.uId];
 
   render() {
     return (
@@ -54,48 +56,37 @@ class Utleie extends Component {
             <div className="form-group" id="utleie1">
               <label>Kundevalg</label>
                 <Dropdown placeholder="Velg Kunde" fluid search/>
+                <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
+                <br />
               <label>Type leie</label>
-                <select className="form-control">
-                  <option>Timesutleie</option>
+                <select className="form-control" onChange={event => (this.uType = event.target.value)}>
+                  <option>Velg tid</option>
+                  <option value="">Timesutleie</option>
                   <option>Dagsutleie</option>
                   <option>3-dagersutleie</option>
                   <option>Ukesleie</option>
                 </select>
               <label>Bestilling begynner</label>
-                <input className="form-control" type="date" value={this.ftid} onChange={e => (this.ftid = e.target.value)} />
-              {/*
-                <label>Telefonnummer</label>
-                <input className="form-control" type="number" placeholder="Telefonnummer" value="" onChange="" />
-                */}
+                <input className="form-control" type="date" value={this.ftid} onChange={event => (this.ftid = event.target.value)} />
             </div>
             <div className="form-group" id="utleie2">
-            {/**/}
                 <label>Sykkeltype</label>
-                  <select className="form-control">
-                    <option>Terrengsykkel</option>
-                    <option>Landeveisykkel</option>
-                    <option>Tandemsykkel</option>
+                  <select className="form-control" onChange={event => (this.sType = event.target.value)}>
+                    <option>Velg sykkel</option>
+                    <option value="1">Terrengsykkel</option>
+                    <option value="2">Landeveisykkel</option>
+                    <option value="3">Tandemsykkel</option>
                   </select>
+                  <Button.Light>Legg til sykkel</Button.Light>
                 <label>Utstyr</label>
-                  <select className="form-control">
+                  <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                     <option>Ingen</option>
-                    <option>Hjelm</option>
+                    <option value="1">Hjelm</option>
+                    <option value="2">Lappesett</option>
                     <option>Bagasjebrett</option>
                     <option>Sykkelveske</option>
                   </select>
-                <select className="form-control" placeholder="Antall">
-                  <option>Ingen</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                </select>
+                  <Button.Light>Legg til utstyr</Button.Light>
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
