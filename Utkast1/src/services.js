@@ -28,7 +28,7 @@ class UtstyrService {
   updateUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
     connection.query(
       'update Utstyr set utstyrstypeid=?, ustatus=? where utstyrsid=?',
-      [utstyrstypeid, ustatus, utstyrsid],
+      [utstyrsid, utstyrstypeid, ustatus],
       (error, results) => {
         if (error) return console.error(error);
 
