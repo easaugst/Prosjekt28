@@ -63,10 +63,10 @@ class SykkelService {
     );
   }
 
-  updateSykkel(sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
+  updateSykkel(regnr, sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
     connection.query(
-      'update Sykkel set sykkeltypeid=?, befinnelse=?, status=?, beskrivelse=? utleienavn=? where regnr=?',
-      [sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success],
+      'update Sykkel set sykkeltypeid=?, befinnelse=?, status=?, beskrivelse=?, utleienavn=? where regnr=?',
+      [regnr, sykkeltypeid, befinnelse, status, beskrivelse, utleienavn],
       (error, results) => {
         if (error) return console.error(error);
 
