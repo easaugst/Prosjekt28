@@ -510,6 +510,84 @@ class SykkelEndring extends Component {
   }
 }
 
+class SykkelEndringMeny extends Component {
+  sykkeltypeid = null;
+  befinnelse = null;
+  status = null;
+  beskrivelse = null;
+  utleienavn = null;
+
+  render() {
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    return (
+      <div className="mainView">
+        <Card title="Endre sykkel">
+          <Form.Label>Sykkeltype:</Form.Label>
+          <select
+            className="form-control"
+            value={this.sykkeltypeid}
+            onChange={event => (this.sykkeltypeid = event.target.value)}
+          >
+            <option value="0">Sykkeltype</option>
+            <option value="1">Terrengsykkel</option>
+            <option value="2">Landeveissykkel</option>
+            <option value="3">Tandemsykkel</option>
+          </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" value={this.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
+
+          <Form.Label>Status:</Form.Label>
+          <Form.Input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
+
+          <Form.Label>Beskrivelse:</Form.Label>
+          <Form.Input
+            type="text"
+            value={this.beskrivelse}
+            onChange={event => (this.beskrivelse = event.target.value)}
+          />
+
+          <Form.Label>Tilhører utleiested:</Form.Label>
+          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+        </Card>
+        <Row>
+          <Column>
+            <Button.Success onClick={this.save}>Lagre</Button.Success>
+          </Column>
+          <Column right>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+          </Column>
+        </Row>
+      </div>
+    );
+  }
+  mounted() {
+    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+      this.sykkeltypeid = sykkel.sykkeltypeid;
+      this.befinnelse = sykkel.befinnelse;
+      this.status = sykkel.status;
+      this.beskrivelse = sykkel.beskrivelse;
+      this.utleienavn = sykkel.utleienavn;
+    });
+  }
+  save() {
+    sykkelService.updateSykkel(
+      this.sykkeltypeid,
+      this.befinnelse,
+      this.status,
+      this.beskrivelse,
+      this.utleienavn,
+      this.props.match.params.regnr,
+      () => {
+        history.push('/endring/sykkel');
+      }
+    );
+  }
+  cancel() {
+    history.goBack();
+  }
+}
+
 class AnsattOversikt extends Component {
   aArray = [];
 
@@ -984,11 +1062,12 @@ ReactDOM.render(
       <Route path="/oversikt/ansatt" component={AnsattOversikt} />
 
       <Route path="/endring/kunde" component={KundeEndring} />
-      <Route path="/endring/sykkel" component={SykkelEndring} />
+      <Route exact path="/endring/sykkel" component={SykkelEndring} />
       <Route exact path="/endring/utstyr" component={UtstyrEndring} />
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
 
       <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
+      <Route exact path="/endring/sykkel/:id" component={SykkelEndringMeny} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
