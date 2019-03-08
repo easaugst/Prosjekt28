@@ -526,9 +526,8 @@ class SykkelEndringMeny extends Component {
           <select
             className="form-control"
             value={this.sykkeltypeid}
-            onChange={event => (this.sykkeltypeid = event.target.value)}
-          >
-            <option value="0">Sykkeltype</option>
+            onChange={event => (this.sykkeltypeid = event.target.value)}>
+            <option>Sykkeltype</option>
             <option value="1">Terrengsykkel</option>
             <option value="2">Landeveissykkel</option>
             <option value="3">Tandemsykkel</option>
@@ -544,8 +543,7 @@ class SykkelEndringMeny extends Component {
           <Form.Input
             type="text"
             value={this.beskrivelse}
-            onChange={event => (this.beskrivelse = event.target.value)}
-          />
+            onChange={event => (this.beskrivelse = event.target.value)}/>
 
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
