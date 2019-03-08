@@ -62,6 +62,18 @@ class SykkelService {
       }
     );
   }
+
+  updateSykkel(sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
+    connection.query(
+      'update Sykkel set sykkeltypeid=?, befinnelse=?, status=?, beskrivelse=? utleienavn=? where regnr=?',
+      [sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    )
+  }
 }
 
 class KundeService {
