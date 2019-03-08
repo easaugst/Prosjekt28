@@ -575,7 +575,7 @@ class SykkelEndringMeny extends Component {
       this.status,
       this.beskrivelse,
       this.utleienavn,
-      this.props.match.params.regnr,
+      this.props.match.params.id,
       () => {
         history.push('/endring/sykkel');
       }
