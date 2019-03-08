@@ -483,6 +483,7 @@ class SykkelEndring extends Component {
             <th>Beskrivelse</th>
             <th>Nåværende bestilling</th>
             <th>Tilhører utleiested</th>
+            <th>Rediger</th>
           </Table.Rad>
           {this.sArray.map(sykkel => (
             <Table.Rad key={sykkel.regnr}>
@@ -493,6 +494,9 @@ class SykkelEndring extends Component {
               <td>{sykkel.beskrivelse}</td>
               <td>{sykkel.bestillingsid}</td>
               <td>{sykkel.utleienavn}</td>
+              <td>
+                <NavLink to={'/endring/sykkel/' + sykkel.regnr + '/'}>Rediger</NavLink>
+              </td>
             </Table.Rad>
           ))}
         </Table>
