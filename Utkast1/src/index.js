@@ -6,6 +6,7 @@ import createHashHistory from 'history/createHashHistory';
 import { utstyrService, sykkelService, kundeService, bestillingsService, ansattService, utleieService } from './services';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 import { Dropdown } from 'semantic-ui-react';
+// import 'semantic-ui-css/semantic.min.css';
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -59,7 +60,7 @@ class Utleie extends Component {
           <form>
             <div className="form-group" id="utleie1">
               <label>Kundevalg</label>
-                <Dropdown placeholder="Velg Kunde" fluid search selection options={this.kundeDrop} onLoad={this.dropDown}/>
+                <Dropdown placeholder="Velg Kunde" fluid search selection options={this.kundeDrop} onClick={this.dropDown}/>
                 <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
                 <br />
               <label>Type leie</label>
@@ -109,22 +110,14 @@ class Utleie extends Component {
     );
   }
   dropDown() {
-    // utleieService.getDropdownF(kunde => {
-    //   this.kunde = JSON.parse(kunde);
-    // });
     utleieService.getDropdown(kundenr => {
       this.kunde = JSON.parse(kundenr);
     });
-    // utleieService.getDropdownF(fnavn => {
-    //   this.fnavn = JSON.parse(fnavn);
-    // });
-    // utleieService.getDropdownE(enavn => {
-    //   this.enavn = JSON.parse(enavn);
-    // });
     do {
-    this.kunde.map(kunde => {
-      this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
-    });
+      this.kundeDrop = [];
+      this.kunde.map(kunde => {
+        this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
+      });
     this.t++;
   }while (this.t < 2);
       // for (this.t = 0; this.t <= this.kunde.length; this.t++){
