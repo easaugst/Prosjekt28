@@ -121,27 +121,27 @@ class AnsattService {
 
 class UtleieService {
 
-  getDropdown(kundenr, success) {
-    connection.query('SELECT kundenr, fnavn, enavn FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+  getDropdown(success) {
+    connection.query('SELECT * FROM Kunde ORDER BY kundenr ASC', (error, results) => {
       if (error) return console.error(error);
 
-      success(results);
+      success(JSON.stringify(results));
     });
   }
 
-  getDropdownF(kundenr, success) {
-    connection.query('SELECT kundenr FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+  getDropdownF(success) {
+    connection.query('SELECT fnavn FROM Kunde ORDER BY kundenr ASC', (error, results) => {
       if (error) return console.error(error);
 
-      success(results);
+      success(JSON.stringify(results));
     });
   }
 
-  getDropdownE(kundenr, success) {
-    connection.query('SELECT enavn FROM Kunde ORDER BY kundenr ASC', [kundenr], (error, results) => {
+  getDropdownE(success) {
+    connection.query('SELECT enavn FROM Kunde ORDER BY kundenr ASC', (error, results) => {
       if (error) return console.error(error);
 
-      success(results);
+      success(JSON.stringify(results));
     });
   }
 

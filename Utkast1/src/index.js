@@ -31,8 +31,13 @@ class Oversikt extends Component {
 
 class Utleie extends Component {
   number = 1;
+  t = '';
 
-  kunde = '';
+  fnavn = [];
+  enavn = [];
+  kunde = [];
+  kundeDrop = [];
+
   uType = '';
   kontant = '';
   ftid = '';
@@ -45,7 +50,6 @@ class Utleie extends Component {
   regnr = [];
   uId = [];
   uBestilling = [this.regnr, this.uId];
-
   render() {
     return (
       <div className="mainView">
@@ -55,7 +59,7 @@ class Utleie extends Component {
           <form>
             <div className="form-group" id="utleie1">
               <label>Kundevalg</label>
-                <Dropdown placeholder="Velg Kunde" fluid search/>
+                <Dropdown placeholder="Velg Kunde" fluid search selection options={this.kundeDrop} onLoad={this.dropDown}/>
                 <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
                 <br />
               <label>Type leie</label>
@@ -104,10 +108,29 @@ class Utleie extends Component {
       </div>
     );
   }
-  mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.kArray = kunde;
-    })
+  dropDown() {
+    // utleieService.getDropdownF(kunde => {
+    //   this.kunde = JSON.parse(kunde);
+    // });
+    utleieService.getDropdown(kundenr => {
+      this.kunde = JSON.parse(kundenr);
+    });
+    // utleieService.getDropdownF(fnavn => {
+    //   this.fnavn = JSON.parse(fnavn);
+    // });
+    // utleieService.getDropdownE(enavn => {
+    //   this.enavn = JSON.parse(enavn);
+    // });
+    do {
+    this.kunde.map(kunde => {
+      this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
+    });
+    this.t++;
+  }while (this.t < 2);
+      // for (this.t = 0; this.t <= this.kunde.length; this.t++){
+      //     this.kundeDrop.push({key: parseInt(this.kunde[this.t].kundenr), text: this.kunde[this.t].fnavn + ' ' + this.kunde[this.t].enavn});
+      //   };
+    console.log(this.kundeDrop);
   }
   nextPage() {
     document.getElementById('utleie' + this.number).style.display = "none";
