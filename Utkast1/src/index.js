@@ -81,8 +81,39 @@ class Utleie extends Component {
             </div>
           </form>
         </div>
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Legg til
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
+  }
+  // LEGG TIL BESTILLING-KNAPP IKKE FIKSET
+  /*
+  add() {
+    sykkelService.addSykkel(
+      this.sykkeltypeid,
+      this.befinnelse,
+      this.status,
+      this.beskrivelse,
+      this.utleienavn,
+      this.props.match.params.id,
+      () => {
+        history.push('/oversikt/bestilling');
+      }
+    );
+  } */
+  cancel() {
+    history.goBack();
   }
 }
 
