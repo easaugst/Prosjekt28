@@ -113,13 +113,12 @@ class Utleie extends Component {
     utleieService.getDropdown(kundenr => {
       this.kunde = JSON.parse(kundenr);
     });
-    do {
-      this.kundeDrop = [];
-      this.kunde.map(kunde => {
-        this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
-      });
+
+    this.kundeDrop = [];
+    this.kunde.map(kunde => {
+      this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
+    });
     this.t++;
-  }while (this.t < 2);
       // for (this.t = 0; this.t <= this.kunde.length; this.t++){
       //     this.kundeDrop.push({key: parseInt(this.kunde[this.t].kundenr), text: this.kunde[this.t].fnavn + ' ' + this.kunde[this.t].enavn});
       //   };
