@@ -10,6 +10,14 @@ import {sykkelService} from './Services/Sykkel';
 import {utleieService} from './Services/Utleie';
 import {utstyrService} from './Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
+
+import {Oversikt, OversiktVertMenu} from './Components/Oversikt/Oversikt';
+import {AnsattOversikt} from './Components/Oversikt/Ansatt';
+import {BestillingOversikt} from './Components/Oversikt/Bestilling';
+import {KundeOversikt} from './Components/Oversikt/Kunde';
+import {SykkelOversikt} from './Components/Oversikt/Ansatt';
+import {UtstyrOversikt} from './Components/Oversikt/Utstyr';
+
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -29,11 +37,6 @@ class Menu extends Component {
   }
 }
 
-class Oversikt extends Component {
-  render() {
-    return <div className="mainView">Her får vi en oversikt over bestillinger, kunder, sykler og utstyr</div>;
-  }
-}
 
 class Utleie extends Component {
   render() {
@@ -95,39 +98,6 @@ class Endring extends Component {
 class Registrering extends Component {
   render() {
     return <div className="mainView">Her kan vi registrere hva vi vil</div>;
-  }
-}
-
-class OversiktVertMenu extends Component {
-  render() {
-    return (
-      <NavCol>
-        <NavCol.Link to="/oversikt/bestilling">
-          {' '}
-          <ion-icon name="create" />
-          Bestilling
-        </NavCol.Link>
-
-        <NavCol.Link to="/oversikt/kunde">
-          <ion-icon name="people" className="bootStrapIkon" />
-          Kunde
-        </NavCol.Link>
-
-        <NavCol.Link to="/oversikt/sykkel">
-          <ion-icon name="bicycle" />
-          Sykler
-        </NavCol.Link>
-
-        <NavCol.Link to="/oversikt/utstyr">
-          <ion-icon name="cube" />
-          Utstyr
-        </NavCol.Link>
-        <NavCol.Link to="/oversikt/ansatt">
-          <ion-icon name="contacts" />
-          Ansatt
-        </NavCol.Link>
-      </NavCol>
-    );
   }
 }
 
@@ -205,173 +175,6 @@ class EndringVertMenu extends Component {
 /*Alle oversiktklassene (UtstyrOversikt, SykkelOversikt, KundeOversikt, BestillingOversikt) er skrevet på denne måten*/
 /*Table widget med bootstrap klasser allerede valgt. Standard tabell med stripet visning*/
 /*Lager en ny rad, har ingen spesielle klasser (enda). Kan altså erstattes med vanlige <tr>*/
-class UtstyrOversikt extends Component {
-  uArray = [];
-
-  render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Utstyrsnr</th>
-            <th>Utstyrstype</th>
-            <th>Status</th>
-          </Table.Rad>
-          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-            <Table.Rad key={utstyr.utstyrsid}>
-              <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.navn}</td>
-              <td>{utstyr.ustatus}</td>{' '}
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-  mounted() {
-    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
-      this.uArray = utstyr;
-    });
-  }
-}
-
-class SykkelOversikt extends Component {
-  sArray = [];
-
-  render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Reg nr.</th>
-            <th>Sykkeltype</th>
-            <th>Befinnelse</th>
-            <th>Status</th>
-            <th>Beskrivelse</th>
-            <th>Nåværende bestilling</th>
-            <th>Tilhører utleiested</th>
-          </Table.Rad>
-          {this.sArray.map(sykkel => (
-            <Table.Rad key={sykkel.regnr}>
-              <td>{sykkel.regnr}</td>
-              <td>{sykkel.sykkeltypenavn}</td>
-              <td>{sykkel.befinnelse}</td>
-              <td>{sykkel.status}</td>
-              <td>{sykkel.beskrivelse}</td>
-              <td>{sykkel.bestillingsid}</td>
-              <td>{sykkel.utleienavn}</td>
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-  mounted() {
-    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
-      this.sArray = sykkel;
-    });
-  }
-}
-
-class KundeOversikt extends Component {
-  kArray = [];
-  tid = '';
-
-  render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Kundenummer</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>E-post</th>
-            <th>Telefonnummer</th>
-            <th>Fødselsdato</th>
-            <th>Tid registrert</th>
-          </Table.Rad>
-          {this.kArray.map(kunde => (
-            <Table.Rad key={kunde.kundenr}>
-              <td>{kunde.kundenr}</td>
-              <td>{kunde.fnavn}</td>
-              <td>{kunde.enavn}</td>
-              <td>{kunde.epost}</td>
-              <td>{kunde.tlf}</td>
-              <td>
-                {JSON.stringify(kunde.fdag)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -15)}
-              </td>
-              <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-  mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.kArray = kunde;
-    });
-  }
-}
-
-class BestillingOversikt extends Component {
-  bArray = [];
-
-  render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Bestillingsnummer</th>
-            <th>Kundenummer</th>
-            <th>Utleietype</th>
-            <th>Kontant</th>
-            <th>Tidspunkt bestilling</th>
-            <th>Fra</th>
-            <th>Til</th>
-            <th>Gruppe</th>
-          </Table.Rad>
-          {this.bArray.map(bestilling => (
-            <Table.Rad key={bestilling.bestillingsid}>
-              <td>{bestilling.bestillingsid}</td>
-              <td>{bestilling.kundenr}</td>
-              <td>{bestilling.utleietype}</td>
-              <td>{bestilling.kontant}</td>
-              <td>
-                {JSON.stringify(bestilling.btid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
-              <td>
-                {JSON.stringify(bestilling.ftid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
-              <td>
-                {JSON.stringify(bestilling.ttid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
-              <td>{bestilling.gruppe}</td>
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-
-  mounted() {
-    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
-      this.bArray = bestilling;
-    });
-  }
-}
 
 class KundeEndring extends Component {
   kArray = [];
@@ -646,44 +449,6 @@ class SykkelEndringMeny extends Component {
   }
   cancel() {
     history.goBack();
-  }
-}
-
-class AnsattOversikt extends Component {
-  aArray = [];
-
-  render() {
-    return (
-      <div className="mainView">
-        <Table>
-          <Table.Rad>
-            <th>Ansattnummer</th>
-            <th>Tlf.nr</th>
-            <th>Epost</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>Administrator</th>
-            <th>Arbeidsplass</th>
-          </Table.Rad>
-          {this.aArray.map((ansatt /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-            <Table.Rad key={ansatt.ansattnr}>
-              <td>{ansatt.ansattnr}</td>
-              <td>{ansatt.tlfnr}</td>
-              <td>{ansatt.epost}</td>
-              <td>{ansatt.fnavn}</td>
-              <td>{ansatt.enavn}</td>
-              <td>{ansatt.admin}</td>
-              <td>{ansatt.utleienavn}</td>
-            </Table.Rad>
-          ))}
-        </Table>
-      </div>
-    );
-  }
-  mounted() {
-    ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
-      this.aArray = ansatt;
-    });
   }
 }
 
