@@ -79,6 +79,8 @@ export class AnsattEndringMeny extends Component {
           <Form.Label>Etternavn:</Form.Label>
           <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
 
+          <Form.Label>Admin:</Form.Label>
+
           <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
             <option>Er hen admin?</option>
             <option value="0">Nei</option>
