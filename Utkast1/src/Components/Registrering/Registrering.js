@@ -22,11 +22,6 @@ export class RegVertMenu extends Component {
   render() {
     return (
       <NavCol>
-        <NavCol.Link to="/registrering/ansatt">
-          <ion-icon name="contacts" />
-          Registrere ansatt
-        </NavCol.Link>
-
         <NavCol.Link to="/registrering/kunde">
           <ion-icon name="person-add" />
           Registrere kunde
@@ -40,6 +35,11 @@ export class RegVertMenu extends Component {
         <NavCol.Link to="/registrering/utstyr">
           <ion-icon name="cube" />
           Registrere utstyr
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/ansatt">
+          <ion-icon name="contacts" />
+          Registrere ansatt
         </NavCol.Link>
       </NavCol>
     );
