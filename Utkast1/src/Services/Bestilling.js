@@ -16,6 +16,18 @@ class BestillingsService {
       success(results);
     });
   }
+
+  updateBestilling(utleietype, gruppe, bestillingsid, success) {
+    connection.query(
+      'update Bestilling set utleietype=?, gruppe =? where bestillingsid=?',
+      [utleietype, gruppe, bestillingsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
 }
 
 export let bestillingsService = new BestillingsService();

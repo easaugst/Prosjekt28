@@ -15,7 +15,7 @@ import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt';
 import { AnsattOversikt } from './Components/Oversikt/Ansatt';
 import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
 import { KundeOversikt } from './Components/Oversikt/Kunde';
-import { SykkelOversikt } from './Components/Oversikt/Ansatt';
+import { SykkelOversikt } from './Components/Oversikt/Sykkel';
 import { UtstyrOversikt } from './Components/Oversikt/Utstyr';
 
 import { Registrering, RegVertMenu } from './Components/Registrering/Registrering';
@@ -25,7 +25,7 @@ import { SykkelReg } from './Components/Registrering/Sykkel';
 import { UtstyrReg } from './Components/Registrering/Utstyr';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
-import { BestillingsEndring } from './Components/Endring/Bestilling';
+import { BestillingsEndring, BestillingsEndringMeny } from './Components/Endring/Bestilling';
 import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
 import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
 import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
@@ -65,7 +65,7 @@ ReactDOM.render(
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
       <Route path="/oversikt/sykkel" component={SykkelOversikt} />
       <Route path="/oversikt/kunde" component={KundeOversikt} />
-      <Route path="/oversikt/bestilling" component={BestillingOversikt} />
+      <Route exact path="/oversikt/bestilling" component={BestillingOversikt} />
       <Route path="/oversikt/ansatt" component={AnsattOversikt} />
 
       <Route exact path="/oversikt/bestilling/:id" component={BestillingOversiktMeny} />
@@ -76,6 +76,7 @@ ReactDOM.render(
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
       <Route exact path="/endring/ansatt" component={AnsattEndring} />
 
+      <Route exact path="/endring/bestilling/:id" component={BestillingsEndringMeny} />
       <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
       <Route exact path="/endring/sykkel/:id" component={SykkelEndringMeny} />
       <Route exact path="/endring/kunde/:id" component={KundeEndringMeny} />

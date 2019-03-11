@@ -3,12 +3,12 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {ansattService} from '../../Services/Ansatt';
-import {bestillingsService} from '../../Services/Bestilling';
-import {kundeService} from '../../Services/Kunde';
-import {sykkelService} from '../../Services/Sykkel';
-import {utleieService} from '../../Services/Utleie';
-import {utstyrService} from '../../Services/Utstyr';
+import { ansattService } from '../../Services/Ansatt';
+import { bestillingsService } from '../../Services/Bestilling';
+import { kundeService } from '../../Services/Kunde';
+import { sykkelService } from '../../Services/Sykkel';
+import { utleieService } from '../../Services/Utleie';
+import { utstyrService } from '../../Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
@@ -70,34 +70,40 @@ export class BestillingsEndring extends Component {
 }
 
 export class BestillingsEndringMeny extends Component {
-  fnavn = null;
-  enavn = null;
-  epost = null;
-  tlf = null;
+  utleietype = null;
+  gruppe = null;
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
         <Card title="Endre kundeinformasjon">
-          <Form.Label>Fornavn:</Form.Label>
-          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+          <Form.Label>Utleietype:</Form.Label>
+          <select
+            className="form-control"
+            value={this.utleietype}
+            onChange={event => (this.utleietype = event.target.value)}
+          >
+            <option>Utleie</option>
+            <option value="1">Timesutleie</option>
+            <option value="2">Dagsutleie</option>
+            <option value="3">3-dagersutleie</option>
+            <option value="4">Ukesleie</option>
+          </select>
 
-          <Form.Label>Etternavn:</Form.Label>
-          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
-
-          <Form.Label>Epost:</Form.Label>
-          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
-
-          <Form.Label>Tlf:</Form.Label>
-          <Form.Input type="text" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
+          <Form.Label>Gruppe:</Form.Label>
+          <select className="form-control" value={this.gruppe} onChange={event => (this.gruppe = event.target.value)}>
+            <option>Gruppe</option>
+            <option value="1">Ja</option>
+            <option value="2">Nei</option>
+          </select>
         </Card>
         <br />
 
         <div className="knapper">
           <span className="tilbakeMeny2">
             <button type="button" className="btn btn-success" onClick={this.save}>
-              Registrer kunde
+              Endre bestilling
             </button>
           </span>
           <span className="tilbakeMeny">
@@ -110,16 +116,14 @@ export class BestillingsEndringMeny extends Component {
     );
   }
   mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.fnavn = kunde.fnavn;
-      this.enavn = kunde.enavn;
-      this.epost = kunde.epost;
-      this.tlf = kunde.tlf;
+    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
+      this.utleietype = bestilling.utleietype;
+      this.gruppe = bestilling.gruppe;
     });
   }
   save() {
-    kundeService.updateKunde(this.fnavn, this.enavn, this.epost, this.tlf, this.props.match.params.id, () => {
-      history.push('/endring/kunde');
+    bestillingsService.updateBestilling(this.utleietype, this.gruppe, this.props.match.params.id, () => {
+      history.push('/endring/bestillinger');
     });
   }
   cancel() {
