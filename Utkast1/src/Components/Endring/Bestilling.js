@@ -3,12 +3,12 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {ansattService} from '../../Services/Ansatt';
-import {bestillingsService} from '../../Services/Bestilling';
-import {kundeService} from '../../Services/Kunde';
-import {sykkelService} from '../../Services/Sykkel';
-import {utleieService} from '../../Services/Utleie';
-import {utstyrService} from '../../Services/Utstyr';
+import { ansattService } from '../../Services/Ansatt';
+import { bestillingsService } from '../../Services/Bestilling';
+import { kundeService } from '../../Services/Kunde';
+import { sykkelService } from '../../Services/Sykkel';
+import { utleieService } from '../../Services/Utleie';
+import { utstyrService } from '../../Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
@@ -82,8 +82,8 @@ export class BestillingsEndringMeny extends Component {
           <select
             className="form-control"
             value={this.utleietype}
-            onChange={event => (this.utleietype = event.target.value)}>
-
+            onChange={event => (this.utleietype = event.target.value)}
+          >
             <option>Utleie</option>
             <option value="1">Timesutleie</option>
             <option value="2">Dagsutleie</option>
@@ -92,16 +92,11 @@ export class BestillingsEndringMeny extends Component {
           </select>
 
           <Form.Label>Gruppe:</Form.Label>
-          <select
-            className="form-control"
-            value={this.gruppe}
-            onChange={event => (this.gruppe = event.target.value)}>
-
+          <select className="form-control" value={this.gruppe} onChange={event => (this.gruppe = event.target.value)}>
             <option>Gruppe</option>
             <option value="1">Ja</option>
             <option value="2">Nei</option>
           </select>
-
         </Card>
         <br />
 

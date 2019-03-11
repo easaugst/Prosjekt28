@@ -11,26 +11,27 @@ import { utleieService } from './Services/Utleie';
 import { utstyrService } from './Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 
-import {Oversikt, OversiktVertMenu} from './Components/Oversikt/Oversikt';
-import {AnsattOversikt} from './Components/Oversikt/Ansatt';
-import {BestillingOversikt, BestillingOversiktMeny} from './Components/Oversikt/Bestilling';
-import {KundeOversikt} from './Components/Oversikt/Kunde';
-import {SykkelOversikt} from './Components/Oversikt/Sykkel';
-import {UtstyrOversikt} from './Components/Oversikt/Utstyr';
+import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt';
+import { AnsattOversikt } from './Components/Oversikt/Ansatt';
+import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
+import { KundeOversikt } from './Components/Oversikt/Kunde';
+import { SykkelOversikt } from './Components/Oversikt/Sykkel';
+import { UtstyrOversikt } from './Components/Oversikt/Utstyr';
 
-import {Registrering, RegVertMenu} from './Components/Registrering/Registrering';
-import {AnsattReg} from './Components/Registrering/Ansatt';
-import {KundeReg} from './Components/Registrering/Kunde';
-import {SykkelReg} from './Components/Registrering/Sykkel';
-import {UtstyrReg} from './Components/Registrering/Utstyr';
+import { Registrering, RegVertMenu } from './Components/Registrering/Registrering';
+import { AnsattReg } from './Components/Registrering/Ansatt';
+import { KundeReg } from './Components/Registrering/Kunde';
+import { SykkelReg } from './Components/Registrering/Sykkel';
+import { UtstyrReg } from './Components/Registrering/Utstyr';
 
-import {Endring, EndringVertMenu} from './Components/Endring/Endring';
-import {BestillingsEndring, BestillingsEndringMeny} from './Components/Endring/Bestilling';
-import {KundeEndring, KundeEndringMeny} from './Components/Endring/Kunde';
-import {SykkelEndring, SykkelEndringMeny} from './Components/Endring/Sykkel';
-import {UtstyrEndring, UtstyrEndringMeny} from './Components/Endring/Utstyr';
+import { Endring, EndringVertMenu } from './Components/Endring/Endring';
+import { BestillingsEndring, BestillingsEndringMeny } from './Components/Endring/Bestilling';
+import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
+import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
+import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
+import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt';
 
-import {Utleie, UtleieVertMenu} from './Components/Utleie';
+import { Utleie, UtleieVertMenu } from './Components/Utleie';
 
 const history = createHashHistory();
 
@@ -73,11 +74,13 @@ ReactDOM.render(
       <Route exact path="/endring/sykkel" component={SykkelEndring} />
       <Route exact path="/endring/utstyr" component={UtstyrEndring} />
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
+      <Route exact path="/endring/ansatt" component={AnsattEndring} />
 
       <Route exact path="/endring/bestilling/:id" component={BestillingsEndringMeny} />
       <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
       <Route exact path="/endring/sykkel/:id" component={SykkelEndringMeny} />
       <Route exact path="/endring/kunde/:id" component={KundeEndringMeny} />
+      <Route exact path="/endring/ansatt/:id" component={AnsattEndringMeny} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />
