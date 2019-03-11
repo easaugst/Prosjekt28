@@ -106,8 +106,9 @@ a.logo {
 .fontSideMeny {
   font-size: 1.2vw;
   font-family: 'Trebuchet MS';
-  text-align: center;
+  text-align: left;
   margin-top: 1.5vh;
+  margin-left: 1.5vw;
 }
 .bootStrapIkon {
   padding-right: 0.5vw;
