@@ -41,7 +41,6 @@ export class UtstyrReg extends Component {
                 onChange={event => (this.ustatus = event.target.value)}
               />
             </div>
-            <br />
 
             <div className="knapper">
               <span className="tilbakeMeny2">
