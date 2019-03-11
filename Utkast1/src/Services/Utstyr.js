@@ -1,4 +1,4 @@
-import { connection } from './mysql_connection';
+import { connection } from '../mysql_connection';
 
 class UtstyrService {
   getUtstyr(utstyrsid, success) {
