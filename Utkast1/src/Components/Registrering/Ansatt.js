@@ -3,12 +3,12 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {ansattService} from '../../Services/Ansatt';
-import {bestillingsService} from '../../Services/Bestilling';
-import {kundeService} from '../../Services/Kunde';
-import {sykkelService} from '../../Services/Sykkel';
-import {utleieService} from '../../Services/Utleie';
-import {utstyrService} from '../../Services/Utstyr';
+import { ansattService } from '../../Services/Ansatt';
+import { bestillingsService } from '../../Services/Bestilling';
+import { kundeService } from '../../Services/Kunde';
+import { sykkelService } from '../../Services/Sykkel';
+import { utleieService } from '../../Services/Utleie';
+import { utstyrService } from '../../Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
@@ -77,7 +77,7 @@ export class AnsattReg extends Component {
               <div className="knapper">
                 <span className="tilbakeMeny2">
                   <button type="button" className="btn btn-success" onClick={this.add}>
-                    Registrer kunde
+                    Registrer ansatt
                   </button>
                 </span>
                 <span className="tilbakeMeny">
@@ -103,7 +103,7 @@ export class AnsattReg extends Component {
       this.utleienavn,
       this.props.match.params.id,
       () => {
-        history.goBack();
+        history.push('/oversikt/ansatt');
       }
     );
   }
