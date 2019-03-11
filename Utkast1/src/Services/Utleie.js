@@ -1,1 +1,1 @@
-import { connection } from './mysql_connection';
+import { connection } from '../mysql_connection';
