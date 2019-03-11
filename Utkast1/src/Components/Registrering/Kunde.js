@@ -96,6 +96,6 @@ export class KundeReg extends Component {
   }
 
   cancel() {
-    history.goBack();
+    history.push('/registrering/');
   }
 }
