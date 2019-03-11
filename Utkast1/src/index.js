@@ -32,8 +32,6 @@ import {UtstyrEndring, UtstyrEndringMeny} from './Components/Endring/Utstyr';
 
 import {Utleie, UtleieVertMenu} from './Components/Utleie';
 
-
-
 const history = createHashHistory();
 
 class Menu extends Component {
