@@ -109,6 +109,6 @@ export class BestillingOversiktMeny extends Component {
   }
 
   cancel() {
-    history.push('./Bestilling');
+    history.push('/oversikt/bestilling');
   }
 }
