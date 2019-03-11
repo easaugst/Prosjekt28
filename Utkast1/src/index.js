@@ -15,7 +15,7 @@ import {Oversikt, OversiktVertMenu} from './Components/Oversikt/Oversikt';
 import {AnsattOversikt} from './Components/Oversikt/Ansatt';
 import {BestillingOversikt, BestillingOversiktMeny} from './Components/Oversikt/Bestilling';
 import {KundeOversikt} from './Components/Oversikt/Kunde';
-import {SykkelOversikt} from './Components/Oversikt/Ansatt';
+import {SykkelOversikt} from './Components/Oversikt/Sykkel';
 import {UtstyrOversikt} from './Components/Oversikt/Utstyr';
 
 import {Registrering, RegVertMenu} from './Components/Registrering/Registrering';
