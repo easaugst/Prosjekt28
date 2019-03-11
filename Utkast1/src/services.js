@@ -129,14 +129,6 @@ class BestillingsService {
       success(results);
     });
   }
-
-  getDelbestilling(ubid, regnr, utstyrsid, detaljer, bestillingsid, success) {
-    connection.query('SELECT * FROM Ubestilling', [ubid, regnr, utstyrsid, detaljer, bestillingsid], (error, results) => {
-      if (error) return console.error(error);
-
-      success(results);
-    });
-  }
 }
 
 class AnsattService {
