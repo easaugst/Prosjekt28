@@ -94,6 +94,10 @@ export class BestillingOversiktMeny extends Component {
             </Table.Rad>
           ))}
         </Table>
+
+        <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+          Gå tilbake
+        </button>
       </div>
     );
   }
@@ -102,5 +106,9 @@ export class BestillingOversiktMeny extends Component {
     bestillingsService.getDelbestilling(this.props.match.params.ubid, delbestilling => {
       this.dbArray = delbestilling;
     });
+  }
+
+  cancel() {
+    history.push('./Bestilling');
   }
 }
