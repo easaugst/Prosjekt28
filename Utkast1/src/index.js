@@ -442,14 +442,20 @@ class KundeEndringMeny extends Component {
           <Form.Label>Tlf:</Form.Label>
           <Form.Input type="text" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
@@ -606,14 +612,20 @@ class SykkelEndringMeny extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
@@ -734,14 +746,19 @@ class UtstyrEndringMeny extends Component {
           <Form.Label>Utstyrstatus:</Form.Label>
           <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
