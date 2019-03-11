@@ -78,19 +78,19 @@ export class BestillingOversiktMeny extends Component {
       <div className="mainView">
         <Table>
           <Table.Rad>
+            <th>Bestillingsnummer</th>
             <th>Delbestillingsnummer</th>
             <th>Registreringsnummer</th>
             <th>Utstyr</th>
             <th>Detaljer</th>
-            <th>Bestillingsnummer</th>
           </Table.Rad>
           {this.dbArray.map(delbestilling => (
             <Table.Rad key={delbestilling.ubid}>
+              <td>{delbestilling.bestillingsid}</td>
               <td>{delbestilling.ubid}</td>
               <td>{delbestilling.regnr}</td>
               <td>{delbestilling.utstyrsid}</td>
               <td>{delbestilling.detaljer}</td>
-              <td>{delbestilling.bestillingsid}</td>
             </Table.Rad>
           ))}
         </Table>
