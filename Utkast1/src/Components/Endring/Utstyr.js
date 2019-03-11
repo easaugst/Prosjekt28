@@ -16,39 +16,29 @@ import { Dropdown } from 'semantic-ui-react';
 // import 'semantic-ui-css/semantic.min.css';
 const history = createHashHistory();
 
-export class KundeOversikt extends Component {
-  kArray = [];
-  tid = '';
+export class UtstyrEndring extends Component {
+  uArray = [];
 
   render() {
     return (
       <div className="mainView">
         <Table>
           <Table.Rad>
-            <th>Kundenummer</th>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>E-post</th>
-            <th>Telefonnummer</th>
-            <th>Fødselsdato</th>
-            <th>Tid registrert</th>
+            <th>Utstyrsnr</th>
+            <th>Utstyrstype</th>
+            <th>Status</th>
           </Table.Rad>
-          {this.kArray.map(kunde => (
-            <Table.Rad key={kunde.kundenr}>
-              <td>{kunde.kundenr}</td>
-              <td>{kunde.fnavn}</td>
-              <td>{kunde.enavn}</td>
-              <td>{kunde.epost}</td>
-              <td>{kunde.tlf}</td>
+          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+            <Table.Rad key={utstyr.utstyrsid}>
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.navn}</td>
               <td>
-                {JSON.stringify(kunde.fdag)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -15)}
-              </td>
-              <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -15)}
+                <input
+                  type="text"
+                  className="form-control-plaintext"
+                  value={utstyr.ustatus}
+                  onChange={event => (utstyr.ustatus = event.target.value)}
+                />
               </td>
             </Table.Rad>
           ))}
@@ -57,8 +47,8 @@ export class KundeOversikt extends Component {
     );
   }
   mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.kArray = kunde;
+    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+      this.uArray = utstyr;
     });
   }
 }
