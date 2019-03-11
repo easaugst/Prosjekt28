@@ -13,7 +13,7 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './
 
 import {Oversikt, OversiktVertMenu} from './Components/Oversikt/Oversikt';
 import {AnsattOversikt} from './Components/Oversikt/Ansatt';
-import {BestillingOversikt} from './Components/Oversikt/Bestilling';
+import {BestillingOversikt, BestillingOversiktMeny} from './Components/Oversikt/Bestilling';
 import {KundeOversikt} from './Components/Oversikt/Kunde';
 import {SykkelOversikt} from './Components/Oversikt/Ansatt';
 import {UtstyrOversikt} from './Components/Oversikt/Utstyr';
@@ -562,6 +562,8 @@ ReactDOM.render(
       <Route path="/oversikt/kunde" component={KundeOversikt} />
       <Route path="/oversikt/bestilling" component={BestillingOversikt} />
       <Route path="/oversikt/ansatt" component={AnsattOversikt} />
+
+      <Route exact path="/oversikt/bestilling/:id" component={BestillingOversiktMeny} />
 
       <Route exact path="/endring/kunde" component={KundeEndring} />
       <Route exact path="/endring/sykkel" component={SykkelEndring} />

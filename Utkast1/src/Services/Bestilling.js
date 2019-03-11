@@ -10,7 +10,7 @@ class BestillingsService {
   }
 
   getDelbestilling(ubid, regnr, utstyrsid, detaljer, bestillingsid, success) {
-    connection.query('SELECT * FROM Bestilling', [ubid, regnr, utstyrsid, detaljer, bestillingsid], (error, results) => {
+    connection.query('SELECT * FROM Ubestilling', [ubid, regnr, utstyrsid, detaljer, bestillingsid], (error, results) => {
       if (error) return console.error(error);
 
       success(results);
