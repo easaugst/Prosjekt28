@@ -103,6 +103,6 @@ export class SykkelReg extends Component {
     );
   }
   cancel() {
-    history.goBack();
+    history.push('/registrering/');
   }
 }

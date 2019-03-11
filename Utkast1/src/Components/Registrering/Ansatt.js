@@ -109,6 +109,6 @@ export class AnsattReg extends Component {
   }
 
   cancel() {
-    history.goBack();
+    history.push('/registrering/');
   }
 }

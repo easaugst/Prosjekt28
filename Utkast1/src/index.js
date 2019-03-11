@@ -25,7 +25,7 @@ import {SykkelReg} from './Components/Registrering/Sykkel';
 import {UtstyrReg} from './Components/Registrering/Utstyr';
 
 import {Endring, EndringVertMenu} from './Components/Endring/Endring';
-import {BestillingsEndring} from './Components/Endring/Bestilling';
+import {BestillingsEndring, BestillingsEndringMeny} from './Components/Endring/Bestilling';
 import {KundeEndring, KundeEndringMeny} from './Components/Endring/Kunde';
 import {SykkelEndring, SykkelEndringMeny} from './Components/Endring/Sykkel';
 import {UtstyrEndring, UtstyrEndringMeny} from './Components/Endring/Utstyr';
@@ -74,6 +74,7 @@ ReactDOM.render(
       <Route exact path="/endring/utstyr" component={UtstyrEndring} />
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
 
+      <Route exact path="/endring/bestilling/:id" component={BestillingsEndringMeny} />
       <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
       <Route exact path="/endring/sykkel/:id" component={SykkelEndringMeny} />
       <Route exact path="/endring/kunde/:id" component={KundeEndringMeny} />

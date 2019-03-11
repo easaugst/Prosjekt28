@@ -67,6 +67,6 @@ export class UtstyrReg extends Component {
   }
 
   cancel() {
-    history.goBack();
+    history.push('/registrering/');
   }
 }
