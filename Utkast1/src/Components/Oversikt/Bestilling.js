@@ -29,6 +29,7 @@ export class BestillingOversikt extends Component {
             <th>Fra</th>
             <th>Til</th>
             <th>Gruppe</th>
+            <th>Delbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -52,6 +53,9 @@ export class BestillingOversikt extends Component {
                   .slice(0, -6)}
               </td>
               <td>{bestilling.gruppe}</td>
+              <td>
+                <NavLink to={'/oversikt/bestilling/' + bestilling.bestillingsid + '/'}>Se</NavLink>
+              </td>
             </Table.Rad>
           ))}
         </Table>
@@ -62,6 +66,41 @@ export class BestillingOversikt extends Component {
   mounted() {
     bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
       this.bArray = bestilling;
+    });
+  }
+}
+
+export class BestillingOversiktMeny extends Component {
+  dbArray = [];
+
+  render() {
+    return (
+      <div className="mainView">
+        <Table>
+          <Table.Rad>
+            <th>Delbestillingsnummer</th>
+            <th>Registreringsnummer</th>
+            <th>Utstyr</th>
+            <th>Detaljer</th>
+            <th>Bestillingsnummer</th>
+          </Table.Rad>
+          {this.dbArray.map(delbestilling => (
+            <Table.Rad key={delbestilling.ubid}>
+              <td>{delbestilling.ubid}</td>
+              <td>{delbestilling.regnr}</td>
+              <td>{delbestilling.utstyrsid}</td>
+              <td>{delbestilling.detaljer}</td>
+              <td>{delbestilling.bestillingsid}</td>
+            </Table.Rad>
+          ))}
+        </Table>
+      </div>
+    );
+  }
+
+  mounted() {
+    bestillingsService.getDelbestilling(this.props.match.params.ubid, delbestilling => {
+      this.dbArray = delbestilling;
     });
   }
 }
