@@ -3,12 +3,12 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {ansattService} from './Services/Ansatt';
-import {bestillingsService} from './Services/Bestilling';
-import {kundeService} from './Services/Kunde';
-import {sykkelService} from './Services/Sykkel';
-import {utleieService} from './Services/Utleie';
-import {utstyrService} from './Services/Utstyr';
+import { ansattService } from './Services/Ansatt';
+import { bestillingsService } from './Services/Bestilling';
+import { kundeService } from './Services/Kunde';
+import { sykkelService } from './Services/Sykkel';
+import { utleieService } from './Services/Utleie';
+import { utstyrService } from './Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 
 import {Oversikt, OversiktVertMenu} from './Components/Oversikt/Oversikt';
@@ -84,8 +84,39 @@ class Utleie extends Component {
             </div>
           </form>
         </div>
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Legg til
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
+  }
+  // LEGG TIL BESTILLING-KNAPP IKKE FIKSET
+  /*
+  add() {
+    sykkelService.addSykkel(
+      this.sykkeltypeid,
+      this.befinnelse,
+      this.status,
+      this.beskrivelse,
+      this.utleienavn,
+      this.props.match.params.id,
+      () => {
+        history.push('/oversikt/bestilling');
+      }
+    );
+  } */
+  cancel() {
+    history.goBack();
   }
 }
 
@@ -250,14 +281,20 @@ class KundeEndringMeny extends Component {
           <Form.Label>Tlf:</Form.Label>
           <Form.Input type="text" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
@@ -385,7 +422,7 @@ class SykkelEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre sykkel">
+        <Card title="Endre sykkelinformasjon">
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"
@@ -414,14 +451,20 @@ class SykkelEndringMeny extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
@@ -494,7 +537,7 @@ class UtstyrEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre utstyr">
+        <Card title="Endre utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
             <option>Velg type her</option>
@@ -504,14 +547,19 @@ class UtstyrEndringMeny extends Component {
           <Form.Label>Utstyrstatus:</Form.Label>
           <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
         </Card>
-        <Row>
-          <Column>
-            <Button.Success onClick={this.save}>Lagre</Button.Success>
-          </Column>
-          <Column right>
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
-          </Column>
-        </Row>
+        <br />
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.save}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt
+            </button>
+          </span>
+        </div>
       </div>
     );
   }
