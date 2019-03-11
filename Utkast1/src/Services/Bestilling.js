@@ -9,8 +9,8 @@ class BestillingsService {
     });
   }
 
-  getDelbestilling(ubid, regnr, utstyrsid, detaljer, bestillingsid, success) {
-    connection.query('SELECT * FROM Ubestilling', [ubid, regnr, utstyrsid, detaljer, bestillingsid], (error, results) => {
+  getDelbestilling(ubid, success) {
+    connection.query('SELECT * FROM Ubestilling', [ubid], (error, results) => {
       if (error) return console.error(error);
 
       success(results);
