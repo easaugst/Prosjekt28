@@ -3,12 +3,12 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-import {ansattService} from './Services/Ansatt';
-import {bestillingsService} from './Services/Bestilling';
-import {kundeService} from './Services/Kunde';
-import {sykkelService} from './Services/Sykkel';
-import {utleieService} from './Services/Utleie';
-import {utstyrService} from './Services/Utstyr';
+import { ansattService } from './Services/Ansatt';
+import { bestillingsService } from './Services/Bestilling';
+import { kundeService } from './Services/Kunde';
+import { sykkelService } from './Services/Sykkel';
+import { utleieService } from './Services/Utleie';
+import { utstyrService } from './Services/Utstyr';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
@@ -588,7 +588,7 @@ class SykkelEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre sykkel">
+        <Card title="Endre sykkelinformasjon">
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"
@@ -741,7 +741,7 @@ class UtstyrEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre utstyr">
+        <Card title="Endre utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
             <option>Velg type her</option>
