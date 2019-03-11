@@ -89,7 +89,7 @@ class Endring extends Component {
 
 class Registrering extends Component {
   render() {
-    return <div className="mainView">Her kan vi registrere hva faen vi vil</div>;
+    return <div className="mainView">Her kan vi registrere hva vi vil</div>;
   }
 }
 
