@@ -64,7 +64,7 @@ ReactDOM.render(
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
       <Route path="/oversikt/sykkel" component={SykkelOversikt} />
       <Route path="/oversikt/kunde" component={KundeOversikt} />
-      <Route path="/oversikt/bestilling" component={BestillingOversikt} />
+      <Route exact path="/oversikt/bestilling" component={BestillingOversikt} />
       <Route path="/oversikt/ansatt" component={AnsattOversikt} />
 
       <Route exact path="/oversikt/bestilling/:id" component={BestillingOversiktMeny} />
