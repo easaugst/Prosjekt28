@@ -8,6 +8,14 @@ class BestillingsService {
       success(results);
     });
   }
+
+  getDelbestilling(ubid, regnr, utstyrsid, detaljer, bestillingsid, success) {
+    connection.query('SELECT * FROM Bestilling', [ubid, regnr, utstyrsid, detaljer, bestillingsid], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
 }
 
 export let bestillingsService = new BestillingsService();
