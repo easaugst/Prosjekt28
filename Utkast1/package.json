@@ -15,10 +15,10 @@
     "@babel/register": "^7.0.0",
     "electron": "^4.0.2",
     "electron-reload": "^1.4.0",
+    "jQuery": "^1.7.4",
     "mysql": "^2.16.0",
+    "react-dropdown-select": "^2.2.3",
     "react-router-dom": "^4.3.1",
-    "react-simplified": "^1.5.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.85.0"
+    "react-simplified": "^1.5.2"
   }
 }

@@ -33,8 +33,6 @@ import { UtstyrEndring } from './Components/Endring/Utstyr';
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
-import { Dropdown } from 'semantic-ui-react';
-// import 'semantic-ui-css/semantic.min.css';
 const history = createHashHistory();
 
 class Menu extends Component {

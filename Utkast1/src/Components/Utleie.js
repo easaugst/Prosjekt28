@@ -12,13 +12,12 @@ import { bestillingsService } from '../Services/Bestilling';
 import { utleieService } from '../Services/Utleie';
 
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../widgets';
-import { Dropdown } from 'semantic-ui-react';
-// import 'semantic-ui-css/semantic.min.css';
+import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
 export class Utleie extends Component {
-  kunde = [];
-  kundeDrop = [];
+  //Henting av kunder og valg av kunde
+  kunde = [];kundeDrop = [];state = {values: []};
 
   uType = '';
   kontant = '';
@@ -36,12 +35,21 @@ export class Utleie extends Component {
     return (
       <div className="mainView">
         <div className="mainViewUtleie">
-          {/*Dropdown gjøres senere; Kundevalg*/}
             {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
-              <label>Kundevalg</label>
-                <Dropdown placeholder="Velg Kunde" fluid search selection options={this.kundeDrop} onClick={this.dropDown}/>
+              <label>Kundevalg</label> <br />
+                <Select className="form-control"
+                value={this.kundeValg}
+                options={this.kundeDrop}
+                valueField="key"
+                labelField="text"
+                placeholder="Velg kunde..."
+                onChange={values => this.setState({ values })}
+                searchable
+                clearable
+                />
+                <br />
                 <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
                 <br />
               <label>Type leie</label>
@@ -85,6 +93,7 @@ export class Utleie extends Component {
                 <Button.Success onClick={this.nextPage}>Neste side</Button.Success>
               </Column>
             </Row>
+            <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
         </div>
       </div>
@@ -92,6 +101,10 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.dropDown();
+    window.setTimeout(this.dropDown, 250);
+  }
+  log() {
+    console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {

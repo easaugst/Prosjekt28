@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
+import $ from 'jquery';
 
 // Renders an information card using Bootstrap styles
 // Attributes: title
@@ -186,6 +187,10 @@ class ButtonLight extends Component {
     );
   }
 }
+
+// export class SelectSearch extends Component {
+//   $('#select-kunde').selectize(options);
+// }
 
 // Renders a button using Bootstrap styles
 export class Button {
