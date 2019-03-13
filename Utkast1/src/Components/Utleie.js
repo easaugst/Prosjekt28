@@ -31,6 +31,9 @@ export class Utleie extends Component {
   regnr = [];
   uId = [];
   uBestilling = [this.regnr, this.uId];
+
+  number = 1;
+
   render() {
     return (
       <div className="mainView">
@@ -105,6 +108,7 @@ export class Utleie extends Component {
   }
   log() {
     console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
+    console.log()
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {
