@@ -10,7 +10,7 @@ class BestillingsService {
   }
 
   getDelbestilling(ubid, success) {
-    connection.query('SELECT B.bestillingsid, U.ubid, S.regnr, U.utstyrsid, U.detaljer FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UT where U.bestillingsid = B.bestillingsid and U.regnr = S.regnr and U.utstyrsid = UT.utstyrsid', [ubid], (error, results) => {
+    connection.query('SELECT B.bestillingsid, U.ubid, S.regnr, U.utstyrsid, U.detaljer FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UT where U.bestillingsid = B.bestillingsid and U.regnr = S.regnr and U.utstyrsid = UT.utstyrsid and B.bestillingsid = ?', [ubid], (error, results) => {
       if (error) return console.error(error);
 
       success(results);
