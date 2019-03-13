@@ -21,10 +21,10 @@ class AnsattService {
     );
   }
 
-  updateAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, success) {
+  updateAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
     connection.query(
-      'update FastAnsatt set tlfnr=?, epost =?, fnavn=?, enavn =?, admin =?, utleienavn =? where ansattnr=?',
-      [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn],
+      'update FastAnsatt set tlfnr=?, epost =?, fnavn=?, enavn =?, admin =?, utleienavn =?, stilling =? where ansattnr=?',
+      [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
       (error, results) => {
         if (error) return console.error(error);
 

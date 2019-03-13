@@ -27,6 +27,8 @@ export class AnsattEndring extends Component {
             <th>Etternavn</th>
             <th>Administrator</th>
             <th>Arbeidsplass</th>
+            <th>Stilling</th>
+
             <th> Rediger </th>
           </Table.Rad>
           {this.aArray.map((ansatt /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
@@ -38,6 +40,8 @@ export class AnsattEndring extends Component {
               <td>{ansatt.enavn}</td>
               <td>{ansatt.admin}</td>
               <td>{ansatt.utleienavn}</td>
+              <td>{ansatt.stilling}</td>
+
               <td>
                 <List.Item to={'/endring/ansatt/' + ansatt.ansattnr + '/'}>Rediger</List.Item>
               </td>
@@ -61,6 +65,7 @@ export class AnsattEndringMeny extends Component {
   enavn = null;
   admin = null;
   utleienavn = null;
+  stilling = null;
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
@@ -88,6 +93,9 @@ export class AnsattEndringMeny extends Component {
 
           <Form.Label>Utleienavn:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+
+          <Form.Label>Stilling:</Form.Label>
+          <Form.Input type="text" value={this.stilling} onChange={event => (this.stilling = event.target.value)} />
         </Card>
         <br />
 
@@ -114,6 +122,7 @@ export class AnsattEndringMeny extends Component {
       this.enavn = ansatt.enavn;
       this.admin = ansatt.admin;
       this.utleienavn = ansatt.utleienavn;
+      this.stilling = ansatt.stilling;
     });
   }
   save() {
@@ -124,6 +133,7 @@ export class AnsattEndringMeny extends Component {
       this.enavn,
       this.admin,
       this.utleienavn,
+      this.stilling,
       this.props.match.params.id,
       () => {
         history.push('/endring/ansatt');

@@ -49,7 +49,7 @@ export class KundeOversikt extends Component {
                   {JSON.stringify(kunde.rtid)
                     .replace(/T|Z|"/g, ' ')
                     .slice(0, -15)}
-                </center>{' '}
+                </center>
               </td>
             </Table.Rad>
           ))}
