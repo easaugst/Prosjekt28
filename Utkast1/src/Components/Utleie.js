@@ -101,6 +101,7 @@ export class Utleie extends Component {
   componentDidMount() {
     this.dropDown();
     window.setTimeout(this.dropDown, 250);
+    window.setTimeout(this.dropDown, 500);
   }
   log() {
     console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
