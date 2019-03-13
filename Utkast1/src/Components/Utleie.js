@@ -106,17 +106,17 @@ export class Utleie extends Component {
     this.dropDown();
   }
   log() {
-    console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
-    console.log()
-  }
-  log() {
-    console.log('kundenr:' + this.state.values[0].key,
-    'utleieType:' + this.uType,
-    'kontant:' + this.kontant,
-    'fratid:' + this.ftid,
-    'Gruppe:' + this.gruppe); //Henter kundenummeret til valgt kunde med this.state.values[0].key
-    console.log('sykkelType:' + this.sykkelType,
-    'utstyrstype:' + this.utstyrType);
+    console.log(
+      'kundenr:' + this.state.values[0].key,    //Henter kundenummeret til valgt kunde med this.state.values[0].key
+      'utleieType:' + this.uType,
+      'kontant:' + this.kontant,
+      'fratid:' + this.ftid,
+      'Gruppe:' + this.gruppe
+    );
+    console.log(
+      'sykkelType:' + this.sykkelType,
+      'utstyrstype:' + this.utstyrType
+    );
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {
@@ -128,9 +128,6 @@ export class Utleie extends Component {
       this.kundeDrop.push({key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn});
     });
     this.t++;
-      // for (this.t = 0; this.t <= this.kunde.length; this.t++){
-      //     this.kundeDrop.push({key: parseInt(this.kunde[this.t].kundenr), text: this.kunde[this.t].fnavn + ' ' + this.kunde[this.t].enavn});
-      //   };
     console.log(this.kundeDrop);
   }
   nextPage() {
