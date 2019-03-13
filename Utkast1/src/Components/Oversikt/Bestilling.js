@@ -54,7 +54,7 @@ export class BestillingOversikt extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <NavLink to={'/oversikt/bestilling/' + bestilling.bestillingsid + '/'}>Se</NavLink>
+                <List.Item to={'/oversikt/bestilling/' + bestilling.bestillingsid + '/'}>Se</List.Item>
               </td>
             </Table.Rad>
           ))}
