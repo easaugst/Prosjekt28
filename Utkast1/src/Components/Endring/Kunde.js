@@ -60,7 +60,7 @@ export class KundeEndring extends Component {
                   .slice(0, -6)}
               </td>
               <td>
-                <NavLink to={'/endring/kunde/' + kunde.kundenr + '/'}>Rediger</NavLink>
+                <List.Item to={'/endring/kunde/' + kunde.kundenr + '/'}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
