@@ -14,7 +14,7 @@ import { utleieService } from './Services/Utleie';
 import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt'
 import { AnsattOversikt } from './Components/Oversikt/Ansatt';
 import { KundeOversikt } from './Components/Oversikt/Kunde';
-import { BestillingOversikt } from './Components/Oversikt/Bestilling';
+import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
 import { SykkelOversikt } from './Components/Oversikt/Sykkel';
 import { UtstyrOversikt } from './Components/Oversikt/Utstyr';
 
@@ -25,10 +25,11 @@ import { SykkelReg } from './Components/Registrering/Sykkel';
 import { UtstyrReg } from './Components/Registrering/Utstyr';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
-import { BestillingsEndring } from './Components/Endring/Bestilling';
-import { KundeEndring } from './Components/Endring/Kunde';
-import { SykkelEndring } from './Components/Endring/Sykkel';
-import { UtstyrEndring } from './Components/Endring/Utstyr';
+import { BestillingsEndring, BestillingsEndringMeny } from './Components/Endring/Bestilling';
+import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt'
+import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
+import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
+import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 
