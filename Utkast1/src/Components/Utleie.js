@@ -90,14 +90,17 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Danger onClick={this.prevPage}>Avbryt</Button.Danger>
+                <Button.Danger onClick={this.prevPage}>Tilbake</Button.Danger>
               </Column>
               <Column>
-                <Button.Success onClick={this.nextPage}>Neste side</Button.Success>
+                <Button.Success id="nesteUtleie" onClick={this.nextPage}>Neste side</Button.Success>
               </Column>
             </Row>
             <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
+        </div>
+        <div className="mainViewUtleie2">
+
         </div>
       </div>
     );
@@ -131,14 +134,24 @@ export class Utleie extends Component {
     console.log(this.kundeDrop);
   }
   nextPage() {
-    document.getElementById('utleie' + this.number).style.display = "none";
-    this.number++;
-    document.getElementById('utleie' + this.number).style.display = "block";
+    if (this.number < 3) {
+      document.getElementById('utleie' + this.number).style.display = "none";
+      this.number++;
+      document.getElementById('utleie' + this.number).style.display = "block";
+      if (this.number == 3) {
+        document.getElementById('nesteUtleie').innerHTML = "Fullfør";
+      }
+    }
   }
   prevPage() {
-    document.getElementById('utleie' + this.number).style.display = "none";
-    this.number--;
-    document.getElementById('utleie' + this.number).style.display = "block";
+    if (this.number > 1) {
+      document.getElementById('utleie' + this.number).style.display = "none";
+      this.number--;
+      document.getElementById('utleie' + this.number).style.display = "block";
+      if (this.number != 3) {
+        document.getElementById('nesteUtleie').innerHTML = "Neste side";
+      }
+    }
   }
   order() {
     utleieService.addBestilling(this.state.values[0].key, this.kontant, this.ftid, this.gruppe, () => {

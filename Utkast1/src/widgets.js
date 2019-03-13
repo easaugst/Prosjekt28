@@ -157,7 +157,7 @@ export class Table extends Component {
 class ButtonSuccess extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-success" onClick={this.props.onClick}>
+      <button type="button" id={this.props.id} className="btn btn-success" onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );
@@ -169,7 +169,7 @@ class ButtonSuccess extends Component {
 class ButtonDanger extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-danger" onClick={this.props.onClick}>
+      <button type="button" id={this.props.id} className="btn btn-danger" onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );
@@ -181,7 +181,7 @@ class ButtonDanger extends Component {
 class ButtonLight extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-light" onClick={this.props.onClick}>
+      <button type="button" id={this.props.id} className="btn btn-light" onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );
