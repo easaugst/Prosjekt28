@@ -40,14 +40,13 @@ export class Utleie extends Component {
             <div className="form-group" id="utleie1">
               <label>Kundevalg</label> <br />
                 <Select className="form-control"
-                value={this.kundeValg}
-                options={this.kundeDrop}
-                valueField="key"
-                labelField="text"
-                placeholder="Velg kunde..."
-                onChange={values => this.setState({ values })}
-                searchable
-                clearable
+                  value={this.kundeValg}
+                  options={this.kundeDrop}
+                  valueField="key"
+                  labelField="text"
+                  placeholder="Velg kunde..."
+                  onChange={values => this.setState({ values })}
+                  clearable
                 />
                 <br />
                 <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
