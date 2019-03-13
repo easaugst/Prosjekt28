@@ -46,6 +46,7 @@ export class Utleie extends Component {
                   labelField="text"
                   placeholder="Velg kunde..."
                   onChange={values => this.setState({ values })}
+                  onDropdownOpen={this.dropDown}
                   clearable
                 />
                 <br />
@@ -100,10 +101,9 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.dropDown();
-    window.setTimeout(this.dropDown, 250);
   }
   log() {
-    console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
+    console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe); //Henter kundenummeret til valgt kunde med this.state.values[0].key
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {
@@ -132,7 +132,7 @@ export class Utleie extends Component {
   }
   order() {
     utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
-      console.log(this.state.values[0].key, this.kontant, this.ftid, this.group);
+      console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
     })
     utleieService.getBestilling(bestilling => {
       this.bId = bestilling;
