@@ -29,6 +29,7 @@ export class KundeOversikt extends Component {
             <th>E-post</th>
             <th>Telefonnummer</th>
             <th>Fødselsdato</th>
+
             <th>Tid registrert</th>
           </Table.Rad>
           {this.kArray.map(kunde => (
@@ -44,9 +45,11 @@ export class KundeOversikt extends Component {
                   .slice(0, -15)}
               </td>
               <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -15)}
+                <center>
+                  {JSON.stringify(kunde.rtid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -15)}
+                </center>{' '}
               </td>
             </Table.Rad>
           ))}
