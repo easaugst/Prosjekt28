@@ -6,6 +6,7 @@
   height: 70%;
   font-family: sans-serif;
   font-size: 1vw;
+  margin-right: 10em;
 }
 
 /* Oversikt hovedmeny */
@@ -22,6 +23,7 @@
   width: 20%;
   font-size: 1.2vw;
   margin-top: 2em;
+
   /* font-family: 'Trebuchet MS'; */
 }
 /*
