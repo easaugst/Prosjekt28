@@ -30,7 +30,7 @@ export class BestillingsEndring extends Component {
             <th>Fra</th>
             <th>Til</th>
             <th>Gruppe</th>
-            <th>Endre</th>
+            <th>Rediger</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -55,7 +55,7 @@ export class BestillingsEndring extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <NavLink to={'/endring/bestilling/' + bestilling.bestillingsid + '/'}>Endre</NavLink>
+                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid + '/'}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}

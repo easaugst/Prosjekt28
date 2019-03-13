@@ -39,6 +39,9 @@ export class UtstyrEndring extends Component {
                   onChange={event => (utstyr.ustatus = event.target.value)}
                 />
               </td>
+              <td>
+                <List.Item to={'/endring/utstyr/' + utstyr.utstyrsid + '/'}>Rediger</List.Item>
+              </td>
             </Table.Rad>
           ))}
         </Table>

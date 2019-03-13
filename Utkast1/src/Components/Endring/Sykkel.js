@@ -41,7 +41,7 @@ export class SykkelEndring extends Component {
               <td>{sykkel.bestillingsid}</td>
               <td>{sykkel.utleienavn}</td>
               <td>
-                <NavLink to={'/endring/sykkel/' + sykkel.regnr + '/'}>Rediger</NavLink>
+                <List.Item to={'/endring/sykkel/' + sykkel.regnr + '/'}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
