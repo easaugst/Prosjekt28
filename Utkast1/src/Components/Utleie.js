@@ -131,8 +131,8 @@ export class Utleie extends Component {
     document.getElementById('utleie' + this.number).style.display = "block";
   }
   order() {
-    utleieService.addBestilling(this.kunde, this.uType, this.kontant, this.ftid, this.gruppe, () => {
-      console.log(this.kunde, this.kontant, this.ftid, this.group);
+    utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+      console.log(this.state.values[0].key, this.kontant, this.ftid, this.group);
     })
     utleieService.getBestilling(bestilling => {
       this.bId = bestilling;
