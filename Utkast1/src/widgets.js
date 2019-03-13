@@ -142,7 +142,7 @@ export class Table extends Component {
 
   render() {
     return (
-      <table className="table table-striped">
+      <table className="table table-striped table-bordered table-condensed testing">
         <tbody>{this.props.children}</tbody>
       </table>
     );
