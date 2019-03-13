@@ -2,13 +2,7 @@ import React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
-import createHashHistory from 'history/createHashHistory
-import { ansattService } from '../../Services/Ansatt';
-import { bestillingsService } from '../../Services/Bestilling';
-import { kundeService } from '../../Services/Kunde';
-import { sykkelService } from '../../Services/Sykkel';
-import { utleieService } from '../../Services/Utleie';
-import { utstyrService } from '../../Services/Utstyr';
+import createHashHistory from 'history/createHashHistory';
 
 import { sykkelService } from '../../Services/Sykkel';
 import { kundeService } from '../../Services/Kunde';

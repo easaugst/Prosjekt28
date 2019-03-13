@@ -3,14 +3,6 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
-<<<<<<< HEAD
-import { ansattService } from '../../Services/Ansatt';
-import { bestillingsService } from '../../Services/Bestilling';
-import { kundeService } from '../../Services/Kunde';
-import { sykkelService } from '../../Services/Sykkel';
-import { utleieService } from '../../Services/Utleie';
-import { utstyrService } from '../../Services/Utstyr';
-=======
 
 import { sykkelService } from '../../Services/Sykkel';
 import { kundeService } from '../../Services/Kunde';
@@ -19,12 +11,10 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
->>>>>>> Bootstrap
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
 export class BestillingsEndring extends Component {
-<<<<<<< HEAD
   bArray = [];
 
   render() {
@@ -140,9 +130,5 @@ export class BestillingsEndringMeny extends Component {
   }
   cancel() {
     history.goBack();
-=======
-  render() {
-    return <div className="mainView">c</div>;
->>>>>>> Bootstrap
   }
 }
