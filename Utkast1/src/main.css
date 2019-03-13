@@ -61,6 +61,15 @@
   margin-top: 3em;
   font-family: 'Trebuchet MS';
 }
+#utleie1 {
+  display: block;
+}
+#utleie2 {
+  display: none;
+}
+#utleie3 {
+  display: none;
+}
 
 /* CSS for registre og avbrytknapp*/
 .knapper {

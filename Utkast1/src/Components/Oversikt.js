@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 
-import { sykkelService } from '../../Services/Sykkel';
-import { kundeService } from '../../Services/Kunde';
-import { utstyrService } from '../../Services/Utstyr';
-import { ansattService } from '../../Services/Ansatt';
-import { bestillingsService } from '../../Services/Bestilling';
-import { utleieService } from '../../Services/Utleie';
+import { sykkelService } from './Services/Sykkel';
+import { kundeService } from './Services/Kunde';
+import { utstyrService } from './Services/Utstyr';
+import { ansattService } from './Services/Ansatt';
+import { bestillingsService } from './Services/Bestilling';
+import { utleieService } from './Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
 export class Oversikt extends Component {
@@ -44,6 +44,7 @@ export class OversiktVertMenu extends Component {
           <ion-icon name="cube" />
           Utstyr
         </NavCol.Link>
+
         <NavCol.Link to="/oversikt/ansatt">
           <ion-icon name="contacts" />
           Ansatt

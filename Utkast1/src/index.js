@@ -3,18 +3,18 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+
+import { sykkelService } from './Services/Sykkel';
+import { kundeService } from './Services/Kunde';
+import { utstyrService } from './Services/Utstyr';
 import { ansattService } from './Services/Ansatt';
 import { bestillingsService } from './Services/Bestilling';
-import { kundeService } from './Services/Kunde';
-import { sykkelService } from './Services/Sykkel';
 import { utleieService } from './Services/Utleie';
-import { utstyrService } from './Services/Utstyr';
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 
-import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt';
+import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt'
 import { AnsattOversikt } from './Components/Oversikt/Ansatt';
-import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
 import { KundeOversikt } from './Components/Oversikt/Kunde';
+import { BestillingOversikt } from './Components/Oversikt/Bestilling';
 import { SykkelOversikt } from './Components/Oversikt/Sykkel';
 import { UtstyrOversikt } from './Components/Oversikt/Utstyr';
 
@@ -25,14 +25,14 @@ import { SykkelReg } from './Components/Registrering/Sykkel';
 import { UtstyrReg } from './Components/Registrering/Utstyr';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
-import { BestillingsEndring, BestillingsEndringMeny } from './Components/Endring/Bestilling';
-import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
-import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
-import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
-import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt';
+import { BestillingsEndring } from './Components/Endring/Bestilling';
+import { KundeEndring } from './Components/Endring/Kunde';
+import { SykkelEndring } from './Components/Endring/Sykkel';
+import { UtstyrEndring } from './Components/Endring/Utstyr';
 
-import { Utleie, UtleieVertMenu } from './Components/Utleie';
+import { UtleieVertMenu, Utleie } from './Components/Utleie';
 
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
 class Menu extends Component {
@@ -51,10 +51,6 @@ class Menu extends Component {
     );
   }
 }
-
-/*Alle oversiktklassene (UtstyrOversikt, SykkelOversikt, KundeOversikt, BestillingOversikt) er skrevet på denne måten*/
-/*Table widget med bootstrap klasser allerede valgt. Standard tabell med stripet visning*/
-/*Lager en ny rad, har ingen spesielle klasser (enda). Kan altså erstattes med vanlige <tr>*/
 
 ReactDOM.render(
   <HashRouter>
