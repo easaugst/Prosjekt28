@@ -25,8 +25,8 @@ export class Utleie extends Component {
   gruppe = '';
 
   bId = '';
-  sType = '';
-  uType = '';
+  sykkelType = '';
+  utstyrType = '';
 
   regnr = [];
   uId = [];
@@ -53,22 +53,22 @@ export class Utleie extends Component {
                   clearable
                 />
                 <br />
-                <input type="checkbox" name="Gruppe" value="1" /> Gruppebestilling
+                <input type="checkbox" name="Gruppe" value="Gruppe" onChange={event => (this.gruppe = event.target.value)}/> Gruppebestilling
                 <br />
               <label>Type leie</label>
                 <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                   <option>Velg tid</option>
-                  <option value="">Timesutleie</option>
-                  <option>Dagsutleie</option>
-                  <option>3-dagersutleie</option>
-                  <option>Ukesleie</option>
+                  <option value="1">Timesutleie</option>
+                  <option value="2">Dagsutleie</option>
+                  <option value="3">3-dagersutleie</option>
+                  <option value="4">Ukesleie</option>
                 </select>
               <label>Bestilling begynner</label>
                 <input className="form-control" type="date" value={this.ftid} onChange={event => (this.ftid = event.target.value)} />
             </div>
             <div className="form-group" id="utleie2">
                 <label>Sykkeltype</label>
-                  <select className="form-control" onChange={event => (this.sType = event.target.value)}>
+                  <select className="form-control" onChange={event => (this.sykkelType = event.target.value)}>
                     <option>Velg sykkel</option>
                     <option value="1">Terrengsykkel</option>
                     <option value="2">Landeveisykkel</option>
@@ -76,12 +76,12 @@ export class Utleie extends Component {
                   </select>
                   <Button.Light>Legg til sykkel</Button.Light>
                 <label>Utstyr</label>
-                  <select className="form-control" onChange={event => (this.uType = event.target.value)}>
+                  <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
                     <option>Ingen</option>
                     <option value="1">Hjelm</option>
                     <option value="2">Lappesett</option>
-                    <option>Bagasjebrett</option>
-                    <option>Sykkelveske</option>
+                    <option value="3">Bagasjebrett</option>
+                    <option value="4">Sykkelveske</option>
                   </select>
                   <Button.Light>Legg til utstyr</Button.Light>
             </div>
@@ -104,15 +104,19 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.dropDown();
-    window.setTimeout(this.dropDown, 250);
-    window.setTimeout(this.dropDown, 500);
   }
   log() {
     console.log(this.state.values[0].key); //Henter kundenummeret til valgt kunde med this.state.values[0].key
     console.log()
   }
   log() {
-    console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe); //Henter kundenummeret til valgt kunde med this.state.values[0].key
+    console.log('kundenr:' + this.state.values[0].key,
+    'utleieType:' + this.uType,
+    'kontant:' + this.kontant,
+    'fratid:' + this.ftid,
+    'Gruppe:' + this.gruppe); //Henter kundenummeret til valgt kunde med this.state.values[0].key
+    console.log('sykkelType:' + this.sykkelType,
+    'utstyrstype:' + this.utstyrType);
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {
@@ -140,7 +144,7 @@ export class Utleie extends Component {
     document.getElementById('utleie' + this.number).style.display = "block";
   }
   order() {
-    utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+    utleieService.addBestilling(this.state.values[0].key, this.kontant, this.ftid, this.gruppe, () => {
       console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
     })
     utleieService.getBestilling(bestilling => {
