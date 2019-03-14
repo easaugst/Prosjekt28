@@ -21,75 +21,51 @@ export class AnsattReg extends Component {
   enavn = '';
   admin = '';
   utleienavn = '';
+  stilling = '';
 
   render() {
     return (
       <div className="mainView">
         <h3>Legg til ansatt</h3>
-        <div className="KundeReg">
-          <form>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="number"
-                placeholder="Tlf. nr."
-                value={this.tlfnr}
-                onChange={event => (this.tlfnr = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Epost"
-                value={this.epost}
-                onChange={event => (this.epost = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Fornavn"
-                value={this.fnavn}
-                onChange={event => (this.fnavn = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Etternavn"
-                value={this.enavn}
-                onChange={event => (this.enavn = event.target.value)}
-              />
-              <br />
-              <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
-                <option>Er HAN ELLER HUN admin?</option>
-                <option value="0">Nei</option>
-                <option value="1">Ja</option>
-              </select>
-              <br />
+        <Card title="Endre ansattnformasjon">
+          <Form.Label>Tlf. nr.:</Form.Label>
+          <Form.Input type="text" value={this.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
 
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Utleienavn"
-                value={this.utleienavn}
-                onChange={event => (this.utleienavn = event.target.value)}
-              />
-              <br />
-              <div className="knapper">
-                <span className="tilbakeMeny2">
-                  <button type="button" className="btn btn-success" onClick={this.add}>
-                    Registrer ansatt
-                  </button>
-                </span>
-                <span className="tilbakeMeny">
-                  <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                    Avbryt registrering
-                  </button>
-                </span>
-              </div>
-            </div>
-          </form>
+          <Form.Label>Epost:</Form.Label>
+          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+
+          <Form.Label>Fornavn:</Form.Label>
+          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+
+          <Form.Label>Etternavn:</Form.Label>
+          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+
+          <Form.Label>Admin:</Form.Label>
+          <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
+            <option>Er HAN ELLER HUN admin?</option>
+            <option value="0">Nei</option>
+            <option value="1">Ja</option>
+          </select>
+
+          <Form.Label>Utleienavn:</Form.Label>
+          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+
+          <Form.Label>Stilling:</Form.Label>
+          <Form.Input type="text" value={this.stilling} onChange={event => (this.stilling = event.target.value)} />
+        </Card>
+
+        <br />
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.add}>
+              Registrer ansatt
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt registrering
+            </button>
+          </span>
         </div>
       </div>
     );
@@ -103,6 +79,7 @@ export class AnsattReg extends Component {
       this.enavn,
       this.admin,
       this.utleienavn,
+      this.stilling,
       this.props.match.params.id,
       () => {
         history.push('/oversikt/ansatt');

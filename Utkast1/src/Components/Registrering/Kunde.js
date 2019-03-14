@@ -26,65 +26,34 @@ export class KundeReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til kunde</h3>
-        <div className="KundeReg">
-          <form>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Fornavn"
-                value={this.fnavn}
-                onChange={event => (this.fnavn = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Etternavn"
-                value={this.enavn}
-                onChange={event => (this.enavn = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                maxLength="12"
-                placeholder="12345678"
-                value={this.tlf}
-                onChange={event => (this.tlf = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="email"
-                placeholder="Epost"
-                value={this.epost}
-                onChange={event => (this.epost = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="date"
-                placeholder="Fødselsdato"
-                value={this.fdag}
-                onChange={event => (this.fdag = event.target.value)}
-              />
-              <br />
+        <Card title="Endre kundeinformasjon">
+          <Form.Label>Fornavn:</Form.Label>
+          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
 
-              <div className="knapper">
-                <span className="tilbakeMeny2">
-                  <button type="button" className="btn btn-success" onClick={this.add}>
-                    Registrer kunde
-                  </button>
-                </span>
-                <span className="tilbakeMeny">
-                  <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                    Avbryt registrering
-                  </button>
-                </span>
-              </div>
-            </div>
-          </form>
+          <Form.Label>Etternavn:</Form.Label>
+          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+
+          <Form.Label>Tlf:</Form.Label>
+          <Form.Input type="text" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
+
+          <Form.Label>Epost:</Form.Label>
+          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+
+          <Form.Label>Fødselsdag:</Form.Label>
+          <Form.Input type="date" value={this.fdag} onChange={event => (this.fdag = event.target.value)} />
+        </Card>
+        <br />
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.add}>
+              Registrer kunde
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt registrering
+            </button>
+          </span>
         </div>
       </div>
     );
