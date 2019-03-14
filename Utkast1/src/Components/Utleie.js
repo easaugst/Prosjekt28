@@ -107,6 +107,7 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.dropDown();
+    console.log(window.ansatt);
   }
   log() {
     console.log(
