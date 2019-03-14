@@ -48,7 +48,7 @@ class Menu extends Component {
           <NavBar.Link to="/utleie">Utleie</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
-          <NavBar.Link to="/login">
+          <NavBar.Link to="/">
             <span className="loginknapp">
               <ion-icon name="log-in" />
               Login
@@ -64,7 +64,7 @@ ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/" component={Login} />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
