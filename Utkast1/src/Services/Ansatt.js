@@ -32,6 +32,17 @@ class AnsattService {
       }
     );
   }
+  ansattSignin(epost, pwd, success) {
+    connection.query(
+      'SELECT ansattnr FROM FastAnsatt where epost = ? AND pwd = ?',
+      [epost, pwd],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(JSON.stringify(results));
+      }
+    )
+  }
 }
 
 export let ansattService = new AnsattService();
