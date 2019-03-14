@@ -13,7 +13,7 @@ export class Login extends Component {
         <div className="mainView-signin">
           <form className="form-signin">
             <h1>Vennligst logg inn</h1>
-            <input type="email" className="form-control" placeholder="Ansattnummer" required />
+            <input type="text" className="form-control" placeholder="Ansattnummer" required />
             <input type="password" className="form-control" placeholder="Passord" />
             <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit">
               Logg inn
