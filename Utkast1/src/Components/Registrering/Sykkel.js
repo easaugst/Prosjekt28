@@ -27,65 +27,47 @@ export class SykkelReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til sykkel</h3>
-        <div className="KundeReg">
-          <form>
-            <div className="form-group">
-              <select
-                className="form-control"
-                value={this.sykkeltypeid}
-                onChange={event => (this.sykkeltypeid = event.target.value)}
-              >
-                <option value="0">Sykkeltype</option>
-                <option value="1">Terrengsykkel</option>
-                <option value="2">Landeveissykkel</option>
-                <option value="3">Tandemsykkel</option>
-              </select>
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Befinnelse"
-                value={this.befinnelse}
-                onChange={event => (this.befinnelse = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Status"
-                value={this.status}
-                onChange={event => (this.status = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Beskrivelse"
-                value={this.beskrivelse}
-                onChange={event => (this.beskrivelse = event.target.value)}
-              />
-              <br />
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Tilhører utleiested"
-                value={this.utleienavn}
-                onChange={event => (this.utleienavn = event.target.value)}
-              />
-            </div>
-            <div className="knapper">
-              <span className="tilbakeMeny2">
-                <button type="button" className="btn btn-success" onClick={this.add}>
-                  Registrer sykkel
-                </button>
-              </span>
-              <span className="tilbakeMeny">
-                <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-                  Avbryt registrering
-                </button>
-              </span>
-            </div>
-          </form>
+        <Card title="Endre sykkelinformasjon">
+          <Form.Label>Sykkeltype:</Form.Label>
+          <select
+            className="form-control"
+            value={this.sykkeltypeid}
+            onChange={event => (this.sykkeltypeid = event.target.value)}
+          >
+            <option>Sykkeltype</option>
+            <option value="1">Terrengsykkel</option>
+            <option value="2">Landeveissykkel</option>
+            <option value="3">Tandemsykkel</option>
+          </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" value={this.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
+
+          <Form.Label>Status:</Form.Label>
+          <Form.Input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
+
+          <Form.Label>Beskrivelse:</Form.Label>
+          <Form.Input
+            type="text"
+            value={this.beskrivelse}
+            onChange={event => (this.beskrivelse = event.target.value)}
+          />
+
+          <Form.Label>Tilhører utleiested:</Form.Label>
+          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+        </Card>
+        <br />
+        <div className="knapper">
+          <span className="tilbakeMeny2">
+            <button type="button" className="btn btn-success" onClick={this.add}>
+              Registrer sykkel
+            </button>
+          </span>
+          <span className="tilbakeMeny">
+            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+              Avbryt registrering
+            </button>
+          </span>
         </div>
       </div>
     );
