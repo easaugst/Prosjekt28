@@ -17,10 +17,10 @@ class BestillingsService {
     });
   }
 
-  updateBestilling(utleietype, gruppe, bestillingsid, success) {
+  updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {
     connection.query(
-      'update Bestilling set utleietype=?, gruppe =? where bestillingsid=?',
-      [utleietype, gruppe, bestillingsid],
+      'update Bestilling set kundenr=?, utleietype=?, kontant=?, gruppe =? where bestillingsid=?',
+      [kundenr, utleietype, kontant, gruppe, bestillingsid],
       (error, results) => {
         if (error) return console.error(error);
 
