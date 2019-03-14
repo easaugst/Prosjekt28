@@ -14,51 +14,49 @@ export class Login extends Component {
   email = '';
   pwd = '';
   render() {
-<<<<<<< HEAD
     return (
-      <div className="container">
-        <div className="mainView-signin">
-          <form className="form-signin">
-            <h1>Vennligst logg inn</h1>
-            <input type="text" className="form-control" placeholder="Ansattnummer" required />
-            <input type="password" className="form-control" placeholder="Passord" />
-            <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit">
-              Logg inn
-            </button>
-          </form>
-        </div>
-=======
-    return(
       <div className="mainView-signin">
         <form className="form-signin">
           <h1>Vennligst logg inn</h1>
-          <input type="email" className="form-control" value={this.email} placeholder="E-post adresse" onChange={event => (this.email = event.target.value)} />
-          <input type="password" className="form-control" value={this.pwd} placeholder="Passord"  onChange={event => (this.pwd = event.target.value)} />
-          <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit" onClick={this.signIn}>Logg inn</button>
+          <input
+            type="email"
+            className="form-control"
+            value={this.email}
+            placeholder="E-post adresse"
+            onChange={event => (this.email = event.target.value)}
+          />
+          <input
+            type="password"
+            className="form-control"
+            value={this.pwd}
+            placeholder="Passord"
+            onChange={event => (this.pwd = event.target.value)}
+          />
+          <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit" onClick={this.signIn}>
+            Logg inn
+          </button>
         </form>
->>>>>>> 2f744c61085f10ee24f2953a6991cfe7f150a261
       </div>
     );
   }
 
   signIn() {
-      ansattService.ansattSignin(this.email, this.pwd, resultat => {
-        this.verification = JSON.parse(resultat).length;
-        console.log('verification: ' + this.verification);
-        this.ansatt = JSON.parse(resultat);
-        if (this.verification == 1) {
-          this.email = '';
-          this.pwd = '';
-          this.ansatt.map(ansatt => {
-            window.ansatt = ansatt.ansattnr;
-          })
-          history.push('/oversikt');
-        } else if (this.verification == 0) {
-          this.email = '';
-          this.pwd = '';
-        }
-        console.log(window.ansatt);
+    ansattService.ansattSignin(this.email, this.pwd, resultat => {
+      this.verification = JSON.parse(resultat).length;
+      console.log('verification: ' + this.verification);
+      this.ansatt = JSON.parse(resultat);
+      if (this.verification == 1) {
+        this.email = '';
+        this.pwd = '';
+        this.ansatt.map(ansatt => {
+          window.ansatt = ansatt.ansattnr;
+        });
+        history.push('/oversikt');
+      } else if (this.verification == 0) {
+        this.email = '';
+        this.pwd = '';
       }
-    );
+      console.log(window.ansatt);
+    });
   }
 }
