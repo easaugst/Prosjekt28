@@ -21,6 +21,7 @@ export class AnsattReg extends Component {
   enavn = '';
   admin = '';
   utleienavn = '';
+  stilling = '';
 
   render() {
     return (
@@ -78,6 +79,7 @@ export class AnsattReg extends Component {
       this.enavn,
       this.admin,
       this.utleienavn,
+      this.stilling,
       this.props.match.params.id,
       () => {
         history.push('/oversikt/ansatt');

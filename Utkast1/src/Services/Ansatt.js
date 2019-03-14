@@ -9,10 +9,10 @@ class AnsattService {
     });
   }
 
-  addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, success) {
+  addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
     connection.query(
-      'insert into FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn) values (?, ?, ?, ?, ?,?)',
-      [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn],
+      'insert into FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) values (?, ?, ?, ?, ?,?,?)',
+      [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
       (error, results) => {
         if (error) return console.error(error);
 
