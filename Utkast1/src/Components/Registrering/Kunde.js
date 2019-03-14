@@ -26,7 +26,7 @@ export class KundeReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til kunde</h3>
-        <Card title="Endre kundeinformasjon">
+        <Card title="Kundeinformasjon">
           <Form.Label>Fornavn:</Form.Label>
           <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
 

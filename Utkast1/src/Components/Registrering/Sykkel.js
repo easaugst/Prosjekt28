@@ -27,7 +27,7 @@ export class SykkelReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til sykkel</h3>
-        <Card title="Endre sykkelinformasjon">
+        <Card title="Sykkelinformasjon">
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"

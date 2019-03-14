@@ -167,7 +167,13 @@ class ButtonSuccess extends Component {
 class ButtonDanger extends Component {
   render() {
     return (
-      <button type="button" id={this.props.id} className="btn btn-danger" className={this.props.className} onClick={this.props.onClick}>
+      <button
+        type="button"
+        id={this.props.id}
+        className="btn btn-danger"
+        className={this.props.className}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     );
@@ -212,7 +218,6 @@ class FormInput extends Component {
       <input
         className="form-control"
         type={this.props.type}
-        value={this.props.value}
         onChange={this.props.onChange}
         required={this.props.required}
         pattern={this.props.pattern}

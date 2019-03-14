@@ -27,7 +27,7 @@ export class AnsattReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til ansatt</h3>
-        <Card title="Endre ansattnformasjon">
+        <Card title="Ansattinformasjon">
           <Form.Label>Tlf. nr.:</Form.Label>
           <Form.Input type="text" value={this.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
 
@@ -42,7 +42,7 @@ export class AnsattReg extends Component {
 
           <Form.Label>Admin:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
-            <option>Er HAN ELLER HUN admin?</option>
+            <option>Er vedkommende admin?</option>
             <option value="0">Nei</option>
             <option value="1">Ja</option>
           </select>

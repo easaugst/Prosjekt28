@@ -23,7 +23,7 @@ export class Login extends Component {
           <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit" onClick={this.signIn}>Logg inn</button>
         </form>
       </div>
-    )
+    );
   }
 
   signIn() {
