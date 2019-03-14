@@ -96,14 +96,14 @@ export class SykkelEndringMeny extends Component {
 
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <button type="button" className="btn btn-success" onClick={this.save}>
+            <Button.Success onClick={this.save}>
               Lagre endring
-            </button>
+            </Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+            <Button.DangerOl onClick={this.cancel}>
               Avbryt
-            </button>
+            </Button.DangerOl>
           </span>
         </div>
       </div>

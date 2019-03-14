@@ -167,15 +167,20 @@ class ButtonSuccess extends Component {
 class ButtonDanger extends Component {
   render() {
     return (
-      <button
-        type="button"
-        id={this.props.id}
-        className="btn btn-danger"
-        onClick={this.props.onClick}
-      >
+      <button type="button" id={this.props.id} className="btn btn-danger" onClick={this.props.onClick}>
         {this.props.children}
       </button>
     );
+  }
+}
+
+class ButtonDangerOutline extends Component {
+  render() {
+    return (
+      <button type="button" className="btn btn-outline-danger" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    )
   }
 }
 
@@ -199,6 +204,7 @@ class ButtonLight extends Component {
 export class Button {
   static Success = ButtonSuccess;
   static Danger = ButtonDanger;
+  static DangerOl = ButtonDangerOutline;
   static Light = ButtonLight;
 }
 
