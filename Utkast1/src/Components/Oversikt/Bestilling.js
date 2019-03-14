@@ -14,6 +14,7 @@ import { utleieService } from '../../Services/Utleie';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
+
 export class BestillingOversikt extends Component {
   bArray = [];
 
@@ -73,13 +74,13 @@ export class BestillingOversikt extends Component {
 
 export class BestillingOversiktMeny extends Component {
   dbArray = [];
-
+  testing = 1 ;
   render() {
     return (
       <div className="mainView">
         <Table>
           <Table.Rad>
-            <th>Bestillingsnummer</th>
+            <th>Bestillingsnummer</th>{console.log(BestillingOversikt.gran)}
             <th>Delbestillingsnummer</th>
             <th>Registreringsnummer</th>
             <th>Utstyr</th>
@@ -104,7 +105,7 @@ export class BestillingOversiktMeny extends Component {
   }
 
   mounted() {
-    bestillingsService.getDelbestilling(this.props.match.params.ubid, delbestilling => {
+    bestillingsService.getDelbestilling(this.testing, this.props.match.params.ubid,  delbestilling => {
       this.dbArray = delbestilling;
     });
   }

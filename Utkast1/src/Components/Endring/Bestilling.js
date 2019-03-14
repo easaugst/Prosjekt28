@@ -72,25 +72,42 @@ export class BestillingsEndring extends Component {
 }
 
 export class BestillingsEndringMeny extends Component {
-  utleietype = null;
-  gruppe = null;
+  utleietype = "";
+  gruppe = "";
+  kontant ="";
+  kundenr ="";
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre kundeinformasjon">
+        <Card title="Endre bestillinger">
+
+        <Form.Label>Kudnenr:</Form.Label>
+        <Form.Input type="text" value={this.kundenr} onChange={event => (this.kundenr = event.target.value)} />
+
           <Form.Label>Utleietype:</Form.Label>
           <select
             className="form-control"
             value={this.utleietype}
             onChange={event => (this.utleietype = event.target.value)}
           >
-            <option>Utleie</option>
-            <option value="1">Timesutleie</option>
-            <option value="2">Dagsutleie</option>
-            <option value="3">3-dagersutleie</option>
+            <option>Velg utleietype</option>
+            <option value="1">Timesleie</option>
+            <option value="2">Dagsleie</option>
+            <option value="3">3-dagersleie</option>
             <option value="4">Ukesleie</option>
+          </select>
+
+          <Form.Label>Endre betalingsmåte:</Form.Label>
+          <select
+            className="form-control"
+            value={this.kontant}
+            onChange={event => (this.kontant = event.target.value)}
+          >
+            <option>Type betaling</option>
+            <option value="0">Kort</option>
+            <option value="1">Kontant</option>
           </select>
 
           <Form.Label>Gruppe:</Form.Label>
@@ -121,10 +138,12 @@ export class BestillingsEndringMeny extends Component {
     bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
       this.utleietype = bestilling.utleietype;
       this.gruppe = bestilling.gruppe;
+      this.kundenr = bestilling.kundenr;
+      this.kontant = bestilling.kontant;
     });
   }
   save() {
-    bestillingsService.updateBestilling(this.utleietype, this.gruppe, this.props.match.params.id, () => {
+    bestillingsService.updateBestilling(this.kundenr, this.utleietype, this.kontant, this.gruppe, this.props.match.params.id, () => {
       history.push('/endring/bestillinger');
     });
   }
