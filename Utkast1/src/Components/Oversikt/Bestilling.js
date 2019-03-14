@@ -75,12 +75,14 @@ export class BestillingOversikt extends Component {
 export class BestillingOversiktMeny extends Component {
   dbArray = [];
   testing = 1 ;
+
+  test = new BestillingOversikt();
   render() {
     return (
       <div className="mainView">
         <Table>
           <Table.Rad>
-            <th>Bestillingsnummer</th>{console.log(BestillingOversikt.gran)}
+            <th>Bestillingsnummer</th>
             <th>Delbestillingsnummer</th>
             <th>Registreringsnummer</th>
             <th>Utstyr</th>
