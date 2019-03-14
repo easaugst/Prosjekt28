@@ -99,9 +99,9 @@ export class BestillingOversiktMeny extends Component {
           ))}
         </Table>
 
-        <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
+        <Button.DangerOl onClick={this.cancel}>
           Gå tilbake
-        </button>
+        </Button.DangerOl>
       </div>
     );
   }
