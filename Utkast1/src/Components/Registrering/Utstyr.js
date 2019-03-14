@@ -22,7 +22,7 @@ export class UtstyrReg extends Component {
     return (
       <div className="mainView">
         <h3>Legg til utstyr</h3>
-        <Card title="Endre utstyrsinformasjon">
+        <Card title="Utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
             <option>Velg type her</option>

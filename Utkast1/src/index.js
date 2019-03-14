@@ -11,7 +11,7 @@ import { ansattService } from './Services/Ansatt';
 import { bestillingsService } from './Services/Bestilling';
 import { utleieService } from './Services/Utleie';
 
-import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt'
+import { Oversikt, OversiktVertMenu } from './Components/Oversikt/Oversikt';
 import { AnsattOversikt } from './Components/Oversikt/Ansatt';
 import { KundeOversikt } from './Components/Oversikt/Kunde';
 import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
@@ -26,7 +26,7 @@ import { UtstyrReg } from './Components/Registrering/Utstyr';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
 import { BestillingsEndring, BestillingsEndringMeny } from './Components/Endring/Bestilling';
-import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt'
+import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt';
 import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
 import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
 import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
@@ -48,6 +48,12 @@ class Menu extends Component {
           <NavBar.Link to="/utleie">Utleie</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
+          <NavBar.Link to="/login">
+            <span className="loginknapp">
+              <ion-icon name="log-in" />
+              Login
+            </span>
+          </NavBar.Link>
         </NavBar>
       </div>
     );
@@ -58,7 +64,7 @@ ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
-      <Route exact path="/" component={Login} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
