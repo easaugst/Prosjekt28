@@ -57,7 +57,7 @@ export class SykkelEndring extends Component {
 }
 
 export class SykkelEndringMeny extends Component {
-  sykkeltypeid = null;
+  sykkeltypeid = "";
   befinnelse = null;
   status = null;
   beskrivelse = null;
@@ -87,11 +87,7 @@ export class SykkelEndringMeny extends Component {
           <Form.Input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
 
           <Form.Label>Beskrivelse:</Form.Label>
-          <Form.Input
-            type="text"
-            value={this.beskrivelse}
-            onChange={event => (this.beskrivelse = event.target.value)}
-          />
+          <Form.Input type="text" value={this.beskrivelse} onChange={event => (this.beskrivelse = event.target.value)} />
 
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
