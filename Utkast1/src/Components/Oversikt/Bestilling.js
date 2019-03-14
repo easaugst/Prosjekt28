@@ -74,7 +74,7 @@ export class BestillingOversikt extends Component {
 
 export class BestillingOversiktMeny extends Component {
   dbArray = [];
-  testing =  ;
+  testing = 1 ;
   render() {
     return (
       <div className="mainView">
