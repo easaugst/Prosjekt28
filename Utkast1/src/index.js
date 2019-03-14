@@ -32,6 +32,7 @@ import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
 import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
+import { Login } from './Components/Login.js';
 
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
@@ -57,6 +58,7 @@ ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
+      <Route exact path="/" component={Login} />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />

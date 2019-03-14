@@ -20,7 +20,7 @@ export class KundeOversikt extends Component {
 
   render() {
     return (
-      <div className="mainView">
+      <div className="mainView-signin">
         <Table>
           <Table.Rad>
             <th>Kundenummer</th>
