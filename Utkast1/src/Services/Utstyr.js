@@ -13,6 +13,31 @@ class UtstyrService {
     );
   }
 
+  getUtstyr2(utstyrsid, success) {
+    connection.query(
+      'SELECT * FROM Utstyr U, Utstyrstype UT WHERE U.utstyrstypeid = UT.utstyrstypeid and U.utstyrstypeid = 1',
+      [utstyrsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+
+  getUtstyr3(utstyrsid, success) {
+    connection.query(
+      'SELECT * FROM Utstyr U, Utstyrstype UT WHERE U.utstyrstypeid = UT.utstyrstypeid and U.utstyrstypeid = 2',
+      [utstyrsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+
+
   addUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
     connection.query(
       'insert into Utstyr (utstyrstypeid, ustatus) values (?, ?)',
