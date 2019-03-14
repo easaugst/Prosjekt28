@@ -56,16 +56,16 @@ export class AnsattReg extends Component {
 
         <br />
         <div className="knapper">
-          <span className="tilbakeMeny2">
-            <button type="button" className="btn btn-success" onClick={this.add}>
-              Registrer ansatt
-            </button>
-          </span>
-          <span className="tilbakeMeny">
-            <button type="button" className="btn btn-outline-danger" onClick={this.cancel}>
-              Avbryt registrering
-            </button>
-          </span>
+        <span className="tilbakeMeny2">
+          <Button.Success onClick={this.save}>
+            Registrer ansatt
+          </Button.Success>
+        </span>
+        <span className="tilbakeMeny">
+          <Button.DangerOl onClick={this.cancel}>
+            Avbryt registrering
+          </Button.DangerOl>
+        </span>
         </div>
       </div>
     );
