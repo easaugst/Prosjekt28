@@ -171,7 +171,6 @@ class ButtonDanger extends Component {
         type="button"
         id={this.props.id}
         className="btn btn-danger"
-        className={this.props.className}
         onClick={this.props.onClick}
       >
         {this.props.children}
