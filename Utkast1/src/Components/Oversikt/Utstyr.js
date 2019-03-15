@@ -19,6 +19,7 @@ export class UtstyrOversikt extends Component {
   u2Array = [];
   u3Array = [];
   number = 0;
+  a = "";
 
   render() {
     return (
@@ -97,29 +98,26 @@ export class UtstyrOversikt extends Component {
     this.u3Array = utstyr3;
   });
 
-  this.vis()
+  this.start();
+  }
+
+  start() {
+      document.getElementById('utstyr2').style.display = "none";
+      document.getElementById('utstyr3').style.display = "none";
   }
 
   vis() {
-    if(this.number == 0) {
-      document.getElementById('utstyr1').style.display = "block";
-      document.getElementById('utstyr2').style.display = "none";
-      document.getElementById('utstyr3').style.display = "none";
-    }
-    else if (this.number == 1) {
-      document.getElementById('utstyr' + this.number).style.display = "block";
-      document.getElementById('utstyr' + 2).style.display = "none";
-      document.getElementById('utstyr' + 3).style.display = "none";
-    }
-    else if(this.number == 2) {
-      document.getElementById('utstyr' + this.number).style.display = "block";
-      document.getElementById('utstyr' + ((this.number)-1)).style.display = "none";
-      document.getElementById('utstyr' + 3).style.display = "none";
-    }
-    else if(this.number == 3) {
-      document.getElementById('utstyr' + this.number).style.display = "block";
-      document.getElementById('utstyr' + ((this.number)-1)).style.display = "none";
-      document.getElementById('utstyr' + ((this.number)-2)).style.display = "none";
+    for(var i=1;i<=3;i++) {
+      if(i == this.number ){
+          this.a = ('utstyr' + this.number);
+          document.getElementById(this.a).style.display = "block";
+      }
+      else {
+        this.a = ('utstyr' + i);
+        document.getElementById(this.a).style.display = "none";
+      }
+
+
     }
   }
 
