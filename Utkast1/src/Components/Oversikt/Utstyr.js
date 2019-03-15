@@ -20,6 +20,7 @@ export class UtstyrOversikt extends Component {
   u3Array = [];
   number = 0;
   a = "";
+  b = 2;
 
   render() {
     return (
@@ -102,8 +103,11 @@ export class UtstyrOversikt extends Component {
   }
 
   start() {
-      document.getElementById('utstyr2').style.display = "none";
-      document.getElementById('utstyr3').style.display = "none";
+    while(this.b <=3) {
+      this.a = ('utstyr' + this.b);
+      document.getElementById(this.a).style.display = "none";
+      this.b ++;
+    }
   }
 
   vis() {
