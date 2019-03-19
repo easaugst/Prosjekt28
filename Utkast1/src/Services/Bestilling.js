@@ -17,6 +17,13 @@ class BestillingsService {
     });
   }
 
+  getBestillingEndring(bestillingsid, success) {
+    connection.query('SELECT gruppe, kontant, kundenr FROM Bestilling WHERE bestillingsid = ?', [bestillingsid], (error, results) => {
+      if (error) return console.error(error);
+
+      success(JSON.stringify(results));
+    })
+  }
   updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {
     connection.query(
       'update Bestilling set kundenr=?, utleietype=?, kontant=?, gruppe =? where bestillingsid=?',

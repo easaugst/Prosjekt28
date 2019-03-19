@@ -55,7 +55,7 @@ export class BestillingsEndring extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid + '/'}>Rediger</List.Item>
+                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -72,10 +72,13 @@ export class BestillingsEndring extends Component {
 }
 
 export class BestillingsEndringMeny extends Component {
+  bestillingsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  bestilling = [];
   utleietype = "";
   gruppe = "";
-  kontant ="";
-  kundenr ="";
+  kontant = "";
+  kundenr = "";
+  bArray = [];
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
@@ -83,8 +86,10 @@ export class BestillingsEndringMeny extends Component {
       <div className="mainView">
         <Card title="Endre bestillinger">
 
-        <Form.Label>Kudnenr:</Form.Label>
-        <Form.Input type="text" value={this.kundenr} onChange={event => (this.kundenr = event.target.value)} />
+        <Form.Label>Kundenr:</Form.Label>
+        {this.bestilling.map(bestilling => {
+          <Form.Input type="text" value={bestilling.kundenr} onChange={event => (this.kundenr = event.target.value)} />
+        })}
 
           <Form.Label>Utleietype:</Form.Label>
           <select
@@ -130,20 +135,19 @@ export class BestillingsEndringMeny extends Component {
               Avbryt
             </Button.DangerOl>
           </span>
+          <button onClick={console.log(this.bestilling, this.gruppe, this.kontant, this.kundenr)}>Hent data</button>
         </div>
       </div>
     );
   }
   mounted() {
-    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
-      this.utleietype = bestilling.utleietype;
-      this.gruppe = bestilling.gruppe;
-      this.kundenr = bestilling.kundenr;
-      this.kontant = bestilling.kontant;
+    bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
+      this.bestilling = bestilling;
     });
+    console.log(this.bestilling, this.gruppe, this.kontant, this.kundenr);
   }
   save() {
-    bestillingsService.updateBestilling(this.kundenr, this.utleietype, this.kontant, this.gruppe, this.props.match.params.id, () => {
+    bestillingsService.updateBestilling(this.kundenr, this.utleietype, this.kontant, this.gruppe, this.bestillingsid, () => {
       history.push('/endring/bestillinger');
     });
   }
