@@ -43,7 +43,7 @@ export class AnsattEndring extends Component {
               <td>{ansatt.stilling}</td>
 
               <td>
-                <List.Item to={'/endring/ansatt/' + ansatt.ansattnr + '/'}>Rediger</List.Item>
+                <List.Item to={'/endring/ansatt/' + ansatt.ansattnr}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -59,46 +59,81 @@ export class AnsattEndring extends Component {
 }
 
 export class AnsattEndringMeny extends Component {
-  tlfnr = null;
-  epost = null;
-  fnavn = null;
-  enavn = null;
+  ansattnr = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  ansatt = [];
+  tlfnr = "";
+  epost = "";
+  fnavn = "";
+  enavn = "";
   admin = null;
-  utleienavn = null;
-  stilling = null;
+  utleienavn = "";
+  stilling = "";
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
-      <div className="mainView">
-        <Card title="Endre ansattnformasjon">
-          <Form.Label>Tlf. nr.:</Form.Label>
-          <Form.Input type="text" value={this.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
+      <div>
+        <div className="mainView">
 
-          <Form.Label>Epost:</Form.Label>
-          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+          {this.ansatt.map(ansatt => (
+            <Card title="Nåværende ansattnformasjon" key={ansatt.ansattnr}>
+              <Form.Label>Tlf. nr.:</Form.Label>
+              <Form.Input type="text" id="tlfDef" value={ansatt.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
 
-          <Form.Label>Fornavn:</Form.Label>
-          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+              <Form.Label>Epost:</Form.Label>
+              <Form.Input type="text" id="epostDef" value={ansatt.epost} onChange={event => (this.epost = event.target.value)} />
 
-          <Form.Label>Etternavn:</Form.Label>
-          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+              <Form.Label>Fornavn:</Form.Label>
+              <Form.Input type="text" id="fnavnDef" value={ansatt.fnavn} onChange={event => (this.fnavn = event.target.value)} />
 
-          <Form.Label>Admin:</Form.Label>
-          <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
-            <option>Er vedkommende admin?</option>
-            <option value="0">Nei</option>
-            <option value="1">Ja</option>
-          </select>
+              <Form.Label>Etternavn:</Form.Label>
+              <Form.Input type="text" id="enavnDef" value={ansatt.enavn} onChange={event => (this.enavn = event.target.value)} />
 
-          <Form.Label>Utleienavn:</Form.Label>
-          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+              <Form.Label>Admin:</Form.Label>
+              <select className="form-control" id="adminDef" value={ansatt.admin} onChange={event => (this.admin = event.target.value)}>
+                <option>Er vedkommende admin?</option>
+                <option value="0">Nei</option>
+                <option value="1">Ja</option>
+              </select>
 
-          <Form.Label>Stilling:</Form.Label>
-          <Form.Input type="text" value={this.stilling} onChange={event => (this.stilling = event.target.value)} />
-        </Card>
-        <br />
+              <Form.Label>Utleienavn:</Form.Label>
+              <Form.Input type="text" id="utleieDef" value={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
 
+              <Form.Label>Stilling:</Form.Label>
+              <Form.Input type="text" id="stillingDef" value={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} />
+            </Card>
+          ))}
+        </div>
+        <div className="parallelView">
+
+          {this.ansatt.map(ansatt => (
+            <Card title="Nåværende ansattnformasjon" key={ansatt.ansattnr}>
+              <Form.Label>Tlf. nr.:</Form.Label>
+              <Form.Input type="text" id="tlfInput" value={this.tlfnr} placeholder={ansatt.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
+
+              <Form.Label>Epost:</Form.Label>
+              <Form.Input type="text" id="epostInput" value={this.epost} placeholder={ansatt.epost}onChange={event => (this.epost = event.target.value)} />
+
+              <Form.Label>Fornavn:</Form.Label>
+              <Form.Input type="text" id="fnavnInput" value={this.fnavn} placeholder={ansatt.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+
+              <Form.Label>Etternavn:</Form.Label>
+              <Form.Input type="text" id="enavnInput" value={this.enavn} placeholder={ansatt.enavn} onChange={event => (this.enavn = event.target.value)} />
+
+              <Form.Label>Admin:</Form.Label>
+              <select className="form-control" id="adminInput" value={this.admin} onChange={event => (this.admin = event.target.value)}>
+                <option>Er vedkommende admin?</option>
+                <option value="0">Nei</option>
+                <option value="1">Ja</option>
+              </select>
+
+              <Form.Label>Utleienavn:</Form.Label>
+              <Form.Input type="text"  id="utleieInput" value={this.utleienavn} placeholder={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+
+              <Form.Label>Stilling:</Form.Label>
+              <Form.Input type="text"  id="stillingInput" value={this.stilling} placeholder={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} />
+            </Card>
+          ))}
+          <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
             <Button.Success onClick={this.save}>
@@ -111,21 +146,18 @@ export class AnsattEndringMeny extends Component {
             </Button.DangerOl>
           </span>
         </div>
+        </div>
       </div>
     );
   }
   mounted() {
-    ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
-      this.tlfnr = ansatt.tlfnr;
-      this.epost = ansatt.epost;
-      this.fnavn = ansatt.fnavn;
-      this.enavn = ansatt.enavn;
-      this.admin = ansatt.admin;
-      this.utleienavn = ansatt.utleienavn;
-      this.stilling = ansatt.stilling;
+    ansattService.getAnsattEndring(this.ansattnr, ansatt => {
+      this.ansatt = ansatt;
     });
+    console.log(this.ansatt);
   }
   save() {
+    this.log();
     ansattService.updateAnsatt(
       this.tlfnr,
       this.epost,
@@ -134,7 +166,7 @@ export class AnsattEndringMeny extends Component {
       this.admin,
       this.utleienavn,
       this.stilling,
-      this.props.match.params.id,
+      this.ansattnr,
       () => {
         history.push('/endring/ansatt');
       }
@@ -142,5 +174,29 @@ export class AnsattEndringMeny extends Component {
   }
   cancel() {
     history.goBack();
+  }
+  log() {
+    if (document.getElementById('tlfInput').value === "") {
+      this.tlfnr = document.getElementById('tlfDef').value;
+    }
+    if (document.getElementById('epostInput').value === "") {
+      this.epost = document.getElementById('epostDef').value;
+    }
+    if (document.getElementById('fnavnInput').value === "") {
+      this.fnavn = document.getElementById('fnavnDef').value;
+    }
+    if (document.getElementById('enavnInput').value === "") {
+      this.enavn = document.getElementById('enavnDef').value;
+    }
+    if (this.admin === null) {
+      this.admin = document.getElementById('adminDef').value;
+    }
+    if (document.getElementById('utleieInput').value === "") {
+      this.utleienavn = document.getElementById('utleieDef').value;
+    }
+    if (document.getElementById('stillingInput').value === "") {
+      this.stilling = document.getElementById('stillingDef').value;
+    }
+    console.log(this.tlfnr, this.epost, this.fnavn, this.enavn, this.admin, this.utleienavn, this.stilling);
   }
 }

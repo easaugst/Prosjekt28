@@ -9,6 +9,15 @@ class AnsattService {
     });
   }
 
+  getAnsattEndring(ansattnr, success) {
+    connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?', [ansattnr],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      });
+  }
+
   addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
     connection.query(
       'insert into FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) values (?, ?, ?, ?, ?,?,?)',

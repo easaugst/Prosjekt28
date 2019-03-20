@@ -86,7 +86,7 @@ export class BestillingsEndringMeny extends Component {
         <div className="mainView">
 
           {this.bestilling.map(bestilling => (
-            <Card title="Nåværende informasjon" key={bestilling.kundenr}>
+            <Card title="Nåværende bestillingsinformasjon" key={bestilling.kundenr}>
               <Form.Label>Kundenr:</Form.Label>
                 <Form.Input
                 type="text"
@@ -226,7 +226,7 @@ export class BestillingsEndringMeny extends Component {
   }
 
   log() {
-    if (document.getElementById('kundeInput').value === null) {
+    if (document.getElementById('kundeInput').value === "") {
       this.kundenr = document.getElementById('kundeDef').value;
       console.log(this.kundenr);
     }
