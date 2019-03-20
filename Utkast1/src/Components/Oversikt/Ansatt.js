@@ -31,7 +31,7 @@ export class AnsattOversikt extends Component {
             <th>Arbeidsplass</th>
             <th>Stilling</th>
           </Table.Rad>
-          {this.aArray.map((ansatt /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+          {this.aArray.map(ansatt => (
             <Table.Rad key={ansatt.ansattnr}>
               <td>{ansatt.ansattnr}</td>
               <td>{ansatt.tlfnr}</td>

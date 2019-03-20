@@ -18,10 +18,10 @@ class BestillingsService {
   }
 
   getBestillingEndring(bestillingsid, success) {
-    connection.query('SELECT gruppe, kontant, kundenr FROM Bestilling WHERE bestillingsid = ?', [bestillingsid], (error, results) => {
+    connection.query('SELECT gruppe, kontant, kundenr, utleietype FROM Bestilling WHERE bestillingsid = ?', [bestillingsid], (error, results) => {
       if (error) return console.error(error);
 
-      success(JSON.stringify(results));
+      success(results);
     })
   }
   updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {

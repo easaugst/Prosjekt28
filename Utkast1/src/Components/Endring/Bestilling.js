@@ -84,44 +84,44 @@ export class BestillingsEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre bestillinger">
 
-        <Form.Label>Kundenr:</Form.Label>
-        {this.bestilling.map(bestilling => {
-          <Form.Input type="text" value={bestilling.kundenr} onChange={event => (this.kundenr = event.target.value)} />
-        })}
+        {this.bestilling.map(bestilling => (
+          <Card title="Endre bestillinger" key={bestilling.kundenr}>
+            <Form.Label>Kundenr:</Form.Label>
+              <Form.Input type="text" value={this.kundenr} placeholder={bestilling.kundenr} onChange={event => (this.kundenr = event.target.value)} />
 
-          <Form.Label>Utleietype:</Form.Label>
-          <select
-            className="form-control"
-            value={this.utleietype}
-            onChange={event => (this.utleietype = event.target.value)}
-          >
-            <option>Velg utleietype</option>
-            <option value="1">Timesleie</option>
-            <option value="2">Dagsleie</option>
-            <option value="3">3-dagersleie</option>
-            <option value="4">Ukesleie</option>
-          </select>
+            <Form.Label>Utleietype:</Form.Label>
+              <select
+              className="form-control"
+              value={bestilling.utleietype}
+              onChange={event => (this.utleietype = event.target.value)}
+              >
+                <option>Velg utleietype</option>
+                <option value="1">Timesleie</option>
+                <option value="2">Dagsleie</option>
+                <option value="3">3-dagersleie</option>
+                <option value="4">Ukesleie</option>
+              </select>
 
-          <Form.Label>Endre betalingsmåte:</Form.Label>
-          <select
-            className="form-control"
-            value={this.kontant}
-            onChange={event => (this.kontant = event.target.value)}
-          >
-            <option>Type betaling</option>
-            <option value="0">Kort</option>
-            <option value="1">Kontant</option>
-          </select>
+            <Form.Label>Endre betalingsmåte:</Form.Label>
+              <select
+              className="form-control"
+              value={bestilling.kontant}
+              onChange={event => (this.kontant = event.target.value)}
+              >
+                <option>Type betaling</option>
+                <option value="0">Kort</option>
+                <option value="1">Kontant</option>
+              </select>
 
-          <Form.Label>Gruppe:</Form.Label>
-          <select className="form-control" value={this.gruppe} onChange={event => (this.gruppe = event.target.value)}>
-            <option>Gruppe</option>
-            <option value="1">Ja</option>
-            <option value="2">Nei</option>
-          </select>
-        </Card>
+            <Form.Label>Gruppe:</Form.Label>
+              <select className="form-control" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)}>
+                <option>Gruppe</option>
+                <option value="1">Ja</option>
+                <option value="2">Nei</option>
+              </select>
+          </Card>
+        ))}
         <br />
 
         <div className="knapper">
@@ -135,7 +135,6 @@ export class BestillingsEndringMeny extends Component {
               Avbryt
             </Button.DangerOl>
           </span>
-          <button onClick={console.log(this.bestilling, this.gruppe, this.kontant, this.kundenr)}>Hent data</button>
         </div>
       </div>
     );
@@ -144,6 +143,11 @@ export class BestillingsEndringMeny extends Component {
     bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
       this.bestilling = bestilling;
     });
+    this.bestilling.map(bestilling => {
+      this.gruppe = bestilling.gruppe;
+      this.kontant = bestilling.kontant;
+      this.kundenr = bestilling.kundenr;
+    })
     console.log(this.bestilling, this.gruppe, this.kontant, this.kundenr);
   }
   save() {
