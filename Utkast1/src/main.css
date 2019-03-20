@@ -8,6 +8,15 @@
   font-size: 1vw;
   margin-right: 10em;
 }
+.parallelView {
+  position: absolute;
+  left: 45vw;
+  height: 70%;
+  top: 15vh;
+  font-family: sans-serif;
+  font-size: 1vw;
+  margin-right: 10em;
+}
 
 /* Oversikt hovedmeny */
 .NavBar {
