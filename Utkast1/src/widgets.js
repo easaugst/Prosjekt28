@@ -222,7 +222,9 @@ class FormInput extends Component {
     return (
       <input
         className="form-control"
+        id={this.props.id}
         type={this.props.type}
+        value={this.props.value}
         onChange={this.props.onChange}
         required={this.props.required}
         pattern={this.props.pattern}

@@ -74,11 +74,10 @@ export class BestillingsEndring extends Component {
 export class BestillingsEndringMeny extends Component {
   bestillingsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
   bestilling = [];
-  utleietype = "";
-  gruppe = "";
-  kontant = "";
+  utleietype = null;
+  gruppe = null;
+  kontant = null;
   kundenr = "";
-  bArray = [];
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
@@ -86,13 +85,19 @@ export class BestillingsEndringMeny extends Component {
       <div className="mainView">
 
         {this.bestilling.map(bestilling => (
-          <Card title="Endre bestillinger" key={bestilling.kundenr}>
+          <Card title="Nåværende informasjon" key={bestilling.kundenr}>
             <Form.Label>Kundenr:</Form.Label>
-              <Form.Input type="text" value={this.kundenr} placeholder={bestilling.kundenr} onChange={event => (this.kundenr = event.target.value)} />
+              <Form.Input
+              type="text"
+              id="kundeDef"
+              value={bestilling.kundenr}
+              onChange={event => (this.kundenr = event.target.value)}
+              />
 
             <Form.Label>Utleietype:</Form.Label>
               <select
               className="form-control"
+              id="utleieDef"
               value={bestilling.utleietype}
               onChange={event => (this.utleietype = event.target.value)}
               >
@@ -106,6 +111,7 @@ export class BestillingsEndringMeny extends Component {
             <Form.Label>Endre betalingsmåte:</Form.Label>
               <select
               className="form-control"
+              id="kontantDef"
               value={bestilling.kontant}
               onChange={event => (this.kontant = event.target.value)}
               >
@@ -115,7 +121,54 @@ export class BestillingsEndringMeny extends Component {
               </select>
 
             <Form.Label>Gruppe:</Form.Label>
-              <select className="form-control" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)}>
+              <select className="form-control" id="gruppeDef" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)}>
+                <option>Gruppe</option>
+                <option value="1">Ja</option>
+                <option value="2">Nei</option>
+              </select>
+          </Card>
+        ))}
+        <br />
+
+        {this.bestilling.map(bestilling => (
+          <Card title="Endring" key={bestilling.kundenr}>
+            <Form.Label>Kundenr:</Form.Label>
+              <Form.Input
+              type="text"
+              id="kundeInput"
+              value={this.kundenr}
+              placeholder={bestilling.kundenr}
+              onChange={event => (this.kundenr = event.target.value)}
+              />
+
+            <Form.Label>Utleietype:</Form.Label>
+              <select
+              className="form-control"
+              id="utleieInput"
+              value={this.utleietype}
+              onChange={event => (this.utleietype = event.target.value)}
+              >
+                <option>Velg utleietype</option>
+                <option value="1">Timesleie</option>
+                <option value="2">Dagsleie</option>
+                <option value="3">3-dagersleie</option>
+                <option value="4">Ukesleie</option>
+              </select>
+
+            <Form.Label>Endre betalingsmåte:</Form.Label>
+              <select
+              className="form-control"
+              id="kontantInput"
+              value={this.kontant}
+              onChange={event => (this.kontant = event.target.value)}
+              >
+                <option>Type betaling</option>
+                <option value="0">Kort</option>
+                <option value="1">Kontant</option>
+              </select>
+
+            <Form.Label>Gruppe:</Form.Label>
+              <select className="form-control" id="gruppeInput" value={this.gruppe} onChange={event => (this.gruppe = event.target.value)}>
                 <option>Gruppe</option>
                 <option value="1">Ja</option>
                 <option value="2">Nei</option>
@@ -143,19 +196,50 @@ export class BestillingsEndringMeny extends Component {
     bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
       this.bestilling = bestilling;
     });
-    this.bestilling.map(bestilling => {
-      this.gruppe = bestilling.gruppe;
-      this.kontant = bestilling.kontant;
-      this.kundenr = bestilling.kundenr;
-    })
-    console.log(this.bestilling, this.gruppe, this.kontant, this.kundenr);
+    console.log(this.kundenr);
+    this.log;
   }
   save() {
+    if (document.getElementById('kundeInput').value === "") {
+      this.kundenr = document.getElementById('kundeDef').value;
+      console.log(this.kundenr);
+    }
+    if (this.utleietype === null) {
+      this.utleietype = document.getElementById('utleieDef').value;
+      console.log(this.utleietype);
+    }
+    if (this.kontant === null) {
+      this.kontant = document.getElementById('kontantDef').value;
+      console.log(this.kontant);
+    }
+    if (this.gruppe === null) {
+      this.gruppe = document.getElementById('gruppeDef').value;
+      console.log(this.gruppe);
+    }
     bestillingsService.updateBestilling(this.kundenr, this.utleietype, this.kontant, this.gruppe, this.bestillingsid, () => {
       history.push('/endring/bestillinger');
     });
   }
   cancel() {
     history.goBack();
+  }
+
+  log() {
+    if (document.getElementById('kundeInput').value === null) {
+      this.kundenr = document.getElementById('kundeDef').value;
+      console.log(this.kundenr);
+    }
+    if (this.utleietype === null) {
+      this.utleietype = document.getElementById('utleieDef').value;
+      console.log(this.utleietype);
+    }
+    if (this.kontant === null) {
+      this.kontant = document.getElementById('kontantDef').value;
+      console.log(this.kontant);
+    }
+    if (this.gruppe === null) {
+      this.gruppe = document.getElementById('gruppeDef').value;
+      console.log(this.gruppe);
+    }
   }
 }
