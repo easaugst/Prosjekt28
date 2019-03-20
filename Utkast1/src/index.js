@@ -81,11 +81,11 @@ ReactDOM.render(
       <Route path="/endring/bestillinger" component={BestillingsEndring} />
       <Route exact path="/endring/ansatt" component={AnsattEndring} />
 
-      <Route exact path="/endring/bestilling/:id" component={BestillingsEndringMeny} />
-      <Route exact path="/endring/utstyr/:id" component={UtstyrEndringMeny} />
-      <Route exact path="/endring/sykkel/:id" component={SykkelEndringMeny} />
-      <Route exact path="/endring/kunde/:id" component={KundeEndringMeny} />
-      <Route exact path="/endring/ansatt/:id" component={AnsattEndringMeny} />
+      <Route exact path="/endring/bestilling/:bestillingsid" component={BestillingsEndringMeny} />
+      <Route exact path="/endring/utstyr/:utstyrsid" component={UtstyrEndringMeny} />
+      <Route exact path="/endring/sykkel/:regnr" component={SykkelEndringMeny} />
+      <Route exact path="/endring/kunde/:kundenr" component={KundeEndringMeny} />
+      <Route exact path="/endring/ansatt/:ansattnr" component={AnsattEndringMeny} />
 
       <Route exact path="/utleie" component={Utleie} />
       <Route path="/utleie" component={UtleieVertMenu} />

@@ -79,9 +79,9 @@ export class UtstyrOversikt extends Component {
           <option value="2">Hjelmer</option>
           <option value="3">Lappesett</option>
         </select>
-        <button type="button" className="btn btn-success" onClick={this.vis}>
+        <Button.Success onClick={this.vis}>
           Filtrer
-        </button>
+        </Button.Success>
       </div>
     );
   }
