@@ -74,7 +74,7 @@ export class UtstyrOversikt extends Component {
           </Table>
           </div>
         <select className="form-control" form="formen" onChange={event => (this.number = event.target.value)}>
-          <option>Velg filter her</option>
+          <option value ="1">Velg filter her</option>
           <option value="1">Alle</option>
           <option value="2">Hjelmer</option>
           <option value="3">Lappesett</option>
