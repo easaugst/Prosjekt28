@@ -26,11 +26,11 @@ export class BestillingOversikt extends Component {
             <th>Bestillingsnummer</th>
             <th>Kundenummer</th>
             <th>Utleietype</th>
-            <th>Kontant</th>
+            <th>Betalingsmåte</th>
             <th>Tidspunkt bestilling</th>
             <th>Fra</th>
             <th>Til</th>
-            <th>Gruppe</th>
+            <th>Type bestilling</th>
             <th>Delbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
