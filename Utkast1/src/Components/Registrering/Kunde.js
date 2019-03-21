@@ -45,7 +45,7 @@ export class KundeReg extends Component {
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.save}>
+            <Button.Success onClick={this.add}>
               Registrer kunde
             </Button.Success>
           </span>
