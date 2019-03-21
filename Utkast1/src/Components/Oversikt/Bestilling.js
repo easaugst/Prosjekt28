@@ -56,7 +56,7 @@ export class BestillingOversikt extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <List.Item to={'/oversikt/bestilling/' + bestilling.bestillingsid + '/'}>Se</List.Item>
+                <List.Item to={'/oversikt/bestilling/' + bestilling.bestillingsid }>Se</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -74,7 +74,7 @@ export class BestillingOversikt extends Component {
 
 export class BestillingOversiktMeny extends Component {
   dbArray = [];
-  testing = 1 ;
+  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
 
   test = new BestillingOversikt();
   render() {
@@ -107,9 +107,10 @@ export class BestillingOversiktMeny extends Component {
   }
 
   mounted() {
-    bestillingsService.getDelbestilling(this.testing, this.props.match.params.ubid,  delbestilling => {
+    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid,  delbestilling => {
       this.dbArray = delbestilling;
     });
+
   }
 
   cancel() {
