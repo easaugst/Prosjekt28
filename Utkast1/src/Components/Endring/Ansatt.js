@@ -77,29 +77,29 @@ export class AnsattEndringMeny extends Component {
           {this.ansatt.map(ansatt => (
             <Card title="Nåværende ansattnformasjon" key={ansatt.ansattnr}>
               <Form.Label>Tlf. nr.:</Form.Label>
-              <Form.Input type="text" id="tlfDef" value={ansatt.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
+              <Form.Input type="text" id="tlfDef" value={ansatt.tlfnr} onChange={event => (this.tlfnr = event.target.value)} disabled />
 
               <Form.Label>Epost:</Form.Label>
-              <Form.Input type="text" id="epostDef" value={ansatt.epost} onChange={event => (this.epost = event.target.value)} />
+              <Form.Input type="text" id="epostDef" value={ansatt.epost} onChange={event => (this.epost = event.target.value)} disabled />
 
               <Form.Label>Fornavn:</Form.Label>
-              <Form.Input type="text" id="fnavnDef" value={ansatt.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+              <Form.Input type="text" id="fnavnDef" value={ansatt.fnavn} onChange={event => (this.fnavn = event.target.value)} disabled />
 
               <Form.Label>Etternavn:</Form.Label>
-              <Form.Input type="text" id="enavnDef" value={ansatt.enavn} onChange={event => (this.enavn = event.target.value)} />
+              <Form.Input type="text" id="enavnDef" value={ansatt.enavn} onChange={event => (this.enavn = event.target.value)} disabled />
 
               <Form.Label>Admin:</Form.Label>
-              <select className="form-control" id="adminDef" value={ansatt.admin} onChange={event => (this.admin = event.target.value)}>
+              <select className="form-control" id="adminDef" value={ansatt.admin} onChange={event => (this.admin = event.target.value)} disabled>
                 <option>Er vedkommende admin?</option>
                 <option value="0">Nei</option>
                 <option value="1">Ja</option>
               </select>
 
               <Form.Label>Utleienavn:</Form.Label>
-              <Form.Input type="text" id="utleieDef" value={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+              <Form.Input type="text" id="utleieDef" value={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} disabled />
 
               <Form.Label>Stilling:</Form.Label>
-              <Form.Input type="text" id="stillingDef" value={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} />
+              <Form.Input type="text" id="stillingDef" value={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} disabled />
             </Card>
           ))}
         </div>

@@ -229,6 +229,7 @@ class FormInput extends Component {
         required={this.props.required}
         pattern={this.props.pattern}
         placeholder={this.props.placeholder}
+        disabled={this.props.disabled}
       />
     );
   }

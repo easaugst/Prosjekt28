@@ -93,6 +93,7 @@ export class BestillingsEndringMeny extends Component {
                 id="kundeDef"
                 value={bestilling.kundenr}
                 onChange={event => (this.kundenr = event.target.value)}
+                disabled
                 />
 
               <Form.Label>Utleietype:</Form.Label>
@@ -101,6 +102,7 @@ export class BestillingsEndringMeny extends Component {
                 id="utleieDef"
                 value={bestilling.utleietype}
                 onChange={event => (this.utleietype = event.target.value)}
+                disabled
                 >
                   <option>Velg utleietype</option>
                   <option value="1">Timesleie</option>
@@ -115,6 +117,7 @@ export class BestillingsEndringMeny extends Component {
                 id="kontantDef"
                 value={bestilling.kontant}
                 onChange={event => (this.kontant = event.target.value)}
+                disabled
                 >
                   <option>Type betaling</option>
                   <option value="0">Kort</option>
@@ -122,7 +125,7 @@ export class BestillingsEndringMeny extends Component {
                 </select>
 
               <Form.Label>Gruppe:</Form.Label>
-                <select className="form-control" id="gruppeDef" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)}>
+                <select className="form-control" id="gruppeDef" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)} disabled>
                   <option>Gruppe</option>
                   <option value="1">Ja</option>
                   <option value="2">Nei</option>
