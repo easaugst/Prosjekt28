@@ -47,17 +47,23 @@ export class AnsattReg extends Component {
             <option value="1">Ja</option>
           </select>
 
-          <Form.Label>Utleienavn:</Form.Label>
+          <Form.Label>Utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
 
           <Form.Label>Stilling:</Form.Label>
-          <Form.Input type="text" value={this.stilling} onChange={event => (this.stilling = event.target.value)} />
+          <select className="form-control" form="formen" onChange={event => (this.stilling = event.target.value)}>
+            <option>Vedkommendes stilling</option>
+            <option value="Daglig leder">Daglig leder</option>
+            <option value="Sektretær">Sektretær</option>
+            <option value="Selger">Selger</option>
+            <option value="Lagerarbeidere">Lagerarbeidere</option>
+          </select>
         </Card>
 
         <br />
         <div className="knapper">
         <span className="tilbakeMeny2">
-          <Button.Success onClick={this.save}>
+          <Button.Success onClick={this.add}>
             Registrer ansatt
           </Button.Success>
         </span>
