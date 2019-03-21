@@ -86,7 +86,7 @@ export class BestillingOversiktMeny extends Component {
             <th>Delbestillingsnummer</th>
             <th>Registreringsnummer</th>
             <th>Utstyr</th>
-            <th>Detaljer</th>
+            <th>Type</th>
           </Table.Rad>
           {this.dbArray.map(delbestilling => (
             <Table.Rad key={delbestilling.ubid}>
@@ -94,7 +94,7 @@ export class BestillingOversiktMeny extends Component {
               <td>{delbestilling.ubid}</td>
               <td>{delbestilling.regnr}</td>
               <td>{delbestilling.utstyrsid}</td>
-              <td>{delbestilling.detaljer}</td>
+              <td>{delbestilling.utnavn}</td>
             </Table.Rad>
           ))}
         </Table>
