@@ -30,7 +30,7 @@ export class UtstyrEndring extends Component {
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.navn}</td>
+              <td>{utstyr.utnavn}</td>
               <td>
                 <input
                   type="text"
@@ -66,9 +66,9 @@ export class UtstyrEndringMeny extends Component {
         <Card title="Endre utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
-            <option>Velg type her</option>
-            <option value="1">Hjelm</option>
-            <option value="2">Lappesett</option>
+            <option value="4">Velg type her</option>
+            <option value="4">Hjelm</option>
+            <option value="5">Lappesett</option>
           </select>
           <Form.Label>Utstyrstatus:</Form.Label>
           <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />

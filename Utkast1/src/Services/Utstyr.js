@@ -15,7 +15,7 @@ class UtstyrService {
 
   getUtstyr2(utstyrsid, success) {
     connection.query(
-      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = 1',
+      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = 4',
       [utstyrsid],
       (error, results) => {
         if (error) return console.error(error);
@@ -27,7 +27,7 @@ class UtstyrService {
 
   getUtstyr3(utstyrsid, success) {
     connection.query(
-      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = 2',
+      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = 5',
       [utstyrsid],
       (error, results) => {
         if (error) return console.error(error);
