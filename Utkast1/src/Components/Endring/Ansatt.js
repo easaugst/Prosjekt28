@@ -141,7 +141,7 @@ export class AnsattEndringMeny extends Component {
                 <option value="Daglig leder">Daglig leder</option>
                 <option value="Sektretær">Sektretær</option>
                 <option value="Selger">Selger</option>
-                <option value="Lagerarbeidere">Lagerarbeidere</option>
+                <option value="Lagerarbeider">Lagerarbeider</option>
               </select>
             </Card>
           ))}
