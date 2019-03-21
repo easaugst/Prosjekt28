@@ -99,7 +99,13 @@ export class AnsattEndringMeny extends Component {
               <Form.Input type="text" id="utleieDef" value={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} disabled />
 
               <Form.Label>Stilling:</Form.Label>
-              <Form.Input type="text" id="stillingDef" value={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} disabled />
+              <select className="form-control" form="formen" id="stillingDef" value={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} disabled>
+                <option>Vedkommendes stilling</option>
+                <option value="Daglig leder">Daglig leder</option>
+                <option value="Sektretær">Sektretær</option>
+                <option value="Selger">Selger</option>
+                <option value="Lagerarbeidere">Lagerarbeidere</option>
+              </select>
             </Card>
           ))}
         </div>
@@ -130,7 +136,13 @@ export class AnsattEndringMeny extends Component {
               <Form.Input type="text"  id="utleieInput" value={this.utleienavn} placeholder={ansatt.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
 
               <Form.Label>Stilling:</Form.Label>
-              <Form.Input type="text"  id="stillingInput" value={this.stilling} placeholder={ansatt.stilling} onChange={event => (this.stilling = event.target.value)} />
+              <select className="form-control" form="formen" id="stillingInput" value={this.stilling} placeholder={ansatt.stilling} onChange={event => (this.stilling = event.target.value)}>
+                <option>Vedkommendes stilling</option>
+                <option value="Daglig leder">Daglig leder</option>
+                <option value="Sektretær">Sektretær</option>
+                <option value="Selger">Selger</option>
+                <option value="Lagerarbeidere">Lagerarbeidere</option>
+              </select>
             </Card>
           ))}
           <br />
