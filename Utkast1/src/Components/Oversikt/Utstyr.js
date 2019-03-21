@@ -35,7 +35,7 @@ export class UtstyrOversikt extends Component {
           {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.navn}</td>
+              <td>{utstyr.utnavn}</td>
               <td>{utstyr.ustatus}</td>
             </Table.Rad>
           ))}
@@ -51,7 +51,7 @@ export class UtstyrOversikt extends Component {
           {this.u2Array.map((utstyr2 /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr2.utstyrsid}>
               <td>{utstyr2.utstyrsid}</td>
-              <td>{utstyr2.navn}</td>
+              <td>{utstyr2.utnavn}</td>
               <td>{utstyr2.ustatus}</td>
             </Table.Rad>
           ))}
@@ -67,7 +67,7 @@ export class UtstyrOversikt extends Component {
             {this.u3Array.map((utstyr3 /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
               <Table.Rad key={utstyr3.utstyrsid}>
                 <td>{utstyr3.utstyrsid}</td>
-                <td>{utstyr3.navn}</td>
+                <td>{utstyr3.utnavn}</td>
                 <td>{utstyr3.ustatus}</td>
               </Table.Rad>
             ))}
