@@ -31,7 +31,7 @@ export class RegVertMenu extends Component {
 
         <NavCol.Link to="/registrering/sykkel">
           <ion-icon name="bicycle" />
-          Registrere sykler
+          Registrere sykkel
         </NavCol.Link>
 
         <NavCol.Link to="/registrering/utstyr">

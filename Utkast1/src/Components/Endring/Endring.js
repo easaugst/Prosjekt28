@@ -38,7 +38,7 @@ export class EndringVertMenu extends Component {
         <NavCol.Link to="/endring/sykkel">
           {' '}
           <ion-icon name="bicycle" />
-          Endre sykler
+          Endre sykkel
         </NavCol.Link>
 
         <NavCol.Link to="/endring/utstyr">

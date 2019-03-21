@@ -37,7 +37,7 @@ export class OversiktVertMenu extends Component {
 
         <NavCol.Link to="/oversikt/sykkel">
           <ion-icon name="bicycle" />
-          Sykler
+          Sykkel
         </NavCol.Link>
 
         <NavCol.Link to="/oversikt/utstyr">
