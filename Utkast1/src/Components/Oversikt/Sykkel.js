@@ -33,7 +33,7 @@ export class SykkelOversikt extends Component {
           {this.sArray.map(sykkel => (
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
-              <td>{sykkel.sykkeltypenavn}</td>
+              <td>{sykkel.utnavn}</td>
               <td>{sykkel.befinnelse}</td>
               <td>{sykkel.status}</td>
               <td>{sykkel.beskrivelse}</td>

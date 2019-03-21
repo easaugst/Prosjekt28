@@ -3,7 +3,7 @@ import { connection } from '../mysql_connection';
 class SykkelService {
   getSykkel(sykkelid, success) {
     connection.query(
-      'SELECT * FROM Sykkel S, Sykkeltype ST WHERE S.sykkeltypeid = ST.sykkeltypeid',
+      'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid',
       [sykkelid],
       (error, results) => {
         if (error) return console.error(error);
