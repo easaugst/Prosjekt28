@@ -120,8 +120,8 @@ export class BestillingsEndringMeny extends Component {
                 disabled
                 >
                   <option>Type betaling</option>
-                  <option value="0">Kort</option>
-                  <option value="1">Kontant</option>
+                  <option value="Kort">Kort</option>
+                  <option value="Kontant">Kontant</option>
                 </select>
 
               <Form.Label>Gruppe:</Form.Label>
@@ -167,8 +167,8 @@ export class BestillingsEndringMeny extends Component {
                 onChange={event => (this.kontant = event.target.value)}
                 >
                   <option>Type betaling</option>
-                  <option value="0">Kort</option>
-                  <option value="1">Kontant</option>
+                  <option value="Kort">Kort</option>
+                  <option value="Kontant">Kontant</option>
                 </select>
 
               <Form.Label>Gruppe:</Form.Label>

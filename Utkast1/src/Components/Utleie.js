@@ -18,6 +18,7 @@ const history = createHashHistory();
 export class Utleie extends Component {
   //Henting av kunder og valg av kunde
   kunde = [];
+  kundenr = '';
   kundeDrop = [];
   state = { values: [] };
 
@@ -25,11 +26,16 @@ export class Utleie extends Component {
   kontant = '';
   ftid = '';
   gruppe = '';
+  detaljer = 'Ikke spesifisert';
 
   bId = '';
-  sykkelType = '';
-  utstyrType = '';
+  sykkelType = ''; terrengSykkel = []; landeveiSykkel = []; tandemSykkel = [];
+  sykkelTypeText = '';
+  utstyrType = ''; hjelm = []; lappeSett = []; bagasjeBrett = []; sykkelVeske = [];
+  utstyrTypeText = '';
 
+  sykler = [this.terrengSykkel, this.landeveiSykkel, this.tandemSykkel];
+  utstyr = [this.hjelm, this.lappeSett, this.bagasjeBrett, this.sykkelVeske]
   regnr = [];
   uId = [];
   uBestilling = [this.regnr, this.uId];
@@ -46,7 +52,6 @@ export class Utleie extends Component {
               <label>Kundevalg</label> <br />
               <Select
                 className="form-control"
-                value={this.kundeValg}
                 options={this.kundeDrop}
                 valueField="key"
                 labelField="text"
@@ -61,7 +66,7 @@ export class Utleie extends Component {
                 name="Gruppe"
                 value="Gruppe"
                 onChange={event => (this.gruppe = event.target.value)}
-              />{' '}
+              />
               Gruppebestilling
               <br />
               <label>Type leie</label>
@@ -88,16 +93,15 @@ export class Utleie extends Component {
                 <option value="2">Landeveisykkel</option>
                 <option value="3">Tandemsykkel</option>
               </select>
-              <Button.Light>Legg til sykkel</Button.Light>
+              <Button.Light onClick={this.addSykkel}>Legg til sykkel</Button.Light>
               <label>Utstyr</label>
               <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
                 <option>Ingen</option>
                 <option value="1">Hjelm</option>
                 <option value="2">Lappesett</option>
-                <option value="3">Bagasjebrett</option>
-                <option value="4">Sykkelveske</option>
+                <option value="3">Sykkelveske</option>
               </select>
-              <Button.Light>Legg til utstyr</Button.Light>
+              <Button.Light onClick={this.addUtstyr}>Legg til utstyr</Button.Light>
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
@@ -120,6 +124,36 @@ export class Utleie extends Component {
           </form>
         </div>
         <div className="mainViewUtleie2" />
+        <div>
+          <Table>
+            <Table.Rad>
+              <th>Terrengsykkel</th>
+              <th>Landeveisykkel</th>
+              <th>Tandemsykkel</th>
+              <th>Totalt</th>
+            </Table.Rad>
+            <Table.Rad>
+              <td id="antallSykler1"></td>
+              <td id="antallSykler2"></td>
+              <td id="antallSykler3"></td>
+              <td id="antallSykler"></td>
+            </Table.Rad>
+          </Table>
+          <Table>
+            <Table.Rad>
+              <th>Hjelm</th>
+              <th>Lappesett</th>
+              <th>Sykkelveske</th>
+              <th>Totalt</th>
+            </Table.Rad>
+            <Table.Rad>
+              <td id="antallUtstyr1"></td>
+              <td id="antallUtstyr2"></td>
+              <td id="antallUtstyr3"></td>
+              <td id="antallUtstyr"></td>
+            </Table.Rad>
+          </Table>
+        </div>
       </div>
     );
   }
@@ -134,7 +168,8 @@ export class Utleie extends Component {
       'fratid:' + this.ftid,
       'Gruppe:' + this.gruppe
     );
-    console.log('sykkelType:' + this.sykkelType, 'utstyrstype:' + this.utstyrType);
+    this.kundenr = this.state.values[0].key;
+    console.log('this.kundenr: ' + this.kundenr);
   }
   dropDown() {
     utleieService.getDropdown(kundenr => {
@@ -147,6 +182,29 @@ export class Utleie extends Component {
     });
     this.t++;
     console.log(this.kundeDrop);
+  }
+  addSykkel() {
+    this.sykler[this.sykkelType - 1].push(this.sykkelType);
+    console.log(this.sykler);
+    document.getElementById('antallSykler' + this.sykkelType).innerHTML = this.sykler[this.sykkelType - 1].length;
+    document.getElementById('antallSykler').innerHTML = this.sykler[0].length + this.sykler[1].length + this.sykler[2].length;
+  }
+  addUtstyr() {
+    this.utstyr[this.utstyrType - 1].push(this.utstyrType);
+    console.log(this.utstyr);
+    document.getElementById('antallUtstyr' + this.utstyrType).innerHTML = this.utstyr[this.utstyrType - 1].length;
+    document.getElementById('antallUtstyr').innerHTML = this.utstyr[0].length + this.utstyr[1].length + this.utstyr[2].length;
+  }
+  order() {
+    utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+      console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
+    });
+    // utleieService.getBestilling(bestilling => {
+    //   this.bId = bestilling;
+    // });
+    // utleieService.addUBestilling(this.regnr, this.uId, this.detaljer, this.bId, () => {
+    //   console.log(this.regnr, this.uId, this.detaljer, this.bId);
+    // });
   }
   nextPage() {
     if (this.number < 3) {
@@ -169,17 +227,6 @@ export class Utleie extends Component {
         document.getElementById('nesteUtleie').onclick = this.prevPage;
       }
     }
-  }
-  order() {
-    utleieService.addBestilling(this.state.values[0].key, this.kontant, this.ftid, this.gruppe, () => {
-      console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
-    });
-    utleieService.getBestilling(bestilling => {
-      this.bId = bestilling;
-    });
-    utleieService.addUBestilling(this.regnr, this.uId, this.detaljer, this.bId, () => {
-      console.log(this.regnr, this.uId, this.detaljer, this.bId);
-    });
   }
 }
 
