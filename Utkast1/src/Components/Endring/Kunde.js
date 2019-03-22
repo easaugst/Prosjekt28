@@ -45,9 +45,11 @@ export class KundeEndring extends Component {
                   .slice(0, -15)}
               </td>
               <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
+                <center>
+                  {JSON.stringify(kunde.rtid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -15)}
+                </center>
               </td>
               <td>
                 <List.Item to={'/endring/kunde/' + kunde.kundenr + '/'}>Rediger</List.Item>
