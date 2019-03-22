@@ -10,6 +10,17 @@ class UtleieService {
     });
   }
 
+  getSykler(sykkeltypeid, antall, success) {
+    connection.query(
+      'SELECT regnr FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid AND S.status = "Lager" AND S.sykkeltypeid = ? LIMIT ?',
+      [sykkeltypeid, antall],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
   addBestilling(kundenr, utleietype, kontant, ftid, gruppe, success) {
     connection.query(
       'insert into Bestilling (kundenr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?)',
@@ -35,7 +46,6 @@ class UtleieService {
   }
 
   getBestilling(bestillingsid, success) {
-
   connection.query(
     'SELECT MAX(bestillingsid) FROM Bestilling',
     [bestillingsid],

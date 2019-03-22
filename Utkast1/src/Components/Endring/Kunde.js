@@ -114,9 +114,10 @@ export class KundeEndringMeny extends Component {
     });
   }
   save() {
-    kundeService.updateKunde(this.fnavn, this.enavn, this.epost, this.tlf, this.props.match.params.id, () => {
+    kundeService.updateKunde(this.props.match.params.kundenr, this.fnavn, this.enavn, this.epost, this.tlf, () => {
       history.push('/endring/kunde');
     });
+    console.log(this.fnavn, this.enavn, this.epost, this.tlf);
   }
   cancel() {
     history.goBack();
