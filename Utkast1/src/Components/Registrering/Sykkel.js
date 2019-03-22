@@ -74,17 +74,10 @@ export class SykkelReg extends Component {
   }
 
   add() {
-    sykkelService.addSykkel(
-      this.sykkeltypeid,
-      this.befinnelse,
-      this.status,
-      this.beskrivelse,
-      this.utleienavn,
-      this.props.match.params.id,
-      () => {
+    sykkelService.addSykkel(this.sykkeltypeid, this.befinnelse, this.status, this.beskrivelse, this.utleienavn, this.props.match.params.id, () => {
+        console.log("jj");
         history.push('/oversikt/sykkel');
-      }
-    );
+      });
   }
   cancel() {
     history.push('/registrering/');
