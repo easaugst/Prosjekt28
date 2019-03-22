@@ -119,6 +119,8 @@ export class SykkelEndringMeny extends Component {
     });
   }
   save() {
+
+     console.log(this.props.match.params.id);
     sykkelService.updateSykkel(
       this.sykkeltypeid,
       this.befinnelse,
