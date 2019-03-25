@@ -67,91 +67,12 @@ export class AnsattEndringMeny extends Component {
   enavn = '';
   admin = null;
   utleienavn = '';
-  stilling = '';
+  stilling = null;
 
   render() {
     return (
       <div>
         <div className="mainView">
-          {this.ansatt.map(ansatt => (
-            <Card title="Nåværende ansattnformasjon" key={ansatt.ansattnr}>
-              <Form.Label>Tlf. nr.:</Form.Label>
-              <Form.Input
-                type="text"
-                id="tlfDef"
-                value={ansatt.tlfnr}
-                onChange={event => (this.tlfnr = event.target.value)}
-                disabled
-              />
-
-              <Form.Label>Epost:</Form.Label>
-              <Form.Input
-                type="text"
-                id="epostDef"
-                value={ansatt.epost}
-                onChange={event => (this.epost = event.target.value)}
-                disabled
-              />
-
-              <Form.Label>Fornavn:</Form.Label>
-              <Form.Input
-                type="text"
-                id="fnavnDef"
-                value={ansatt.fnavn}
-                onChange={event => (this.fnavn = event.target.value)}
-                disabled
-              />
-
-              <Form.Label>Etternavn:</Form.Label>
-              <Form.Input
-                type="text"
-                id="enavnDef"
-                value={ansatt.enavn}
-                onChange={event => (this.enavn = event.target.value)}
-                disabled
-              />
-
-              <Form.Label>Admin:</Form.Label>
-              <select
-                className="form-control"
-                id="adminDef"
-                value={ansatt.admin}
-                onChange={event => (this.admin = event.target.value)}
-                disabled
-              >
-                <option>Er vedkommende admin?</option>
-                <option value="0">Nei</option>
-                <option value="1">Ja</option>
-              </select>
-
-              <Form.Label>Utleienavn:</Form.Label>
-              <Form.Input
-                type="text"
-                id="utleieDef"
-                value={ansatt.utleienavn}
-                onChange={event => (this.utleienavn = event.target.value)}
-                disabled
-              />
-
-              <Form.Label>Stilling:</Form.Label>
-              <select
-                className="form-control"
-                form="formen"
-                id="stillingDef"
-                value={this.stilling}
-                onChange={event => (this.stilling = event.target.value)}
-                disabled
-              >
-                <option>Vedkommendes stilling</option>
-                <option value="Daglig leder">Daglig leder</option>
-                <option value="Sektretær">Sektretær</option>
-                <option value="Selger">Selger</option>
-                <option value="Lagerarbeidere">Lagerarbeidere</option>
-              </select>
-            </Card>
-          ))}
-        </div>
-        <div className="parallelView">
           {this.ansatt.map(ansatt => (
             <Card title="Nåværende ansattnformasjon" key={ansatt.ansattnr}>
               <Form.Label>Tlf. nr.:</Form.Label>
@@ -217,7 +138,7 @@ export class AnsattEndringMeny extends Component {
                 form="formen"
                 id="stillingInput"
                 value={ansatt.stilling}
-                onChange={event => (this.stilling = event.target.value)}
+                onChange={event => (ansatt.stilling = event.target.value)}
               >
                 <option>Vedkommendes stilling</option>
                 <option value="Daglig leder">Daglig leder</option>
@@ -269,27 +190,29 @@ export class AnsattEndringMeny extends Component {
     history.goBack();
   }
   log() {
-    if (document.getElementById('tlfInput').value === '') {
-      this.tlfnr = document.getElementById('tlfDef').value;
-    }
-    if (document.getElementById('epostInput').value === '') {
-      this.epost = document.getElementById('epostDef').value;
-    }
-    if (document.getElementById('fnavnInput').value === '') {
-      this.fnavn = document.getElementById('fnavnDef').value;
-    }
-    if (document.getElementById('enavnInput').value === '') {
-      this.enavn = document.getElementById('enavnDef').value;
-    }
-    if (this.admin === null) {
-      this.admin = document.getElementById('adminDef').value;
-    }
-    if (document.getElementById('utleieInput').value === '') {
-      this.utleienavn = document.getElementById('utleieDef').value;
-    }
-    if (document.getElementById('stillingInput').value === '') {
-      this.stilling = document.getElementById('stillingDef').value;
-    }
+    this.ansatt.map(ansatt => {
+      if (document.getElementById('tlfInput').value === '') {
+        this.tlfnr = ansatt.tlfnr;
+      }
+      if (document.getElementById('epostInput').value === '') {
+        this.epost = ansatt.epost
+      }
+      if (document.getElementById('fnavnInput').value === '') {
+        this.fnavn = ansatt.fnavn
+      }
+      if (document.getElementById('enavnInput').value === '') {
+        this.enavn = ansatt.enavn
+      }
+      if (this.admin === null) {
+        this.admin = ansatt.admin
+      }
+      if (document.getElementById('utleieInput').value === '') {
+        this.utleienavn = ansatt.utleienavn
+      }
+      if (this.stilling === null) {
+        this.stilling = ansatt.stilling
+      }
+    })
     console.log(this.tlfnr, this.epost, this.fnavn, this.enavn, this.admin, this.utleienavn, this.stilling);
   }
   slett() {
