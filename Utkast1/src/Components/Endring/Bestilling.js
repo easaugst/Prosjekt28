@@ -252,8 +252,9 @@ export class BestillingsEndringMeny extends Component {
     }
   }
   slett() {
-      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
-        history.push('/endring/sykkel');
+      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
+        history.push('/endring/bestilling');
       });
     }
+
 }

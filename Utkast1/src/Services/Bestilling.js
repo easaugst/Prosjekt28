@@ -35,6 +35,13 @@ class BestillingsService {
       }
     );
   }
+  slettBestilling(bestillingsid, success){
+  connection.query('delete from Bestilling where bestillingsid = ?', [bestillingsid] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
 }
 
 export let bestillingsService = new BestillingsService();

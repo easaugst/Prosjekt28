@@ -44,6 +44,13 @@ class KundeService {
       }
     );
   }
+  slettKunde(kundenr, success){
+  connection.query('delete from Kunde where kundenr = ?', [kundenr] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
 }
 
 

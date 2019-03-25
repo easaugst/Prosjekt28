@@ -126,8 +126,8 @@ export class KundeEndringMeny extends Component {
     history.goBack();
   }
   slett() {
-      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
-        history.push('/endring/sykkel');
+      kundeService.slettKunde(this.props.match.params.kundenr, () => {
+        history.push('/endring/kunde');
       });
     }
 }
