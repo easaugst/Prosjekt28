@@ -28,7 +28,10 @@ export class UtstyrEndring extends Component {
             <th>Status</th>
             <th>Rediger</th>
           </Table.Rad>
-          {this.uArray.map((utstyr, index /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+          {this.uArray.map((
+            utstyr,
+            index /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/
+          ) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.utnavn}</td>
@@ -55,7 +58,6 @@ export class UtstyrEndring extends Component {
     });
   }
 }
-
 
 export class UtstyrEndringMeny extends Component {
   utstyrstypeid = null;
@@ -87,12 +89,10 @@ export class UtstyrEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>
-              Slett
-            </Button.DangerOl>
+            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -113,18 +113,17 @@ export class UtstyrEndringMeny extends Component {
     history.goBack();
   }
   slett() {
+    // var test = new Login();
+    //
+    // console.log(test.admin)
+    //
+    // if(admin == true) {
 
-      // var test = new Login();
-      //
-      // console.log(test.admin)
-      //
-      // if(admin == true) {
-
-      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
-        history.push('/endring/utstyr');
-      });
-    }
-    // } else {
-    //   alert("Du har ikke administratorrettigheter");
-    // }
+    utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
+      history.push('/endring/utstyr');
+    });
+  }
+  // } else {
+  //   alert("Du har ikke administratorrettigheter");
+  // }
 }
