@@ -66,7 +66,7 @@ export class Utleie extends Component {
               Gruppebestilling
               <br />
               <label>Type leie</label>
-              <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
+              <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                 <option>Velg tid</option>
                 <option value="1">Timesutleie</option>
                 <option value="2">Dagsutleie</option>
@@ -176,63 +176,10 @@ export class Utleie extends Component {
     // );
     // this.kundenr = this.state.values[0].key;
     // console.log('this.kundenr: ' + this.kundenr);
-
-    //Forsøk på å automatisk registrere tilgjengelig utstyr
-    // this.utstyr.sort();
-    // this.vUtstyr = [];
-    // for (var i = 0; i <= this.utleieTyper; i++) {
-    //   if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
-    //     this.uTyper.push(i);
-    //   }
-    // }
-    // console.log(this.uTyper);
-    // for (var i = 0; i < this.uTyper.length; i++) {
-    //   console.log(this.utstyr);
-    //   console.log(
-    //     'antall: ' + (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1),
-    //     'type: ' + this.uTyper[i]
-    //   );
-    //
-    //   utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
-    //     this.tUtstyr.push(tUtstyr);
-    //     console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
-    //     console.log(this.tUtstyr.length);
-    //     this.tUtstyr[0].map(utstyr => {
-    //       this.vUtstyr.push(utstyr.utstyrsid);
-    //     });
-    //     console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
-    //     this.tUtstyr = [];
-    //     console.log('Valgt utstyr:' + this.vUtstyr);
-    //   });
-    // }
-    this.sykler.sort();
-    this.vSykler = [];
-    for (var i = 0; i <= this.utleietyper; i++) {
-      if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
-        this.sTyper.push(i);
-      }
-      console.log(i);
-    }
-    console.log(this.sTyper);
-    for (var i = 0; i < this.sTyper.length; i++) {
-      console.log(this.sykler);
-      console.log(
-        'antall: ' + (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1),
-        'type: ' + this.sTyper[i]
-      );
-
-      utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
-        this.tSykler.push(tSykler);
-        console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
-        console.log(this.tSykler.length);
-        this.tSykler[0].map(sykkel => {
-          this.vSykler.push(sykkel.regnr);
-        });
-        console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
-        this.tSykler = [];
-        console.log('Valgte sykler: ' + this.vSykler);
-      });
-    }
+    utleieService.getBestilling(bestilling => {
+      this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
+      console.log(this.bId);
+    });
   }
 
   kundeDropDown() {
@@ -272,11 +219,18 @@ export class Utleie extends Component {
     this.utstyr.sort();
     utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
       console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
+      utleieService.getBestilling(bestilling => {
+        this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
+        console.log('Bestillingsid: ' + this.bId);
+      });
+      this.registrerSykkel();
+      this.registrerUtstyr();
     });
-
-  //Delbestillinger for sykler opprettes
+  }
+  registrerSykkel() {
+    //Delbestillinger for sykler opprettes
     this.vSykler = [];
-    for (var i = 0; i <= this.utleietyper; i++) {
+    for (var i = 0; i <= this.utleieTyper; i++) {
       if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
         this.sTyper.push(i);
       }
@@ -292,17 +246,59 @@ export class Utleie extends Component {
       utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
         this.tSykler.push(tSykler);
         console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
-        console.log(this.tSykler.length);
         this.tSykler[0].map(sykkel => {
           this.vSykler.push(sykkel.regnr);
         });
         console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
         this.tSykler = [];
-      })
+        console.log('Valgte sykler: ' + this.vSykler);
+        for (var j = 0; j < this.vSykler.length; j++) {
+          utleieService.addUBestillingSykkel(this.vSykler[j], this.bId, () => {
+            console.log('Sykkel ' + this.vSykler[j] + ' registrert');
+          });
+          utleieService.updateSykkel(this.vSykler[j], 'Bestilt', () => {
+            console.log('Sykkel ' + this.vSykler[j] + ' Oppdatert');
+          });
+        }
+      });
     }
+  }
+  registrerUtstyr() {
+    //Delbestillinger for utstyr opprettes
+    this.vUtstyr = [];
+    for (var i = 0; i <= this.utleieTyper; i++) {
+      if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
+        this.uTyper.push(i);
+      }
+    }
+    console.log(this.uTyper);
+    for (var i = 0; i < this.uTyper.length; i++) {
+      console.log(this.utstyr);
+      console.log(
+        'antall: ' + (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1),
+        'type: ' + this.uTyper[i]
+      );
 
-  //Delbestillinger for utstyr opprettes
+      utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
+        this.tUtstyr.push(tUtstyr);
+        console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
+        this.tUtstyr[0].map(utstyr => {
+          this.vUtstyr.push(utstyr.utstyrsid);
+        });
+        console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
+        this.tUtstyr = [];
+        console.log('Valgt utstyr:' + this.vUtstyr);
+        for (var j = 0; j < this.vUtstyr.length; j++) {
+          utleieService.addUBestillingUtstyr(this.vUtstyr[j], this.bId, () => {
+            console.log('Utstyr ' + this.vUtstyr[j] + ' registrert');
 
+          });
+          utleieService.updateUtstyr(this.vUtstyr[j], 'bestilt', () => {
+            console.log('Utstyr ' + this.vUtstyr[j] + ' oppdatert');
+          });
+        }
+      });
+    }
   }
   nextPage() {
     if (this.number < 3) {

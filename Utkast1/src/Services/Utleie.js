@@ -21,6 +21,18 @@ class UtleieService {
       }
     );
   }
+  updateSykkel(regnr, status, success) {
+      connection.query(
+        'UPDATE Sykkel SET status=? WHERE regnr=?',
+        [status, regnr],
+        (error, results) => {
+          if (error) return console.error(error);
+
+          success(results);
+        }
+      )
+  }
+
   getUtstyr(utstyrstypeid, antall, success) {
     connection.query(
       'SELECT utstyrsid FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid AND U.ustatus = "Lager" AND U.utstyrstypeid = ? LIMIT ?',
@@ -30,6 +42,12 @@ class UtleieService {
 
         success(results);
       }
+    )
+  }
+  updateUtstyr(utstyrsid, ustatus, success) {
+    connection.query(
+      'UPDATE Sykkel SET ustatus=? WHERE utstyrsid=?',
+      [ustatus, utstyrsid]
     )
   }
   getTyper(success) {
@@ -44,7 +62,7 @@ class UtleieService {
   }
   addBestilling(kundenr, utleietype, kontant, ftid, gruppe, success) {
     connection.query(
-      'insert into Bestilling (kundenr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?)',
+      'INSERT INTO Bestilling (kundenr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?)',
       [kundenr, utleietype, kontant, ftid, gruppe],
       (error, results) => {
         if (error) return console.error(error);
@@ -54,10 +72,21 @@ class UtleieService {
     );
   }
 
-  addUBestilling(ubid, regnr, utstyrsid, detaljer, bestillingsid, success) {
+  addUBestillingSykkel(regnr, bestillingsid, success) {
     connection.query(
-      'insert into Ubestilling (regnr, utstyrsid, detaljer, bestillingsid) values (?, ?, ?, ?)',
-      [regnr, utstyrsid, detaljer, bestillingsid],
+      'INSERT INTO Ubestilling (regnr, bestillingsid) values (?, ?)',
+      [regnr, bestillingsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
+  addUBestillingUtstyr(utstyrsid, bestillingsid, success) {
+    connection.query(
+      'INSERT INTO Ubestilling (utstyrsid, bestillingsid) values (?, ?)',
+      [utstyrsid, bestillingsid],
       (error, results) => {
         if (error) return console.error(error);
 
@@ -66,14 +95,13 @@ class UtleieService {
     );
   }
 
-  getBestilling(bestillingsid, success) {
+  getBestilling(success) {
   connection.query(
     'SELECT MAX(bestillingsid) FROM Bestilling',
-    [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 
-      success(results);
+      success(JSON.stringify(results));
       }
     );
   }

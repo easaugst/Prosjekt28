@@ -15,10 +15,9 @@ class KundeService {
       [kundenr],
       (error, results) => {
         if (error) return console.error(error);
-        
+
         success(results);
       }
-
     )
   }
 
