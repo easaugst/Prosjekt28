@@ -50,7 +50,7 @@ export class SykkelEndring extends Component {
     );
   }
   mounted() {
-    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+    sykkelService.getSykkel(sykkel => {
       this.sArray = sykkel;
     });
   }
