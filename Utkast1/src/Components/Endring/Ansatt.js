@@ -138,7 +138,7 @@ export class AnsattEndringMeny extends Component {
                 className="form-control"
                 form="formen"
                 id="stillingDef"
-                value={ansatt.stilling}
+                value={this.stilling}
                 onChange={event => (this.stilling = event.target.value)}
                 disabled
               >
@@ -194,8 +194,8 @@ export class AnsattEndringMeny extends Component {
               <select
                 className="form-control"
                 id="adminInput"
-                value={this.admin}
-                onChange={event => (this.admin = event.target.value)}
+                value={ansatt.admin}
+                onChange={event => (ansatt.admin = event.target.value)}
               >
                 <option>Er vedkommende admin?</option>
                 <option value="0">Nei</option>
@@ -216,8 +216,7 @@ export class AnsattEndringMeny extends Component {
                 className="form-control"
                 form="formen"
                 id="stillingInput"
-                value={this.stilling}
-                placeholder={ansatt.stilling}
+                value={ansatt.stilling}
                 onChange={event => (this.stilling = event.target.value)}
               >
                 <option>Vedkommendes stilling</option>
