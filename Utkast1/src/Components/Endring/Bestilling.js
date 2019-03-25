@@ -31,6 +31,7 @@ export class BestillingsEndring extends Component {
             <th>Til</th>
             <th>Gruppe</th>
             <th>Rediger</th>
+            <th>Rediger underbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -56,6 +57,9 @@ export class BestillingsEndring extends Component {
               <td>{bestilling.gruppe}</td>
               <td>
                 <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
+              </td>
+              <td>
+                <List.Item to={'/endring/bestilling/' + bestilling.ubid}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -253,6 +257,43 @@ export class BestillingsEndringMeny extends Component {
   }
   slett() {
       bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
+        history.push('/endring/bestilling');
+      });
+    }
+
+}
+
+export class UbestillingsEndringMeny extends Component {
+
+
+  render() {
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    return (
+      <div>
+        <div className="mainView">
+
+          Halla
+
+        </div>
+      </div>
+    );
+  }
+  mounted() {
+    bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
+      this.bestilling = bestilling;
+    });
+  }
+  save() {
+
+  }
+  cancel() {
+    history.goBack();
+  }
+
+  log() {
+  }
+  slett() {
+      bestillingsService.slettBestilling(this.props.match.params.ubid, () => {
         history.push('/endring/bestilling');
       });
     }
