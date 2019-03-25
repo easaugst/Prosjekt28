@@ -136,8 +136,8 @@ export class BestillingsEndringMeny extends Component {
                 disabled
               >
                 <option>Gruppe</option>
-                <option value="1">Ja</option>
-                <option value="2">Nei</option>
+                <option value="Gruppe">Ja</option>
+                <option value="Enkel">Nei</option>
               </select>
             </Card>
           ))}
