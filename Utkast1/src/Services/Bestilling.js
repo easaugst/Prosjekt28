@@ -44,7 +44,7 @@ class BestillingsService {
   }
   updateUbestilling(regnr, utstyrsid, detaljer, bestillingsid, success) {
     connection.query(
-      'update Ubestilling set regnr=?, utstyrsid=?, detaljer=?, bestillingsid = where ubid=?',
+      'update Ubestilling set regnr=?, utstyrsid=?, detaljer=?, bestillingsid = ? where ubid=?',
       [regnr, utstyrsid, detaljer, bdestillingsid, ubid],
       (error, results) => {
         if (error) return console.error(error);
