@@ -68,28 +68,32 @@ export class KundeEndring extends Component {
 }
 
 export class KundeEndringMeny extends Component {
-  fnavn = null;
-  enavn = null;
-  epost = null;
-  tlf = null;
+  kundenr = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  kunde = [];
+  fnavn = '';
+  enavn = '';
+  epost = '';
+  tlf = '';
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
+      {this.kunde.map(kunde => (
         <Card title="Endre kundeinformasjon">
           <Form.Label>Fornavn:</Form.Label>
-          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+          <Form.Input type="text" id="fnavnInput" value={this.fnavn} placeholder={kunde.fnavn} onChange={event => (this.fnavn = event.target.value)} />
 
           <Form.Label>Etternavn:</Form.Label>
-          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+          <Form.Input type="text" id="enavnInput" value={this.enavn} placeholder={kunde.enavn} onChange={event => (this.enavn = event.target.value)} />
 
           <Form.Label>Epost:</Form.Label>
-          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+          <Form.Input type="text" id="epostInput" value={this.epost} placeholder={kunde.epost} onChange={event => (this.epost = event.target.value)} />
 
           <Form.Label>Tlf:</Form.Label>
-          <Form.Input type="text" value={this.tlf} onChange={event => (this.tlf = event.target.value)} />
+          <Form.Input type="text" id="tlfInput" value={this.tlf} placeholder={kunde.tlf} onChange={event => (this.tlf = event.target.value)} />
         </Card>
+      ))};
         <br />
 
         <div className="knapper">
@@ -107,14 +111,12 @@ export class KundeEndringMeny extends Component {
     );
   }
   mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
-      this.fnavn = kunde.fnavn;
-      this.enavn = kunde.enavn;
-      this.epost = kunde.epost;
-      this.tlf = kunde.tlf;
+    kundeService.getKundeEndring(this.props.match.params.kundenr, kunde => {
+      this.kunde = kunde;
     });
   }
   save() {
+    this.log();
     kundeService.updateKunde(this.props.match.params.kundenr, this.fnavn, this.enavn, this.epost, this.tlf, () => {
       history.push('/endring/kunde');
     });
@@ -127,5 +129,22 @@ export class KundeEndringMeny extends Component {
     kundeService.slettKunde(this.props.match.params.kundenr, () => {
       history.push('/endring/kunde');
     });
+  }
+  log() {
+    this.kunde.map(kunde => {
+      if (document.getElementById('fnavnInput').value === '') {
+        this.fnavn = kunde.fnavn
+      }
+      if (document.getElementById('enavnInput').value === '') {
+        this.enavn = kunde.enavn
+      }
+      if (document.getElementById('epostInput').value === '') {
+        this.epost = kunde.epost
+      }
+      if (document.getElementById('tlfInput').value === '') {
+        this.tlf = kunde.tlf
+      }
+    })
+    console.log(this.fnavn, this.enavn, this.epost, this.tlf);
   }
 }
