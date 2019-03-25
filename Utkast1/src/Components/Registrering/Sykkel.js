@@ -38,6 +38,9 @@ export class SykkelReg extends Component {
             <option value="1">Terrengsykkel</option>
             <option value="2">Landeveissykkel</option>
             <option value="3">Tandemsykkel</option>
+            <option value="12">Downhillsykkel</option>
+            <option value="13">Racersykkel</option>
+            <option value="14">Barnesykkel</option>
           </select>
 
           <Form.Label>Befinnelse:</Form.Label>
@@ -59,14 +62,10 @@ export class SykkelReg extends Component {
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.add}>
-              Registrer sykkel
-            </Button.Success>
+            <Button.Success onClick={this.add}>Registrer sykkel</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>
-              Avbryt registrering
-            </Button.DangerOl>
+            <Button.DangerOl onClick={this.cancel}>Avbryt registrering</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -74,10 +73,18 @@ export class SykkelReg extends Component {
   }
 
   add() {
-    sykkelService.addSykkel(this.sykkeltypeid, this.befinnelse, this.status, this.beskrivelse, this.utleienavn, this.props.match.params.id, () => {
-        console.log("jj");
+    sykkelService.addSykkel(
+      this.sykkeltypeid,
+      this.befinnelse,
+      this.status,
+      this.beskrivelse,
+      this.utleienavn,
+      this.props.match.params.id,
+      () => {
+        console.log('jj');
         history.push('/oversikt/sykkel');
-      });
+      }
+    );
   }
   cancel() {
     history.push('/registrering/');

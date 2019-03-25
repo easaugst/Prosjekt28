@@ -97,7 +97,10 @@ export class KundeEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+          </span>
+          <span className="tilbakeMeny">
+            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -119,5 +122,10 @@ export class KundeEndringMeny extends Component {
   }
   cancel() {
     history.goBack();
+  }
+  slett() {
+    kundeService.slettKunde(this.props.match.params.kundenr, () => {
+      history.push('/endring/kunde');
+    });
   }
 }

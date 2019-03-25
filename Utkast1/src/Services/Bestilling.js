@@ -24,6 +24,13 @@ class BestillingsService {
       success(results);
     })
   }
+  getUbestillingEndring(ubid, success) {
+    connection.query('SELECT ubid, regnr, utstyrsid, detaljer, bestillingsid FROM Ubestilling WHERE bestillingsid = ?', [ubid], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    })
+  }
   updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {
     connection.query(
       'update Bestilling set kundenr=?, utleietype=?, kontant=?, gruppe =? where bestillingsid=?',
@@ -35,6 +42,24 @@ class BestillingsService {
       }
     );
   }
+  updateUbestilling(regnr, utstyrsid, detaljer, bestillingsid, success) {
+    connection.query(
+      'update Ubestilling set regnr=?, utstyrsid=?, detaljer=?, bestillingsid = where ubid=?',
+      [regnr, utstyrsid, detaljer, bdestillingsid, ubid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success();
+      }
+    );
+  }
+  slettBestilling(bestillingsid, success){
+  connection.query('delete from Bestilling where bestillingsid = ?', [bestillingsid] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
 }
 
 export let bestillingsService = new BestillingsService();

@@ -13,6 +13,9 @@ export class Login extends Component {
   ansatt = '';
   email = '';
   pwd = '';
+
+  admin = false;
+
   render() {
     return (
       <div className="mainView-signin">

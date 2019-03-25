@@ -57,7 +57,7 @@ export class SykkelEndring extends Component {
 }
 
 export class SykkelEndringMeny extends Component {
-  sykkeltypeid = "";
+  sykkeltypeid = '';
   befinnelse = null;
   status = null;
   beskrivelse = null;
@@ -78,6 +78,9 @@ export class SykkelEndringMeny extends Component {
             <option value="1">Terrengsykkel</option>
             <option value="2">Landeveissykkel</option>
             <option value="3">Tandemsykkel</option>
+            <option value="12">Downhillsykkel</option>
+            <option value="13">Racersykkel</option>
+            <option value="14">Barnesykkel</option>
           </select>
 
           <Form.Label>Befinnelse:</Form.Label>
@@ -87,7 +90,11 @@ export class SykkelEndringMeny extends Component {
           <Form.Input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
 
           <Form.Label>Beskrivelse:</Form.Label>
-          <Form.Input type="text" value={this.beskrivelse} onChange={event => (this.beskrivelse = event.target.value)} />
+          <Form.Input
+            type="text"
+            value={this.beskrivelse}
+            onChange={event => (this.beskrivelse = event.target.value)}
+          />
 
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
@@ -96,14 +103,13 @@ export class SykkelEndringMeny extends Component {
 
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.save}>
-              Lagre endring
-            </Button.Success>
+            <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>
-              Avbryt
-            </Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+          </span>
+          <span className="tilbakeMeny">
+            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -119,8 +125,7 @@ export class SykkelEndringMeny extends Component {
     });
   }
   save() {
-
-     console.log(this.props.match.params.id);
+    console.log(this.props.match.params.id);
     sykkelService.updateSykkel(
       this.sykkeltypeid,
       this.befinnelse,
@@ -135,5 +140,10 @@ export class SykkelEndringMeny extends Component {
   }
   cancel() {
     history.goBack();
+  }
+  slett() {
+    sykkelService.slettSykkel(this.props.match.params.regnr, () => {
+      history.push('/endring/sykkel');
+    });
   }
 }

@@ -31,6 +31,7 @@ export class BestillingsEndring extends Component {
             <th>Til</th>
             <th>Gruppe</th>
             <th>Rediger</th>
+            <th>Rediger underbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -57,6 +58,9 @@ export class BestillingsEndring extends Component {
               <td>
                 <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
               </td>
+              <td>
+                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Rediger</List.Item>
+              </td>
             </Table.Rad>
           ))}
         </Table>
@@ -77,59 +81,64 @@ export class BestillingsEndringMeny extends Component {
   utleietype = null;
   gruppe = null;
   kontant = null;
-  kundenr = "";
+  kundenr = '';
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div>
         <div className="mainView">
-
           {this.bestilling.map(bestilling => (
             <Card title="Nåværende bestillingsinformasjon" key={bestilling.kundenr}>
               <Form.Label>Kundenr:</Form.Label>
-                <Form.Input
+              <Form.Input
                 type="text"
                 id="kundeDef"
                 value={bestilling.kundenr}
                 onChange={event => (this.kundenr = event.target.value)}
                 disabled
-                />
+              />
 
               <Form.Label>Utleietype:</Form.Label>
-                <select
+              <select
                 className="form-control"
                 id="utleieDef"
                 value={bestilling.utleietype}
                 onChange={event => (this.utleietype = event.target.value)}
                 disabled
-                >
-                  <option>Velg utleietype</option>
-                  <option value="1">Timesleie</option>
-                  <option value="2">Dagsleie</option>
-                  <option value="3">3-dagersleie</option>
-                  <option value="4">Ukesleie</option>
-                </select>
+              >
+                <option>Velg utleietype</option>
+                <option value="1">Timesleie</option>
+                <option value="2">Dagsleie</option>
+                <option value="3">3-dagersleie</option>
+                <option value="4">Ukesleie</option>
+              </select>
 
               <Form.Label>Endre betalingsmåte:</Form.Label>
-                <select
+              <select
                 className="form-control"
                 id="kontantDef"
                 value={bestilling.kontant}
                 onChange={event => (this.kontant = event.target.value)}
                 disabled
-                >
-                  <option>Type betaling</option>
-                  <option value="Kort">Kort</option>
-                  <option value="Kontant">Kontant</option>
-                </select>
+              >
+                <option>Type betaling</option>
+                <option value="Kort">Kort</option>
+                <option value="Kontant">Kontant</option>
+              </select>
 
               <Form.Label>Gruppe:</Form.Label>
-                <select className="form-control" id="gruppeDef" value={bestilling.gruppe} onChange={event => (this.gruppe = event.target.value)} disabled>
-                  <option>Gruppe</option>
-                  <option value="1">Ja</option>
-                  <option value="2">Nei</option>
-                </select>
+              <select
+                className="form-control"
+                id="gruppeDef"
+                value={bestilling.gruppe}
+                onChange={event => (this.gruppe = event.target.value)}
+                disabled
+              >
+                <option>Gruppe</option>
+                <option value="1">Ja</option>
+                <option value="2">Nei</option>
+              </select>
             </Card>
           ))}
         </div>
@@ -137,59 +146,63 @@ export class BestillingsEndringMeny extends Component {
           {this.bestilling.map(bestilling => (
             <Card title="Endring" key={bestilling.kundenr}>
               <Form.Label>Kundenr:</Form.Label>
-                <Form.Input
+              <Form.Input
                 type="text"
                 id="kundeInput"
                 value={this.kundenr}
                 placeholder={bestilling.kundenr}
                 onChange={event => (this.kundenr = event.target.value)}
-                />
+              />
 
               <Form.Label>Utleietype:</Form.Label>
-                <select
+              <select
                 className="form-control"
                 id="utleieInput"
                 value={this.utleietype}
                 onChange={event => (this.utleietype = event.target.value)}
-                >
-                  <option>Velg utleietype</option>
-                  <option value="1">Timesleie</option>
-                  <option value="2">Dagsleie</option>
-                  <option value="3">3-dagersleie</option>
-                  <option value="4">Ukesleie</option>
-                </select>
+              >
+                <option>Velg utleietype</option>
+                <option value="1">Timesleie</option>
+                <option value="2">Dagsleie</option>
+                <option value="3">3-dagersleie</option>
+                <option value="4">Ukesleie</option>
+              </select>
 
               <Form.Label>Endre betalingsmåte:</Form.Label>
-                <select
+              <select
                 className="form-control"
                 id="kontantInput"
                 value={this.kontant}
                 onChange={event => (this.kontant = event.target.value)}
-                >
-                  <option>Type betaling</option>
-                  <option value="Kort">Kort</option>
-                  <option value="Kontant">Kontant</option>
-                </select>
+              >
+                <option>Type betaling</option>
+                <option value="Kort">Kort</option>
+                <option value="Kontant">Kontant</option>
+              </select>
 
               <Form.Label>Gruppe:</Form.Label>
-                <select className="form-control" id="gruppeInput" value={this.gruppe} onChange={event => (this.gruppe = event.target.value)}>
-                  <option>Gruppe</option>
-                  <option value="1">Ja</option>
-                  <option value="2">Nei</option>
-                </select>
+              <select
+                className="form-control"
+                id="gruppeInput"
+                value={this.gruppe}
+                onChange={event => (this.gruppe = event.target.value)}
+              >
+                <option>Gruppe</option>
+                <option value="1">Ja</option>
+                <option value="2">Nei</option>
+              </select>
             </Card>
           ))}
           <br />
           <div className="knapper">
             <span className="tilbakeMeny2">
-              <Button.Success onClick={this.save}>
-                Lagre endring
-              </Button.Success>
+              <Button.Success onClick={this.save}>Lagre endring</Button.Success>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.cancel}>
-                Avbryt
-              </Button.DangerOl>
+              <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+            </span>
+            <span className="tilbakeMeny">
+              <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
             </span>
           </div>
         </div>
@@ -204,7 +217,7 @@ export class BestillingsEndringMeny extends Component {
     this.log;
   }
   save() {
-    if (document.getElementById('kundeInput').value === "") {
+    if (document.getElementById('kundeInput').value === '') {
       this.kundenr = document.getElementById('kundeDef').value;
       console.log(this.kundenr);
     }
@@ -220,16 +233,23 @@ export class BestillingsEndringMeny extends Component {
       this.gruppe = document.getElementById('gruppeDef').value;
       console.log(this.gruppe);
     }
-    bestillingsService.updateBestilling(this.kundenr, this.utleietype, this.kontant, this.gruppe, this.bestillingsid, () => {
-      history.push('/endring/bestillinger');
-    });
+    bestillingsService.updateBestilling(
+      this.kundenr,
+      this.utleietype,
+      this.kontant,
+      this.gruppe,
+      this.bestillingsid,
+      () => {
+        history.push('/endring/bestillinger');
+      }
+    );
   }
   cancel() {
     history.goBack();
   }
 
   log() {
-    if (document.getElementById('kundeInput').value === "") {
+    if (document.getElementById('kundeInput').value === '') {
       this.kundenr = document.getElementById('kundeDef').value;
       console.log(this.kundenr);
     }
@@ -246,4 +266,114 @@ export class BestillingsEndringMeny extends Component {
       console.log(this.gruppe);
     }
   }
+  slett() {
+    bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
+      history.push('/endring/bestilling');
+    });
+  }
+}
+
+export class UbestillingsEndringMeny extends Component {
+  dbArray = [];
+  ubid = "";
+  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+
+  render() {
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    return (
+      <div>
+        <div className="mainView">
+
+          <Table>
+            <Table.Rad>
+              <th>Bestillingsnummer</th>
+              <th>Delbestillingsnummer</th>
+              <th>Registreringsnummer</th>
+              <th>Utstyrs ID</th>
+              <th>Type</th>
+              <th>Rediger</th>
+            </Table.Rad>
+          {this.dbArray.map(delbestilling => (
+            <Table.Rad key={delbestilling.ubid}>
+              <td>{delbestilling.bestillingsid}</td>
+              <td>{delbestilling.ubid}</td>
+              <td>{delbestilling.regnr}</td>
+              <td>{delbestilling.utstyrsid}</td>
+              <td>{delbestilling.utnavn}</td>
+              <td>
+                <List.Item to={'/endring/bestilling/3/' + delbestilling.bestillingsid }>Rediger</List.Item>
+              </td>
+            </Table.Rad>
+          ))}
+        </Table>
+        <span className="tilbakeMeny">
+          <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+        </span>
+        </div>
+      </div>
+    );
+  }
+  mounted() {
+    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+      this.dbArray = delbestilling;
+    });
+  }
+  save() {
+
+  }
+  cancel() {
+    history.goBack();
+  }
+
+  log() {
+  }
+  slett() {
+      bestillingsService.slettBestilling(this.props.match.params.ubid, () => {
+        history.push('/endring/bestilling');
+      });
+    }
+
+}
+
+export class UbestillingsEndring extends Component {
+
+  dbArray = [];
+  ubid = "";
+  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+
+  render() {
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    return (
+      <div>
+        <div className="mainView">
+          <span className="tilbakeMeny">
+              <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+            </span>
+            <span className="tilbakeMeny">
+              <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+            </span>
+        </div>
+      </div>
+    );
+  }
+  mounted() {
+    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+      this.dbArray = delbestilling;
+    });
+  }
+  save() {
+
+  }
+  cancel() {
+    history.goBack();
+  }
+
+  log() {
+  }
+  slett() {
+      bestillingsService.slettBestilling(this.props.match.params.ubid, () => {
+        history.push('/endring/bestilling');
+      });
+    }
+
 }

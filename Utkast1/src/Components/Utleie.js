@@ -96,6 +96,9 @@ export class Utleie extends Component {
                 <option value="1">Terrengsykkel</option>
                 <option value="2">Landeveisykkel</option>
                 <option value="3">Tandemsykkel</option>
+                <option value="12">Downhillsykkel</option>
+                <option value="13">Racersykkel</option>
+                <option value="14">Barnesykkel</option>
               </select>
               <Button.Light onClick={this.addSykkel}>Legg til sykkel</Button.Light>
               <label>Utstyr</label>
@@ -103,6 +106,12 @@ export class Utleie extends Component {
                 <option>Ingen</option>
                 <option value="4">Hjelm</option>
                 <option value="5">Lappesett</option>
+                <option value="6">Sykkelveske</option>
+                <option value="7">Barnesete</option>
+                <option value="8">Barnehenger</option>
+                <option value="9">Lastehenger</option>
+                <option value="10">Beskytter</option>
+                <option value="11">Lås</option>
               </select>
               <Button.Light onClick={this.addUtstyr}>Legg til utstyr</Button.Light>
             </div>
@@ -136,10 +145,10 @@ export class Utleie extends Component {
               <th>Totalt</th>
             </Table.Rad>
             <Table.Rad>
-              <td id="antallSykler1"></td>
-              <td id="antallSykler2"></td>
-              <td id="antallSykler3"></td>
-              <td id="antallSykler"></td>
+              <td id="antallSykler1" />
+              <td id="antallSykler2" />
+              <td id="antallSykler3" />
+              <td id="antallSykler" />
             </Table.Rad>
           </Table>
           <Table>
@@ -149,9 +158,9 @@ export class Utleie extends Component {
               <th>Totalt</th>
             </Table.Rad>
             <Table.Rad>
-              <td id="antallUtstyr4"></td>
-              <td id="antallUtstyr5"></td>
-              <td id="antallUtstyr"></td>
+              <td id="antallUtstyr4" />
+              <td id="antallUtstyr5" />
+              <td id="antallUtstyr" />
             </Table.Rad>
           </Table>
         </div>
@@ -220,13 +229,19 @@ export class Utleie extends Component {
   addSykkel() {
     this.sykler.push(parseInt(this.sykkelType));
     console.log(this.sykler);
-    document.getElementById('antallSykler' + this.sykkelType).innerHTML = (this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) - this.sykler.sort().indexOf(parseInt(this.sykkelType)) + 1);
+    document.getElementById('antallSykler' + this.sykkelType).innerHTML =
+      this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) -
+      this.sykler.sort().indexOf(parseInt(this.sykkelType)) +
+      1;
     document.getElementById('antallSykler').innerHTML = this.sykler.length;
   }
   addUtstyr() {
     this.utstyr.push(parseInt(this.utstyrType));
     console.log(this.utstyr);
-    document.getElementById('antallUtstyr' + this.utstyrType).innerHTML = (this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) - this.utstyr.sort().indexOf(parseInt(this.utstyrType)) + 1);
+    document.getElementById('antallUtstyr' + this.utstyrType).innerHTML =
+      this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) -
+      this.utstyr.sort().indexOf(parseInt(this.utstyrType)) +
+      1;
     document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
   }
   order() {
