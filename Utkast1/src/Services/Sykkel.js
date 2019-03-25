@@ -12,6 +12,17 @@ class SykkelService {
       }
     );
   }
+  getSykkelEndring(sykkelid, success) {
+    connection.query(
+      'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykketypeid = utid AND regnr = ?',
+      [sykkelid],
+      (error, results) => {
+        if (error= return console.error(error));
+
+        success(results);
+      }
+    )
+  }
 
   addSykkel(sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
     connection.query(

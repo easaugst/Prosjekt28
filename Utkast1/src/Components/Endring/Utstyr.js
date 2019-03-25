@@ -44,7 +44,7 @@ export class UtstyrEndring extends Component {
                 />
               </td>
               <td>
-                <List.Item to={'/endring/utstyr/' + utstyr.utstyrsid + '/'}>Rediger</List.Item>
+                <List.Item to={'/endring/utstyr/' + utstyr.utstyrsid}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -103,7 +103,7 @@ export class UtstyrEndringMeny extends Component {
     );
   }
   mounted() {
-    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+    utstyrService.getUtstyrEndring(this.utstyrsid, utstyr => {
       this.utstyr = utstyr;
     });
   }
@@ -138,7 +138,7 @@ export class UtstyrEndringMeny extends Component {
       if (document.getElementById('ustatusInput').value === '') {
         this.ustatus = utstyr.ustatus
       }
-    })
+    });
     console.log(this.utstyrstypeid, this.ustatus);
   }
 }
