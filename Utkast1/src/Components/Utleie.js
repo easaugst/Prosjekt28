@@ -21,7 +21,7 @@ export class Utleie extends Component {
   kundenr = '';
   kundeDrop = [];
   state = { values: [] };
-  sState = { values: [] };
+  utleieTyper = null;
 
   uType = '';
   kontant = '';
@@ -35,13 +35,14 @@ export class Utleie extends Component {
   utstyrType = '';
   utstyrTypeText = '';
 
-  tSykler = [];
-  sTyper = [];
   sykler = [];
+  tSykler = [];
+  vSykler = [];
+  sTyper = [];
   utstyr = [];
-  regnr = [];
-  uId = [];
-  uBestilling = [this.regnr, this.uId];
+  tUtstyr = [];
+  vUtstyr = [];
+  uTyper = [];
 
   number = 1;
 
@@ -168,6 +169,10 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.kundeDropDown();
+    utleieService.getTyper(typer => {
+      this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
+      console.log(this.utleieTyper);
+    });
   }
   log() {
     // console.log(
@@ -179,23 +184,34 @@ export class Utleie extends Component {
     // );
     // this.kundenr = this.state.values[0].key;
     // console.log('this.kundenr: ' + this.kundenr);
-    //Forsøk på å automatisk registrere tilgjengelige sykler
-    //   this.sykler.sort();
-    //   for (var i = 1; i <= this.sykler.length; i++) {
-    //     if (this.sykler.includes(i) == true) {
-    //       this.sTyper.push(i);
-    //     }
-    //     console.log('Kjørt ' + i + ' gang(er)');
-    //   }
-    //   console.log(this.sTyper);
-    //   for (var i = 0; i <= this.sTyper.length; i++) {
-    //     utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(i) - this.sykler.indexOf(i) + 1), tSykler => {
-    //       this.tSykler.push(tSykler);
-    //     });
-    //   }
-    //   console.log(this.tSykler);
-    //   console.log(this.tSykler[10 ].regnr);
-    console.log(this.sykkelType);
+
+      //Forsøk på å automatisk registrere tilgjengelig utstyr
+      this.utstyr.sort();
+      this.vUtstyr = [];
+      for (var i = 0; i <= this.utleieTyper; i++) {
+        if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
+          this.uTyper.push(this.utstyr[i]);
+        }
+      }
+      console.log(this.uTyper);
+      for (var i = 0; i < this.uTyper.length; i++) {
+        console.log(this.utstyr);
+        console.log(
+          'antall: ' + (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1),
+          'type: ' + this.uTyper[i]
+        );
+
+        utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
+          this.tUtstyr.push(tUtstyr);
+          console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
+          console.log(this.tUtstyr.length);
+          this.tUtstyr[0].map(utstyr => {
+            this.vUtstyr.push(utstyr.regnr);
+          });
+          console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
+          this.tUtstyr = [];
+        });
+      }
   }
 
   kundeDropDown() {
@@ -230,28 +246,66 @@ export class Utleie extends Component {
   }
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
-    for (var i = 1; i <= this.sykler.length; i++) {
-      c = 1;
-      switch (this.sykler.includes(c)) {
-        case true:
-          utleieService.getSykler(c, this.sykler.indexOf(c) - this.sykler.lastIndexOf(c) + 1, tSykler => {
-            this.tSykler.push = tSykler;
-          });
-          c++;
-          break;
-        case false:
-          c++;
-      }
-    }
-    //Overbestilling opprettes
+  //Overbestilling opprettes
     this.sykler.sort();
     this.utstyr.sort();
     utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
       console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
     });
 
-    //Delbestillinger for sykler opprettes
+  //Delbestillinger for sykler opprettes
+    this.vSykler = [];
+    for (var i = 0; i <= this.sykler.length; i++) {
+      if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
+        this.sTyper.push(i);
+      }
+    }
+    console.log(this.sTyper);
+    for (var i = 0; i < this.sTyper.length; i++) {
+      console.log(this.sykler);
+      console.log(
+        'antall: ' + (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1),
+        'type: ' + this.sTyper[i]
+      );
 
+      utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
+        this.tSykler.push(tSykler);
+        console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
+        console.log(this.tSykler.length);
+        this.tSykler[0].map(sykkel => {
+          this.vSykler.push(sykkel.regnr);
+        });
+        console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
+        this.tSykler = [];
+      })
+    }
+
+  //Delbestillinger for utstyr opprettes
+  this.vUtstyr = [];
+  for (var i = 0; i <= this.utstyr.length; i++) {
+    if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
+      this.uTyper.push(i);
+    }
+  }
+  console.log(this.uTyper);
+  for (var i = 0; i < this.uTyper.length; i++) {
+    console.log(this.utstyr);
+    console.log(
+      'antall: ' + (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1),
+      'type: ' + this.uTyper[i]
+    );
+
+    utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
+      this.tUtstyr.push(tUtstyr);
+      console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
+      console.log(this.tUtstyr.length);
+      this.tUtstyr[0].map(utstyr => {
+        this.vUtstyr.push(utstyr.regnr);
+      });
+      console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
+      this.tUtstyr = [];
+    });
+  }
     // utleieService.getBestilling(bestilling => {
     //   this.bId = bestilling;
     // });

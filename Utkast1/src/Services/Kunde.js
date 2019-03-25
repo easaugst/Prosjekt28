@@ -9,6 +9,18 @@ class KundeService {
       success(results);
     });
   }
+  getKundeEndring(kundenr, success) {
+    connection.query(
+      'SELECT * FROM Kunde WHERE kundenr = ?',
+      [kundenr],
+      (error, results) => {
+        if (error) return console.error(error);
+        
+        success(results);
+      }
+
+    )
+  }
 
   updateKunde(kundenr, fnavn, enavn, epost, tlf, success) {
     connection.query(

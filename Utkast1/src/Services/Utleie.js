@@ -21,6 +21,27 @@ class UtleieService {
       }
     );
   }
+  getUtstyr(utstyrstypeid, antall, success) {
+    connection.query(
+      'SELECT utstyrsid FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid AND U.ustatus = "Lager" AND U.utstyrstypeid = ? LIMIT ?',
+      [utstyrstypeid, antall],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    )
+  }
+  getTyper(success) {
+    connection.query(
+      'SELECT COUNT(utid) FROM Utleietype',
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(JSON.stringify(results));
+      }
+    )
+  }
   addBestilling(kundenr, utleietype, kontant, ftid, gruppe, success) {
     connection.query(
       'insert into Bestilling (kundenr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?)',
