@@ -59,7 +59,7 @@ export class BestillingsEndring extends Component {
                 <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
               </td>
               <td>
-                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid + '2'}>Rediger</List.Item>
+                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -274,8 +274,9 @@ export class BestillingsEndringMeny extends Component {
 }
 
 export class UbestillingsEndringMeny extends Component {
-  ubestilling = [];
+  dbArray = [];
   ubid = "";
+  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
@@ -283,15 +284,81 @@ export class UbestillingsEndringMeny extends Component {
       <div>
         <div className="mainView">
 
-        Hello
-
+          <Table>
+            <Table.Rad>
+              <th>Bestillingsnummer</th>
+              <th>Delbestillingsnummer</th>
+              <th>Registreringsnummer</th>
+              <th>Utstyrs ID</th>
+              <th>Type</th>
+              <th>Rediger</th>
+            </Table.Rad>
+          {this.dbArray.map(delbestilling => (
+            <Table.Rad key={delbestilling.ubid}>
+              <td>{delbestilling.bestillingsid}</td>
+              <td>{delbestilling.ubid}</td>
+              <td>{delbestilling.regnr}</td>
+              <td>{delbestilling.utstyrsid}</td>
+              <td>{delbestilling.utnavn}</td>
+              <td>
+                <List.Item to={'/endring/bestilling/3/' + delbestilling.bestillingsid }>Rediger</List.Item>
+              </td>
+            </Table.Rad>
+          ))}
+        </Table>
+        <span className="tilbakeMeny">
+          <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+        </span>
         </div>
       </div>
     );
   }
   mounted() {
-    bestillingsService.getUbestillingEndring(this.ubid, ubestilling => {
-      this.ubid = ubestilling;
+    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+      this.dbArray = delbestilling;
+    });
+  }
+  save() {
+
+  }
+  cancel() {
+    history.goBack();
+  }
+
+  log() {
+  }
+  slett() {
+      bestillingsService.slettBestilling(this.props.match.params.ubid, () => {
+        history.push('/endring/bestilling');
+      });
+    }
+
+}
+
+export class UbestillingsEndring extends Component {
+
+  dbArray = [];
+  ubid = "";
+  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+
+  render() {
+    //  if (!this.utstyrstypeid && !this.ustatus) return null;
+    return (
+      <div>
+        <div className="mainView">
+          <span className="tilbakeMeny">
+              <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+            </span>
+            <span className="tilbakeMeny">
+              <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+            </span>
+        </div>
+      </div>
+    );
+  }
+  mounted() {
+    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+      this.dbArray = delbestilling;
     });
   }
   save() {
