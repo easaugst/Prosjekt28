@@ -16,6 +16,7 @@ const history = createHashHistory();
 
 export class UtstyrEndring extends Component {
   uArray = [];
+  utput = [];
 
   render() {
     return (
@@ -27,7 +28,7 @@ export class UtstyrEndring extends Component {
             <th>Status</th>
             <th>Rediger</th>
           </Table.Rad>
-          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+          {this.uArray.map((utstyr, index /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
             <Table.Rad key={utstyr.utstyrsid}>
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.utnavn}</td>
@@ -54,6 +55,7 @@ export class UtstyrEndring extends Component {
     });
   }
 }
+
 
 export class UtstyrEndringMeny extends Component {
   utstyrstypeid = null;
@@ -85,6 +87,11 @@ export class UtstyrEndringMeny extends Component {
               Avbryt
             </Button.DangerOl>
           </span>
+          <span className="tilbakeMeny">
+            <Button.DangerOl onClick={this.slett}>
+              Slett
+            </Button.DangerOl>
+          </span>
         </div>
       </div>
     );
@@ -103,4 +110,19 @@ export class UtstyrEndringMeny extends Component {
   cancel() {
     history.goBack();
   }
+  slett() {
+
+      // var test = new Login();
+      //
+      // console.log(test.admin)
+      //
+      // if(admin == true) {
+
+      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
+        history.push('/endring/utstyr');
+      });
+    }
+    // } else {
+    //   alert("Du har ikke administratorrettigheter");
+    // }
 }

@@ -191,6 +191,11 @@ export class BestillingsEndringMeny extends Component {
                 Avbryt
               </Button.DangerOl>
             </span>
+            <span className="tilbakeMeny">
+              <Button.DangerOl onClick={this.slett}>
+                Slett
+              </Button.DangerOl>
+            </span>
           </div>
         </div>
       </div>
@@ -246,4 +251,9 @@ export class BestillingsEndringMeny extends Component {
       console.log(this.gruppe);
     }
   }
+  slett() {
+      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
+        history.push('/endring/sykkel');
+      });
+    }
 }

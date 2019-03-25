@@ -52,6 +52,13 @@ class AnsattService {
       }
     )
   }
+  slettAnsatt(ansattnr, success){
+  connection.query('delete from FastAnsatt where ansattnr = ?', [ansattnr] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
 }
 
 export let ansattService = new AnsattService();

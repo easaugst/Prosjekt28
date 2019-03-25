@@ -36,6 +36,14 @@ class SykkelService {
       }
     )
   }
+
+  slettSykkel(regnr, success){
+  connection.query('delete from Sykkel where regnr = ?', [regnr] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
 }
 
 export let sykkelService = new SykkelService();

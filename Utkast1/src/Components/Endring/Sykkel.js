@@ -105,6 +105,11 @@ export class SykkelEndringMeny extends Component {
               Avbryt
             </Button.DangerOl>
           </span>
+          <span className="tilbakeMeny">
+            <Button.DangerOl onClick={this.slett}>
+              Slett
+            </Button.DangerOl>
+          </span>
         </div>
       </div>
     );
@@ -136,4 +141,9 @@ export class SykkelEndringMeny extends Component {
   cancel() {
     history.goBack();
   }
+  slett() {
+      sykkelService.slettSykkel(this.props.match.params.regnr, () => {
+        history.push('/endring/sykkel');
+      });
+    }
 }

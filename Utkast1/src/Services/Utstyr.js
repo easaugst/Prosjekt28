@@ -61,6 +61,16 @@ class UtstyrService {
       }
     )
   }
+
+  slettUtstyr(utstyrsid, success){
+  connection.query('delete from Utstyr where utstyrsid = ?', [utstyrsid] , (error, results) => {
+    if(error) return console.error(error);
+
+    success();
+  });
+}
+
+
 }
 
 export let utstyrService = new UtstyrService();
