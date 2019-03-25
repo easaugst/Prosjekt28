@@ -77,7 +77,12 @@ export class UtstyrOversikt extends Component {
           <option value ="1">Velg filter her</option>
           <option value="1">Alle</option>
           <option value="2">Hjelmer</option>
-          <option value="3">Lappesett</option>
+          <option value="3">Sykkelveske</option>
+          <option value="4">Barnesete</option>
+          <option value="5">Barnehenger</option>
+          <option value="6">Lastehenger</option>
+          <option value="7">Beskytter</option>
+          <option value="8">Lås</option>
         </select>
         <Button.Success onClick={this.vis}>
           Filtrer
