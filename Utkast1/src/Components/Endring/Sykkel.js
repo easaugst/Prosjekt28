@@ -106,12 +106,10 @@ export class SykkelEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>
-              Slett
-            </Button.DangerOl>
+            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -144,8 +142,8 @@ export class SykkelEndringMeny extends Component {
     history.goBack();
   }
   slett() {
-      sykkelService.slettSykkel(this.props.match.params.regnr, () => {
-        history.push('/endring/sykkel');
-      });
-    }
+    sykkelService.slettSykkel(this.props.match.params.regnr, () => {
+      history.push('/endring/sykkel');
+    });
+  }
 }
