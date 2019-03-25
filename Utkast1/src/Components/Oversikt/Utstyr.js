@@ -16,8 +16,7 @@ const history = createHashHistory();
 
 export class UtstyrOversikt extends Component {
   uArray = [];
-  u2Array = [];
-  u3Array = [];
+  uFArray = [];
   number = 0;
   a = "";
   b = 2;
@@ -41,93 +40,67 @@ export class UtstyrOversikt extends Component {
           ))}
         </Table>
         </div>
-        <div id="utstyr2">
-        <Table>
-          <Table.Rad>
-            <th>Utstyrsnr</th>
-            <th>Utstyrstype</th>
-            <th>Status</th>
-          </Table.Rad>
-          {this.u2Array.map((utstyr2 /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-            <Table.Rad key={utstyr2.utstyrsid}>
-              <td>{utstyr2.utstyrsid}</td>
-              <td>{utstyr2.utnavn}</td>
-              <td>{utstyr2.ustatus}</td>
-            </Table.Rad>
-          ))}
-        </Table>
-        </div>
-        <div id="utstyr3">
-          <Table>
-            <Table.Rad>
-              <th>Utstyrsnr</th>
-              <th>Utstyrstype</th>
-              <th>Status</th>
-            </Table.Rad>
-            {this.u3Array.map((utstyr3 /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-              <Table.Rad key={utstyr3.utstyrsid}>
-                <td>{utstyr3.utstyrsid}</td>
-                <td>{utstyr3.utnavn}</td>
-                <td>{utstyr3.ustatus}</td>
-              </Table.Rad>
-            ))}
-          </Table>
-          </div>
+
         <select className="form-control" form="formen" onChange={event => (this.number = event.target.value)}>
-          <option value ="1">Velg filter her</option>
-          <option value="1">Alle</option>
-          <option value="2">Hjelmer</option>
-          <option value="3">Sykkelveske</option>
-          <option value="4">Barnesete</option>
-          <option value="5">Barnehenger</option>
-          <option value="6">Lastehenger</option>
-          <option value="7">Beskytter</option>
-          <option value="8">Lås</option>
+          <option value ="0">Velg filter her</option>
+          <option value="0">Alle</option>
+          <option value="4">Hjelmer</option>
+          <option value="5">Lappesett</option>
+          <option value="6">Sykkelveske</option>
+          <option value="7">Barnesete</option>
+          <option value="8">Barnehenger</option>
+          <option value="9">Lastehenger</option>
+          <option value="10">Beskytter</option>
+          <option value="11">Lås</option>
         </select>
-        <Button.Success onClick={this.vis}>
+        <Button.Success onClick={this.filter}>
           Filtrer
         </Button.Success>
       </div>
     );
   }
   mounted() {
-    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+    utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
     }
   );
-
-  utstyrService.getUtstyr2(this.props.match.params.utstyrsid, utstyr2 => {
-    this.u2Array = utstyr2;
-  });
-
-  utstyrService.getUtstyr3(this.props.match.params.utstyrsid, utstyr3 => {
-    this.u3Array = utstyr3;
-  });
-
-  this.start();
+  // this.start();
   }
 
-  start() {
-    while(this.b <=3) {
-      this.a = ('utstyr' + this.b);
-      document.getElementById(this.a).style.display = "none";
-      this.b ++;
+  filter() {
+    if(this.number > 3){
+    utstyrService.getUtstyrFilt(this.number, utstyrF => {
+      this.uArray = utstyrF;
+    });
+  }
+  else {
+    utstyrService.getUtstyr(utstyr => {
+      this.uArray = utstyr;
     }
+  );
+  }
+    this.forceUpdate();
   }
 
-  vis() {
-    for(var i=1;i<=3;i++) {
-      if(i == this.number ){
-          this.a = ('utstyr' + this.number);
-          document.getElementById(this.a).style.display = "block";
-      }
-      else {
-        this.a = ('utstyr' + i);
-        document.getElementById(this.a).style.display = "none";
-      }
-
-
-    }
-  }
+  // start() {
+  //   while(this.b <=3) {
+  //     this.a = ('utstyr' + this.b);
+  //     document.getElementById(this.a).style.display = "none";
+  //     this.b ++;
+  //   }
+  // }
+  //
+  // vis() {
+  //   for(var i=1;i<=3;i++) {
+  //     if(i == this.number ){
+  //         this.a = ('utstyr' + this.number);
+  //         document.getElementById(this.a).style.display = "block";
+  //     }
+  //     else {
+  //       this.a = ('utstyr' + i);
+  //       document.getElementById(this.a).style.display = "none";
+  //     }
+  // }
+  // }
 
 }
