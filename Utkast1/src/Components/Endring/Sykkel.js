@@ -57,22 +57,24 @@ export class SykkelEndring extends Component {
 }
 
 export class SykkelEndringMeny extends Component {
-  sykkeltypeid = '';
-  befinnelse = null;
-  status = null;
-  beskrivelse = null;
-  utleienavn = null;
+  regnr = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  sykkel = [];
+  sykkeltypeid = null;
+  befinnelse = '';
+  status = '';
+  beskrivelse = '';
+  utleienavn = '';
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre sykkelinformasjon">
+      {this.sykkel.map(sykkel => (
+        <Card title="Endre sykkelinformasjon" key={sykkel.regnr}>
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"
-            value={this.sykkeltypeid}
-            onChange={event => (this.sykkeltypeid = event.target.value)}
+            value={sykkel.sykkeltypeid}
+            onChange={event => (sykkel.sykkeltypeid = event.target.value)}
           >
             <option>Sykkeltype</option>
             <option value="1">Terrengsykkel</option>
@@ -84,21 +86,24 @@ export class SykkelEndringMeny extends Component {
           </select>
 
           <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" value={this.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
+          <Form.Input type="text" id="befinnelseInput" value={this.befinnelse} placeholder={sykkel.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
 
           <Form.Label>Status:</Form.Label>
-          <Form.Input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
+          <Form.Input type="text" id="statusInput" value={this.status} placeholder={sykkel.status} onChange={event => (this.status = event.target.value)} />
 
           <Form.Label>Beskrivelse:</Form.Label>
           <Form.Input
             type="text"
+            id="beskrivelseInput"
             value={this.beskrivelse}
+            placeholder={sykkel.beskrivelse}
             onChange={event => (this.beskrivelse = event.target.value)}
           />
 
           <Form.Label>Tilhører utleiested:</Form.Label>
-          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+          <Form.Input type="text" id="utleienavnInput" value={this.utleienavn} placeholder={sykkel.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
         </Card>
+      ))};
         <br />
 
         <div className="knapper">
@@ -116,15 +121,12 @@ export class SykkelEndringMeny extends Component {
     );
   }
   mounted() {
-    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
-      this.sykkeltypeid = sykkel.sykkeltypeid;
-      this.befinnelse = sykkel.befinnelse;
-      this.status = sykkel.status;
-      this.beskrivelse = sykkel.beskrivelse;
-      this.utleienavn = sykkel.utleienavn;
+    sykkelService.getSykkelEndring(this.props.match.params.regnr, sykkel => {
+      this.sykkel = sykkel;
     });
   }
   save() {
+    this.log();
     console.log(this.props.match.params.id);
     sykkelService.updateSykkel(
       this.sykkeltypeid,
@@ -145,5 +147,25 @@ export class SykkelEndringMeny extends Component {
     sykkelService.slettSykkel(this.props.match.params.regnr, () => {
       history.push('/endring/sykkel');
     });
+  }
+  log() {
+    this.sykkel.map(sykkel => {
+      if (this.sykkeltypeid === null) {
+        this.sykkeltypeid = sykkel.sykkeltypeid
+      }
+      if (document.getElementById('befinnelseInput').value === '') {
+        this.befinnelse = sykkel.befinnelse
+      }
+      if (document.getElementById('statusInput').value === '') {
+        this.status = sykkel.status
+      }
+      if (document.getElementById('beskrivelseInput').value === '') {
+        this.beskrivelse = sykkel.beskrivelse
+      }
+      if (document.getElementById('utleienavnInput').value === '') {
+        this.utleienavn = sykkel.utleienavn
+      }
+    })
+    console.log(this.sykkeltypeid, this.befinnelse, this.status, this.beskrivelse, this.utleienavn);
   }
 }
