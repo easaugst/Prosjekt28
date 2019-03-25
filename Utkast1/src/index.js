@@ -77,7 +77,7 @@ ReactDOM.render(
       <Route exact path="/endring/ansatt" component={AnsattEndring} />
 
       <Route exact path="/endring/bestilling/:bestillingsid" component={BestillingsEndringMeny} />
-      <Route exact path="/endring/bestilling/:ubid" component={UbestillingsEndringMeny} />
+      <Route exact path="/endring/bestilling/:bestillingsid2" component={UbestillingsEndringMeny} />
       <Route exact path="/endring/utstyr/:utstyrsid" component={UtstyrEndringMeny} />
       <Route exact path="/endring/sykkel/:regnr" component={SykkelEndringMeny} />
       <Route exact path="/endring/kunde/:kundenr" component={KundeEndringMeny} />

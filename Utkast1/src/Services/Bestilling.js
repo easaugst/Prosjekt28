@@ -24,6 +24,13 @@ class BestillingsService {
       success(results);
     })
   }
+  getUbestillingEndring(ubid, success) {
+    connection.query('SELECT ubid, regnr, utstyrsid, detaljer, bestillingsid FROM Ubestilling WHERE bestillingsid = ?', [ubid], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    })
+  }
   updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {
     connection.query(
       'update Bestilling set kundenr=?, utleietype=?, kontant=?, gruppe =? where bestillingsid=?',

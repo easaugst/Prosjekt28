@@ -59,7 +59,7 @@ export class BestillingsEndring extends Component {
                 <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
               </td>
               <td>
-                <List.Item to={'/endring/bestilling/' + bestilling.ubid}>Rediger</List.Item>
+                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid + '2'}>Rediger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -274,7 +274,8 @@ export class BestillingsEndringMeny extends Component {
 }
 
 export class UbestillingsEndringMeny extends Component {
-
+  ubestilling = [];
+  ubid = "";
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
@@ -282,15 +283,15 @@ export class UbestillingsEndringMeny extends Component {
       <div>
         <div className="mainView">
 
-          Halla
+        Hello
 
         </div>
       </div>
     );
   }
   mounted() {
-    bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
-      this.bestilling = bestilling;
+    bestillingsService.getUbestillingEndring(this.ubid, ubestilling => {
+      this.ubid = ubestilling;
     });
   }
   save() {
