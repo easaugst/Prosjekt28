@@ -60,17 +60,19 @@ export class UtstyrEndring extends Component {
 }
 
 export class UtstyrEndringMeny extends Component {
+  utstyrsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  utstyr = [];
   utstyrstypeid = null;
-  ustatus = null;
+  ustatus = '';
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-        <Card title="Endre utstyrsinformasjon">
+      {this.utstyr.map(utstyr => (
+        <Card title="Endre utstyrsinformasjon" key={utstyr.utstyrsid}>
           <Form.Label>Utstyrstype:</Form.Label>
-          <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
-            <option value="4">Velg type her</option>
+          <select className="form-control" form="formen" id="utstyrstypeidInput" value={utstyr.utstyrstypeid} onChange={event => (utstyr.utstyrstypeid = event.target.value)}>
+            <option value="3">Velg type her</option>
             <option value="4">Hjelm</option>
             <option value="5">Lappesett</option>
             <option value="6">Sykkelveske</option>
@@ -80,9 +82,11 @@ export class UtstyrEndringMeny extends Component {
             <option value="10">Beskytter</option>
             <option value="11">Lås</option>
           </select>
+
           <Form.Label>Utstyrstatus:</Form.Label>
-          <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
+          <Form.Input id="ustatusInput" type="text" value={this.ustatus} placeholder={utstyr.ustatus} onChange={event => (this.ustatus = event.target.value)} />
         </Card>
+      ))}
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
@@ -100,11 +104,11 @@ export class UtstyrEndringMeny extends Component {
   }
   mounted() {
     utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
-      this.utstyrstypeid = utstyr.utstyrstypeid;
-      this.ustatus = utstyr.ustatus;
+      this.utstyr = utstyr;
     });
   }
   save() {
+    this.log();
     utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
       history.push('/endring/utstyr');
     });
@@ -126,4 +130,15 @@ export class UtstyrEndringMeny extends Component {
   // } else {
   //   alert("Du har ikke administratorrettigheter");
   // }
+  log() {
+    this.utstyr.map(utstyr => {
+      if (document.getElementById('utstyrstypeidInput').value === '') {
+        this.utstyrstypeid = utstyr.utstyrstypeid;
+      }
+      if (document.getElementById('ustatusInput').value === '') {
+        this.ustatus = utstyr.ustatus
+      }
+    })
+    console.log(this.utstyrstypeid, this.ustatus);
+  }
 }
