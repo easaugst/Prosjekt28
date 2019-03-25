@@ -79,9 +79,7 @@ export class SykkelReg extends Component {
       this.status,
       this.beskrivelse,
       this.utleienavn,
-      this.props.match.params.id,
       () => {
-        console.log('jj');
         history.push('/oversikt/sykkel');
       }
     );
