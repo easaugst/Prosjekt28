@@ -30,7 +30,7 @@ export class KundeOversikt extends Component {
             <th>Telefonnummer</th>
             <th>Fødselsdato</th>
 
-            <th>Tid registrert</th>
+            <th>Dato registrert</th>
           </Table.Rad>
           {this.kArray.map(kunde => (
             <Table.Rad key={kunde.kundenr}>

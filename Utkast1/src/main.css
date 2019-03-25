@@ -73,11 +73,11 @@
 #utleie1 {
   display: block;
 }
-#utleie2 {
+#utleie2, #utleie3 {
   display: none;
 }
-#utleie3 {
-  display: none;
+#dBestOversikt {
+  display: block;
 }
 
 /* CSS for registre og avbrytknapp*/

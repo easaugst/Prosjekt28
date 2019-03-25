@@ -71,6 +71,12 @@ export class UtstyrEndringMeny extends Component {
             <option value="4">Velg type her</option>
             <option value="4">Hjelm</option>
             <option value="5">Lappesett</option>
+            <option value="6">Sykkelveske</option>
+            <option value="7">Barnesete</option>
+            <option value="8">Barnehenger</option>
+            <option value="9">Lastehenger</option>
+            <option value="10">Beskytter</option>
+            <option value="11">Lås</option>
           </select>
           <Form.Label>Utstyrstatus:</Form.Label>
           <Form.Input type="text" value={this.ustatus} onChange={event => (this.ustatus = event.target.value)} />
@@ -78,14 +84,10 @@ export class UtstyrEndringMeny extends Component {
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.save}>
-              Lagre endring
-            </Button.Success>
+            <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>
-              Avbryt
-            </Button.DangerOl>
+            <Button.DangerOl onClick={this.cancel}>Avbryt</Button.DangerOl>
           </span>
           <span className="tilbakeMeny">
             <Button.DangerOl onClick={this.slett}>

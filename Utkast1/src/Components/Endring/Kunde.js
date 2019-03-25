@@ -29,7 +29,7 @@ export class KundeEndring extends Component {
             <th>E-post</th>
             <th>Telefonnummer</th>
             <th>Fødselsdato</th>
-            <th>Tid registrert</th>
+            <th>Dato registrert</th>
             <th> Rediger </th>
           </Table.Rad>
           {this.kArray.map(kunde => (
@@ -45,9 +45,11 @@ export class KundeEndring extends Component {
                   .slice(0, -15)}
               </td>
               <td>
-                {JSON.stringify(kunde.rtid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
+                <center>
+                  {JSON.stringify(kunde.rtid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -15)}
+                </center>
               </td>
               <td>
                 <List.Item to={'/endring/kunde/' + kunde.kundenr + '/'}>Rediger</List.Item>
@@ -92,14 +94,10 @@ export class KundeEndringMeny extends Component {
 
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.save}>
-              Lagre endring
-            </Button.Success>
+            <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>
-              Avbryt
-            </Button.DangerOl>
+            <Button.DangerOl onClick={this.cancel}>Avbryt</Button.DangerOl>
           </span>
           <span className="tilbakeMeny">
             <Button.DangerOl onClick={this.slett}>
@@ -119,9 +117,10 @@ export class KundeEndringMeny extends Component {
     });
   }
   save() {
-    kundeService.updateKunde(this.fnavn, this.enavn, this.epost, this.tlf, this.props.match.params.id, () => {
+    kundeService.updateKunde(this.props.match.params.kundenr, this.fnavn, this.enavn, this.epost, this.tlf, () => {
       history.push('/endring/kunde');
     });
+    console.log(this.fnavn, this.enavn, this.epost, this.tlf);
   }
   cancel() {
     history.goBack();
