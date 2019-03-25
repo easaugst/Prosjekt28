@@ -85,7 +85,7 @@ export class BestillingOversiktMeny extends Component {
             <th>Bestillingsnummer</th>
             <th>Delbestillingsnummer</th>
             <th>Registreringsnummer</th>
-            <th>Utstyr</th>
+            <th>Utstyrs ID</th>
             <th>Type</th>
           </Table.Rad>
           {this.dbArray.map(delbestilling => (
