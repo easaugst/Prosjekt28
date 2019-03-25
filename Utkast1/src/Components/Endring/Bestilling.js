@@ -214,7 +214,6 @@ export class BestillingsEndringMeny extends Component {
       this.bestilling = bestilling;
     });
     console.log(this.kundenr);
-    this.log();
   }
   save() {
     if (document.getElementById('kundeInput').value === '') {
@@ -432,8 +431,8 @@ export class UbestillingsEndring extends Component {
     })
   }
   slett() {
-      bestillingsService.slettBestilling(this.props.match.params.ubid, () => {
-        history.push('/endring/bestilling');
+      bestillingsService.slettUbestilling(this.ubid, () => {
+        history.goBack();
       });
     }
 

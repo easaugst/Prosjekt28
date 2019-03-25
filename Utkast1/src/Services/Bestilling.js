@@ -60,6 +60,13 @@ class BestillingsService {
     success();
   });
 }
+slettUbestilling(ubid, success){
+connection.query('delete from Ubestilling where ubid = ?', [ubid] , (error, results) => {
+  if(error) return console.error(error);
+
+  success();
+});
+}
 }
 
 export let bestillingsService = new BestillingsService();
