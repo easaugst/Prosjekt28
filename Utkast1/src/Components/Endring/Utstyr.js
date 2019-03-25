@@ -53,7 +53,7 @@ export class UtstyrEndring extends Component {
     );
   }
   mounted() {
-    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+    utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
     });
   }

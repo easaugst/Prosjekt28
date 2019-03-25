@@ -16,6 +16,7 @@ const history = createHashHistory();
 
 export class SykkelOversikt extends Component {
   sArray = [];
+  number = 0;
 
   render() {
     return (
@@ -42,12 +43,39 @@ export class SykkelOversikt extends Component {
             </Table.Rad>
           ))}
         </Table>
+        <select className="form-control" form="formen" onChange={event => (this.number = event.target.value)}>
+          <option value ="0">Velg filter her</option>
+          <option value="0">Alle</option>
+          <option value="1">Terrengsykkel</option>
+          <option value="2">Landeveissykkel</option>
+          <option value="3">Tandemsykkel</option>
+          <option value="12">Downhillsykkel</option>
+          <option value="13">Racersykkel</option>
+          <option value="14">Barnesykkel</option>
+        </select>
+        <Button.Success onClick={this.filter}>
+          Filtrer
+        </Button.Success>
       </div>
     );
   }
   mounted() {
-    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+    sykkelService.getSykkel(sykkel => {
       this.sArray = sykkel;
     });
   }
+  filter() {
+    if((this.number <= 3 && this.number != 0) || this.number >= 12){
+    sykkelService.getSykkelFilt(this.number, sykkelF => {
+      this.sArray = sykkelF;
+    });
+  }
+  else {
+    sykkelService.getSykkel(sykkel => {
+      this.sArray = sykkel;
+    });
+  }
+    this.forceUpdate();
+ }
+
 }
