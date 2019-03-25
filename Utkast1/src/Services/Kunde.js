@@ -13,10 +13,12 @@ class KundeService {
     connection.query(
       'SELECT * FROM Kunde WHERE kundenr = ?',
       [kundenr],
-      (error, results),
-      if (error) return console.error(error);
+      (error, results) => {
+        if (error) return console.error(error);
+        
+        success(results);
+      }
 
-      success(results);
     )
   }
 

@@ -17,7 +17,7 @@ class SykkelService {
       'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykketypeid = utid AND regnr = ?',
       [sykkelid],
       (error, results) => {
-        if (error= return console.error(error));
+        if (error) return console.error(error);
 
         success(results);
       }
