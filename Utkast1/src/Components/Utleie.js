@@ -96,14 +96,6 @@ export class Utleie extends Component {
                 <option value="2">Landeveisykkel</option>
                 <option value="3">Tandemsykkel</option>
               </select>
-              <Select
-                className="form-control"
-                options={this.tSykler}
-                labelField="text"
-                placeholder="Velg sykler..."
-                onChange={values => this.setState({ values })}
-                multi
-              />
               <Button.Light onClick={this.addSykkel}>Legg til sykkel</Button.Light>
               <label>Utstyr</label>
               <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
@@ -176,25 +168,27 @@ export class Utleie extends Component {
     //   'fratid:' + this.ftid,
     //   'Gruppe:' + this.gruppe
     // );
-    this.kundenr = this.state.values[0].key;
-    console.log('this.kundenr: ' + this.kundenr);
+    // this.kundenr = this.state.values[0].key;
+    // console.log('this.kundenr: ' + this.kundenr);
       //Forsøk på å automatisk registrere tilgjengelige sykler
-    // this.sykler.sort();
-    // for (var i = 1; i <= this.sykler.length; i++) {
-    //   if (this.sykler.includes(i) == true) {
-    //     this.sTyper.push(i);
-    //   }
-    //   console.log('Kjørt ' + i + ' gang(er)');
-    // }
-    // console.log(this.sTyper);
-    // for (var i = 0; i <= this.sTyper.length; i++) {
-    //   utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(i) - this.sykler.indexOf(i) + 1), tSykler => {
-    //     this.tSykler.push(tSykler.regnr);
-    //   });
-    // }
-    // console.log(this.tSykler);
-    // console.log(this.tSykler.length);
+  //   this.sykler.sort();
+  //   for (var i = 1; i <= this.sykler.length; i++) {
+  //     if (this.sykler.includes(i) == true) {
+  //       this.sTyper.push(i);
+  //     }
+  //     console.log('Kjørt ' + i + ' gang(er)');
+  //   }
+  //   console.log(this.sTyper);
+  //   for (var i = 0; i <= this.sTyper.length; i++) {
+  //     utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(i) - this.sykler.indexOf(i) + 1), tSykler => {
+  //       this.tSykler.push(tSykler);
+  //     });
+  //   }
+  //   console.log(this.tSykler);
+  //   console.log(this.tSykler[10 ].regnr);
+    console.log(this.sykkelType);
   }
+
   kundeDropDown() {
     utleieService.getDropdown(kundenr => {
       this.kunde = JSON.parse(kundenr);
@@ -210,13 +204,13 @@ export class Utleie extends Component {
   addSykkel() {
     this.sykler.push(parseInt(this.sykkelType));
     console.log(this.sykler);
-    document.getElementById('antallSykler' + this.sykkelType).innerHTML = this.sykler.sort().lastIndexOf(this.sykkelType) - this.sykler.sort().indexOf(this.sykkelType) + 1;
+    document.getElementById('antallSykler' + this.sykkelType).innerHTML = (this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) - this.sykler.sort().indexOf(parseInt(this.sykkelType)) + 1);
     document.getElementById('antallSykler').innerHTML = this.sykler.length;
   }
   addUtstyr() {
-    this.utstyr.push(this.utstyrType);
+    this.utstyr.push(parseInt(this.utstyrType));
     console.log(this.utstyr);
-    document.getElementById('antallUtstyr' + this.utstyrType).innerHTML = this.utstyr.sort().lastIndexOf(this.utstyrType) - this.utstyr.sort().indexOf(this.utstyrType) + 1;
+    document.getElementById('antallUtstyr' + this.utstyrType).innerHTML = (this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) - this.utstyr.sort().indexOf(parseInt(this.utstyrType)) + 1);
     document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
   }
   order() {
@@ -264,7 +258,6 @@ export class Utleie extends Component {
         document.getElementById('nesteUtleie').innerHTML = 'Fullfør';
         document.getElementById('nesteUtleie').onclick = this.order;
       }
-      console.log(this.number);
     }
   }
   prevPage() {
@@ -282,7 +275,6 @@ export class Utleie extends Component {
         document.getElementById('nesteUtleie').onclick = this.nextPage;
       }
     }
-    console.log(this.number);
   }
 }
 export class UtleieVertMenu extends Component {
