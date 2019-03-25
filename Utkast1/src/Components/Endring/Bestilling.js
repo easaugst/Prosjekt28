@@ -214,7 +214,7 @@ export class BestillingsEndringMeny extends Component {
       this.bestilling = bestilling;
     });
     console.log(this.kundenr);
-    this.log;
+    this.log();
   }
   save() {
     if (document.getElementById('kundeInput').value === '') {
@@ -333,17 +333,56 @@ export class UbestillingsEndring extends Component {
 
   dbArray = [];
   ubid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  regnr = "";
+  utstyrsid = "";
+  detaljer = "";
+  bestillingsid = "";
 
   render() {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div>
         <div className="mainView">
-
-
-
-
-          <span className="tilbakeMeny">
+        {this.dbArray.map(delbestiling => (
+            <Card title="Nåværende delbestilling " key={delbestiling.detaljer}>
+            <Form.Label>Bestillingsid:</Form.Label>
+            <Form.Input
+              type="text"
+              id="bestillingsid"
+              value={this.bestillingsid}
+              placeholder={delbestiling.bestillingsid}
+              onChange={event => (this.bestillingsid = event.target.value)}
+            />
+            <Form.Label>Registreringsnummer:</Form.Label>
+            <Form.Input
+              type="text"
+              id="regnr"
+              value={this.regnr}
+              placeholder={delbestiling.regnr}
+              onChange={event => (this.regnr = event.target.value)}
+            />
+            <Form.Label>Utsyrsid:</Form.Label>
+            <Form.Input
+              type="text"
+              id="utstyrsid"
+              value={this.utsyrsid}
+              placeholder={delbestiling.utstyrsid}
+              onChange={event => (this.utstyrsid = event.target.value)}
+            />
+            <Form.Label>Detaljer:</Form.Label>
+            <Form.Input
+              type="text"
+              id="detaljer"
+              value={this.detaljer}
+              placeholder={delbestiling.detaljer}
+              onChange={event => (this.detaljer = event.target.value)}
+            />
+          </Card>
+        ))}
+            <span className="tilbakeMeny2">
+              <Button.Success onClick={this.save}>Lagre endring</Button.Success>
+            </span>
+            <span className="tilbakeMeny">
               <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
             </span>
             <span className="tilbakeMeny">
@@ -354,20 +393,21 @@ export class UbestillingsEndring extends Component {
     );
   }
   mounted() {
-    console.log(this.ubid);
-    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+    bestillingsService.getDelbestillingEndring(this.ubid, delbestilling => {
       this.dbArray = delbestilling;
     });
   }
   save() {
-    bestillingsEndring.updateUbestilling(
+    this.log();
+    bestillingsService.updateUbestilling(
       this.regnr,
       this.utstyrsid,
       this.detaljer,
       this.bestillingsid,
       this.ubid,
       () => {
-        history.push('/endring/bestilling');
+        history.goBack();
+        console.log(this.regnr, this.utstyrsid, this.detaljer, this.bestillingsid, this.ubid);
       }
     );
   }
@@ -376,6 +416,20 @@ export class UbestillingsEndring extends Component {
   }
 
   log() {
+    this.dbArray.map(delbestilling => {
+      if (document.getElementById('regnr').value === '') {
+        this.regnr = delbestilling.regnr;
+      }
+      if (document.getElementById('utstyrsid').value === '') {
+        this.utstyrsid = delbestilling.utstyrsid;
+      }
+      if (document.getElementById('detaljer').value === '') {
+        this.detaljer = delbestilling.detaljer;
+      }
+      if (document.getElementById('bestillingsid').value === '') {
+        this.bestillingsid = delbestilling.bestillingsid;
+      }
+    })
   }
   slett() {
       bestillingsService.slettBestilling(this.props.match.params.ubid, () => {

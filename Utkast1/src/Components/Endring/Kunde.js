@@ -125,7 +125,7 @@ export class KundeEndringMeny extends Component {
   }
   slett() {
     kundeService.slettKunde(this.props.match.params.kundenr, () => {
-      history.push('/endring/kunde');
+      history.goBack();
     });
   }
 }

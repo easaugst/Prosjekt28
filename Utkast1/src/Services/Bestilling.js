@@ -24,8 +24,8 @@ class BestillingsService {
       success(results);
     })
   }
-  getUbestillingEndring(ubid, success) {
-    connection.query('SELECT ubid, regnr, utstyrsid, detaljer, bestillingsid FROM Ubestilling WHERE bestillingsid = ?', [ubid], (error, results) => {
+  getDelbestillingEndring(ubid, success) {
+    connection.query('SELECT ubid, regnr, utstyrsid, detaljer, bestillingsid FROM Ubestilling WHERE ubid = ?', [ubid], (error, results) => {
       if (error) return console.error(error);
 
       success(results);
@@ -42,10 +42,10 @@ class BestillingsService {
       }
     );
   }
-  updateUbestilling(regnr, utstyrsid, detaljer, bestillingsid, success) {
+  updateUbestilling(regnr, utstyrsid, detaljer, bestillingsid, ubid, success) {
     connection.query(
       'update Ubestilling set regnr=?, utstyrsid=?, detaljer=?, bestillingsid = ? where ubid=?',
-      [regnr, utstyrsid, detaljer, bdestillingsid, ubid],
+      [regnr, utstyrsid, detaljer, bestillingsid, ubid],
       (error, results) => {
         if (error) return console.error(error);
 
