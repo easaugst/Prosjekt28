@@ -24,7 +24,21 @@ export class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <div id="utstyr1">
+        <div className="filterView">
+          <Form.Label>Filtrer:</Form.Label>
+          <select id="drop" className="form-control" form="formen" onChange={this.filter}>
+            <option value="0">Alle</option>
+            <option value="4">Hjelmer</option>
+            <option value="5">Lappesett</option>
+            <option value="6">Sykkelveske</option>
+            <option value="7">Barnesete</option>
+            <option value="8">Barnehenger</option>
+            <option value="9">Lastehenger</option>
+            <option value="10">Beskytter</option>
+            <option value="11">Lås</option>
+          </select>
+        </div>
+
         <Table>
           <Table.Rad>
             <th>Utstyrsnr</th>
@@ -39,20 +53,6 @@ export class UtstyrOversikt extends Component {
             </Table.Rad>
           ))}
         </Table>
-        </div>
-
-        <select id="drop" className="form-control" form="formen" onChange={this.filter}>
-          <option value ="0">Velg filter her</option>
-          <option value="0">Alle</option>
-          <option value="4">Hjelmer</option>
-          <option value="5">Lappesett</option>
-          <option value="6">Sykkelveske</option>
-          <option value="7">Barnesete</option>
-          <option value="8">Barnehenger</option>
-          <option value="9">Lastehenger</option>
-          <option value="10">Beskytter</option>
-          <option value="11">Lås</option>
-        </select>
       </div>
     );
   }

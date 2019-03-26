@@ -177,3 +177,11 @@ a.logo {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* Filter input under sidemenyknapper */
+.filterView {
+  margin-top: 28vh;
+  margin-left: -24.5vw;
+  position: absolute;
+  width: 18.3vw;
+}
