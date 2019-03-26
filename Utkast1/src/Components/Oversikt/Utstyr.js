@@ -41,7 +41,7 @@ export class UtstyrOversikt extends Component {
         </Table>
         </div>
 
-        <select className="form-control" form="formen" onChange={event => (this.number = event.target.value)}>
+        <select id="drop" className="form-control" form="formen" onChange={this.filter}>
           <option value ="0">Velg filter her</option>
           <option value="0">Alle</option>
           <option value="4">Hjelmer</option>
@@ -53,9 +53,6 @@ export class UtstyrOversikt extends Component {
           <option value="10">Beskytter</option>
           <option value="11">Lås</option>
         </select>
-        <Button.Success onClick={this.filter}>
-          Filtrer
-        </Button.Success>
       </div>
     );
   }
@@ -68,6 +65,7 @@ export class UtstyrOversikt extends Component {
   }
 
   filter() {
+    this.number = document.getElementById('drop').value;
     if(this.number > 3){
     utstyrService.getUtstyrFilt(this.number, utstyrF => {
       this.uArray = utstyrF;

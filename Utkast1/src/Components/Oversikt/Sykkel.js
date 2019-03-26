@@ -43,7 +43,7 @@ export class SykkelOversikt extends Component {
             </Table.Rad>
           ))}
         </Table>
-        <select className="form-control" form="formen" onChange={event => (this.number = event.target.value)}>
+        <select id="drop" className="form-control" form="formen" onChange={this.filter}>
           <option value ="0">Velg filter her</option>
           <option value="0">Alle</option>
           <option value="1">Terrengsykkel</option>
@@ -53,9 +53,6 @@ export class SykkelOversikt extends Component {
           <option value="13">Racersykkel</option>
           <option value="14">Barnesykkel</option>
         </select>
-        <Button.Success onClick={this.filter}>
-          Filtrer
-        </Button.Success>
       </div>
     );
   }
@@ -65,6 +62,7 @@ export class SykkelOversikt extends Component {
     });
   }
   filter() {
+    this.number = document.getElementById('drop').value;
     if((this.number <= 3 && this.number != 0) || this.number >= 12){
     sykkelService.getSykkelFilt(this.number, sykkelF => {
       this.sArray = sykkelF;
