@@ -31,7 +31,6 @@ export class BestillingsEndring extends Component {
             <th>Til</th>
             <th>Gruppe</th>
             <th>Rediger</th>
-            <th>Rediger underbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -56,10 +55,8 @@ export class BestillingsEndring extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
-              </td>
-              <td>
-                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Rediger</List.Item>
+                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Hovedbestilling</List.Item>
+                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Underbestillinger</List.Item>
               </td>
             </Table.Rad>
           ))}
