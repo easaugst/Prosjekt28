@@ -263,9 +263,14 @@ export class BestillingsEndringMeny extends Component {
     }
   }
   slett() {
+    if(window.admin == true) {
     bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
       history.push('/endring/bestilling');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
 }
 
@@ -428,9 +433,14 @@ export class UbestillingsEndring extends Component {
     })
   }
   slett() {
+      if(window.admin == true){
       bestillingsService.slettUbestilling(this.ubid, () => {
         history.goBack();
       });
+      }
+      else {
+          alert(window.tbm);
+      }
     }
 
 }

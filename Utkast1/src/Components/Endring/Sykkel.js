@@ -144,9 +144,14 @@ export class SykkelEndringMeny extends Component {
     history.goBack();
   }
   slett() {
+    if(window.admin == true) {
     sykkelService.slettSykkel(this.props.match.params.regnr, () => {
       history.push('/endring/sykkel');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
   log() {
     this.sykkel.map(sykkel => {

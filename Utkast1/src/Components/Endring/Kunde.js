@@ -126,9 +126,14 @@ export class KundeEndringMeny extends Component {
     history.goBack();
   }
   slett() {
+    if(window.admin == true){
     kundeService.slettKunde(this.props.match.params.kundenr, () => {
       history.goBack();
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
   log() {
     this.kunde.map(kunde => {
