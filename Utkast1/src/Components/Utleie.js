@@ -282,21 +282,19 @@ export class Utleie extends Component {
       utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
         this.tUtstyr.push(tUtstyr);
         console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
+
         this.tUtstyr[0].map(utstyr => {
           this.vUtstyr.push(utstyr.utstyrsid);
+        });
+        
+        utleieService.addUBestillingUtstyr(this.vUtstyr[j], this.bId, () => {
+          console.log('Utstyr ' + this.vUtstyr[j] + ' registrert');
+
         });
         console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
         this.tUtstyr = [];
         console.log('Valgt utstyr:' + this.vUtstyr);
         for (var j = 0; j < this.vUtstyr.length; j++) {
-          utleieService.addUBestillingUtstyr(this.vUtstyr[j], this.bId, () => {
-            console.log('Utstyr ' + this.vUtstyr[j] + ' registrert');
-
-          });
-          utleieService.updateUtstyr(this.vUtstyr[j], 'bestilt', () => {
-            console.log('Utstyr ' + this.vUtstyr[j] + ' oppdatert');
-          });
-        }
       });
     }
   }
