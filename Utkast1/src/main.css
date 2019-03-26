@@ -28,10 +28,10 @@
 .sideMeny {
   position: absolute;
   width: 20%;
-  margin-top: 9.3vh;
+  margin-top: 13vh;
   font-size: 1.2vw;
   height: 100vh;
-  width: 17vw;
+  width: 19vw;
 
   /* font-family: 'Trebuchet MS'; */
 }
@@ -113,7 +113,7 @@
   font-size: 1.4vw;
   font-family: 'Trebuchet MS';
   font-weight: bold;
-  height: 5em;
+  height: 6em;
 }
 a.logo {
   font-size: 1.5vw;
