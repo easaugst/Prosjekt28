@@ -127,14 +127,13 @@ export class SykkelEndringMeny extends Component {
   }
   save() {
     this.log();
-    console.log(this.props.match.params.id);
     sykkelService.updateSykkel(
       this.sykkeltypeid,
       this.befinnelse,
       this.status,
       this.beskrivelse,
       this.utleienavn,
-      this.props.match.params.id,
+      this.props.match.params.regnr,
       () => {
         history.push('/endring/sykkel');
       }
@@ -158,16 +157,16 @@ export class SykkelEndringMeny extends Component {
       if (this.sykkeltypeid === null) {
         this.sykkeltypeid = sykkel.sykkeltypeid
       }
-      if (document.getElementById('befinnelseInput').value === '') {
+      if (document.getElementById('befinnelseInput').value == "") {
         this.befinnelse = sykkel.befinnelse
       }
-      if (document.getElementById('statusInput').value === '') {
+      if (document.getElementById('statusInput').value == "") {
         this.status = sykkel.status
       }
-      if (document.getElementById('beskrivelseInput').value === '') {
+      if (document.getElementById('beskrivelseInput').value == "") {
         this.beskrivelse = sykkel.beskrivelse
       }
-      if (document.getElementById('utleienavnInput').value === '') {
+      if (document.getElementById('utleienavnInput').value == "") {
         this.utleienavn = sykkel.utleienavn
       }
     })
