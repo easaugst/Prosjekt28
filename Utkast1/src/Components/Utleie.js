@@ -124,7 +124,7 @@ export class Utleie extends Component {
                 </Button.Success>
               </Column>
             </Row>
-            <Button.Light onClick={this.log}>Logg Select</Button.Light>
+            <Button.Light onClick={this.registrerUtstyr}>Logg Select</Button.Light>
           </form>
         </div>
         <div className="mainViewUtleie2" />
@@ -182,36 +182,6 @@ export class Utleie extends Component {
     });
   }
 
-  kundeDropDown() {
-    utleieService.getDropdown(kundenr => {
-      this.kunde = JSON.parse(kundenr);
-    });
-
-    this.kundeDrop = [];
-    this.kunde.map(kunde => {
-      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn });
-    });
-    this.t++;
-    console.log(this.kundeDrop);
-  }
-  addSykkel() {
-    this.sykler.push(parseInt(this.sykkelType));
-    console.log(this.sykler);
-    // document.getElementById('antallSykler' + this.sykkelType).innerHTML =
-    //   this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) -
-    //   this.sykler.sort().indexOf(parseInt(this.sykkelType)) +
-    //   1;
-    document.getElementById('antallSykler').innerHTML = this.sykler.length;
-  }
-  addUtstyr() {
-    this.utstyr.push(parseInt(this.utstyrType));
-    console.log(this.utstyr);
-    // document.getElementById('antallUtstyr' + this.utstyrType).innerHTML =
-    //   this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) -
-    //   this.utstyr.sort().indexOf(parseInt(this.utstyrType)) +
-    //   1;
-    document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
-  }
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
   //Overbestilling opprettes
@@ -266,12 +236,56 @@ export class Utleie extends Component {
     registrerUtstyr() {
       //Delbestillinger for utstyr opprettes
       this.vUtstyr = [];
-      for (var i = 0; i < this.uTyper.length; i++) {
-        if (this.utstyr.includes(i) == true && this.uTyper.includes) {
+      for (var i = 0; i < this.utleieTyper; i++) {
+        if ((this.utstyr.includes(i) == true) && (this.uTyper.includes(i) == false)) {
+          this.uTyper.push(i);
+        } //If-setningen kjører som den skal
+      } //Løkken kjører som den skal
+      console.log(this.uTyper);
 
-        }
-      }
+      for (var j = 0; j < this.uTyper.length; j++) {
+        console.log('antall: ' + this.teller(this.utstyr, this.uTyper[j]), 'type: ' + this.uTyper[j]);
+
+        utleieService.getUtstyr(this.uTyper[j], this.teller(this.utstyr, this.uTyper[j]), tUtstyr => {
+          this.tUtstyr.push(tUtstyr);
+          console.log('Svar fra database, del 1 kjører!! ' + j, this.tUtstyr);
+        });
+      } //Løkken kjører når den skal
     }
+
+  teller(array, char) {
+   return (array.lastIndexOf(char) - array.indexOf(char) + 1)
+  }
+  kundeDropDown() {
+    utleieService.getDropdown(kundenr => {
+      this.kunde = JSON.parse(kundenr);
+    });
+
+    this.kundeDrop = [];
+    this.kunde.map(kunde => {
+      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn });
+    });
+    this.t++;
+    console.log(this.kundeDrop);
+  }
+  addSykkel() {
+    this.sykler.push(parseInt(this.sykkelType));
+    console.log(this.sykler);
+    // document.getElementById('antallSykler' + this.sykkelType).innerHTML =
+    //   this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) -
+    //   this.sykler.sort().indexOf(parseInt(this.sykkelType)) +
+    //   1;
+    document.getElementById('antallSykler').innerHTML = this.sykler.length;
+  }
+  addUtstyr() {
+    this.utstyr.push(parseInt(this.utstyrType));
+    console.log(this.utstyr);
+    // document.getElementById('antallUtstyr' + this.utstyrType).innerHTML =
+    //   this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) -
+    //   this.utstyr.sort().indexOf(parseInt(this.utstyrType)) +
+    //   1;
+    document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
+  }
   nextPage() {
     if (this.number < 3) {
       document.getElementById('utleie' + this.number).style.display = 'none';
