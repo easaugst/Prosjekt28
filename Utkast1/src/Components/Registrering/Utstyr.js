@@ -37,7 +37,6 @@ export class UtstyrReg extends Component {
           </select>
           <Form.Label>Utstyrstatus:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.ustatus = event.target.value)}>
-            <option value="0">Status</option>
             <option value="Lager">Lager</option>
             <option value="Utleid">Utleid</option>
             <option value="Service">Service</option>
