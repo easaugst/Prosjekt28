@@ -21,6 +21,18 @@ export class SykkelOversikt extends Component {
   render() {
     return (
       <div className="mainView">
+        <div className="filterView">
+          <Form.Label>Filtrer:</Form.Label>
+          <select id="drop" className="form-control" form="formen" onChange={this.filter}>
+            <option value="0">Alle</option>
+            <option value="1">Terrengsykkel</option>
+            <option value="2">Landeveissykkel</option>
+            <option value="3">Tandemsykkel</option>
+            <option value="12">Downhillsykkel</option>
+            <option value="13">Racersykkel</option>
+            <option value="14">Barnesykkel</option>
+          </select>
+        </div>
         <Table>
           <Table.Rad>
             <th>Reg nr.</th>
@@ -43,16 +55,6 @@ export class SykkelOversikt extends Component {
             </Table.Rad>
           ))}
         </Table>
-        <select id="drop" className="form-control" form="formen" onChange={this.filter}>
-          <option value ="0">Velg filter her</option>
-          <option value="0">Alle</option>
-          <option value="1">Terrengsykkel</option>
-          <option value="2">Landeveissykkel</option>
-          <option value="3">Tandemsykkel</option>
-          <option value="12">Downhillsykkel</option>
-          <option value="13">Racersykkel</option>
-          <option value="14">Barnesykkel</option>
-        </select>
       </div>
     );
   }
