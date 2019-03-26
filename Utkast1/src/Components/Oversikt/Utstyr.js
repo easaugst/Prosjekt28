@@ -24,7 +24,7 @@ export class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <div id="utstyr1">
+        <div className="filterView">
           <Form.Label>Filtrer:</Form.Label>
           <select id="drop" className="form-control" form="formen" onChange={this.filter}>
             <option value="0">Alle</option>

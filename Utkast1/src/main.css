@@ -178,7 +178,8 @@ a.logo {
   border-top-right-radius: 0;
 }
 
-#utstyr1 {
+/* Filter input under sidemenyknapper */
+.filterView {
   margin-top: 28vh;
   margin-left: -24.5vw;
   position: absolute;
