@@ -25,34 +25,34 @@ export class UtstyrOversikt extends Component {
     return (
       <div className="mainView">
         <div id="utstyr1">
-        <Table>
-          <Table.Rad>
-            <th>Utstyrsnr</th>
-            <th>Utstyrstype</th>
-            <th>Status</th>
-          </Table.Rad>
-          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-            <Table.Rad key={utstyr.utstyrsid}>
-              <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.utnavn}</td>
-              <td>{utstyr.ustatus}</td>
-            </Table.Rad>
-          ))}
-        </Table>
+          <Form.Label>Filtrer:</Form.Label>
+          <select id="drop" className="form-control" form="formen" onChange={this.filter}>
+            <option value="0">Alle</option>
+            <option value="4">Hjelmer</option>
+            <option value="5">Lappesett</option>
+            <option value="6">Sykkelveske</option>
+            <option value="7">Barnesete</option>
+            <option value="8">Barnehenger</option>
+            <option value="9">Lastehenger</option>
+            <option value="10">Beskytter</option>
+            <option value="11">Lås</option>
+          </select>
         </div>
 
-        <select id="drop" className="form-control" form="formen" onChange={this.filter}>
-          <option value ="0">Velg filter her</option>
-          <option value="0">Alle</option>
-          <option value="4">Hjelmer</option>
-          <option value="5">Lappesett</option>
-          <option value="6">Sykkelveske</option>
-          <option value="7">Barnesete</option>
-          <option value="8">Barnehenger</option>
-          <option value="9">Lastehenger</option>
-          <option value="10">Beskytter</option>
-          <option value="11">Lås</option>
-        </select>
+        <Table>
+        <Table.Rad>
+        <th>Utstyrsnr</th>
+        <th>Utstyrstype</th>
+        <th>Status</th>
+        </Table.Rad>
+        {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+          <Table.Rad key={utstyr.utstyrsid}>
+          <td>{utstyr.utstyrsid}</td>
+          <td>{utstyr.utnavn}</td>
+          <td>{utstyr.ustatus}</td>
+          </Table.Rad>
+        ))}
+        </Table>
       </div>
     );
   }
