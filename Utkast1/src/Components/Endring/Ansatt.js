@@ -172,6 +172,7 @@ export class AnsattEndringMeny extends Component {
   }
   save() {
     this.log();
+    if(window.admin == true){
     ansattService.updateAnsatt(
       this.tlfnr,
       this.epost,
@@ -186,6 +187,10 @@ export class AnsattEndringMeny extends Component {
       }
     );
   }
+  else {
+    alert("Du må ha administratortilgang for å endre ansatt");
+  }
+}
   cancel() {
     history.goBack();
   }
