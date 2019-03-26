@@ -47,7 +47,12 @@ class UtleieService {
   updateUtstyr(utstyrsid, ustatus, success) {
     connection.query(
       'UPDATE Sykkel SET ustatus=? WHERE utstyrsid=?',
-      [ustatus, utstyrsid]
+      [ustatus, utstyrsid],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
     )
   }
   getTyper(success) {

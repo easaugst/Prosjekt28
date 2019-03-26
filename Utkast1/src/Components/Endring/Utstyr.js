@@ -53,7 +53,7 @@ export class UtstyrEndring extends Component {
     );
   }
   mounted() {
-    utstyrService.getUtstyr(this.props.match.params.utstyrsid, utstyr => {
+    utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
     });
   }
@@ -122,10 +122,14 @@ export class UtstyrEndringMeny extends Component {
     // console.log(test.admin)
     //
     // if(admin == true) {
-
+    if(window.admin == true) {
     utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
       history.push('/endring/utstyr');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
   // } else {
   //   alert("Du har ikke administratorrettigheter");

@@ -31,7 +31,6 @@ export class BestillingsEndring extends Component {
             <th>Til</th>
             <th>Gruppe</th>
             <th>Rediger</th>
-            <th>Rediger underbestilling</th>
           </Table.Rad>
           {this.bArray.map(bestilling => (
             <Table.Rad key={bestilling.bestillingsid}>
@@ -56,10 +55,8 @@ export class BestillingsEndring extends Component {
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
-                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Rediger</List.Item>
-              </td>
-              <td>
-                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Rediger</List.Item>
+                <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Hovedbestilling</List.Item>
+                <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Underbestillinger</List.Item>
               </td>
             </Table.Rad>
           ))}
@@ -136,8 +133,8 @@ export class BestillingsEndringMeny extends Component {
                 disabled
               >
                 <option>Gruppe</option>
-                <option value="1">Ja</option>
-                <option value="2">Nei</option>
+                <option value="Gruppe">Ja</option>
+                <option value="Enkel">Nei</option>
               </select>
             </Card>
           ))}
@@ -266,9 +263,14 @@ export class BestillingsEndringMeny extends Component {
     }
   }
   slett() {
+    if(window.admin == true) {
     bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
       history.push('/endring/bestilling');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
 }
 
@@ -431,9 +433,14 @@ export class UbestillingsEndring extends Component {
     })
   }
   slett() {
+      if(window.admin == true){
       bestillingsService.slettUbestilling(this.ubid, () => {
         history.goBack();
       });
+      }
+      else {
+          alert(window.tbm);
+      }
     }
 
 }

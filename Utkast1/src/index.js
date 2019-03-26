@@ -38,7 +38,9 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './
 const history = createHashHistory();
 
 class Menu extends Component {
+  tbm = "Du må ha administratortilgang for å slette data";
   render() {
+    window.tbm = this.tbm;
     return (
       <div className="NavBar">
         <NavBar brand="Sykkelutleie 9000">

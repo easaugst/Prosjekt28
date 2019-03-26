@@ -1,10 +1,21 @@
 import { connection } from '../mysql_connection';
 
 class SykkelService {
-  getSykkel(sykkelid, success) {
+  getSykkel(success) {
     connection.query(
       'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid',
-      [sykkelid],
+      [],
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    );
+  }
+  getSykkelFilt(sykkeltypeid, success) {
+    connection.query(
+      'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid AND S.sykkeltypeid = ?',
+      [sykkeltypeid],
       (error, results) => {
         if (error) return console.error(error);
 

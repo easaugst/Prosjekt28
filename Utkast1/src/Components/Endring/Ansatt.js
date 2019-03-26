@@ -216,8 +216,13 @@ export class AnsattEndringMeny extends Component {
     console.log(this.tlfnr, this.epost, this.fnavn, this.enavn, this.admin, this.utleienavn, this.stilling);
   }
   slett() {
+    if(window.admin == true) {
     ansattService.slettAnsatt(this.props.match.params.ansattnr, () => {
       history.push('/endring/ansatt');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
 }

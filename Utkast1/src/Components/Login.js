@@ -48,7 +48,12 @@ export class Login extends Component {
       this.verification = JSON.parse(resultat).length;
       console.log('verification: ' + this.verification);
       this.ansatt = JSON.parse(resultat);
-      if (this.verification == 1) {
+        if (this.verification == 1) {
+
+        if(1==1) {
+          this.admin = true;
+          window.admin = this.admin;
+        }
         this.email = '';
         this.pwd = '';
         this.ansatt.map(ansatt => {

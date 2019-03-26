@@ -93,7 +93,7 @@ export class KundeEndringMeny extends Component {
           <Form.Label>Tlf:</Form.Label>
           <Form.Input type="text" id="tlfInput" value={this.tlf} placeholder={kunde.tlf} onChange={event => (this.tlf = event.target.value)} />
         </Card>
-      ))};
+      ))}
         <br />
 
         <div className="knapper">
@@ -126,9 +126,14 @@ export class KundeEndringMeny extends Component {
     history.goBack();
   }
   slett() {
+    if(window.admin == true){
     kundeService.slettKunde(this.props.match.params.kundenr, () => {
       history.goBack();
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
   log() {
     this.kunde.map(kunde => {

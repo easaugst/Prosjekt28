@@ -50,7 +50,7 @@ export class SykkelEndring extends Component {
     );
   }
   mounted() {
-    sykkelService.getSykkel(this.props.match.params.regnr, sykkel => {
+    sykkelService.getSykkel(sykkel => {
       this.sArray = sykkel;
     });
   }
@@ -103,7 +103,7 @@ export class SykkelEndringMeny extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" id="utleienavnInput" value={this.utleienavn} placeholder={sykkel.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
         </Card>
-      ))};
+      ))}
         <br />
 
         <div className="knapper">
@@ -144,9 +144,14 @@ export class SykkelEndringMeny extends Component {
     history.goBack();
   }
   slett() {
+    if(window.admin == true) {
     sykkelService.slettSykkel(this.props.match.params.regnr, () => {
       history.push('/endring/sykkel');
     });
+    }
+    else {
+      alert(window.tbm);
+    }
   }
   log() {
     this.sykkel.map(sykkel => {
