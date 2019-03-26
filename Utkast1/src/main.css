@@ -2,7 +2,7 @@
 .mainView {
   position: absolute;
   left: 21.5vw;
-  top: 12.5vh;
+  top: 14vh;
   height: 70%;
   font-family: sans-serif;
   font-size: 1vw;
@@ -28,7 +28,7 @@
 .sideMeny {
   position: absolute;
   width: 20%;
-  margin-top: -2vh;
+  margin-top: -3vh;
   padding-top: 3vh;
   font-size: 1.2vw;
   height: 100vh;
