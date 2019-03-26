@@ -107,13 +107,13 @@ export class UtstyrEndringMeny extends Component {
     );
   }
   mounted() {
-    utstyrService.getUtstyrEndring(this.utstyrsid, utstyr => {
+    utstyrService.getUtstyrEndring(this.props.match.params.utstyrsid, utstyr => {
       this.utstyr = utstyr;
     });
   }
   save() {
     this.log();
-    utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
+    utstyrService.updateUtstyr(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus, () => {
       history.push('/endring/utstyr');
     });
   }
@@ -140,13 +140,13 @@ export class UtstyrEndringMeny extends Component {
   // }
   log() {
     this.utstyr.map(utstyr => {
-      if (document.getElementById('utstyrstypeidInput').value === '') {
+      if (this.utstyrstypeid === null) {
         this.utstyrstypeid = utstyr.utstyrstypeid;
       }
       if (document.getElementById('ustatusInput').value === '') {
-        this.ustatus = utstyr.ustatus
+        this.ustatus = utstyr.ustatus;
       }
     });
-    console.log(this.utstyrstypeid, this.ustatus);
+    console.log(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus);
   }
 }

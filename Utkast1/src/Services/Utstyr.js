@@ -39,7 +39,7 @@ class UtstyrService {
   addUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
     connection.query(
       'insert into Utstyr (utstyrstypeid, ustatus) values (?, ?)',
-      [utstyrsid, utstyrstypeid, ustatus],
+      [utstyrstypeid, ustatus],
       (error, results) => {
         if (error) return console.error(error);
 
@@ -50,8 +50,8 @@ class UtstyrService {
 
   updateUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
     connection.query(
-      'update Utstyr set utstyrstypeid=?, ustatus=? where utstyrsid=?',
-      [utstyrsid, utstyrstypeid, ustatus],
+      'UPDATE Utstyr SET utstyrstypeid = ?, ustatus = ? WHERE utstyrsid = ?',
+      [utstyrstypeid, ustatus, utstyrsid],
       (error, results) => {
         if (error) return console.error(error);
 
