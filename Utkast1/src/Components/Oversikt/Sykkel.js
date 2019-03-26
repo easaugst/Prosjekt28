@@ -21,7 +21,7 @@ export class SykkelOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <div className="filterView">
+        <div className="fontSideMeny">
           <Form.Label>Filtrer:</Form.Label>
           <select id="drop" className="form-control" form="formen" onChange={this.filter}>
             <option value="0">Alle</option>
@@ -65,17 +65,15 @@ export class SykkelOversikt extends Component {
   }
   filter() {
     this.number = document.getElementById('drop').value;
-    if((this.number <= 3 && this.number != 0) || this.number >= 12){
-    sykkelService.getSykkelFilt(this.number, sykkelF => {
-      this.sArray = sykkelF;
-    });
-  }
-  else {
-    sykkelService.getSykkel(sykkel => {
-      this.sArray = sykkel;
-    });
-  }
+    if ((this.number <= 3 && this.number != 0) || this.number >= 12) {
+      sykkelService.getSykkelFilt(this.number, sykkelF => {
+        this.sArray = sykkelF;
+      });
+    } else {
+      sykkelService.getSykkel(sykkel => {
+        this.sArray = sykkel;
+      });
+    }
     this.forceUpdate();
- }
-
+  }
 }
