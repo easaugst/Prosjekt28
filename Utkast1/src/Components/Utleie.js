@@ -223,89 +223,58 @@ export class Utleie extends Component {
         this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
         console.log('Bestillingsid: ' + this.bId);
       });
-      this.registrerSykkel();
+      // this.registrerSykkel();
       this.registrerUtstyr();
     });
   }
-  registrerSykkel() {
-    //Delbestillinger for sykler opprettes
-    this.vSykler = [];
-    for (var i = 0; i <= this.utleieTyper; i++) {
-      if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
-        this.sTyper.push(i);
-      }
-    }
-    console.log(this.sTyper);
-    for (var i = 0; i < this.sTyper.length; i++) {
-      console.log(this.sykler);
-      console.log(
-        'antall: ' + (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1),
-        'type: ' + this.sTyper[i]
-      );
-
-      utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
-        this.tSykler.push(tSykler);
-        console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
-        this.tSykler[0].map(sykkel => {
-          this.vSykler.push(sykkel.regnr);
-        });
-        console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
-        this.tSykler = [];
-        console.log('Valgte sykler: ' + this.vSykler);
-        for (var j = 0; j < this.vSykler.length; j++) {
-          utleieService.addUBestillingSykkel(this.vSykler[j], this.bId, () => {
-            console.log('Sykkel ' + this.vSykler[j] + ' registrert');
-          });
-          utleieService.updateSykkel(this.vSykler[j], 'Bestilt', () => {
-            console.log('Sykkel ' + this.vSykler[j] + ' Oppdatert');
-          });
+    registrerSykkel() {
+      //Delbestillinger for sykler opprettes
+      this.vSykler = [];
+      for (var i = 0; i <= this.utleieTyper; i++) {
+        if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
+          this.sTyper.push(i);
         }
-      });
-    }
-  }
-  registrerUtstyr() {
-    //Delbestillinger for utstyr opprettes
-    this.vUtstyr = [];
-    for (var i = 0; i <= this.utleieTyper; i++) {
-      if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
-        this.uTyper.push(i);
+      }
+      console.log(this.sTyper);
+      for (var i = 0; i < this.sTyper.length; i++) {
+        console.log(this.sykler);
+        console.log(
+          'antall: ' + (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1),
+          'type: ' + this.sTyper[i]
+        );
+
+        utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
+          this.tSykler.push(tSykler);
+          console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
+          this.tSykler[0].map(sykkel => {
+            this.vSykler.push(sykkel.regnr);
+          });
+          console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
+          this.tSykler = [];
+          console.log('Valgte sykler: ' + this.vSykler);
+          for (var j = 0; j < this.vSykler.length; j++) {
+            utleieService.addUBestillingSykkel(this.vSykler[j], this.bId, () => {
+              console.log('Sykkel ' + this.vSykler[j] + ' registrert');
+            });
+            utleieService.updateSykkel(this.vSykler[j], 'Bestilt', () => {
+              console.log('Sykkel ' + this.vSykler[j] + ' Oppdatert');
+            });
+          }
+        });
       }
     }
-    console.log(this.uTyper);
-    for (var i = 0; i < this.uTyper.length; i++) {
-      console.log(this.utstyr);
-      console.log(
-        'antall: ' + (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1),
-        'type: ' + this.uTyper[i]
-      );
+    registrerUtstyr() {
+      //Delbestillinger for utstyr opprettes
+      this.vUtstyr = [];
+      for (var i = 0; i < this.uTyper.length; i++) {
+        if (this.utstyr.includes(i) == true && this.uTyper.includes) {
 
-      utleieService.getUtstyr(this.uTyper[i], (this.utstyr.lastIndexOf(this.uTyper[i]) - this.utstyr.indexOf(this.uTyper[i]) + 1), tUtstyr => {
-        this.tUtstyr.push(tUtstyr);
-        console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tUtstyr);
-
-        this.tUtstyr[0].map(utstyr => {
-          this.vUtstyr.push(utstyr.utstyrsid);
-        });
-        
-        utleieService.addUBestillingUtstyr(this.vUtstyr[j], this.bId, () => {
-          console.log('Utstyr ' + this.vUtstyr[j] + ' registrert');
-
-        });
-        console.log('Del 2 kjørt | Kjøring' + (i), this.vUtstyr);
-        this.tUtstyr = [];
-        console.log('Valgt utstyr:' + this.vUtstyr);
-        for (var j = 0; j < this.vUtstyr.length; j++) {
-      });
+        }
+      }
     }
-  }
   nextPage() {
     if (this.number < 3) {
       document.getElementById('utleie' + this.number).style.display = 'none';
-      // if (this.number == 1) {
-      //   document.getElementById('dBestOversikt').style.display = 'block';
-      // } else if (this.number != 1) {
-      //   document.getElementById('dBestOversikt').style.display = 'none';
-      // }
       this.number++;
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number == 3) {
@@ -317,11 +286,6 @@ export class Utleie extends Component {
   prevPage() {
     if (this.number > 1) {
       document.getElementById('utleie' + this.number).style.display = 'none';
-      // if (this.number == 3) {
-      //   document.getElementById('dBestOversikt').style.display = 'block';
-      // } else if (this.number != 3) {
-      //   document.getElementById('dBestOversikt').style.display = 'none';
-      // }
       this.number--;
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number != 3) {
