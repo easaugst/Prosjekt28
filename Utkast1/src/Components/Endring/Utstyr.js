@@ -84,7 +84,11 @@ export class UtstyrEndringMeny extends Component {
           </select>
 
           <Form.Label>Utstyrstatus:</Form.Label>
-          <Form.Input id="ustatusInput" type="text" value={this.ustatus} placeholder={utstyr.ustatus} onChange={event => (this.ustatus = event.target.value)} />
+          <select className="form-control" form="formen" id="ustatusInput" value={utstyr.ustatus} onChange={event => (utstyr.ustatus = event.target.value)}>
+            <option value="Lager">Lager</option>
+            <option value="Utleid">Utleid</option>
+            <option value="Service">Service</option>
+          </select>
         </Card>
       ))}
         <br />
