@@ -115,7 +115,12 @@ export class NavCol extends Component {
 
   render() {
     return (
-      <div className="nav flex-column nav-pills sideMeny" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div
+        className="nav flex-column nav-pills sideMeny bg-light"
+        id="v-pills-ta"
+        role="tablist"
+        aria-orientation="vertical"
+      >
         <ul className="navbar-nav">{this.props.children}</ul>
       </div>
     );
@@ -180,7 +185,7 @@ class ButtonDangerOutline extends Component {
       <button type="button" className="btn btn-outline-danger" onClick={this.props.onClick}>
         {this.props.children}
       </button>
-    )
+    );
   }
 }
 

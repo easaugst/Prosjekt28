@@ -52,6 +52,13 @@ class AnsattService {
       }
     )
   }
+  adminSjekk(success){
+  connection.query('Select ansattnr from FastAnsatt where admin = 1', [] , (error, results) => {
+    if(error) return console.error(error);
+
+    success(results);
+  });
+}
   slettAnsatt(ansattnr, success){
   connection.query('delete from FastAnsatt where ansattnr = ?', [ansattnr] , (error, results) => {
     if(error) return console.error(error);
@@ -59,6 +66,7 @@ class AnsattService {
     success();
   });
 }
+
 }
 
 export let ansattService = new AnsattService();

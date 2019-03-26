@@ -27,11 +27,11 @@
 /* Oversikt sidemeny */
 .sideMeny {
   position: absolute;
-  top: 10vh;
-  left: 1vw;
   width: 20%;
+  margin-top: 13vh;
   font-size: 1.2vw;
-  margin-top: 2em;
+  height: 100vh;
+  width: 19vw;
 
   /* font-family: 'Trebuchet MS'; */
 }
@@ -73,7 +73,8 @@
 #utleie1 {
   display: block;
 }
-#utleie2, #utleie3 {
+#utleie2,
+#utleie3 {
   display: none;
 }
 #dBestOversikt {
@@ -112,6 +113,7 @@
   font-size: 1.4vw;
   font-family: 'Trebuchet MS';
   font-weight: bold;
+  height: 3em;
 }
 a.logo {
   font-size: 1.5vw;
@@ -167,20 +169,28 @@ a.logo {
 .form-signin .form-control:focus {
   z-index: 2;
 }
-.form-signin input[type="email"] {
+.form-signin input[type='email'] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-signin input[type='password'] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-#utstyr1 {
+/* Filter input under sidemenyknapper */
+.filterView {
   margin-top: 28vh;
-  margin-left: -24.5vw;
+  margin-left: -25.5vw;
   position: absolute;
-  width: 18.3vw;
+  width: 15.5vw;
 }
+
+/*
+.sideFarge {
+  width: 22em;
+  height: 50em;
+  position: static;
+}*/

@@ -24,7 +24,7 @@ export class UtstyrOversikt extends Component {
   render() {
     return (
       <div className="mainView">
-        <div id="utstyr1">
+        <div className="filterView">
           <Form.Label>Filtrer:</Form.Label>
           <select id="drop" className="form-control" form="formen" onChange={this.filter}>
             <option value="0">Alle</option>
@@ -40,18 +40,18 @@ export class UtstyrOversikt extends Component {
         </div>
 
         <Table>
-        <Table.Rad>
-        <th>Utstyrsnr</th>
-        <th>Utstyrstype</th>
-        <th>Status</th>
-        </Table.Rad>
-        {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-          <Table.Rad key={utstyr.utstyrsid}>
-          <td>{utstyr.utstyrsid}</td>
-          <td>{utstyr.utnavn}</td>
-          <td>{utstyr.ustatus}</td>
+          <Table.Rad>
+            <th>Utstyrsnr</th>
+            <th>Utstyrstype</th>
+            <th>Status</th>
           </Table.Rad>
-        ))}
+          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
+            <Table.Rad key={utstyr.utstyrsid}>
+              <td>{utstyr.utstyrsid}</td>
+              <td>{utstyr.utnavn}</td>
+              <td>{utstyr.ustatus}</td>
+            </Table.Rad>
+          ))}
         </Table>
       </div>
     );
