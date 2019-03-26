@@ -103,7 +103,7 @@ export class SykkelEndringMeny extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <Form.Input type="text" id="utleienavnInput" value={this.utleienavn} placeholder={sykkel.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
         </Card>
-      ))};
+      ))}
         <br />
 
         <div className="knapper">

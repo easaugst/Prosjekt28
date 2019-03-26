@@ -93,7 +93,7 @@ export class KundeEndringMeny extends Component {
           <Form.Label>Tlf:</Form.Label>
           <Form.Input type="text" id="tlfInput" value={this.tlf} placeholder={kunde.tlf} onChange={event => (this.tlf = event.target.value)} />
         </Card>
-      ))};
+      ))}
         <br />
 
         <div className="knapper">
