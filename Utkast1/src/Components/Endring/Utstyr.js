@@ -69,7 +69,7 @@ export class UtstyrEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.utstyr.map(utstyr => (
-        <Card title="Endre utstyrsinformasjon" key={utstyr.utstyrsid}>
+        <Card title={'Endre utstyr nr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" id="utstyrstypeidInput" value={utstyr.utstyrstypeid} onChange={event => (utstyr.utstyrstypeid = event.target.value)}>
             <option value="3">Velg type her</option>
@@ -88,6 +88,7 @@ export class UtstyrEndringMeny extends Component {
             <option value="Lager">Lager</option>
             <option value="Utleid">Utleid</option>
             <option value="Service">Service</option>
+            <option value="Stjålet">Stjålet</option>
           </select>
         </Card>
       ))}
@@ -143,10 +144,9 @@ export class UtstyrEndringMeny extends Component {
       if (this.utstyrstypeid === null) {
         this.utstyrstypeid = utstyr.utstyrstypeid;
       }
-      if (document.getElementById('ustatusInput').value === '') {
-        this.ustatus = utstyr.ustatus;
-      }
+      this.ustatus = utstyr.ustatus;
+      console.log(utstyr.ustatus);
+      console.log(this.ustatus);
     });
-    console.log(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus);
   }
 }
