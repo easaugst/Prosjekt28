@@ -52,8 +52,8 @@ export class UtstyrOversikt extends Component {
               <td>{utstyr.utstyrsid}</td>
               <td>{utstyr.utnavn}</td>
               <td>{utstyr.ustatus}</td>
-              <th>{utstyr.ubefinnelse}</th>
-              <th>{utstyr.utsutleienavn}</th>
+              <td>{utstyr.ubefinnelse}</td>
+              <td>{utstyr.utsutleienavn}</td>
             </Table.Rad>
           ))}
         </Table>

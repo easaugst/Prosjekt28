@@ -74,7 +74,7 @@ export class AnsattEndringMeny extends Component {
       <div>
         <div className="mainView">
           {this.ansatt.map(ansatt => (
-            <Card title={"Endre ansattnr " + ansatt.ansattnr} key={ansatt.ansattnr}>
+            <Card title={"Rediger ansattnr " + ansatt.ansattnr} key={ansatt.ansattnr}>
               <Form.Label>Tlf. nr.:</Form.Label>
               <Form.Input
                 type="text"

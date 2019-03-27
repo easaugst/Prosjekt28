@@ -189,6 +189,10 @@ a.logo {
   width: 16vw;
 }
 
+.card-title {
+  font-weight: bold;
+}
+
 /*
 .sideFarge {
   width: 22em;

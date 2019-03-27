@@ -35,10 +35,10 @@ class SykkelService {
     )
   }
 
-  addSykkel(sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
+  addSykkel(sykkeltypeid, status, befinnelse, beskrivelse, utleienavn, success) {
     connection.query(
-      'insert into Sykkel (sykkeltypeid, befinnelse, status, beskrivelse, utleienavn) values (?, ?, ?, ?, ?)',
-      [sykkeltypeid, befinnelse, status, beskrivelse, utleienavn],
+      'insert into Sykkel (sykkeltypeid, status, befinnelse, beskrivelse, utleienavn) values (?, ?, ?, ?, ?)',
+      [sykkeltypeid, status, befinnelse, beskrivelse, utleienavn],
       (error, results) => {
         if (error) return console.error(error);
         success();
@@ -46,10 +46,10 @@ class SykkelService {
     );
   }
 
-  updateSykkel(regnr, sykkeltypeid, befinnelse, status, beskrivelse, utleienavn, success) {
+  updateSykkel(regnr, sykkeltypeid, status, befinnelse, beskrivelse, utleienavn, success) {
     connection.query(
-      'update Sykkel set sykkeltypeid=?, befinnelse=?, status=?, beskrivelse=?, utleienavn=? where regnr=?',
-      [regnr, sykkeltypeid, befinnelse, status, beskrivelse, utleienavn],
+      'update Sykkel set sykkeltypeid=?, status=?, befinnelse=?, beskrivelse=?, utleienavn=? where regnr=?',
+      [regnr, sykkeltypeid, status, befinnelse, beskrivelse, utleienavn],
       (error, results) => {
         if (error) return console.error(error);
 

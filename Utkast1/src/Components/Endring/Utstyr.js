@@ -75,7 +75,7 @@ export class UtstyrEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.utstyr.map(utstyr => (
-        <Card title={'Endre utstyr nr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
+        <Card title={'Rediger utstyrnr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" id="utstyrstypeidInput" value={utstyr.utstyrstypeid} onChange={event => (utstyr.utstyrstypeid = event.target.value)}>
             <option value="3">Velg type her</option>
@@ -98,10 +98,10 @@ export class UtstyrEndringMeny extends Component {
           </select>
 
           <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" id="ubefinnelseInput" value={this.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
+          <Form.Input type="text" id="ubefinnelseInput" value={this.ubefinnelse} placeholder={utstyr.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
 
           <Form.Label>Tilhører utleiested:</Form.Label>
-          <Form.Input type="text" id="utsutleienavnInput" value={this.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
+          <Form.Input type="text" id="utsutleienavnInput" value={this.utsutleienavn} placeholder={utstyr.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
         </Card>
       ))}
         <br />
@@ -126,7 +126,8 @@ export class UtstyrEndringMeny extends Component {
   }
   save() {
     this.log();
-    utstyrService.updateUtstyr(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, () => {
+    console.log (this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn,this.props.match.params.utstyrsid);
+    utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, this.props.match.params.utstyrsid, () => {
       history.push('/endring/utstyr');
     });
   }
@@ -160,10 +161,12 @@ export class UtstyrEndringMeny extends Component {
         this.ustatus = utstyr.ustatus;
       }
       if (document.getElementById('ubefinnelseInput').value == "") {
-        this.ubefinnelse = utstyr.ubefinnelse
+        this.ubefinnelse = utstyr.ubefinnelse;
+        console.log(1 + this.ubefinnelse);
       }
       if (document.getElementById('utsutleienavnInput').value == "") {
-        this.utsutleienavn = utstyr.utsutleienavn
+        this.utsutleienavn = utstyr.utsutleienavn;
+        console.log(2 + this.utsutleienavn);
       }
     });
   }

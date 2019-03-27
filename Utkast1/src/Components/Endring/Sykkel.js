@@ -24,8 +24,8 @@ export class SykkelEndring extends Component {
           <Table.Rad>
             <th>Reg nr.</th>
             <th>Sykkeltype</th>
-            <th>Befinnelse</th>
             <th>Status</th>
+            <th>Befinnelse</th>
             <th>Beskrivelse</th>
             <th>Nåværende bestilling</th>
             <th>Tilhører utleiested</th>
@@ -35,8 +35,8 @@ export class SykkelEndring extends Component {
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
               <td>{sykkel.utnavn}</td>
-              <td>{sykkel.befinnelse}</td>
               <td>{sykkel.status}</td>
+              <td>{sykkel.befinnelse}</td>
               <td>{sykkel.beskrivelse}</td>
               <td>{sykkel.bestillingsid}</td>
               <td>{sykkel.utleienavn}</td>
@@ -60,8 +60,8 @@ export class SykkelEndringMeny extends Component {
   regnr = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
   sykkel = [];
   sykkeltypeid = null;
-  befinnelse = '';
   status = null;
+  befinnelse = '';
   beskrivelse = '';
   utleienavn = '';
 
@@ -69,7 +69,7 @@ export class SykkelEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.sykkel.map(sykkel => (
-        <Card title={"Endre regnr " + sykkel.regnr} key={sykkel.regnr}>
+        <Card title={"Rediger regnr " + sykkel.regnr} key={sykkel.regnr}>
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"
@@ -85,16 +85,16 @@ export class SykkelEndringMeny extends Component {
             <option value="14">Barnesykkel</option>
           </select>
 
-          <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" id="befinnelseInput" value={this.befinnelse} placeholder={sykkel.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
-
           <Form.Label>Status:</Form.Label>
           <select className="form-control" form="formen" id="statusInput" value={sykkel.status} onChange={event => (sykkel.status = event.target.value)}>
-            <option value="Lager">Lager</option>
-            <option value="Bestilt">Bestilt</option>
-            <option value="Service">Service</option>
-            <option value="Stjålet">Stjålet</option>
+          <option value="Lager">Lager</option>
+          <option value="Bestilt">Bestilt</option>
+          <option value="Service">Service</option>
+          <option value="Stjålet">Stjålet</option>
           </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" id="befinnelseInput" value={this.befinnelse} placeholder={sykkel.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
 
           <Form.Label>Beskrivelse:</Form.Label>
           <Form.Input
@@ -134,8 +134,8 @@ export class SykkelEndringMeny extends Component {
     this.log();
     sykkelService.updateSykkel(
       this.sykkeltypeid,
-      this.befinnelse,
       this.status,
+      this.befinnelse,
       this.beskrivelse,
       this.utleienavn,
       this.props.match.params.regnr,
@@ -162,11 +162,11 @@ export class SykkelEndringMeny extends Component {
       if (this.sykkeltypeid === null) {
         this.sykkeltypeid = sykkel.sykkeltypeid
       }
-      if (document.getElementById('befinnelseInput').value == "") {
-        this.befinnelse = sykkel.befinnelse
-      }
       if (this.status === null) {
         this.status = sykkel.status
+      }
+      if (document.getElementById('befinnelseInput').value == "") {
+        this.befinnelse = sykkel.befinnelse
       }
       if (document.getElementById('beskrivelseInput').value == "") {
         this.beskrivelse = sykkel.beskrivelse
@@ -175,6 +175,6 @@ export class SykkelEndringMeny extends Component {
         this.utleienavn = sykkel.utleienavn
       }
     })
-    console.log(this.sykkeltypeid, this.befinnelse, this.status, this.beskrivelse, this.utleienavn);
+    console.log(this.sykkeltypeid, this.status, this.befinnelse, this.beskrivelse, this.utleienavn);
   }
 }
