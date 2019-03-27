@@ -189,46 +189,49 @@ export class Utleie extends Component {
         this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
         console.log('Bestillingsid: ' + this.bId);
       });
-      // this.registrerSykkel();
+      this.registrerSykkel();
       this.registrerUtstyr();
     });
   }
     registrerSykkel() {
       //Delbestillinger for sykler opprettes
       this.vSykler = [];
-      for (var i = 0; i <= this.utleieTyper; i++) {
-        if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
+      for (var i = 0; i < this.utleieTyper; i++) {
+        if ((this.sykler.includes(i) == true) && (this.sTyper.includes(i) == false)) {
           this.sTyper.push(i);
-        }
-      }
+        } //If-setningen kjører som den skal
+      } //Løkken kjører som den skal
       console.log(this.sTyper);
-      for (var i = 0; i < this.sTyper.length; i++) {
-        console.log(this.sykler);
-        console.log(
-          'antall: ' + (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1),
-          'type: ' + this.sTyper[i]
-        );
 
-        utleieService.getSykler(this.sTyper[i], (this.sykler.lastIndexOf(this.sTyper[i]) - this.sykler.indexOf(this.sTyper[i]) + 1), tSykler => {
-          this.tSykler.push(tSykler);
-          console.log('Svar fra database, del 1 kjørt | Kjøring' + (i), this.tSykler);
-          this.tSykler[0].map(sykkel => {
-            this.vSykler.push(sykkel.regnr);
+      for (var j = 0; j < this.sTyper.length; j++) {
+        console.log('antall: ' + this.teller(this.sykler, this.sTyper[j]), 'type: ' + this.sTyper[j]);
+
+        utleieService.getSykler(this.sTyper[j], this.teller(this.sykler, this.sTyper[j]), tSykler => {
+          tSykler.map(sykler => {
+            this.vSykler.push({ regnr: sykler.regnr });
           });
-          console.log('Del 2 kjørt | Kjøring' + (i), this.vSykler);
-          this.tSykler = [];
-          console.log('Valgte sykler: ' + this.vSykler);
-          for (var j = 0; j < this.vSykler.length; j++) {
-            utleieService.addUBestillingSykkel(this.vSykler[j], this.bId, () => {
-              console.log('Sykkel ' + this.vSykler[j] + ' registrert');
-            });
-            utleieService.updateSykkel(this.vSykler[j], 'Bestilt', () => {
-              console.log('Sykkel ' + this.vSykler[j] + ' Oppdatert');
-            });
-          }
+          this.runS++;
+          this.bestillSykler();
+          console.log('Svar fra database, del 1 kjører!! ' + j, this.vSykler, this.sTyper.length);
         });
       }
+
+      /*
+      Løkken venter ikke på svar fra databasen før den kjører ny runde. Når databasen til slutt svarer, har den feil verdi for j i kjøringen til
+      ( "success" ). Spørringen gir fortsatt riktig svar fra databasen.
+      */
+      console.log('Program slutt');
     }
+      bestillSykler() {
+        for (var k = 0; k < this.vSykler.length && this.runS == this.sTyper.length; k++) {
+          utleieService.addUBestillingSykkel(this.vSykler[k].regnr, this.bId, results => {
+          });
+          utleieService.updateSykkel(this.vSykler[k].regnr, "Utleid", () => {
+          });
+          console.log('Underbestilling for sykkel ' + this.vSykler[k].regnr + ' lagt til');
+          console.log('Sykkel ' + this.vSykler[k].regnr + ' satt til "bestilt"');
+        }
+      }
     registrerUtstyr() {
       //Delbestillinger for utstyr opprettes
       this.vUtstyr = [];
