@@ -29,7 +29,7 @@ export class Utleie extends Component {
   gruppe = '';
   detaljer = 'Ikke spesifisert';
 
-  bId = '';
+  bId = ''; runU = 0;
   sykkelType = ''; sykkelTypeText = '';
   utstyrType = ''; utstyrTypeText = '';
 
@@ -247,11 +247,31 @@ export class Utleie extends Component {
         console.log('antall: ' + this.teller(this.utstyr, this.uTyper[j]), 'type: ' + this.uTyper[j]);
 
         utleieService.getUtstyr(this.uTyper[j], this.teller(this.utstyr, this.uTyper[j]), tUtstyr => {
-          this.tUtstyr.push(tUtstyr);
-          console.log('Svar fra database, del 1 kjører!! ' + j, this.tUtstyr);
+          tUtstyr.map(utstyr => {
+            this.vUtstyr.push({ utstyrsid: utstyr.utstyrsid });
+          });
+          this.runU++;
+          this.bestillUtstyr();
+          console.log('Svar fra database, del 1 kjører!! ' + j, this.vUtstyr, this.uTyper.length);
         });
-      } //Løkken kjører når den skal
+      }
+
+      /*
+      Løkken venter ikke på svar fra databasen før den kjører ny runde. Når databasen til slutt svarer, har den feil verdi for j i kjøringen til
+      ( "success" ). Spørringen gir fortsatt riktig svar fra databasen.
+      */
+      console.log('Program slutt');
     }
+      bestillUtstyr() {
+        for (var k = 0; k < this.vUtstyr.length && this.runU == this.uTyper.length; k++) {
+          utleieService.addUBestillingUtstyr(this.vUtstyr[k].utstyrsid, this.bId, results => {
+          });
+          utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, "Utleid", () => {
+          });
+          console.log('Underbestilling for utstyr ' + this.vUtstyr[k].utstyrsid + ' lagt til');
+          console.log('Utstyr ' + this.vUtstyr[k].utstyrsid + ' satt til "bestilt"');
+        }
+      }
 
   teller(array, char) {
    return (array.lastIndexOf(char) - array.indexOf(char) + 1)
