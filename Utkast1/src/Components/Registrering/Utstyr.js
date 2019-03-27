@@ -15,8 +15,10 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class UtstyrReg extends Component {
-  utstyrstypeid = '';
+  utstyrstypeid = 0;
   ustatus = '';
+  ubefinnelse = '';
+  utsutleienavn = '';
 
   render() {
     return (
@@ -35,6 +37,7 @@ export class UtstyrReg extends Component {
             <option value="10">Beskytter</option>
             <option value="11">Lås</option>
           </select>
+
           <Form.Label>Utstyrstatus:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.ustatus = event.target.value)}>
             <option value="Lager">Lager</option>
@@ -42,6 +45,12 @@ export class UtstyrReg extends Component {
             <option value="Service">Service</option>
             <option value="Stjålet">Stjålet</option>
           </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" value={this.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
+
+          <Form.Label>Tilhører utleiested:</Form.Label>
+          <Form.Input type="text" value={this.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
         </Card>
         <br />
 
@@ -58,7 +67,8 @@ export class UtstyrReg extends Component {
   }
 
   add() {
-    utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.props.match.params.id, () => {
+    console.log(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn);
+    utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, () => {
       history.push('/oversikt/utstyr');
     });
   }
