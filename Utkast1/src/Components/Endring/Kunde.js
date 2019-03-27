@@ -80,7 +80,7 @@ export class KundeEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.kunde.map(kunde => (
-        <Card title="Endre kundeinformasjon">
+        <Card title={"Endre kundenr " + kunde.kundenr}>
           <Form.Label>Fornavn:</Form.Label>
           <Form.Input type="text" id="fnavnInput" value={this.fnavn} placeholder={kunde.fnavn} onChange={event => (this.fnavn = event.target.value)} />
 
