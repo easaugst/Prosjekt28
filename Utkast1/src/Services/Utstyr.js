@@ -36,10 +36,10 @@ class UtstyrService {
     )
   }
 
-  addUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
+  addUtstyr(utstyrstypeid, ustatus, ubefinnelse, utsutleienavn, success) {
     connection.query(
-      'insert into Utstyr (utstyrstypeid, ustatus) values (?, ?)',
-      [utstyrstypeid, ustatus],
+      'insert into Utstyr (utstyrstypeid, ustatus, ubefinnelse, utsutleienavn) values (?, ?, ?, ?)',
+      [utstyrstypeid, ustatus, ubefinnelse, utsutleienavn],
       (error, results) => {
         if (error) return console.error(error);
 

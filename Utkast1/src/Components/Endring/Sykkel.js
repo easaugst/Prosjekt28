@@ -61,7 +61,7 @@ export class SykkelEndringMeny extends Component {
   sykkel = [];
   sykkeltypeid = null;
   befinnelse = '';
-  status = '';
+  status = null;
   beskrivelse = '';
   utleienavn = '';
 
