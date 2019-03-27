@@ -26,15 +26,15 @@ export class Utleie extends Component {
   uType = '';
   kontant = '';
   ftid = '';
-  gruppe = '';
+  gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  bId = ''; runU = 0;
+  bId = ''; runU = 0; runS = 0;
   sykkelType = ''; sykkelTypeText = '';
   utstyrType = ''; utstyrTypeText = '';
 
-  sykler = []; tSykler = []; vSykler = []; sTyper = [];
-  utstyr = []; tUtstyr = []; vUtstyr = []; uTyper = [];
+  sykler = []; vSykler = []; sTyper = [];
+  utstyr = []; vUtstyr = []; uTyper = [];
 
   number = 1;
 
@@ -59,9 +59,8 @@ export class Utleie extends Component {
               <br />
               <input
                 type="checkbox"
-                name="Gruppe"
-                value="Gruppe"
-                onChange={event => (this.gruppe = event.target.value)}
+                id="gruppeInput"
+                onChange={this.gruppeValg}
               />
               Gruppebestilling
               <br />
@@ -124,7 +123,7 @@ export class Utleie extends Component {
                 </Button.Success>
               </Column>
             </Row>
-            <Button.Light onClick={this.registrerUtstyr}>Logg Select</Button.Light>
+            <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
         </div>
         <div className="mainViewUtleie2" />
@@ -176,10 +175,7 @@ export class Utleie extends Component {
     // );
     // this.kundenr = this.state.values[0].key;
     // console.log('this.kundenr: ' + this.kundenr);
-    utleieService.getBestilling(bestilling => {
-      this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
-      console.log(this.bId);
-    });
+    console.log(this.gruppe);
   }
 
   order() {
@@ -326,6 +322,13 @@ export class Utleie extends Component {
         document.getElementById('nesteUtleie').innerHTML = 'Neste side';
         document.getElementById('nesteUtleie').onclick = this.nextPage;
       }
+    }
+  }
+  gruppeValg() {
+    if (document.getElementById('gruppeInput').checked == true) {
+      this.gruppe = 'Gruppe';
+    } else {
+      this.gruppe = 'Enkel';
     }
   }
 }
