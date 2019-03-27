@@ -128,7 +128,7 @@ export class BestillingsEndringMeny extends Component {
                 onChange={event => (bestilling.gruppe = event.target.value)}
               >
                 <option value="Gruppe">Ja</option>
-                <option value="">Nei</option>
+                <option value="Enkel">Nei</option>
               </select>
             </Card>
           ))}
