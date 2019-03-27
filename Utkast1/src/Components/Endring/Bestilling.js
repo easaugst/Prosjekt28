@@ -155,22 +155,7 @@ export class BestillingsEndringMeny extends Component {
     console.log(this.kundenr);
   }
   save() {
-    if (document.getElementById('kundeInput').value === '') {
-      this.kundenr = document.getElementById('kundeDef').value;
-      console.log(this.kundenr);
-    }
-    if (this.utleietype === null) {
-      this.utleietype = document.getElementById('utleieDef').value;
-      console.log(this.utleietype);
-    }
-    if (this.kontant === null) {
-      this.kontant = document.getElementById('kontantDef').value;
-      console.log(this.kontant);
-    }
-    if (this.gruppe === null) {
-      this.gruppe = document.getElementById('gruppeDef').value;
-      console.log(this.gruppe);
-    }
+    this.log();
     bestillingsService.updateBestilling(
       this.kundenr,
       this.utleietype,
@@ -187,22 +172,24 @@ export class BestillingsEndringMeny extends Component {
   }
 
   log() {
-    if (document.getElementById('kundeInput').value === '') {
-      this.kundenr = document.getElementById('kundeDef').value;
-      console.log(this.kundenr);
-    }
-    if (this.utleietype === null) {
-      this.utleietype = document.getElementById('utleieDef').value;
-      console.log(this.utleietype);
-    }
-    if (this.kontant === null) {
-      this.kontant = document.getElementById('kontantDef').value;
-      console.log(this.kontant);
-    }
-    if (this.gruppe === null) {
-      this.gruppe = document.getElementById('gruppeDef').value;
-      console.log(this.gruppe);
-    }
+    this.bestilling.map(bestilling => {
+      if (document.getElementById('kundeInput').value === '') {
+        this.kundenr = bestilling.kundenr;
+        console.log(this.kundenr);
+      }
+      if (this.utleietype === null) {
+        this.utleietype = bestilling.utleietype;
+        console.log(this.utleietype);
+      }
+      if (this.kontant === null) {
+        this.kontant = bestilling.kontant;
+        console.log(this.kontant);
+      }
+      if (this.gruppe === null) {
+        this.gruppe = bestilling.gruppe;
+        console.log(this.gruppe);
+      }
+    });
   }
   slett() {
     if (window.admin == true) {
