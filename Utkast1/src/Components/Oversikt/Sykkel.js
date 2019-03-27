@@ -37,8 +37,8 @@ export class SykkelOversikt extends Component {
           <Table.Rad>
             <th>Reg nr.</th>
             <th>Sykkeltype</th>
-            <th>Befinnelse</th>
             <th>Status</th>
+            <th>Befinnelse</th>
             <th>Beskrivelse</th>
             <th>Nåværende bestilling</th>
             <th>Tilhører utleiested</th>
@@ -47,8 +47,8 @@ export class SykkelOversikt extends Component {
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
               <td>{sykkel.utnavn}</td>
-              <td>{sykkel.befinnelse}</td>
               <td>{sykkel.status}</td>
+              <td>{sykkel.befinnelse}</td>
               <td>{sykkel.beskrivelse}</td>
               <td>{sykkel.bestillingsid}</td>
               <td>{sykkel.utleienavn}</td>
