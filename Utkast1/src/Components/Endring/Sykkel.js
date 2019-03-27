@@ -89,7 +89,12 @@ export class SykkelEndringMeny extends Component {
           <Form.Input type="text" id="befinnelseInput" value={this.befinnelse} placeholder={sykkel.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
 
           <Form.Label>Status:</Form.Label>
-          <Form.Input type="text" id="statusInput" value={this.status} placeholder={sykkel.status} onChange={event => (this.status = event.target.value)} />
+          <select className="form-control" form="formen" id="statusInput" value={sykkel.status} onChange={event => (sykkel.status = event.target.value)}>
+          <option value="Bestilt">Bestilt</option>
+            <option value="Lager">Lager</option>
+            <option value="Service">Service</option>
+            <option value="Stjålet">Stjålet</option>
+          </select>
 
           <Form.Label>Beskrivelse:</Form.Label>
           <Form.Input
@@ -160,7 +165,7 @@ export class SykkelEndringMeny extends Component {
       if (document.getElementById('befinnelseInput').value == "") {
         this.befinnelse = sykkel.befinnelse
       }
-      if (document.getElementById('statusInput').value == "") {
+      if (this.status === null) {
         this.status = sykkel.status
       }
       if (document.getElementById('beskrivelseInput').value == "") {
