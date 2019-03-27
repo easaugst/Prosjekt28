@@ -48,10 +48,10 @@ class UtstyrService {
     );
   }
 
-  updateUtstyr(utstyrsid, utstyrstypeid, ustatus, success) {
+  updateUtstyr(utstyrsid, utstyrstypeid, ustatus, ubefinnelse, utsutleienavn, success) {
     connection.query(
-      'UPDATE Utstyr SET utstyrstypeid = ?, ustatus = ? WHERE utstyrsid = ?',
-      [utstyrstypeid, ustatus, utstyrsid],
+      'UPDATE Utstyr SET utstyrstypeid = ?, ustatus = ?, ubefinnelse=?, utsutleienavn=? WHERE utstyrsid = ?',
+      [utstyrstypeid, ustatus, utstyrsid, ubefinnelse, utsutleienavn],
       (error, results) => {
         if (error) return console.error(error);
 

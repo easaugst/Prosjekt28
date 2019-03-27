@@ -26,6 +26,8 @@ export class UtstyrEndring extends Component {
             <th>Utstyrsnr</th>
             <th>Utstyrstype</th>
             <th>Status</th>
+            <th>Befinnelse</th>
+            <th>Tilhører utleiested</th>
             <th>Rediger</th>
           </Table.Rad>
           {this.uArray.map((
@@ -43,6 +45,8 @@ export class UtstyrEndring extends Component {
                   onChange={event => (utstyr.ustatus = event.target.value)}
                 />
               </td>
+              <td>{utstyr.ubefinnelse}</td>
+              <td>{utstyr.utsutleienavn}</td>
               <td>
                 <List.Item to={'/endring/utstyr/' + utstyr.utstyrsid}>Rediger</List.Item>
               </td>
@@ -64,6 +68,8 @@ export class UtstyrEndringMeny extends Component {
   utstyr = [];
   utstyrstypeid = null;
   ustatus = null;
+  ubefinnelse = '';
+  utsutleienavn = '';
 
   render() {
     return (
@@ -90,6 +96,12 @@ export class UtstyrEndringMeny extends Component {
             <option value="Service">Service</option>
             <option value="Stjålet">Stjålet</option>
           </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" id="ubefinnelseInput" value={this.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
+
+          <Form.Label>Tilhører utleiested:</Form.Label>
+          <Form.Input type="text" id="utsutleienavnInput" value={this.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
         </Card>
       ))}
         <br />
@@ -114,7 +126,7 @@ export class UtstyrEndringMeny extends Component {
   }
   save() {
     this.log();
-    utstyrService.updateUtstyr(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus, () => {
+    utstyrService.updateUtstyr(this.props.match.params.utstyrsid, this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, () => {
       history.push('/endring/utstyr');
     });
   }
@@ -146,6 +158,12 @@ export class UtstyrEndringMeny extends Component {
       }
       if (this.ustatus === null) {
         this.ustatus = utstyr.ustatus;
+      }
+      if (document.getElementById('ubefinnelseInput').value == "") {
+        this.ubefinnelse = utstyr.ubefinnelse
+      }
+      if (document.getElementById('utsutleienavnInput').value == "") {
+        this.utsutleienavn = utstyr.utsutleienavn
       }
     });
   }
