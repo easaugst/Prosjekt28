@@ -75,7 +75,7 @@ export class UtstyrEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.utstyr.map(utstyr => (
-        <Card title={'Endre utstyr nr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
+        <Card title={'Rediger utstyrnr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" id="utstyrstypeidInput" value={utstyr.utstyrstypeid} onChange={event => (utstyr.utstyrstypeid = event.target.value)}>
             <option value="3">Velg type her</option>

@@ -69,7 +69,7 @@ export class SykkelEndringMeny extends Component {
     return (
       <div className="mainView">
       {this.sykkel.map(sykkel => (
-        <Card title={"Endre regnr " + sykkel.regnr} key={sykkel.regnr}>
+        <Card title={"Rediger regnr " + sykkel.regnr} key={sykkel.regnr}>
           <Form.Label>Sykkeltype:</Form.Label>
           <select
             className="form-control"

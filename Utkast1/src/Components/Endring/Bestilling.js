@@ -86,7 +86,7 @@ export class BestillingsEndringMeny extends Component {
       <div>
         <div className="mainView">
           {this.bestilling.map(bestilling => (
-            <Card title={"Endre bestilling" + bestilling.bestillingsid} key={bestilling.kundenr}>
+            <Card title={"Rediger bestilling" + bestilling.bestillingsid} key={bestilling.kundenr}>
               <Form.Label>Kundenr:</Form.Label>
               <Form.Input
                 type="text"
@@ -268,7 +268,7 @@ export class UbestillingsEndring extends Component {
       <div>
         <div className="mainView">
           {this.dbArray.map(delbestiling => (
-            <Card title="Nåværende delbestilling " key={delbestiling.detaljer}>
+            <Card title={"Rediger delbestilling " + delbestiling.ubid} key={delbestiling.detaljer}>
               <Form.Label>Bestillingsid:</Form.Label>
               <Form.Input
                 type="text"
