@@ -63,7 +63,7 @@ export class UtstyrEndringMeny extends Component {
   utstyrsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
   utstyr = [];
   utstyrstypeid = null;
-  ustatus = '';
+  ustatus = null;
 
   render() {
     return (
@@ -144,9 +144,9 @@ export class UtstyrEndringMeny extends Component {
       if (this.utstyrstypeid === null) {
         this.utstyrstypeid = utstyr.utstyrstypeid;
       }
-      this.ustatus = utstyr.ustatus;
-      console.log(utstyr.ustatus);
-      console.log(this.ustatus);
+      if (this.ustatus === null) {
+        this.ustatus = utstyr.ustatus;
+      }
     });
   }
 }
