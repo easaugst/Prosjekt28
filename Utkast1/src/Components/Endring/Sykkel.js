@@ -90,8 +90,8 @@ export class SykkelEndringMeny extends Component {
 
           <Form.Label>Status:</Form.Label>
           <select className="form-control" form="formen" id="statusInput" value={sykkel.status} onChange={event => (sykkel.status = event.target.value)}>
-          <option value="Bestilt">Bestilt</option>
             <option value="Lager">Lager</option>
+            <option value="Bestilt">Bestilt</option>
             <option value="Service">Service</option>
             <option value="Stjålet">Stjålet</option>
           </select>
