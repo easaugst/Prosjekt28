@@ -17,8 +17,8 @@ const history = createHashHistory();
 export class SykkelReg extends Component {
   regnr = '';
   sykkeltypeid = '';
-  befinnelse = '';
   status = '';
+  befinnelse = '';
   beskrivelse = '';
   bestilling = '';
   utleienavn = '';
@@ -43,16 +43,16 @@ export class SykkelReg extends Component {
             <option value="14">Barnesykkel</option>
           </select>
 
-          <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" value={this.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
-
           <Form.Label>Status:</Form.Label>
           <select className="form-control" form="formen" value={this.status} onChange={event => (this.status = event.target.value)}>
-            <option value="Lager">Lager</option>
-            <option value="Bestilt">Bestilt</option>
-            <option value="Service">Service</option>
-            <option value="Stjålet">Stjålet</option>
+          <option value="Lager">Lager</option>
+          <option value="Bestilt">Bestilt</option>
+          <option value="Service">Service</option>
+          <option value="Stjålet">Stjålet</option>
           </select>
+
+          <Form.Label>Befinnelse:</Form.Label>
+          <Form.Input type="text" value={this.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
 
           <Form.Label>Beskrivelse:</Form.Label>
           <Form.Input
@@ -80,8 +80,8 @@ export class SykkelReg extends Component {
   add() {
     sykkelService.addSykkel(
       this.sykkeltypeid,
-      this.befinnelse,
       this.status,
+      this.befinnelse,
       this.beskrivelse,
       this.utleienavn,
       () => {
