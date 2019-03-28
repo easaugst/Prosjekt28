@@ -281,7 +281,7 @@ export class Utleie extends Component {
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number == 3) {
         document.getElementById('nesteUtleie').innerHTML = 'Fullfør';
-        document.getElementById('nesteUtleie').onclick = this.order;
+        document.getElementById('nesteUtleie').onClick = this.order;
       }
       console.log(this.number);
     }
@@ -294,7 +294,7 @@ export class Utleie extends Component {
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number != 3) {
         document.getElementById('nesteUtleie').innerHTML = 'Neste side <ion-icon name="arrow-forward" />';
-        document.getElementById('nesteUtleie').onclick = this.nextPage;
+        document.getElementById('nesteUtleie').onClick = this.nextPage;
       }
       console.log(this.number);
     }

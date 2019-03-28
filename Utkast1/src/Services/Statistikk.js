@@ -21,6 +21,44 @@ class StatistikkService {
       }
     );
   }
+  getUtstyrAntall(success) {
+    connection.query(
+      'select COUNT(utstyrsid) from Utstyr',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+  getUtstyrUtleidAntall(success) {
+    connection.query(
+      'select COUNT(utstyrsid) from Utstyr where ustatus = "Utleid"',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+
+  antallKunder(success) {
+    connection.query(
+      'select COUNT(kundenr) from Kunde',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+
+  antallBestillinger(success) {
+    connection.query(
+      'select COUNT(bestillingsid) from Bestilling',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
 
 
 }

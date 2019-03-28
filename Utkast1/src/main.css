@@ -195,6 +195,11 @@ a.logo {
 [id^="side"] {
   display: none;
 }
+.carousel-inner > .item > img,
+.carousel-inner > .item {
+  width: 70%;
+  margin: auto;
+}
 /*
 .sideFarge {
   width: 22em;
