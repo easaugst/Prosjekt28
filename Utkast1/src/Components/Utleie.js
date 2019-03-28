@@ -108,8 +108,8 @@ export class Utleie extends Component {
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
-              <input type="radio" name="betaling" value="Kort" /> Kort <br />
-              <input type="radio" name="betaling" value="Kontant" /> Kontant
+              <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} checked /> Kort <br />
+              <input type="radio" name="betaling" id="kontant" onChange={this.betalingValg}/> Kontant
             </div>
             <Row>
               <Column>
@@ -162,6 +162,7 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.kundeDropDown();
+    this.betalingValg()
     utleieService.getTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
@@ -320,6 +321,13 @@ export class Utleie extends Component {
       this.gruppe = 'Gruppe';
     } else {
       this.gruppe = 'Enkel';
+    }
+  }
+  betalingValg() {
+    if (document.getElementById('kort').checked == true) {
+      this.kontant = 'Kort';
+    } else if (document.getElementById('kontant').checked == true) {
+      this.kontant = 'Kontant';
     }
   }
 }
