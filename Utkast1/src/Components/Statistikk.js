@@ -101,7 +101,7 @@ export class Statistikk extends Component {
               </div>
 
               <div className="item">
-                <Card title="Lagerbeholdning for sykler">
+                <Card title="Lagerbeholdning for kunder">
                   <div>
                     <ProgressBar>
                       <ProgressBar
@@ -121,7 +121,7 @@ export class Statistikk extends Component {
               </div>
 
               <div className="item">
-                <Card title="Lagerbeholdning for utstyr">
+                <Card title="Lagerbeholdning for bestillinger">
                   <div>
                     <ProgressBar>
                       <ProgressBar
