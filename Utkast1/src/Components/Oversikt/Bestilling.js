@@ -31,6 +31,7 @@ export class BestillingOversikt extends Component {
           <Table.Rad>
             <th>Bestillingsnummer</th>
             <th>Kundenummer</th>
+            <th>Ansattnummer</th>
             <th>Utleietype</th>
             <th>Betalingsmåte</th>
             <th>Tidspunkt bestilling</th>
@@ -43,6 +44,7 @@ export class BestillingOversikt extends Component {
             <Table.Rad key={bestilling.bestillingsid}>
               <td>{bestilling.bestillingsid}</td>
               <td>{bestilling.kundenr}</td>
+              <td>{bestilling.ansattnr}</td>
               <td>{bestilling.utleietype}</td>
               <td>{bestilling.kontant}</td>
               <td>
@@ -53,12 +55,12 @@ export class BestillingOversikt extends Component {
               <td>
                 {JSON.stringify(bestilling.ftid)
                   .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
+                  .slice(0, -9)}
               </td>
               <td>
                 {JSON.stringify(bestilling.ttid)
                   .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
+                  .slice(0, -9)}
               </td>
               <td>{bestilling.gruppe}</td>
               <td>
