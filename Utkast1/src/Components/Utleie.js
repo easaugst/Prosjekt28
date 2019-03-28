@@ -21,6 +21,7 @@ export class Utleie extends Component {
   kundenr = '';
   kundeDrop = [];
   state = { values: [] };
+  utleieType = [];
   utleieTyper = null;
 
   uType = '';
@@ -131,30 +132,12 @@ export class Utleie extends Component {
         <div className="mainViewUtleie2" />
         <div id="dBestOversikt">
           <Table>
-            <Table.Rad>
-              <th>Terrengsykkel</th>
-              <th>Landeveisykkel</th>
-              <th>Tandemsykkel</th>
-              <th>Totalt</th>
+          {this.utleieType.map(type => (
+            <Table.Rad key={type.utid}>
+              <th>{type.utnavn}</th>
+              <td id={'antall' + type.utid} />
             </Table.Rad>
-            <Table.Rad>
-              <td id="antallSykler1" />
-              <td id="antallSykler2" />
-              <td id="antallSykler3" />
-              <td id="antallSykler" />
-            </Table.Rad>
-          </Table>
-          <Table>
-            <Table.Rad>
-              <th>Hjelm</th>
-              <th>Lappesett</th>
-              <th>Totalt</th>
-            </Table.Rad>
-            <Table.Rad>
-              <td id="antallUtstyr4" />
-              <td id="antallUtstyr5" />
-              <td id="antallUtstyr" />
-            </Table.Rad>
+          ))}
           </Table>
         </div>
       </div>
@@ -162,10 +145,15 @@ export class Utleie extends Component {
   }
   componentDidMount() {
     this.kundeDropDown();
-    utleieService.getTyper(typer => {
+    utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
+  }
+  mounted() {
+    utleieService.getTyper(typer => {
+      this.utleieType = typer;
+    })
   }
   log() {
     console.log(this.kontant);
@@ -277,17 +265,15 @@ export class Utleie extends Component {
   }
   addSykkel() {
     this.sykler.push(parseInt(this.sykkelType));
+    this.sykler.sort();
     console.log(this.sykler);
-    // document.getElementById('antallSykler' + this.sykkelType).innerHTML =
-    //   this.sykler.sort().lastIndexOf(parseInt(this.sykkelType)) -
-    //   this.sykler.sort().indexOf(parseInt(this.sykkelType)) +
-    //   1;
-    document.getElementById('antallSykler').innerHTML = this.sykler.length;
+    document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
   }
   addUtstyr() {
     this.utstyr.push(parseInt(this.utstyrType));
+    this.sykler.sort();
     console.log(this.utstyr);
-    document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
+    document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
   }
   nextPage() {
     if (this.number < 3) {

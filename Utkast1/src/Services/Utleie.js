@@ -55,13 +55,23 @@ class UtleieService {
       }
     )
   }
-  getTyper(success) {
+  countTyper(success) {
     connection.query(
       'SELECT COUNT(utid) FROM Utleietype',
       (error, results) => {
         if (error) return console.error(error);
 
         success(JSON.stringify(results));
+      }
+    )
+  }
+  getTyper(success) {
+    connection.query(
+      'SELECT * FROM Utleietype',
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
       }
     )
   }
