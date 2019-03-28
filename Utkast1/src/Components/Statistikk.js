@@ -28,11 +28,11 @@ export class Statistikk extends Component {
   render() {
     return (
       <div className="mainView">
-      <Card title ="Lagerbeholdning">
+      <Card title ="Lagerbeholdning for sykler">
         <div>
           <ProgressBar>
-            <ProgressBar striped variant="success" now={this.rest} max={this.totaltAntall} key={2} />
-            <ProgressBar striped variant="danger" now={this.utleidAntall} max={this.totaltAntall} key={1} />
+            <ProgressBar striped variant="success" now={this.rest} max={this.totaltAntall} label={this.rest + " Ledige"} key={1} />
+            <ProgressBar striped variant="danger" now={this.utleidAntall} max={this.totaltAntall} label={this.utleidAntall + " Opptatt"} key={2} />
           </ProgressBar>
         </div>
       </Card>
