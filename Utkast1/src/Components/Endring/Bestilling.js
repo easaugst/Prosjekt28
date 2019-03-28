@@ -86,7 +86,7 @@ export class BestillingsEndringMeny extends Component {
       <div>
         <div className="mainView">
           {this.bestilling.map(bestilling => (
-            <Card title={"Rediger bestilling" + bestilling.bestillingsid} key={bestilling.kundenr}>
+            <Card title={"Rediger bestilling" + bestilling.bestillingsid} key={bestilling.bestillingsid}>
               <Form.Label>Kundenr:</Form.Label>
               <Form.Input
                 type="text"
