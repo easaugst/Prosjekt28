@@ -16,10 +16,16 @@ const history = createHashHistory();
 
 export class AnsattOversikt extends Component {
   aArray = [];
+  tekst = "";
+  ftekst ="";
 
   render() {
     return (
       <div className="mainView">
+      <div className="filterView">
+          <Form.Label>Filtrer:</Form.Label>
+        <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
+      </div>
         <Table>
           <Table.Rad>
             <th>Ansattnummer</th>

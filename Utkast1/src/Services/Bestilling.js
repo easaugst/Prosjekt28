@@ -67,6 +67,15 @@ connection.query('delete from Ubestilling where ubid = ?', [ubid] , (error, resu
   success();
 });
 }
+getBestillingFilt(fnavn, enavn, success) {
+  connection.query('SELECT * FROM Bestilling B, Kunde K where B.kundenr = K.kundenr AND K.fnavn LIKE ? OR (B.kundenr = K.kundenr AND K.enavn LIKE ?)', [fnavn, enavn], (error, results) => {
+    if (error) return console.error(error);
+
+    success(results);
+  });
+}
+
+
 }
 
 export let bestillingsService = new BestillingsService();
