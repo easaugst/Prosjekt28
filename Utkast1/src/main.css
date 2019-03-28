@@ -193,9 +193,8 @@ a.logo {
   font-weight: bold;
 }
 
-/*
-.sideFarge {
-  width: 22em;
-  height: 50em;
-  position: static;
-}*/
+.carousel-inner > .item > img,
+.carousel-inner > .item {
+  width: 70%;
+  margin: auto;
+}
