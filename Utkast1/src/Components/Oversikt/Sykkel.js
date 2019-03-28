@@ -16,6 +16,7 @@ const history = createHashHistory();
 
 export class SykkelOversikt extends Component {
   sArray = [];
+  sideMengde = 25;
   number = 0;
 
   render() {
@@ -33,6 +34,11 @@ export class SykkelOversikt extends Component {
             <option value="14">Barnesykkel</option>
           </select>
         </div>
+        <select id="sidemengde" className="form-control" onChange={this.pages}>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
         <Table>
           <Table.Rad>
             <th>Reg nr.</th>
@@ -43,7 +49,7 @@ export class SykkelOversikt extends Component {
             <th>Nåværende bestilling</th>
             <th>Tilhører utleiested</th>
           </Table.Rad>
-          {this.sArray.map(sykkel => (
+          {this.sArray.slice(0, this.sideMengde).map(sykkel => (
             <Table.Rad key={sykkel.regnr}>
               <td>{sykkel.regnr}</td>
               <td>{sykkel.utnavn}</td>
@@ -74,6 +80,10 @@ export class SykkelOversikt extends Component {
         this.sArray = sykkel;
       });
     }
+    this.forceUpdate();
+  }
+  pages() {
+    this.sideMengde = parseInt(document.getElementById('sidemengde').value);
     this.forceUpdate();
   }
 }
