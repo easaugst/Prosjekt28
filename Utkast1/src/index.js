@@ -33,7 +33,7 @@ import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 import { Login } from './Components/Login.js';
-
+import { Statistikk } from './Components/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
 
@@ -51,6 +51,7 @@ class Menu extends Component {
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/login">Login</NavBar.Link>
+          <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
         </NavBar>
       </div>
     );
@@ -61,6 +62,7 @@ ReactDOM.render(
   <HashRouter>
     <div>
       <Menu />
+      <Route exact path="/statistikk" component={Statistikk} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
