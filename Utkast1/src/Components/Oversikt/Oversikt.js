@@ -16,7 +16,39 @@ const history = createHashHistory();
 
 export class Oversikt extends Component {
   render() {
-    return <div className="mainView">Her får vi en oversikt over bestillinger, kunder, sykler og utstyr</div>;
+    return (
+      <div className="mainView">
+        {' '}
+        Reg hva du vil
+        <div class="container">
+          <h2>Fullfør bestilling</h2>
+          <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+            Fullfør bestilling
+          </button>
+
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Bestillingen er fullført</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Lukk
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        ;
+      </div>
+    );
   }
 }
 
