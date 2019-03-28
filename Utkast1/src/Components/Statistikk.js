@@ -21,9 +21,10 @@ export class Statistikk extends Component {
   sArray = [];
   stArray = [];
 
-  totaltAntall = 0;
-  utleidAntall = 0;
-  rest = 0;
+  totaltAntallSykler = 0; utleidAntallSykler = 0; restSykler = 0;
+
+  totaltAntallUtstyr = 0; utleidAntallUtstyr = 0; restUtstyr = 0;
+
 
   render() {
     return (
@@ -31,8 +32,16 @@ export class Statistikk extends Component {
       <Card title ="Lagerbeholdning for sykler">
         <div>
           <ProgressBar>
-            <ProgressBar striped variant="success" now={this.rest} max={this.totaltAntall} label={this.rest + " Ledige"} key={1} />
-            <ProgressBar striped variant="danger" now={this.utleidAntall} max={this.totaltAntall} label={this.utleidAntall + " Opptatt"} key={2} />
+            <ProgressBar striped variant="success" now={this.restSykler} max={this.totaltAntallSykler} label={this.restSykler + " Ledige"} key={1} />
+            <ProgressBar striped variant="danger" now={this.utleidAntallSykler} max={this.totaltAntallSykler} label={this.utleidAntallSykler + " Opptatt"} key={2} />
+          </ProgressBar>
+        </div>
+      </Card>
+      <Card title ="Lagerbeholdning for utstyr">
+        <div>
+          <ProgressBar>
+            <ProgressBar striped variant="success" now={this.restUtstyr} max={this.totaltAntallUtstyr} label={this.restUtstyr + " Ledige"} key={1} />
+            <ProgressBar striped variant="danger" now={this.utleidAntallUtstyr} max={this.totaltAntallUtstyr} label={this.utleidAntallUtstyr + " Opptatt"} key={2} />
           </ProgressBar>
         </div>
       </Card>
@@ -40,12 +49,23 @@ export class Statistikk extends Component {
     );
   }
   mounted() {
+    //Sykkelstatistikk
+
     statistikkService.getSykkelAntall(sykkelTot => {
-      this.totaltAntall = parseInt(sykkelTot.substr(sykkelTot.lastIndexOf(':') + 1));
+      this.totaltAntallSykler = parseInt(sykkelTot.substr(sykkelTot.lastIndexOf(':') + 1));
     });
     statistikkService.getSykkelUtleidAntall(sykkelUt => {
-      this.utleidAntall = parseInt(sykkelUt.substr(sykkelUt.lastIndexOf(':') + 1));
-      this.rest = this.totaltAntall-this.utleidAntall;
+      this.utleidAntallSykler = parseInt(sykkelUt.substr(sykkelUt.lastIndexOf(':') + 1));
+      this.restSykler = this.totaltAntallSykler-this.utleidAntallSykler;
+    });
+    //Utstyrstatistikk
+
+    statistikkService.getUtstyrAntall(utstyrTot => {
+      this.totaltAntallUtstyr = parseInt(utstyrTot.substr(utstyrTot.lastIndexOf(':') + 1));
+    });
+    statistikkService.getUtstyrUtleidAntall(utstyrUt => {
+      this.utleidAntallUtstyr = parseInt(utstyrUt.substr(utstyrUt.lastIndexOf(':') + 1));
+      this.restUtstyr = this.totaltAntallUtstyr-this.utleidAntallUtstyr;
     });
   }
 
