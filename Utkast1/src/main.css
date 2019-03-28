@@ -192,7 +192,9 @@ a.logo {
 .card-title {
   font-weight: bold;
 }
-
+[id^="side"] {
+  display: none;
+}
 /*
 .sideFarge {
   width: 22em;

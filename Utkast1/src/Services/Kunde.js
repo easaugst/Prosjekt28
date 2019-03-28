@@ -9,6 +9,14 @@ class KundeService {
       success(results);
     });
   }
+  countKunder(success) {
+    connection.query('SELECT COUNT(kundenr) FROM Kunde',
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success(JSON.stringify(results));
+    });
+  }
   getKundeEndring(kundenr, success) {
     connection.query(
       'SELECT * FROM Kunde WHERE kundenr = ?',
@@ -56,19 +64,19 @@ class KundeService {
     );
   }
   slettKunde(kundenr, success){
-  connection.query('delete from Kunde where kundenr = ?', [kundenr] , (error, results) => {
+    connection.query('delete from Kunde where kundenr = ?', [kundenr] , (error, results) => {
+      if(error) return console.error(error);
+
+      success();
+    });
+  }
+  getKundeFilt(fnavn, enavn, success){
+  connection.query('SELECT * FROM Kunde where fnavn LIKE ? OR (enavn LIKE ?)', [fnavn, enavn] , (error, results) => {
     if(error) return console.error(error);
 
-    success();
+    success(results);
   });
-}
-getKundeFilt(fnavn, enavn, success){
-connection.query('SELECT * FROM Kunde where fnavn LIKE ? OR (enavn LIKE ?)', [fnavn, enavn] , (error, results) => {
-  if(error) return console.error(error);
-
-  success(results);
-});
-}
+  }
 }
 
 
