@@ -166,16 +166,7 @@ export class Utleie extends Component {
     });
   }
   log() {
-    // console.log(
-    //   'kundenr:' + this.state.values[0].key, //Henter kundenummeret til valgt kunde med this.state.values[0].key
-    //   'utleieType:' + this.uType,
-    //   'kontant:' + this.kontant,
-    //   'fratid:' + this.ftid,
-    //   'Gruppe:' + this.gruppe
-    // );
-    // this.kundenr = this.state.values[0].key;
-    // console.log('this.kundenr: ' + this.kundenr);
-    console.log(this.gruppe);
+    console.log(this.kontant);
   }
 
   order() {
@@ -183,7 +174,7 @@ export class Utleie extends Component {
   //Overbestilling opprettes
     this.sykler.sort();
     this.utstyr.sort();
-    utleieService.addBestilling(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+    utleieService.addBestilling(this.state.values[0].key, window.ansatt, this.uType, this.kontant, this.ftid, this.gruppe, () => {
       console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
       utleieService.getBestilling(bestilling => {
         this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
@@ -254,11 +245,6 @@ export class Utleie extends Component {
           console.log('Svar fra database, del 1 kjører!! ' + j, this.vUtstyr, this.uTyper.length);
         });
       }
-
-      /*
-      Løkken venter ikke på svar fra databasen før den kjører ny runde. Når databasen til slutt svarer, har den feil verdi for j i kjøringen til
-      ( "success" ). Spørringen gir fortsatt riktig svar fra databasen.
-      */
       console.log('Program slutt');
     }
       bestillUtstyr() {
@@ -299,14 +285,11 @@ export class Utleie extends Component {
   addUtstyr() {
     this.utstyr.push(parseInt(this.utstyrType));
     console.log(this.utstyr);
-    // document.getElementById('antallUtstyr' + this.utstyrType).innerHTML =
-    //   this.utstyr.sort().lastIndexOf(parseInt(this.utstyrType)) -
-    //   this.utstyr.sort().indexOf(parseInt(this.utstyrType)) +
-    //   1;
     document.getElementById('antallUtstyr').innerHTML = this.utstyr.length;
   }
   nextPage() {
     if (this.number < 3) {
+      console.log(this.number);
       document.getElementById('utleie' + this.number).style.display = 'none';
       this.number++;
       document.getElementById('utleie' + this.number).style.display = 'block';
@@ -314,17 +297,20 @@ export class Utleie extends Component {
         document.getElementById('nesteUtleie').innerHTML = 'Fullfør';
         document.getElementById('nesteUtleie').onclick = this.order;
       }
+      console.log(this.number);
     }
   }
   prevPage() {
     if (this.number > 1) {
+      console.log(this.number);
       document.getElementById('utleie' + this.number).style.display = 'none';
       this.number--;
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number != 3) {
-        document.getElementById('nesteUtleie').innerHTML = 'Neste side';
+        document.getElementById('nesteUtleie').innerHTML = 'Neste side <ion-icon name="arrow-forward" />';
         document.getElementById('nesteUtleie').onclick = this.nextPage;
       }
+      console.log(this.number);
     }
   }
   gruppeValg() {

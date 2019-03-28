@@ -65,10 +65,10 @@ class UtleieService {
       }
     )
   }
-  addBestilling(kundenr, utleietype, kontant, ftid, gruppe, success) {
+  addBestilling(kundenr, ansattnr, utleietype, kontant, ftid, gruppe, success) {
     connection.query(
-      'INSERT INTO Bestilling (kundenr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?)',
-      [kundenr, utleietype, kontant, ftid, gruppe],
+      'INSERT INTO Bestilling (kundenr, ansattnr, utleietype, kontant, ftid, gruppe) values (?, ?, ?, ?, ?, ?)',
+      [kundenr, ansattnr, utleietype, kontant, ftid, gruppe],
       (error, results) => {
         if (error) return console.error(error);
 

@@ -10,7 +10,7 @@ const history = createHashHistory();
 
 export class Login extends Component {
   verification = 0;
-  ansatt = '';
+  ansatt = null;
   email = '';
   pwd = '';
   admin = '';
@@ -71,7 +71,7 @@ export class Login extends Component {
               this.adminS = window.admin2[j];
             }
             else {
-              
+
             }
           }
 
