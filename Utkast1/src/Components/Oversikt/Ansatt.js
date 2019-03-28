@@ -58,4 +58,13 @@ export class AnsattOversikt extends Component {
       this.aArray = ansatt;
     });
   }
+  filter() {
+    this.tekst = document.getElementById('input').value;
+    this.ftekst = "%" + this.tekst + "%";
+
+      ansattService.getAnsattFilt(this.ftekst, this.ftekst, ansattF => {
+        this.aArray = ansattF;
+      });
+    this.forceUpdate();
+  }
 }

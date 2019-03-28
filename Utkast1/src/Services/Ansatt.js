@@ -66,6 +66,13 @@ class AnsattService {
     success();
   });
 }
+getAnsattFilt(fnavn, enavn,success) {
+  connection.query('SELECT * FROM FastAnsatt Where fnavn LIKE ? OR enavn LIKE ?', [fnavn,enavn], (error, results) => {
+    if (error) return console.error(error);
+
+    success(results);
+  });
+}
 
 }
 
