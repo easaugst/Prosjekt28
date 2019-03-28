@@ -194,7 +194,9 @@ export class BestillingsEndringMeny extends Component {
   slett() {
     if (window.admin == true) {
       bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
-        history.push('/endring/bestilling');
+      });
+      bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
+        history.goBack();
       });
     } else {
       alert(window.tbm);
