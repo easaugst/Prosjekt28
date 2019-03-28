@@ -17,10 +17,17 @@ const history = createHashHistory();
 export class KundeOversikt extends Component {
   kArray = [];
   tid = '';
+  tekst = "";
+  ftekst ="";
+
 
   render() {
     return (
       <div className="mainView">
+      <div className="filterView">
+          <Form.Label>Filtrer:</Form.Label>
+        <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
+      </div>
         <Table>
           <Table.Rad>
             <th>Kundenummer</th>
@@ -62,4 +69,14 @@ export class KundeOversikt extends Component {
       this.kArray = kunde;
     });
   }
+  filter() {
+    this.tekst = document.getElementById('input').value;
+    this.ftekst = "%" + this.tekst + "%";
+
+      kundeService.getKundeFilt(this.ftekst, this.ftekst, kundeF => {
+        this.kArray = kundeF;
+      });
+    this.forceUpdate();
+  }
+
 }

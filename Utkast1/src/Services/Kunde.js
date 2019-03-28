@@ -62,6 +62,13 @@ class KundeService {
     success();
   });
 }
+getKundeFilt(fnavn, enavn, success){
+connection.query('SELECT * FROM Kunde where fnavn LIKE ? OR (enavn LIKE ?)', [fnavn, enavn] , (error, results) => {
+  if(error) return console.error(error);
+
+  success(results);
+});
+}
 }
 
 
