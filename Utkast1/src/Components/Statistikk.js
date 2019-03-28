@@ -25,6 +25,10 @@ export class Statistikk extends Component {
 
   totaltAntallUtstyr = 0; utleidAntallUtstyr = 0; restUtstyr = 0;
 
+  antallBestillinger = 0;
+
+  antallKunder = 0;
+
 
   render() {
     return (
@@ -42,6 +46,20 @@ export class Statistikk extends Component {
           <ProgressBar>
             <ProgressBar striped variant="success" now={this.restUtstyr} max={this.totaltAntallUtstyr} label={this.restUtstyr + " Ledige"} key={1} />
             <ProgressBar striped variant="danger" now={this.utleidAntallUtstyr} max={this.totaltAntallUtstyr} label={this.utleidAntallUtstyr + " Opptatt"} key={2} />
+          </ProgressBar>
+        </div>
+      </Card>
+      <Card title ="Antall registrerte kunder">
+        <div>
+          <ProgressBar>
+            <ProgressBar striped variant="success" now={this.antallKunder} max={this.antallKunder*1.5} label={this.antallKunder + " kunder"} key={1} />
+          </ProgressBar>
+        </div>
+      </Card>
+      <Card title ="Antall gjennomførte bestillinger">
+        <div>
+          <ProgressBar>
+            <ProgressBar striped variant="success" now={this.antallBestillinger} max={this.antallBestillinger*1.5} label={this.antallBestillinger + " bestillinger"} key={1} />
           </ProgressBar>
         </div>
       </Card>
@@ -67,6 +85,19 @@ export class Statistikk extends Component {
       this.utleidAntallUtstyr = parseInt(utstyrUt.substr(utstyrUt.lastIndexOf(':') + 1));
       this.restUtstyr = this.totaltAntallUtstyr-this.utleidAntallUtstyr;
     });
+
+    //kundestatistikk
+
+    statistikkService.antallKunder(kunderTot => {
+      this.antallKunder = parseInt(kunderTot.substr(kunderTot.lastIndexOf(':') + 1));
+    });
+
+    //Bestillingstatistikk
+    statistikkService.antallBestillinger(bestillingTot => {
+      this.antallBestillinger = parseInt(bestillingTot.substr(bestillingTot.lastIndexOf(':') + 1));
+    });
+
+
   }
 
 }

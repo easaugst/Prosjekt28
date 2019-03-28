@@ -40,6 +40,26 @@ class StatistikkService {
     );
   }
 
+  antallKunder(success) {
+    connection.query(
+      'select COUNT(kundenr) from Kunde',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+
+  antallBestillinger(success) {
+    connection.query(
+      'select COUNT(bestillingsid) from Bestilling',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+
 
 }
 
