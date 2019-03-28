@@ -52,7 +52,7 @@ export class Statistikk extends Component {
       <Card title ="Antall registrerte kunder">
         <div>
           <ProgressBar>
-            <ProgressBar striped variant="success" now={this.antallKunder} max={this.antallKunder*1.5} label={this.antallKunder + " kunder"} key={1} />
+            <ProgressBar striped variant="success" now={this.antallKunder} max={this.antallKunder*1.4} label={this.antallKunder + " kunder"} key={1} />
           </ProgressBar>
         </div>
       </Card>
