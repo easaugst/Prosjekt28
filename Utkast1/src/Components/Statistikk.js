@@ -34,124 +34,80 @@ export class Statistikk extends Component {
 
   render() {
     return (
-      <Card title="Lagerbeholdning">
-        <div className="container">
-          <h2>Oversikt over Lagerbeholdning</h2>
-          <div id="myCarousel" className="carousel slide">
-            <ol className="carousel-indicators">
-              <li className="item1 active" />
-              <li className="item2" />
-              <li className="item3" />
-              <li className="item4" />
-            </ol>
-
-            <div className="carousel-inner" role="listbox">
-              <div className="item active">
-                <Card title="Lagerbeholdning for sykler">
-                  <ProgressBar>
-                    <ProgressBar
-                      striped
-                      variant="success"
-                      now={this.restSykler}
-                      max={this.totaltAntallSykler}
-                      label={this.restSykler + ' Ledige'}
-                      key={1}
-                    />
-                    <ProgressBar
-                      striped
-                      variant="danger"
-                      now={this.utleidAntallSykler}
-                      max={this.totaltAntallSykler}
-                      label={this.utleidAntallSykler + ' Opptatt'}
-                      key={2}
-                    />
-                  </ProgressBar>
-                </Card>{' '}
-                <div className="carousel-caption">
-                  <h3>Sykler</h3>
-                </div>
-              </div>
-
-              <div className="item">
-                <Card title="Lagerbeholdning for utstyr">
-                  <div>
-                    <ProgressBar>
-                      <ProgressBar
-                        striped
-                        variant="success"
-                        now={this.restUtstyr}
-                        max={this.totaltAntallUtstyr}
-                        label={this.restUtstyr + ' Ledige'}
-                        key={1}
-                      />
-                      <ProgressBar
-                        striped
-                        variant="danger"
-                        now={this.utleidAntallUtstyr}
-                        max={this.totaltAntallUtstyr}
-                        label={this.utleidAntallUtstyr + ' Opptatt'}
-                        key={2}
-                      />
-                    </ProgressBar>
-                  </div>
-                </Card>{' '}
-                <div className="carousel-caption">
-                  <h3>Utstyr</h3>
-                </div>
-              </div>
-
-              <div className="item">
-                <Card title="Lagerbeholdning for kunder">
-                  <div>
-                    <ProgressBar>
-                      <ProgressBar
-                        striped
-                        variant="success"
-                        now={this.antallKunder}
-                        max={this.antallKunder * 1.4}
-                        label={this.antallKunder + ' kunder'}
-                        key={1}
-                      />
-                    </ProgressBar>
-                  </div>
-                </Card>{' '}
-                <div className="carousel-caption">
-                  <h3>Kunder</h3>
-                </div>
-              </div>
-
-              <div className="item">
-                <Card title="Lagerbeholdning for bestillinger">
-                  <div>
-                    <ProgressBar>
-                      <ProgressBar
-                        striped
-                        variant="success"
-                        now={this.antallBestillinger}
-                        max={this.antallBestillinger * 1.5}
-                        label={this.antallBestillinger + ' bestillinger'}
-                        key={1}
-                      />
-                    </ProgressBar>
-                  </div>
-                </Card>{' '}
-                <div className="carousel-caption">
-                  <h3>Bestillinger</h3>
-                </div>
-              </div>
-            </div>
-
-            <a className="left carousel-control" href="#myCarousel" role="button">
-              <span className="glyphicon glyphicon-chevron-left" aria-hidden="true" />
-              <span className="sr-only">Previous</span>
-            </a>
-            <a className="right carousel-control" href="#myCarousel" role="button">
-              <span className="glyphicon glyphicon-chevron-right" aria-hidden="true" />
-              <span className="sr-only">Next</span>
-            </a>
+      <div className="mainView">
+        <Card title="Lagerbeholdning for sykler">
+          <div>
+            <ProgressBar>
+              <ProgressBar
+                striped
+                variant="success"
+                now={this.restSykler}
+                max={this.totaltAntallSykler}
+                label={this.restSykler + ' Ledige'}
+                key={1}
+              />
+              <ProgressBar
+                striped
+                variant="danger"
+                now={this.utleidAntallSykler}
+                max={this.totaltAntallSykler}
+                label={this.utleidAntallSykler + ' Opptatt'}
+                key={2}
+              />
+            </ProgressBar>
           </div>
-        </div>
-      </Card>
+        </Card>
+        <Card title="Lagerbeholdning for utstyr">
+          <div>
+            <ProgressBar>
+              <ProgressBar
+                striped
+                variant="success"
+                now={this.restUtstyr}
+                max={this.totaltAntallUtstyr}
+                label={this.restUtstyr + ' Ledige'}
+                key={1}
+              />
+              <ProgressBar
+                striped
+                variant="danger"
+                now={this.utleidAntallUtstyr}
+                max={this.totaltAntallUtstyr}
+                label={this.utleidAntallUtstyr + ' Opptatt'}
+                key={2}
+              />
+            </ProgressBar>
+          </div>
+        </Card>
+        <Card title="Antall registrerte kunder">
+          <div>
+            <ProgressBar>
+              <ProgressBar
+                striped
+                variant="success"
+                now={this.antallKunder}
+                max={this.antallKunder * 1.4}
+                label={this.antallKunder + ' kunder'}
+                key={1}
+              />
+            </ProgressBar>
+          </div>
+        </Card>
+        <Card title="Antall gjennomførte bestillinger">
+          <div>
+            <ProgressBar>
+              <ProgressBar
+                striped
+                variant="success"
+                now={this.antallBestillinger}
+                max={this.antallBestillinger * 1.5}
+                label={this.antallBestillinger + ' bestillinger'}
+                key={1}
+              />
+            </ProgressBar>
+          </div>
+        </Card>
+      </div>
     );
   }
   mounted() {
@@ -186,30 +142,3 @@ export class Statistikk extends Component {
     });
   }
 }
-
-$(document).ready(function() {
-  // Activate Carousel
-  $('#myCarousel').carousel();
-
-  // Enable Carousel Indicators
-  $('.item1').click(function() {
-    $('#myCarousel').carousel(0);
-  });
-  $('.item2').click(function() {
-    $('#myCarousel').carousel(1);
-  });
-  $('.item3').click(function() {
-    $('#myCarousel').carousel(2);
-  });
-  $('.item4').click(function() {
-    $('#myCarousel').carousel(3);
-  });
-
-  // Enable Carousel Controls
-  $('.left').click(function() {
-    $('#myCarousel').carousel('prev');
-  });
-  $('.right').click(function() {
-    $('#myCarousel').carousel(1);
-  });
-});
