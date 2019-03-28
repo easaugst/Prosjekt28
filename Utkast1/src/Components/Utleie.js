@@ -108,6 +108,8 @@ export class Utleie extends Component {
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
+              <input type="radio" name="betaling" value="Kort" /> Kort <br />
+              <input type="radio" name="betaling" value="Kontant" /> Kontant
             </div>
             <Row>
               <Column>
