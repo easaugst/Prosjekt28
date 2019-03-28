@@ -18,7 +18,9 @@ export class KundeOversikt extends Component {
   kArray = [];
   tid = '';
   tekst = "";
-  ftekst ="";
+  ftekst = "";
+  sideMengde = 10;
+
 
 
   render() {
@@ -28,6 +30,11 @@ export class KundeOversikt extends Component {
           <Form.Label>Filtrer:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
+      <select id="sidemengde" className="form-control" onChange={this.pages}>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
         <Table>
           <Table.Rad>
             <th>Kundenummer</th>
@@ -39,7 +46,7 @@ export class KundeOversikt extends Component {
 
             <th>Dato registrert</th>
           </Table.Rad>
-          {this.kArray.map(kunde => (
+          {this.kArray.slice(0, this.sideMengde).map(kunde => (
             <Table.Rad key={kunde.kundenr}>
               <td>{kunde.kundenr}</td>
               <td>{kunde.fnavn}</td>
@@ -78,5 +85,8 @@ export class KundeOversikt extends Component {
       });
     this.forceUpdate();
   }
-
+  pages() {
+    this.sideMengde = parseInt(document.getElementById('sidemengde').value);
+    this.forceUpdate();
+  }
 }

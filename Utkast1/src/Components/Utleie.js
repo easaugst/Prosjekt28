@@ -210,7 +210,6 @@ export class Utleie extends Component {
           utleieService.updateSykkel(this.vSykler[k].regnr, "Utleid", () => {
           });
           console.log('Underbestilling for sykkel ' + this.vSykler[k].regnr + ' lagt til');
-          console.log('Sykkel ' + this.vSykler[k].regnr + ' satt til "bestilt"');
         }
       }
     registrerUtstyr() {
@@ -244,7 +243,6 @@ export class Utleie extends Component {
           utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, "Utleid", () => {
           });
           console.log('Underbestilling for utstyr ' + this.vUtstyr[k].utstyrsid + ' lagt til');
-          console.log('Utstyr ' + this.vUtstyr[k].utstyrsid + ' satt til "bestilt"');
         }
       }
 
