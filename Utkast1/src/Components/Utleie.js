@@ -31,8 +31,8 @@ export class Utleie extends Component {
   detaljer = 'Ikke spesifisert';
 
   bId = ''; runU = 0; runS = 0;
-  sykkelType = ''; sykkelTypeText = '';
-  utstyrType = ''; utstyrTypeText = '';
+  sykkelType = '';
+  utstyrType = '';
 
   sykler = []; vSykler = []; sTyper = [];
   utstyr = []; vUtstyr = []; uTyper = [];
@@ -143,20 +143,18 @@ export class Utleie extends Component {
       </div>
     );
   }
-  componentDidMount() {
+  mounted() {
     this.kundeDropDown();
+    utleieService.getTyper(typer => {
+      this.utleieType = typer;
+    })
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
   }
-  mounted() {
-    utleieService.getTyper(typer => {
-      this.utleieType = typer;
-    })
-  }
   log() {
-    console.log(this.kontant);
+    console.log(this.utleieTyper);
   }
 
   order() {
@@ -169,9 +167,9 @@ export class Utleie extends Component {
       utleieService.getBestilling(bestilling => {
         this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
         console.log('Bestillingsid: ' + this.bId);
+        this.registrerSykkel();
+        this.registrerUtstyr();
       });
-      this.registrerSykkel();
-      this.registrerUtstyr();
     });
   }
     registrerSykkel() {
@@ -281,7 +279,7 @@ export class Utleie extends Component {
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number == 3) {
         document.getElementById('nesteUtleie').innerHTML = 'Fullfør';
-        document.getElementById('nesteUtleie').onClick = this.order;
+        document.getElementById('nesteUtleie').onclick = this.order;
       }
       console.log(this.number);
     }
