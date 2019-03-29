@@ -36,7 +36,7 @@ export class Statistikk extends Component {
     return (
       <div className="mainView">
       <div className="row">
-        <div className="col-sm-6">
+        <div className="col-auto mb-3">
         <Card title="Lagerbeholdning for sykler">
           <div>
             <ProgressBar>
@@ -59,7 +59,7 @@ export class Statistikk extends Component {
           </ProgressBar>
         </div>
       </Card></div>
-      <div className="col-sm-6">  <Card title="Lagerbeholdning for utstyr">
+      <div className="col-auto mb-">  <Card title="Lagerbeholdning for utstyr">
           <div>
             <ProgressBar>
               <ProgressBar
@@ -84,7 +84,7 @@ export class Statistikk extends Component {
         </div>
       </div>
       <div className="row">
-      <div className="col-sm-6">
+      <div className="col-auto mb-3">
       <Card title="Antall registrerte kunder">
         <div>
           <ProgressBar>
@@ -100,7 +100,7 @@ export class Statistikk extends Component {
         </div>
       </Card>
       </div>
-      <div className="col-sm-6">
+      <div className="col-auto mb-3">
         <Card title="Antall registrerte bestillinger">
           <div>
             <ProgressBar>
