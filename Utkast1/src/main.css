@@ -150,6 +150,9 @@ a.logo {
 .mainView h3 {
   font-weight: bold;
 }
+.mainView h2 {
+  font-weight: bold;
+}
 .mainView-signin {
   position: absolute;
   left: 40vw;
@@ -206,8 +209,22 @@ a.logo {
   height: 50em;
   position: static;
 }*/
-.bildeInput {
+
+/* Ikoninstillinger for registrering */
+#bildeInput1 {
   height: 15vh;
+  margin-left: 2vw;
+}
+#bildeInput2 {
+  height: 15vh;
+}
+#bildeInput3 {
+  height: 15vh;
+  margin-left: 2vw;
+}
+#bildeInput4 {
+  height: 15vh;
+  margin-left: 2vw;
 }
 p {
   text-align: center;
@@ -215,5 +232,25 @@ p {
   color: black;
 }
 #mainViewSide1 {
-  width: 20vw;
+  width: 15vw;
   position: absolute;
+  margin-top: 7vh;
+}
+#mainViewSide2 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 15vw;
+  margin-top: 7vh;
+}
+#mainViewSide3 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 31vw;
+  margin-top: 7vh;
+}
+#mainViewSide4 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 46vw;
+  margin-top: 7vh;
+}
