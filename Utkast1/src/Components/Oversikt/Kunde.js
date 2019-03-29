@@ -84,7 +84,7 @@ export class KundeOversikt extends Component {
       console.log(this.kunder);
       this.kundeSortering();
     });
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+    kundeService.getKunde(kunde => {
       this.kArray = kunde;
     });
   }
@@ -95,11 +95,12 @@ export class KundeOversikt extends Component {
       kundeService.getKundeFilt(this.ftekst, this.ftekst, kundeF => {
         this.kArray = kundeF;
       });
+    this.pageSwitchH();
     this.forceUpdate();
   }
   pages() {
     this.sideMengde = parseInt(document.getElementById('sidemengde').value);
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+    kundeService.getKunde(kunde => {
       this.kArray = kunde;
     });
     this.kundeSortering();
@@ -127,7 +128,7 @@ export class KundeOversikt extends Component {
         this.aktivSide--;
       }
     }
-  
+
   kundeSortering() {
     if (this.kunder > this.sideMengde) {
       this.sisteSide = this.kunder % this.sideMengde;
@@ -135,14 +136,14 @@ export class KundeOversikt extends Component {
       console.log(this.kunder, this.sisteSide);
       for (var i = 1; i <= (this.kunder / this.sideMengde + 1); i++) {
         if (i == (this.kunder / this.sideMengde + 1)) {
-          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde - 1, sideMengde: (i - 1) * this.sideMengde + this.sisteSide - 1 });
-          console.log(this.sisteSide);
+          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: (i - 1) * this.sideMengde + this.sisteSide});
+          console.log('Siste side: ' + this.sisteSide);
         } else {
-          if (this.sider.length < 1) {
-            this.sider.push({ forrigeSide: 0, sideMengde: i * this.sideMengde - 1 });
-            // document.getElementById('sideKnapper').innerHTML += <Button.Light onClick={this.pageSwitch()}>Logg</Button.Light>
+          if (this.sider.length == 0) {
+            this.sider.push({ forrigeSide: 0, sideMengde: i * this.sideMengde });
+            console.log('Første side opprettet: ', this.sider[0]);
           } else {
-            this.sider.push({ forrigeSide: (i - 1) * this.sideMengde - 1, sideMengde: i * this.sideMengde - 1 })
+            this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: i * this.sideMengde })
           }
         }
       }

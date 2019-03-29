@@ -2,8 +2,8 @@ import { connection } from '../mysql_connection';
 
 
 class KundeService {
-  getKunde(kundenr, success) {
-    connection.query('SELECT * FROM Kunde', [kundenr], (error, results) => {
+  getKunde(success) {
+    connection.query('SELECT * FROM Kunde', (error, results) => {
       if (error) return console.error(error);
 
       success(results);
