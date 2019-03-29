@@ -74,7 +74,7 @@ export class AnsattEndringMeny extends Component {
       <div>
         <div className="mainView">
           {this.ansatt.map(ansatt => (
-            <Card title={"Rediger ansattnr " + ansatt.ansattnr} key={ansatt.ansattnr}>
+            <Card title={'Rediger ansattnr ' + ansatt.ansattnr} key={ansatt.ansattnr}>
               <Form.Label>Tlf. nr.:</Form.Label>
               <Form.Input
                 type="text"
@@ -154,10 +154,10 @@ export class AnsattEndringMeny extends Component {
               <Button.Success onClick={this.save}>Lagre endring</Button.Success>
             </span>
             <span className="tilbakeMeny">
-              <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+              <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+              <Button.DangerOl onClick={this.slett}>Slett ansatt</Button.DangerOl>
             </span>
           </div>
         </div>
@@ -172,25 +172,24 @@ export class AnsattEndringMeny extends Component {
   }
   save() {
     this.log();
-    if(window.admin == true){
-    ansattService.updateAnsatt(
-      this.tlfnr,
-      this.epost,
-      this.fnavn,
-      this.enavn,
-      this.admin,
-      this.utleienavn,
-      this.stilling,
-      this.ansattnr,
-      () => {
-        history.push('/endring/ansatt');
-      }
-    );
+    if (window.admin == true) {
+      ansattService.updateAnsatt(
+        this.tlfnr,
+        this.epost,
+        this.fnavn,
+        this.enavn,
+        this.admin,
+        this.utleienavn,
+        this.stilling,
+        this.ansattnr,
+        () => {
+          history.push('/endring/ansatt');
+        }
+      );
+    } else {
+      alert('Du må ha administratortilgang for å endre ansatt');
+    }
   }
-  else {
-    alert("Du må ha administratortilgang for å endre ansatt");
-  }
-}
   cancel() {
     history.goBack();
   }
@@ -200,33 +199,32 @@ export class AnsattEndringMeny extends Component {
         this.tlfnr = ansatt.tlfnr;
       }
       if (document.getElementById('epostInput').value === '') {
-        this.epost = ansatt.epost
+        this.epost = ansatt.epost;
       }
       if (document.getElementById('fnavnInput').value === '') {
-        this.fnavn = ansatt.fnavn
+        this.fnavn = ansatt.fnavn;
       }
       if (document.getElementById('enavnInput').value === '') {
-        this.enavn = ansatt.enavn
+        this.enavn = ansatt.enavn;
       }
       if (this.admin === null) {
-        this.admin = ansatt.admin
+        this.admin = ansatt.admin;
       }
       if (document.getElementById('utleieInput').value === '') {
-        this.utleienavn = ansatt.utleienavn
+        this.utleienavn = ansatt.utleienavn;
       }
       if (this.stilling === null) {
-        this.stilling = ansatt.stilling
+        this.stilling = ansatt.stilling;
       }
-    })
+    });
     console.log(this.tlfnr, this.epost, this.fnavn, this.enavn, this.admin, this.utleienavn, this.stilling);
   }
   slett() {
-    if(window.admin == true) {
-    ansattService.slettAnsatt(this.props.match.params.ansattnr, () => {
-      history.push('/endring/ansatt');
-    });
-    }
-    else {
+    if (window.admin == true) {
+      ansattService.slettAnsatt(this.props.match.params.ansattnr, () => {
+        history.push('/endring/ansatt');
+      });
+    } else {
       alert(window.tbm);
     }
   }

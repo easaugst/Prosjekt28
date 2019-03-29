@@ -34,8 +34,12 @@ export class Utleie extends Component {
   sykkelType = '';
   utstyrType = '';
 
-  sykler = []; vSykler = []; sTyper = [];
-  utstyr = []; vUtstyr = []; uTyper = [];
+  sykler = [];
+  vSykler = [];
+  sTyper = [];
+  utstyr = [];
+  vUtstyr = [];
+  uTyper = [];
 
   number = 1;
 
@@ -58,21 +62,19 @@ export class Utleie extends Component {
                 clearable
               />
               <br />
-              <input
-                type="checkbox"
-                id="gruppeInput"
-                onChange={this.gruppeValg}
-              />
+              <input type="checkbox" id="gruppeInput" onChange={this.gruppeValg} />
               Gruppebestilling
+              <br />
               <br />
               <label>Type leie</label>
               <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                 <option>Velg tid</option>
-                <option value="1">Timesutleie</option>
-                <option value="2">Dagsutleie</option>
-                <option value="3">3-dagersutleie</option>
-                <option value="4">Ukesleie</option>
+                <option value="Timesleie">Timesutleie</option>
+                <option value="Dagsleie">Dagsutleie</option>
+                <option value="Tredagersleie">3-dagersutleie</option>
+                <option value="Ukesleie">Ukesleie</option>
               </select>
+              <br />
               <label>Bestilling begynner</label>
               <input
                 className="form-control"
@@ -93,6 +95,8 @@ export class Utleie extends Component {
                 <option value="14">Barnesykkel</option>
               </select>
               <Button.Light onClick={this.addSykkel}>Legg til sykkel</Button.Light>
+              <br />
+              <br />
               <label>Utstyr</label>
               <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
                 <option>Ingen</option>
@@ -114,10 +118,10 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Danger onClick={this.prevPage}>
+                <Button.Info onClick={this.prevPage}>
                   <ion-icon name="arrow-back" />
                   Tilbake
-                </Button.Danger>
+                </Button.Info>
               </Column>
               <Column>
                 <Button.Success id="nesteUtleie" onClick={this.nextPage}>
@@ -126,18 +130,19 @@ export class Utleie extends Component {
                 </Button.Success>
               </Column>
             </Row>
+            <br />
             <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
         </div>
         <div className="mainViewUtleie2" />
         <div id="dBestOversikt">
           <Table>
-          {this.utleieType.map(type => (
-            <Table.Rad key={type.utid}>
-              <th>{type.utnavn}</th>
-              <td id={'antall' + type.utid} />
-            </Table.Rad>
-          ))}
+            {this.utleieType.map(type => (
+              <Table.Rad key={type.utid}>
+                <th>{type.utnavn}</th>
+                <td id={'antall' + type.utid} />
+              </Table.Rad>
+            ))}
           </Table>
         </div>
       </div>
@@ -159,7 +164,7 @@ export class Utleie extends Component {
 
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
-  //Overbestilling opprettes
+    //Overbestilling opprettes
     this.sykler.sort();
     this.utstyr.sort();
     utleieService.addBestilling(this.state.values[0].key, window.ansatt, this.uType, this.kontant, this.ftid, this.gruppe, () => {
@@ -172,80 +177,76 @@ export class Utleie extends Component {
       });
     });
   }
-    registrerSykkel() {
-      //Delbestillinger for sykler opprettes
-      this.vSykler = [];
-      for (var i = 0; i < this.utleieTyper; i++) {
-        if ((this.sykler.includes(i) == true) && (this.sTyper.includes(i) == false)) {
-          this.sTyper.push(i);
-        } //If-setningen kjører som den skal
-      } //Løkken kjører som den skal
-      console.log(this.sTyper);
+  registrerSykkel() {
+    //Delbestillinger for sykler opprettes
+    this.vSykler = [];
+    for (var i = 0; i < this.utleieTyper; i++) {
+      if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
+        this.sTyper.push(i);
+      } //If-setningen kjører som den skal
+    } //Løkken kjører som den skal
+    console.log(this.sTyper);
 
-      for (var j = 0; j < this.sTyper.length; j++) {
-        console.log('antall: ' + this.teller(this.sykler, this.sTyper[j]), 'type: ' + this.sTyper[j]);
+    for (var j = 0; j < this.sTyper.length; j++) {
+      console.log('antall: ' + this.teller(this.sykler, this.sTyper[j]), 'type: ' + this.sTyper[j]);
 
-        utleieService.getSykler(this.sTyper[j], this.teller(this.sykler, this.sTyper[j]), tSykler => {
-          tSykler.map(sykler => {
-            this.vSykler.push({ regnr: sykler.regnr });
-          });
-          this.runS++;
-          this.bestillSykler();
-          console.log('Svar fra database, del 1 kjører!! ' + j, this.vSykler, this.sTyper.length);
+      utleieService.getSykler(this.sTyper[j], this.teller(this.sykler, this.sTyper[j]), tSykler => {
+        tSykler.map(sykler => {
+          this.vSykler.push({ regnr: sykler.regnr });
         });
-      }
+        this.runS++;
+        this.bestillSykler();
+        console.log('Svar fra database, del 1 kjører!! ' + j, this.vSykler, this.sTyper.length);
+      });
+    }
 
-      /*
+    /*
       Løkken venter ikke på svar fra databasen før den kjører ny runde. Når databasen til slutt svarer, har den feil verdi for j i kjøringen til
       ( "success" ). Spørringen gir fortsatt riktig svar fra databasen.
       */
-      console.log('Program slutt');
+    console.log('Program slutt');
+  }
+  bestillSykler() {
+    for (var k = 0; k < this.vSykler.length && this.runS == this.sTyper.length; k++) {
+      utleieService.addUBestillingSykkel(this.vSykler[k].regnr, this.bId, results => {});
+      utleieService.updateSykkel(this.vSykler[k].regnr, 'Utleid', () => {});
+      console.log('Underbestilling for sykkel ' + this.vSykler[k].regnr + ' lagt til');
     }
-      bestillSykler() {
-        for (var k = 0; k < this.vSykler.length && this.runS == this.sTyper.length; k++) {
-          utleieService.addUBestillingSykkel(this.vSykler[k].regnr, this.bId, results => {
-          });
-          utleieService.updateSykkel(this.vSykler[k].regnr, "Utleid", () => {
-          });
-          console.log('Underbestilling for sykkel ' + this.vSykler[k].regnr + ' lagt til');
-        }
-      }
-    registrerUtstyr() {
-      //Delbestillinger for utstyr opprettes
-      this.vUtstyr = [];
-      for (var i = 0; i < this.utleieTyper; i++) {
-        if ((this.utstyr.includes(i) == true) && (this.uTyper.includes(i) == false)) {
-          this.uTyper.push(i);
-        } //If-setningen kjører som den skal
-      } //Løkken kjører som den skal
-      console.log(this.uTyper);
+  }
+  registrerUtstyr() {
+    //Delbestillinger for utstyr opprettes
+    this.vUtstyr = [];
+    for (var i = 0; i < this.utleieTyper; i++) {
+      if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
+        this.uTyper.push(i);
+      } //If-setningen kjører som den skal
+    } //Løkken kjører som den skal
+    console.log(this.uTyper);
 
-      for (var j = 0; j < this.uTyper.length; j++) {
-        console.log('antall: ' + this.teller(this.utstyr, this.uTyper[j]), 'type: ' + this.uTyper[j]);
+    for (var j = 0; j < this.uTyper.length; j++) {
+      console.log('antall: ' + this.teller(this.utstyr, this.uTyper[j]), 'type: ' + this.uTyper[j]);
 
-        utleieService.getUtstyr(this.uTyper[j], this.teller(this.utstyr, this.uTyper[j]), tUtstyr => {
-          tUtstyr.map(utstyr => {
-            this.vUtstyr.push({ utstyrsid: utstyr.utstyrsid });
-          });
-          this.runU++;
-          this.bestillUtstyr();
-          console.log('Svar fra database, del 1 kjører!! ' + j, this.vUtstyr, this.uTyper.length);
+      utleieService.getUtstyr(this.uTyper[j], this.teller(this.utstyr, this.uTyper[j]), tUtstyr => {
+        tUtstyr.map(utstyr => {
+          this.vUtstyr.push({ utstyrsid: utstyr.utstyrsid });
         });
-      }
-      console.log('Program slutt');
+        this.runU++;
+        this.bestillUtstyr();
+        console.log('Svar fra database, del 1 kjører!! ' + j, this.vUtstyr, this.uTyper.length);
+      });
     }
-      bestillUtstyr() {
-        for (var k = 0; k < this.vUtstyr.length && this.runU == this.uTyper.length; k++) {
-          utleieService.addUBestillingUtstyr(this.vUtstyr[k].utstyrsid, this.bId, results => {
-          });
-          utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, "Utleid", () => {
-          });
-          console.log('Underbestilling for utstyr ' + this.vUtstyr[k].utstyrsid + ' lagt til');
-        }
-      }
+    console.log('Program slutt');
+  }
+  bestillUtstyr() {
+    for (var k = 0; k < this.vUtstyr.length && this.runU == this.uTyper.length; k++) {
+      utleieService.addUBestillingUtstyr(this.vUtstyr[k].utstyrsid, this.bId, results => {});
+      utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, 'Utleid', () => {});
+      console.log('Underbestilling for utstyr ' + this.vUtstyr[k].utstyrsid + ' lagt til');
+    }
+  }
 
   teller(array, char) {
-   return (array.lastIndexOf(char) - array.indexOf(char) + 1)
+    return array.lastIndexOf(char) - array.indexOf(char) + 1;
   }
   kundeDropDown() {
     utleieService.getDropdown(kundenr => {

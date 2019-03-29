@@ -40,8 +40,9 @@ export class UtstyrReg extends Component {
 
           <Form.Label>Utstyrstatus:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.ustatus = event.target.value)}>
+            <option value="Lager">Velg status</option>
             <option value="Lager">Lager</option>
-            <option value="Bestilt">Bestilt</option>
+            <option value="Utleid">Utleid</option>
             <option value="Service">Service</option>
             <option value="Stjålet">Stjålet</option>
           </select>
@@ -59,7 +60,7 @@ export class UtstyrReg extends Component {
             <Button.Success onClick={this.add}>Registrer utstyr</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt registrering</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt registrering</Button.Light>
           </span>
         </div>
       </div>

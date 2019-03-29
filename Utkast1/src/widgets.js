@@ -201,6 +201,16 @@ class ButtonLight extends Component {
   }
 }
 
+class ButtonInfo extends Component {
+  render() {
+    return (
+      <button type="button" id={this.props.id} className="btn btn-info" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
 // export class SelectSearch extends Component {
 //   $('#select-kunde').selectize(options);
 // }
@@ -211,6 +221,7 @@ export class Button {
   static Danger = ButtonDanger;
   static DangerOl = ButtonDangerOutline;
   static Light = ButtonLight;
+  static Info = ButtonInfo;
 }
 
 // Renders a form label using Bootstrap styles

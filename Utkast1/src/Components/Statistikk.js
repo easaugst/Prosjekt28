@@ -35,6 +35,8 @@ export class Statistikk extends Component {
   render() {
     return (
       <div className="mainView">
+      <div className="row">
+        <div className="col-sm-6">
         <Card title="Lagerbeholdning for sykler">
           <div>
             <ProgressBar>
@@ -46,7 +48,7 @@ export class Statistikk extends Component {
                 label={this.restSykler + ' Ledige'}
                 key={1}
               />
-              <ProgressBar
+            <ProgressBar
                 striped
                 variant="danger"
                 now={this.utleidAntallSykler}
@@ -54,10 +56,10 @@ export class Statistikk extends Component {
                 label={this.utleidAntallSykler + ' Opptatt'}
                 key={2}
               />
-            </ProgressBar>
-          </div>
-        </Card>
-        <Card title="Lagerbeholdning for utstyr">
+          </ProgressBar>
+        </div>
+      </Card></div>
+      <div className="col-sm-6">  <Card title="Lagerbeholdning for utstyr">
           <div>
             <ProgressBar>
               <ProgressBar
@@ -68,32 +70,38 @@ export class Statistikk extends Component {
                 label={this.restUtstyr + ' Ledige'}
                 key={1}
               />
-              <ProgressBar
+            <ProgressBar
                 striped
                 variant="danger"
                 now={this.utleidAntallUtstyr}
                 max={this.totaltAntallUtstyr}
                 label={this.utleidAntallUtstyr + ' Opptatt'}
                 key={2}
-              />
-            </ProgressBar>
-          </div>
-        </Card>
-        <Card title="Antall registrerte kunder">
-          <div>
-            <ProgressBar>
-              <ProgressBar
-                striped
-                variant="success"
-                now={this.antallKunder}
-                max={this.antallKunder * 1.4}
-                label={this.antallKunder + ' kunder'}
-                key={1}
-              />
-            </ProgressBar>
-          </div>
-        </Card>
-        <Card title="Antall gjennomførte bestillinger">
+                />
+              </ProgressBar>
+            </div>
+          </Card>
+        </div>
+      </div>
+      <div className="row">
+      <div className="col-sm-6">
+      <Card title="Antall registrerte kunder">
+        <div>
+          <ProgressBar>
+            <ProgressBar
+              striped
+              variant="success"
+              now={this.antallKunder}
+              max={this.antallKunder * 1.4}
+              label={this.antallKunder + ' kunder'}
+              key={1}
+            />
+          </ProgressBar>
+        </div>
+      </Card>
+      </div>
+      <div className="col-sm-6">
+        <Card title="Antall registrerte bestillinger">
           <div>
             <ProgressBar>
               <ProgressBar
@@ -108,6 +116,10 @@ export class Statistikk extends Component {
           </div>
         </Card>
       </div>
+      </div>
+      </div>
+
+
     );
   }
   mounted() {

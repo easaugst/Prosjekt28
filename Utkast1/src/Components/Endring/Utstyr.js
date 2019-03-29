@@ -74,46 +74,70 @@ export class UtstyrEndringMeny extends Component {
   render() {
     return (
       <div className="mainView">
-      {this.utstyr.map(utstyr => (
-        <Card title={'Rediger utstyrnr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
-          <Form.Label>Utstyrstype:</Form.Label>
-          <select className="form-control" form="formen" id="utstyrstypeidInput" value={utstyr.utstyrstypeid} onChange={event => (utstyr.utstyrstypeid = event.target.value)}>
-            <option value="3">Velg type her</option>
-            <option value="4">Hjelm</option>
-            <option value="5">Lappesett</option>
-            <option value="6">Sykkelveske</option>
-            <option value="7">Barnesete</option>
-            <option value="8">Barnehenger</option>
-            <option value="9">Lastehenger</option>
-            <option value="10">Beskytter</option>
-            <option value="11">Lås</option>
-          </select>
+        {this.utstyr.map(utstyr => (
+          <Card title={'Rediger utstyrnr: ' + utstyr.utstyrsid} key={utstyr.utstyrsid}>
+            <Form.Label>Utstyrstype:</Form.Label>
+            <select
+              className="form-control"
+              form="formen"
+              id="utstyrstypeidInput"
+              value={utstyr.utstyrstypeid}
+              onChange={event => (utstyr.utstyrstypeid = event.target.value)}
+            >
+              <option value="3">Velg type her</option>
+              <option value="4">Hjelm</option>
+              <option value="5">Lappesett</option>
+              <option value="6">Sykkelveske</option>
+              <option value="7">Barnesete</option>
+              <option value="8">Barnehenger</option>
+              <option value="9">Lastehenger</option>
+              <option value="10">Beskytter</option>
+              <option value="11">Lås</option>
+            </select>
 
-          <Form.Label>Utstyrstatus:</Form.Label>
-          <select className="form-control" form="formen" id="ustatusInput" value={utstyr.ustatus} onChange={event => (utstyr.ustatus = event.target.value)}>
-            <option value="Lager">Lager</option>
-            <option value="Utleid">Utleid</option>
-            <option value="Service">Service</option>
-            <option value="Stjålet">Stjålet</option>
-          </select>
+            <Form.Label>Utstyrstatus:</Form.Label>
+            <select
+              className="form-control"
+              form="formen"
+              id="ustatusInput"
+              value={utstyr.ustatus}
+              onChange={event => (utstyr.ustatus = event.target.value)}
+            >
+              <option value="Lager">Lager</option>
+              <option value="Utleid">Utleid</option>
+              <option value="Service">Service</option>
+              <option value="Stjålet">Stjålet</option>
+            </select>
 
-          <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" id="ubefinnelseInput" value={this.ubefinnelse} placeholder={utstyr.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
+            <Form.Label>Befinnelse:</Form.Label>
+            <Form.Input
+              type="text"
+              id="ubefinnelseInput"
+              value={this.ubefinnelse}
+              placeholder={utstyr.ubefinnelse}
+              onChange={event => (this.ubefinnelse = event.target.value)}
+            />
 
-          <Form.Label>Tilhører utleiested:</Form.Label>
-          <Form.Input type="text" id="utsutleienavnInput" value={this.utsutleienavn} placeholder={utstyr.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
-        </Card>
-      ))}
+            <Form.Label>Tilhører utleiested:</Form.Label>
+            <Form.Input
+              type="text"
+              id="utsutleienavnInput"
+              value={this.utsutleienavn}
+              placeholder={utstyr.utsutleienavn}
+              onChange={event => (this.utsutleienavn = event.target.value)}
+            />
+          </Card>
+        ))}
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+            <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+            <Button.DangerOl onClick={this.slett}>Slett utstyr</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -126,10 +150,23 @@ export class UtstyrEndringMeny extends Component {
   }
   save() {
     this.log();
-    console.log (this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn,this.props.match.params.utstyrsid);
-    utstyrService.updateUtstyr(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, this.props.match.params.utstyrsid, () => {
-      history.push('/endring/utstyr');
-    });
+    console.log(
+      this.utstyrstypeid,
+      this.ustatus,
+      this.ubefinnelse,
+      this.utsutleienavn,
+      this.props.match.params.utstyrsid
+    );
+    utstyrService.updateUtstyr(
+      this.utstyrstypeid,
+      this.ustatus,
+      this.ubefinnelse,
+      this.utsutleienavn,
+      this.props.match.params.utstyrsid,
+      () => {
+        history.push('/endring/utstyr');
+      }
+    );
   }
   cancel() {
     history.goBack();
@@ -140,12 +177,11 @@ export class UtstyrEndringMeny extends Component {
     // console.log(test.admin)
     //
     // if(admin == true) {
-    if(window.admin == true) {
-    utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
-      history.push('/endring/utstyr');
-    });
-    }
-    else {
+    if (window.admin == true) {
+      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
+        history.push('/endring/utstyr');
+      });
+    } else {
       alert(window.tbm);
     }
   }
@@ -160,11 +196,11 @@ export class UtstyrEndringMeny extends Component {
       if (this.ustatus === null) {
         this.ustatus = utstyr.ustatus;
       }
-      if (document.getElementById('ubefinnelseInput').value == "") {
+      if (document.getElementById('ubefinnelseInput').value == '') {
         this.ubefinnelse = utstyr.ubefinnelse;
         console.log(1 + this.ubefinnelse);
       }
-      if (document.getElementById('utsutleienavnInput').value == "") {
+      if (document.getElementById('utsutleienavnInput').value == '') {
         this.utsutleienavn = utstyr.utsutleienavn;
         console.log(2 + this.utsutleienavn);
       }
