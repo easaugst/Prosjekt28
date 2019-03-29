@@ -74,6 +74,10 @@ export class AnsattReg extends Component {
   }
 
   add() {
+    if(this.fnavn == "" || this.tlfnr == ""  || this.enavn == ""  || this.epost == "" || this.admin == "" || this.utleienavn == ""  || this.stilling == "") {
+      alert("Du må fylle inn skjemaet riktig");
+    }
+    else{
     if(window.admin == true) {
     ansattService.addAnsatt(
       this.tlfnr,
@@ -91,6 +95,7 @@ export class AnsattReg extends Component {
   }
   else {
     alert("Du må ha administratortilgang for å legge til ansatte");
+    }
   }
 }
 

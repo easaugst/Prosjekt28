@@ -35,7 +35,7 @@ export class Statistikk extends Component {
   render() {
     return (
       <div className="mainView">
-      <div className="row">
+      <div className="justify-content-center">
         <div className="col-auto mb-3">
         <Card title="Lagerbeholdning for sykler">
           <div>
@@ -59,7 +59,8 @@ export class Statistikk extends Component {
           </ProgressBar>
         </div>
       </Card></div>
-      <div className="col-auto mb-">  <Card title="Lagerbeholdning for utstyr">
+      <div className="col-auto mb-">
+          <Card title="Lagerbeholdning for utstyr">
           <div>
             <ProgressBar>
               <ProgressBar
@@ -82,8 +83,7 @@ export class Statistikk extends Component {
             </div>
           </Card>
         </div>
-      </div>
-      <div className="row">
+
       <div className="col-auto mb-3">
       <Card title="Antall registrerte kunder">
         <div>
@@ -110,7 +110,7 @@ export class Statistikk extends Component {
                 now={this.antallBestillinger}
                 max={this.antallBestillinger * 1.5}
                 label={this.antallBestillinger + ' bestillinger'}
-                key={1}
+                key={2}
               />
             </ProgressBar>
           </div>
