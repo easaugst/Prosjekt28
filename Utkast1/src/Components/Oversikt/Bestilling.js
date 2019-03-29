@@ -19,61 +19,75 @@ export class BestillingOversikt extends Component {
   bArray = [];
   tekst = "";
   ftekst ="";
+  sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
+  bestillinger = '';
 
   render() {
     return (
       <div className="mainView">
       <div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
+        <Form.Label>Filtrer:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
-        <Table>
-          <Table.Rad>
-            <th>Bestillingsnummer</th>
-            <th>Kundenummer</th>
-            <th>Ansattnummer</th>
-            <th>Utleietype</th>
-            <th>Betalingsmåte</th>
-            <th>Tidspunkt bestilling</th>
-            <th>Fra</th>
-            <th>Til</th>
-            <th>Type bestilling</th>
-            <th>Delbestilling</th>
-          </Table.Rad>
-          {this.bArray.map(bestilling => (
-            <Table.Rad key={bestilling.bestillingsid}>
-              <td>{bestilling.bestillingsid}</td>
-              <td>{bestilling.kundenr}</td>
-              <td>{bestilling.ansattnr}</td>
-              <td>{bestilling.utleietype}</td>
-              <td>{bestilling.kontant}</td>
-              <td>
-                {JSON.stringify(bestilling.btid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -6)}
-              </td>
-              <td>
-                {JSON.stringify(bestilling.ftid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -9)}
-              </td>
-              <td>
-                {JSON.stringify(bestilling.ttid)
-                  .replace(/T|Z|"/g, ' ')
-                  .slice(0, -9)}
-              </td>
-              <td>{bestilling.gruppe}</td>
-              <td>
-                <List.Item to={'/oversikt/bestilling/' + bestilling.bestillingsid }>Se</List.Item>
-              </td>
-            </Table.Rad>
-          ))}
-        </Table>
+        {this.sider.map(mengde => (
+          <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
+            <Button.Light onClick={this.pageSwitchH}>Første Side</Button.Light>
+            <Button.Light onClick={this.pageSwitchP}>Forrige Side</Button.Light>
+            <Button.Light onClick={this.pageSwitchN}>Neste Side</Button.Light>
+            <Table>
+              <Table.Rad>
+                <th>Bestillingsnummer</th>
+                <th>Kundenummer</th>
+                <th>Ansattnummer</th>
+                <th>Utleietype</th>
+                <th>Betalingsmåte</th>
+                <th>Tidspunkt bestilling</th>
+                <th>Fra</th>
+                <th>Til</th>
+                <th>Type bestilling</th>
+                <th>Delbestilling</th>
+              </Table.Rad>
+              {this.bArray.slice(mengde.forrigeSide, mengde.sideMengde).map(bestilling => (
+                <Table.Rad key={bestilling.bestillingsid}>
+                  <td>{bestilling.bestillingsid}</td>
+                  <td>{bestilling.kundenr}</td>
+                  <td>{bestilling.ansattnr}</td>
+                  <td>{bestilling.utleietype}</td>
+                  <td>{bestilling.kontant}</td>
+                  <td>
+                    {JSON.stringify(bestilling.btid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -6)}
+                  </td>
+                  <td>
+                    {JSON.stringify(bestilling.ftid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -9)}
+                  </td>
+                  <td>
+                    {JSON.stringify(bestilling.ttid)
+                    .replace(/T|Z|"/g, ' ')
+                    .slice(0, -9)}
+                  </td>
+                  <td>{bestilling.gruppe}</td>
+                  <td>
+                  <List.Item to={'/oversikt/bestilling/' + bestilling.bestillingsid }>Se</List.Item>
+                  </td>
+                  </Table.Rad>
+                ))}
+            </Table>
+          </div>
+        ))}
       </div>
     );
   }
 
   mounted() {
+    bestillingsService.countBestilling(bestilling => {
+      this.bestillinger = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
+      console.log(this.bestillinger);
+      this.bestillingSortering();
+    })
     bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
       this.bArray = bestilling;
     });
@@ -85,7 +99,52 @@ export class BestillingOversikt extends Component {
       bestillingsService.getBestillingFilt(this.ftekst, this.ftekst, bestillingF => {
         this.bArray = bestillingF;
       });
+    this.pageSwitchH();
     this.forceUpdate();
+  }
+  pageSwitch(retning) {
+    document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+    document.getElementById('side' + this.sider[retning].sideMengde).style.display = 'block';
+
+  }
+    pageSwitchH() {
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+      this.aktivSide = 0;
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
+    }
+    pageSwitchN() {
+      if (this.aktivSide < this.sider.length - 1) {
+        this.pageSwitch(this.aktivSide + 1)
+        this.aktivSide++;
+      }
+    }
+    pageSwitchP() {
+      if (this.aktivSide > 0) {
+        this.pageSwitch(this.aktivSide - 1);
+        this.aktivSide--;
+      }
+    }
+  bestillingSortering() {
+    if (this.bestillinger > this.sideMengde) {
+      this.sisteSide = this.bestillinger % this.sideMengde;
+      this.bestillinger -= this.sisteSide;
+      console.log(this.bestillinger, this.sisteSide);
+    }
+    for (var i = 1; i <= (this.bestillinger / this.sideMengde + 1); i++) {
+      if (i == (this.bestillinger / this.sideMengde + 1)) {
+        this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: (i - 1) * this.sideMengde + this.sisteSide });
+        console.log('Siste side: ' + this.sisteSide);
+      } else {
+        if (this.sider.length == 0) {
+          this.sider.push({ forrigeSide: 0, sideMengde: this.sideMengde });
+          console.log('Første side opprettet:', this.sider[0]);
+        } else {
+          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: i * this.sideMengde });
+        }
+      }
+    }
+    console.log(this.sider);
+    document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
   }
 }
 

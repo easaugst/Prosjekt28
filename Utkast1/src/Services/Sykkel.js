@@ -12,6 +12,14 @@ class SykkelService {
       }
     );
   }
+  countSykler(success) {
+    connection.query('SELECT COUNT(regnr) FROM Sykkel',
+    (error, results) => {
+      if (error) console.error(error);
+
+      success(JSON.stringify(results));
+    });
+  }
   getSykkelFilt(sykkeltypeid, success) {
     connection.query(
       'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid AND S.sykkeltypeid = ?',

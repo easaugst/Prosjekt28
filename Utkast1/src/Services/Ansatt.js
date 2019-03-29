@@ -8,7 +8,14 @@ class AnsattService {
       success(results);
     });
   }
+  countAnsatt(success) {
+    connection.query('SELECT COUNT(ansattnr) FROM FastAnsatt',
+    (error, results) => {
+      if (error) return console.error(error);
 
+      success(JSON.stringify(results));
+    });
+  }
   getAnsattEndring(ansattnr, success) {
     connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?', [ansattnr],
       (error, results) => {

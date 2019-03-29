@@ -20,6 +20,8 @@ export class UtstyrOversikt extends Component {
   number = 0;
   a = "";
   b = 2;
+  sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
+  utstyr = '';
 
   render() {
     return (
@@ -38,34 +40,43 @@ export class UtstyrOversikt extends Component {
             <option value="11">Lås</option>
           </select>
         </div>
-
-        <Table>
-          <Table.Rad>
-            <th>Utstyrsnr</th>
-            <th>Utstyrstype</th>
-            <th>Status</th>
-            <th>Befinnelse</th>
-            <th>Tilhører utleiested</th>
-          </Table.Rad>
-          {this.uArray.map((utstyr /*Dette leses som js, ikke html. Kan ikke bruke {} rundt kommentarer her*/) => (
-            <Table.Rad key={utstyr.utstyrsid}>
-              <td>{utstyr.utstyrsid}</td>
-              <td>{utstyr.utnavn}</td>
-              <td>{utstyr.ustatus}</td>
-              <td>{utstyr.ubefinnelse}</td>
-              <td>{utstyr.utsutleienavn}</td>
-            </Table.Rad>
-          ))}
-        </Table>
+        {this.sider.map(mengde => (
+          <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
+            <Button.Light onClick={this.pageSwitchH}>Første Side</Button.Light>
+            <Button.Light onClick={this.pageSwitchP}>Forrige Side</Button.Light>
+            <Button.Light onClick={this.pageSwitchN}>Neste Side</Button.Light>
+            <Table>
+              <Table.Rad>
+                <th>Utstyrsnr</th>
+                <th>Utstyrstype</th>
+                <th>Status</th>
+                <th>Befinnelse</th>
+                <th>Tilhører utleiested</th>
+              </Table.Rad>
+              {this.uArray.slice(mengde.forrigeSide, mengde.sideMengde).map(utstyr => (
+                <Table.Rad key={utstyr.utstyrsid}>
+                  <td>{utstyr.utstyrsid}</td>
+                  <td>{utstyr.utnavn}</td>
+                  <td>{utstyr.ustatus}</td>
+                  <td>{utstyr.ubefinnelse}</td>
+                  <td>{utstyr.utsutleienavn}</td>
+                </Table.Rad>
+              ))}
+            </Table>
+          </div>
+        ))}
       </div>
     );
   }
   mounted() {
+    utstyrService.countUtstyr(utstyr => {
+      this.utstyr = parseInt(utstyr.substr(utstyr.lastIndexOf(':') + 1));
+      console.log(this.utstyr);
+      this.utstyrSortering();
+    })
     utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
-    }
-  );
-  // this.start();
+    });
   }
 
   filter() {
@@ -81,7 +92,54 @@ export class UtstyrOversikt extends Component {
     }
   );
   }
+    this.pageSwitchH();
     this.forceUpdate();
+  }
+
+  pageSwitch(retning) {
+    document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+    document.getElementById('side' + this.sider[retning].sideMengde).style.display = 'block';
+
+  }
+    pageSwitchH() {
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+      this.aktivSide = 0;
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
+    }
+    pageSwitchN() {
+      if (this.aktivSide < this.sider.length - 1) {
+        this.pageSwitch(this.aktivSide + 1)
+        this.aktivSide++;
+      }
+    }
+    pageSwitchP() {
+      if (this.aktivSide > 0) {
+        this.pageSwitch(this.aktivSide - 1);
+        this.aktivSide--;
+      }
+    }
+
+  utstyrSortering() {
+    if (this.utstyr > this.sideMengde) {
+      this.sisteSide = this.utstyr % this.sideMengde;
+      this.utstyr -= this.sisteSide;
+      console.log(this.utstyr, this.sisteSide);
+    }
+    for (var i = 1; i <= (this.utstyr / this.sideMengde + 1); i++) {
+      if (i == (this.utstyr / this.sideMengde + 1)) {
+        this.sider.push({ forrigeSide: (i -1) * this.sideMengde, sideMengde: (i -1) * this.sideMengde + this.sisteSide });
+        console.log('Siste side: ' + this.sisteSide);
+      } else {
+        if (this.sider.length == 0) {
+          this.sider.push({ forrigeSide: 0, sideMengde: this.sideMengde });
+          console.log('Første side opprettet: ', this.sider[0]);
+        } else {
+          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: i * this.sideMengde });
+        }
+      }
+    }
+    console.log(this.sider);
+    document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
   }
 
   // start() {

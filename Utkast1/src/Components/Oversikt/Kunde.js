@@ -19,8 +19,7 @@ export class KundeOversikt extends Component {
   tid = '';
   tekst = "";
   ftekst = "";
-  sideMengde = 25; sider = []; aktivSide = 0;
-  sisteSide = '';
+  sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
   kunder = '';
 
   render() {
@@ -50,7 +49,6 @@ export class KundeOversikt extends Component {
                 <th>E-post</th>
                 <th>Telefonnummer</th>
                 <th>Fødselsdato</th>
-
                 <th>Dato registrert</th>
               </Table.Rad>
               {this.kArray.slice(mengde.forrigeSide, mengde.sideMengde).map(kunde => (
@@ -136,21 +134,21 @@ export class KundeOversikt extends Component {
       this.sisteSide = this.kunder % this.sideMengde;
       this.kunder -= this.sisteSide;
       console.log(this.kunder, this.sisteSide);
-      for (var i = 1; i <= (this.kunder / this.sideMengde + 1); i++) {
-        if (i == (this.kunder / this.sideMengde + 1)) {
-          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: (i - 1) * this.sideMengde + this.sisteSide});
-          console.log('Siste side: ' + this.sisteSide);
+    }
+    for (var i = 1; i <= (this.kunder / this.sideMengde + 1); i++) {
+      if (i == (this.kunder / this.sideMengde + 1)) {
+        this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: (i - 1) * this.sideMengde + this.sisteSide });
+        console.log('Siste side: ' + this.sisteSide);
+      } else {
+        if (this.sider.length == 0) {
+          this.sider.push({ forrigeSide: 0, sideMengde: this.sideMengde });
+          console.log('Første side opprettet: ', this.sider[0]);
         } else {
-          if (this.sider.length == 0) {
-            this.sider.push({ forrigeSide: 0, sideMengde: i * this.sideMengde });
-            console.log('Første side opprettet: ', this.sider[0]);
-          } else {
-            this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: i * this.sideMengde })
-          }
+          this.sider.push({ forrigeSide: (i - 1) * this.sideMengde, sideMengde: i * this.sideMengde });
         }
       }
-      console.log(this.sider);
-      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
     }
+    console.log(this.sider);
+    document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
   }
 }

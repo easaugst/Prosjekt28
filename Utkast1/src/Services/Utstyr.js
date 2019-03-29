@@ -12,7 +12,14 @@ class UtstyrService {
       }
     );
   }
+  countUtstyr(success) {
+    connection.query('SELECT COUNT(utstyrsid) FROM Utstyr',
+    (error, results) => {
+      if (error) return console.error(error);
 
+      success(JSON.stringify(results));
+    });
+  }
   getUtstyrEndring(utstyrsid, success) {
     connection.query(
       'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid AND U.utstyrsid = ?',
