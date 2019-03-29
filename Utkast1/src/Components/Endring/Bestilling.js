@@ -193,24 +193,22 @@ export class BestillingsEndringMeny extends Component {
   }
   slett() {
     if (window.admin == true) {
-      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
-      });
-      bestillingsService.getAlleSykler(sykler => {
+      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});
+      bestillingsService.getAlleSykler(this.props.match.params.bestillingsid, sykler => {
+        console.log(this.sykler);
         for (var i = 0; i < sykler.length; i++) {
-          bestillingsService.updateBestilt(sykler[i].regnr, () => {
-            console.log('Oppdatert: ' + sykler.utstyrsid);
-          })
+          bestillingsService.updateSykkel(sykler[i].regnr, () => {})
+          console.log('Oppdatert: ' + this.sykler.regnr);
         }
-      });
-      bestillingsService.getAltUtstyr(utstyr => {
-        for (var i = 0; i < utstyr.length; i++) {
-          bestillingsService.updateBestilt(utstyr[i].utstyrsid, () => {
-            console.log('Oppdatert: ' + sykler.utstyrsid);
-          })
-        }
-      })
-      bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
-        history.goBack();
+        bestillingsService.getAltUtstyr(this.props.match.params.bestillingsid, utstyr => {
+          for (var i = 0; i < utstyr.length; i++) {
+            bestillingsService.updateUtstyr(utstyr[i].utstyrsid, () => {})
+            console.log('Oppdatert: ' + utstyr.utstyrsid);
+          }
+          bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
+            history.goBack();
+          });
+        });
       });
     } else {
       alert(window.tbm);

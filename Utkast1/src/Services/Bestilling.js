@@ -67,28 +67,28 @@ connection.query('DELETE FROM Ubestilling WHERE ubid = ?', [ubid] , (error, resu
   success();
 });
 }
-getAlleSykler() {
+getAlleSykler(bestillingsid, success) {
   connection.query('SELECT S.regnr FROM Ubestilling U INNER JOIN Sykkel S WHERE U.bestillingsid = ? AND U.regnr = S.regnr', [bestillingsid], (error, results) => {
     if (error) return console.error(error);
 
     success(results);
   })
 }
-getAltUtstyr() {
+getAltUtstyr(bestillingsid, success) {
   connection.query('SELECT U.utstyrsid FROM Ubestilling UB INNER JOIN Utstyr U WHERE UB.bestillingsid = ? AND U.utstyrsid = UB.Utstyrsid', [bestillingsid], (error, results) => {
     if (error) return console.error(error);
 
     success(results);
   })
 }
-updateSykkel(sykkel) {
+updateSykkel(sykkel, success) {
   connection.query('UPDATE Sykkel SET status = "Lager" WHERE regnr = ?', [sykkel], (error, results) => {
     if (error) return console.error(error);
 
     success();
   })
 }
-updateUtstyr(utstyr) {
+updateUtstyr(utstyr, success) {
   connection.query('UPDATE Utstyr SET ustatus = "Lager" WHERE utstyrsid = ?', [utstyr], (error, results) => {
     if (error) return console.error(error);
 
