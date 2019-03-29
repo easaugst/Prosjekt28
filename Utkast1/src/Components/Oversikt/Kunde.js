@@ -19,7 +19,7 @@ export class KundeOversikt extends Component {
   tid = '';
   tekst = "";
   ftekst = "";
-  sideMengde = 9; sider = []; aktivSide = 0;
+  sideMengde = 25; sider = []; aktivSide = 0;
   sisteSide = '';
   kunder = '';
 
@@ -30,11 +30,13 @@ export class KundeOversikt extends Component {
           <Form.Label>Filtrer:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
-      <select id="sidemengde" className="form-control" onChange={this.pages}>
+      {/*
+        <select id="sidemengde" className="form-control" onChange={this.pages}>
         <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
-      </select>
+        </select>
+        */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
             <Button.Light onClick={this.pageSwitchH}>Første Side</Button.Light>

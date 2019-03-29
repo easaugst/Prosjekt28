@@ -195,6 +195,20 @@ export class BestillingsEndringMeny extends Component {
     if (window.admin == true) {
       bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
       });
+      bestillingsService.getAlleSykler(sykler => {
+        for (var i = 0; i < sykler.length; i++) {
+          bestillingsService.updateBestilt(sykler[i].regnr, () => {
+            console.log('Oppdatert: ' + sykler.utstyrsid);
+          })
+        }
+      });
+      bestillingsService.getAltUtstyr(utstyr => {
+        for (var i = 0; i < utstyr.length; i++) {
+          bestillingsService.updateBestilt(utstyr[i].utstyrsid, () => {
+            console.log('Oppdatert: ' + sykler.utstyrsid);
+          })
+        }
+      })
       bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
         history.goBack();
       });
