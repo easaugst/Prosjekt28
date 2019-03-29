@@ -210,6 +210,62 @@ a.logo {
   position: static;
 }*/
 
+/* Ikoninstillinger for oversikt og endring */
+#bildeInput5 {
+  height: 15vh;
+  margin-left: 2vw;
+}
+#bildeInput6 {
+  height: 15vh;
+  margin-left: 2vw;
+}
+#bildeInput7 {
+  height: 15vh;
+}
+#bildeInput8 {
+  height: 15vh;
+  margin-left: 2vw;
+}
+#bildeInput9 {
+  height: 15vh;
+  margin-left: 2vw;
+}
+p {
+  text-align: center;
+  font-size: 3vh;
+  color: black;
+}
+#mainViewSide5 {
+  width: 15vw;
+  position: absolute;
+  margin-top: 7vh;
+  margin-left: -3vw;
+}
+#mainViewSide6 {
+  width: 15vw;
+  position: absolute;
+  margin-top: 7vh;
+  margin-left: 12vw;
+}
+#mainViewSide7 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 27vw;
+  margin-top: 7vh;
+}
+#mainViewSide8 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 43vw;
+  margin-top: 7vh;
+}
+#mainViewSide9 {
+  width: 15vw;
+  position: absolute;
+  margin-left: 58vw;
+  margin-top: 7vh;
+}
+
 /* Ikoninstillinger for registrering */
 #bildeInput1 {
   height: 15vh;
@@ -235,22 +291,23 @@ p {
   width: 15vw;
   position: absolute;
   margin-top: 7vh;
+  margin-left: -3vw;
 }
 #mainViewSide2 {
   width: 15vw;
   position: absolute;
-  margin-left: 15vw;
+  margin-left: 12vw;
   margin-top: 7vh;
 }
 #mainViewSide3 {
   width: 15vw;
   position: absolute;
-  margin-left: 31vw;
+  margin-left: 28vw;
   margin-top: 7vh;
 }
 #mainViewSide4 {
   width: 15vw;
   position: absolute;
-  margin-left: 46vw;
+  margin-left: 43vw;
   margin-top: 7vh;
 }
