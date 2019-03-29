@@ -68,47 +68,65 @@ export class SykkelEndringMeny extends Component {
   render() {
     return (
       <div className="mainView">
-      {this.sykkel.map(sykkel => (
-        <Card title={"Rediger regnr " + sykkel.regnr} key={sykkel.regnr}>
-          <Form.Label>Sykkeltype:</Form.Label>
-          <select
-            className="form-control"
-            value={sykkel.sykkeltypeid}
-            onChange={event => (sykkel.sykkeltypeid = event.target.value)}
-          >
-            <option>Sykkeltype</option>
-            <option value="1">Terrengsykkel</option>
-            <option value="2">Landeveissykkel</option>
-            <option value="3">Tandemsykkel</option>
-            <option value="12">Downhillsykkel</option>
-            <option value="13">Racersykkel</option>
-            <option value="14">Barnesykkel</option>
-          </select>
+        {this.sykkel.map(sykkel => (
+          <Card title={'Rediger regnr ' + sykkel.regnr} key={sykkel.regnr}>
+            <Form.Label>Sykkeltype:</Form.Label>
+            <select
+              className="form-control"
+              value={sykkel.sykkeltypeid}
+              onChange={event => (sykkel.sykkeltypeid = event.target.value)}
+            >
+              <option>Sykkeltype</option>
+              <option value="1">Terrengsykkel</option>
+              <option value="2">Landeveissykkel</option>
+              <option value="3">Tandemsykkel</option>
+              <option value="12">Downhillsykkel</option>
+              <option value="13">Racersykkel</option>
+              <option value="14">Barnesykkel</option>
+            </select>
 
-          <Form.Label>Status:</Form.Label>
-          <select className="form-control" form="formen" id="statusInput" value={sykkel.status} onChange={event => (sykkel.status = event.target.value)}>
-          <option value="Lager">Lager</option>
-          <option value="Utleid">Utleid</option>
-          <option value="Service">Service</option>
-          <option value="Stjålet">Stjålet</option>
-          </select>
+            <Form.Label>Status:</Form.Label>
+            <select
+              className="form-control"
+              form="formen"
+              id="statusInput"
+              value={sykkel.status}
+              onChange={event => (sykkel.status = event.target.value)}
+            >
+              <option value="Lager">Lager</option>
+              <option value="Utleid">Utleid</option>
+              <option value="Service">Service</option>
+              <option value="Stjålet">Stjålet</option>
+            </select>
 
-          <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" id="befinnelseInput" value={this.befinnelse} placeholder={sykkel.befinnelse} onChange={event => (this.befinnelse = event.target.value)} />
+            <Form.Label>Befinnelse:</Form.Label>
+            <Form.Input
+              type="text"
+              id="befinnelseInput"
+              value={this.befinnelse}
+              placeholder={sykkel.befinnelse}
+              onChange={event => (this.befinnelse = event.target.value)}
+            />
 
-          <Form.Label>Beskrivelse:</Form.Label>
-          <Form.Input
-            type="text"
-            id="beskrivelseInput"
-            value={this.beskrivelse}
-            placeholder={sykkel.beskrivelse}
-            onChange={event => (this.beskrivelse = event.target.value)}
-          />
+            <Form.Label>Beskrivelse:</Form.Label>
+            <Form.Input
+              type="text"
+              id="beskrivelseInput"
+              value={this.beskrivelse}
+              placeholder={sykkel.beskrivelse}
+              onChange={event => (this.beskrivelse = event.target.value)}
+            />
 
-          <Form.Label>Tilhører utleiested:</Form.Label>
-          <Form.Input type="text" id="utleienavnInput" value={this.utleienavn} placeholder={sykkel.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
-        </Card>
-      ))}
+            <Form.Label>Tilhører utleiested:</Form.Label>
+            <Form.Input
+              type="text"
+              id="utleienavnInput"
+              value={this.utleienavn}
+              placeholder={sykkel.utleienavn}
+              onChange={event => (this.utleienavn = event.target.value)}
+            />
+          </Card>
+        ))}
         <br />
 
         <div className="knapper">
@@ -116,10 +134,10 @@ export class SykkelEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+            <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+            <Button.DangerOl onClick={this.slett}>Slett sykkel</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -148,33 +166,32 @@ export class SykkelEndringMeny extends Component {
     history.goBack();
   }
   slett() {
-    if(window.admin == true) {
-    sykkelService.slettSykkel(this.props.match.params.regnr, () => {
-      history.push('/endring/sykkel');
-    });
-    }
-    else {
+    if (window.admin == true) {
+      sykkelService.slettSykkel(this.props.match.params.regnr, () => {
+        history.push('/endring/sykkel');
+      });
+    } else {
       alert(window.tbm);
     }
   }
   log() {
     this.sykkel.map(sykkel => {
       if (this.sykkeltypeid === null) {
-        this.sykkeltypeid = sykkel.sykkeltypeid
+        this.sykkeltypeid = sykkel.sykkeltypeid;
       }
       if (this.status === null) {
-        this.status = sykkel.status
+        this.status = sykkel.status;
       }
-      if (document.getElementById('befinnelseInput').value == "") {
-        this.befinnelse = sykkel.befinnelse
+      if (document.getElementById('befinnelseInput').value == '') {
+        this.befinnelse = sykkel.befinnelse;
       }
-      if (document.getElementById('beskrivelseInput').value == "") {
-        this.beskrivelse = sykkel.beskrivelse
+      if (document.getElementById('beskrivelseInput').value == '') {
+        this.beskrivelse = sykkel.beskrivelse;
       }
-      if (document.getElementById('utleienavnInput').value == "") {
-        this.utleienavn = sykkel.utleienavn
+      if (document.getElementById('utleienavnInput').value == '') {
+        this.utleienavn = sykkel.utleienavn;
       }
-    })
+    });
     console.log(this.sykkeltypeid, this.status, this.befinnelse, this.beskrivelse, this.utleienavn);
   }
 }

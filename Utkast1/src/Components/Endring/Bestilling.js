@@ -86,7 +86,7 @@ export class BestillingsEndringMeny extends Component {
       <div>
         <div className="mainView">
           {this.bestilling.map(bestilling => (
-            <Card title={"Rediger bestilling " + this.bestillingsid} key={bestilling.detaljer}>
+            <Card title={'Rediger bestilling ' + this.bestillingsid} key={bestilling.detaljer}>
               <Form.Label>Kundenr:</Form.Label>
               <Form.Input
                 type="text"
@@ -138,10 +138,10 @@ export class BestillingsEndringMeny extends Component {
               <Button.Success onClick={this.save}>Lagre endring</Button.Success>
             </span>
             <span className="tilbakeMeny">
-              <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+              <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+              <Button.DangerOl onClick={this.slett}>Slett bestilling</Button.DangerOl>
             </span>
           </div>
         </div>
@@ -193,8 +193,7 @@ export class BestillingsEndringMeny extends Component {
   }
   slett() {
     if (window.admin == true) {
-      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {
-      });
+      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});
       bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
         history.goBack();
       });
@@ -270,7 +269,7 @@ export class UbestillingsEndring extends Component {
       <div>
         <div className="mainView">
           {this.dbArray.map(delbestiling => (
-            <Card title={"Rediger delbestilling " + delbestiling.ubid} key={delbestiling.detaljer}>
+            <Card title={'Rediger delbestilling ' + delbestiling.ubid} key={delbestiling.detaljer}>
               <Form.Label>Bestillingsid:</Form.Label>
               <Form.Input
                 type="text"

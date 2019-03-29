@@ -79,21 +79,45 @@ export class KundeEndringMeny extends Component {
     //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
-      {this.kunde.map(kunde => (
-        <Card title={"Rediger kundenr " + kunde.kundenr}>
-          <Form.Label>Fornavn:</Form.Label>
-          <Form.Input type="text" id="fnavnInput" value={this.fnavn} placeholder={kunde.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+        {this.kunde.map(kunde => (
+          <Card title={'Rediger kundenr ' + kunde.kundenr}>
+            <Form.Label>Fornavn:</Form.Label>
+            <Form.Input
+              type="text"
+              id="fnavnInput"
+              value={this.fnavn}
+              placeholder={kunde.fnavn}
+              onChange={event => (this.fnavn = event.target.value)}
+            />
 
-          <Form.Label>Etternavn:</Form.Label>
-          <Form.Input type="text" id="enavnInput" value={this.enavn} placeholder={kunde.enavn} onChange={event => (this.enavn = event.target.value)} />
+            <Form.Label>Etternavn:</Form.Label>
+            <Form.Input
+              type="text"
+              id="enavnInput"
+              value={this.enavn}
+              placeholder={kunde.enavn}
+              onChange={event => (this.enavn = event.target.value)}
+            />
 
-          <Form.Label>Epost:</Form.Label>
-          <Form.Input type="text" id="epostInput" value={this.epost} placeholder={kunde.epost} onChange={event => (this.epost = event.target.value)} />
+            <Form.Label>Epost:</Form.Label>
+            <Form.Input
+              type="text"
+              id="epostInput"
+              value={this.epost}
+              placeholder={kunde.epost}
+              onChange={event => (this.epost = event.target.value)}
+            />
 
-          <Form.Label>Tlf:</Form.Label>
-          <Form.Input type="text" id="tlfInput" value={this.tlf} placeholder={kunde.tlf} onChange={event => (this.tlf = event.target.value)} />
-        </Card>
-      ))}
+            <Form.Label>Tlf:</Form.Label>
+            <Form.Input
+              type="text"
+              id="tlfInput"
+              value={this.tlf}
+              placeholder={kunde.tlf}
+              onChange={event => (this.tlf = event.target.value)}
+            />
+          </Card>
+        ))}
         <br />
 
         <div className="knapper">
@@ -101,10 +125,10 @@ export class KundeEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Avbryt</Button.Light>
+            <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
+            <Button.DangerOl onClick={this.slett}>Slett kunde</Button.DangerOl>
           </span>
         </div>
       </div>
@@ -126,30 +150,29 @@ export class KundeEndringMeny extends Component {
     history.goBack();
   }
   slett() {
-    if(window.admin == true){
-    kundeService.slettKunde(this.props.match.params.kundenr, () => {
-      history.goBack();
-    });
-    }
-    else {
+    if (window.admin == true) {
+      kundeService.slettKunde(this.props.match.params.kundenr, () => {
+        history.goBack();
+      });
+    } else {
       alert(window.tbm);
     }
   }
   log() {
     this.kunde.map(kunde => {
       if (document.getElementById('fnavnInput').value === '') {
-        this.fnavn = kunde.fnavn
+        this.fnavn = kunde.fnavn;
       }
       if (document.getElementById('enavnInput').value === '') {
-        this.enavn = kunde.enavn
+        this.enavn = kunde.enavn;
       }
       if (document.getElementById('epostInput').value === '') {
-        this.epost = kunde.epost
+        this.epost = kunde.epost;
       }
       if (document.getElementById('tlfInput').value === '') {
-        this.tlf = kunde.tlf
+        this.tlf = kunde.tlf;
       }
-    })
+    });
     console.log(this.fnavn, this.enavn, this.epost, this.tlf);
   }
 }
