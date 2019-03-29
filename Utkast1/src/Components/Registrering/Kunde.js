@@ -50,9 +50,7 @@ export class KundeReg extends Component {
             </Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>
-              Avbryt registrering
-            </Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt registrering</Button.Light>
           </span>
         </div>
       </div>
