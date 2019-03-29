@@ -281,7 +281,7 @@ export class Utleie extends Component {
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number == 3) {
         document.getElementById('nesteUtleie').innerHTML = 'Fullfør';
-        document.getElementById('nesteUtleie').onClick = this.order;
+        document.getElementById('nesteUtleie').onclick = this.order;
       }
       console.log(this.number);
     }
