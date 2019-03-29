@@ -30,13 +30,9 @@ export class Utleie extends Component {
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  bId = '';
-  runU = 0;
-  runS = 0;
+  bId = ''; runU = 0; runS = 0;
   sykkelType = '';
-  sykkelTypeText = '';
   utstyrType = '';
-  utstyrTypeText = '';
 
   sykler = [];
   vSykler = [];
@@ -152,20 +148,18 @@ export class Utleie extends Component {
       </div>
     );
   }
-  componentDidMount() {
+  mounted() {
     this.kundeDropDown();
+    utleieService.getTyper(typer => {
+      this.utleieType = typer;
+    })
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
   }
-  mounted() {
-    utleieService.getTyper(typer => {
-      this.utleieType = typer;
-    });
-  }
   log() {
-    console.log(this.kontant);
+    console.log(this.utleieTyper);
   }
 
   order() {
@@ -173,23 +167,15 @@ export class Utleie extends Component {
     //Overbestilling opprettes
     this.sykler.sort();
     this.utstyr.sort();
-    utleieService.addBestilling(
-      this.state.values[0].key,
-      window.ansatt,
-      this.uType,
-      this.kontant,
-      this.ftid,
-      this.gruppe,
-      () => {
-        console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
-        utleieService.getBestilling(bestilling => {
-          this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
-          console.log('Bestillingsid: ' + this.bId);
-        });
+    utleieService.addBestilling(this.state.values[0].key, window.ansatt, this.uType, this.kontant, this.ftid, this.gruppe, () => {
+      console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
+      utleieService.getBestilling(bestilling => {
+        this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
+        console.log('Bestillingsid: ' + this.bId);
         this.registrerSykkel();
         this.registrerUtstyr();
-      }
-    );
+      });
+    });
   }
   registrerSykkel() {
     //Delbestillinger for sykler opprettes
