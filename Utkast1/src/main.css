@@ -206,3 +206,14 @@ a.logo {
   height: 50em;
   position: static;
 }*/
+.bildeInput {
+  height: 15vh;
+}
+p {
+  text-align: center;
+  font-size: 3vh;
+  color: black;
+}
+#mainViewSide1 {
+  width: 20vw;
+  position: absolute;
