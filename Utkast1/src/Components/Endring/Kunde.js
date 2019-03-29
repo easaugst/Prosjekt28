@@ -61,7 +61,7 @@ export class KundeEndring extends Component {
     );
   }
   mounted() {
-    kundeService.getKunde(this.props.match.params.kundenr, kunde => {
+    kundeService.getKunde(kunde => {
       this.kArray = kunde;
     });
   }
