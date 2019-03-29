@@ -59,7 +59,7 @@ export class UtstyrReg extends Component {
             <Button.Success onClick={this.add}>Registrer utstyr</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt registrering</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt registrering</Button.Light>
           </span>
         </div>
       </div>

@@ -66,7 +66,7 @@ export class AnsattReg extends Component {
             <Button.Success onClick={this.add}>Registrer ansatt</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.cancel}>Avbryt registrering</Button.DangerOl>
+            <Button.Light onClick={this.cancel}>Avbryt registrering</Button.Light>
           </span>
         </div>
       </div>
