@@ -68,10 +68,10 @@ export class Utleie extends Component {
               <label>Type leie</label>
               <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                 <option>Velg tid</option>
-                <option value="1">Timesutleie</option>
-                <option value="2">Dagsutleie</option>
-                <option value="3">3-dagersutleie</option>
-                <option value="4">Ukesleie</option>
+                <option value="Timesleie">Timesutleie</option>
+                <option value="Dagsleie">Dagsutleie</option>
+                <option value="Tredagersleie">3-dagersutleie</option>
+                <option value="Ukesleie">Ukesleie</option>
               </select>
               <label>Bestilling begynner</label>
               <input
