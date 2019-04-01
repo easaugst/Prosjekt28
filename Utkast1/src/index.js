@@ -48,7 +48,7 @@ class Menu extends Component {
           {' '}
           {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
           <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
-          <NavBar.Link to="/utleie">Utleie</NavBar.Link>
+          <NavBar.Link to="/utleie">Ny bestilling</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/login">Login</NavBar.Link>
