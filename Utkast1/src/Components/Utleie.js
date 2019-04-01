@@ -372,7 +372,7 @@ export class Utleie extends Component {
       this.number--;
       document.getElementById('utleie' + this.number).style.display = 'block';
       if (this.number != 3) {
-        document.getElementById('nesteUtleie').innerHTML = 'Neste side <ion-icon name="arrow-forward" />';
+        document.getElementById('nesteUtleie').innerHTML = 'Neste side';
         document.getElementById('nesteUtleie').onClick = this.nextPage;
       }
       console.log(this.number);
