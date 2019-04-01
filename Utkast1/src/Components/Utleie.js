@@ -16,12 +16,6 @@ import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
 export class Utleie extends Component {
-  //  Sjekk antall tilgjengelige sykler, ikke tillat bestilling hvis valgt antall går over tilgjengelig antall
-  // 	  'SELECT sykkeltypeid, COUNT(regnr) AS tilgjengelig FROM Sykkel WHERE status = "Lager" GROUP BY sykkeltypeid'
-  //  Sjekk tilgjengelig utstyr, ikke tillat bestilling hvis valgt antall går over tilgjengelig antall
-  // 	  'SELECT utstyrstypeid, COUNT(utstyrsid) AS tilgjengelig FROM Utstyr WHERE ustatus = "Lager" GROUP BY utstyrstypeid'
-
-  // 	Legg det til i tabell på utleiesiden
 
   kunde = [];
   kundenr = '';
@@ -37,18 +31,12 @@ export class Utleie extends Component {
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  bId = '';
-  runU = 0;
-  runS = 0;
-  sykkelType = '';
-  utstyrType = '';
+  tilgjengeligeSykler = []; tilgjengeligUtstyr = [];
+  bId = ''; runU = 0; runS = 0;
+  sykkelType = ''; utstyrType = '';
 
-  sykler = [];
-  vSykler = [];
-  sTyper = [];
-  utstyr = [];
-  vUtstyr = [];
-  uTyper = [];
+  sykler = []; vSykler = []; sTyper = [];
+  utstyr = []; vUtstyr = []; uTyper = [];
 
   number = 1;
 
@@ -146,10 +134,15 @@ export class Utleie extends Component {
         <div className="mainViewUtleie2" />
         <div id="dBestOversikt">
           <Table>
+            <Table.Rad>
+              <th>Produkt</th>
+              <th>Antall</th>
+            </Table.Rad>
             {this.utleieType.map(type => (
               <Table.Rad key={type.utid}>
                 <th>{type.utnavn}</th>
                 <td id={'antall' + type.utid} />
+                <td id={'antallT' + type.utid}>(0)</td>
               </Table.Rad>
             ))}
           </Table>
@@ -167,39 +160,22 @@ export class Utleie extends Component {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
+    utleieService.tilgjengeligeSykler(tilgjengelig => {
+      tilgjengelig.map(sykler => {
+        document.getElementById('antallT' + sykler.sykkeltypeid).innerHTML = '(' + sykler.tilgjengelig + ')';
+        this.tilgjengeligeSykler[sykler.sykkeltypeid] = sykler.tilgjengelig;
+      })
+      console.log(this.tilgjengeligeSykler);
+    })
+    utleieService.tilgjengeligUtstyr(tilgjengelig => {
+      tilgjengelig.map(utstyr => {
+        document.getElementById('antallT' + utstyr.utstyrstypeid).innerHTML = '(' + utstyr.tilgjengelig + ')';
+        this.tilgjengeligUtstyr[utstyr.utstyrstypeid] = utstyr.tilgjengelig;
+      })
+      console.log(this.tilgjengeligUtstyr);
+    })
   }
   log() {
-    console.log(this.ftid, this.uType);
-    this.ttid = new Date();
-    switch (this.uType) {
-      case 'Timesleie':
-        this.ttid.setHours(this.ttid.getHours() + 1);
-        break;
-      case 'Dagsleie':
-        this.ttid.setDate(this.ttid.getDate() + 1);
-        break;
-      case 'Tredagersleie':
-        this.ttid.setDate(this.ttid.getDate() + 3);
-        break;
-      case 'Ukesleie':
-        this.ttid.setDate(this.ttid.getDate() + 7);
-        break;
-    }
-    this.ttid =
-      this.ttid.getFullYear() +
-      '-' +
-      ('00' + (this.ttid.getMonth() + 1)).slice(-2) +
-      '-' +
-      ('00' + this.ttid.getDate()).slice(-2) +
-      ' ' +
-      ('00' + this.ttid.getHours()).slice(-2) +
-      ':' +
-      ('00' + this.ttid.getMinutes()).slice(-2) +
-      ':' +
-      ('00' + this.ttid.getSeconds()).slice(-2);
-
-    console.log(this.ttid);
-    console.log(this.ftid);
   }
 
   order() {
@@ -345,16 +321,24 @@ export class Utleie extends Component {
     console.log(this.kundeDrop);
   }
   addSykkel() {
-    this.sykler.push(parseInt(this.sykkelType));
-    this.sykler.sort();
-    console.log(this.sykler);
-    document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
+    if (document.getElementById('antall' + this.sykkelType).innerHTML < this.tilgjengeligeSykler[parseInt(this.sykkelType)]) {
+      this.sykler.push(parseInt(this.sykkelType));
+      this.sykler.sort();
+      console.log(this.sykler);
+      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
+    } else {
+      alert('Ikke flere tilgjengelige sykler av denne typen');
+    }
   }
   addUtstyr() {
-    this.utstyr.push(parseInt(this.utstyrType));
-    this.sykler.sort();
-    console.log(this.utstyr);
-    document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
+    if (document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]) {
+      this.utstyr.push(parseInt(this.utstyrType));
+      this.sykler.sort();
+      console.log(this.utstyr);
+      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
+    } else {
+      alert('Ikke mer utstyr av denne typen tilgjengelig');
+    }
   }
   nextPage() {
     if (this.number < 3) {
