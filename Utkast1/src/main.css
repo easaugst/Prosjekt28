@@ -33,8 +33,10 @@
   font-size: 1.2vw;
   height: 122%;
   width: 19vw;
-  font-family: 'Trebuchet MS';
+
+  /* font-family: 'Trebuchet MS'; */
 }
+
 /* Forrige og neste side oversikt */
 .sideKnapper {
   margin-bottom: 2vh;
@@ -123,6 +125,7 @@ a.logo {
 }
 
 #fontSideMenyen.active {
+  background-color: #417ff4;
 }
 
 .fontSideMeny:hover {
@@ -180,7 +183,7 @@ a.logo {
 .card-title {
   font-weight: bold;
 }
-[id^="side"] {
+[id^='side'] {
   display: none;
 }
 .carousel-inner > .item > img,
@@ -296,3 +299,14 @@ p {
   margin-left: 43vw;
   margin-top: 7vh;
 }
+
+.returnKnapp {
+  background-color: #417ff4;
+  color: white;
+}
+
+.returnKnapp:hover {
+  filter: brightness(85%);
+}
+
+/**/

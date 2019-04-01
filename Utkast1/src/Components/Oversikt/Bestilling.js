@@ -31,17 +31,17 @@ export class BestillingOversikt extends Component {
       </div>
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
-          <div className="sideKnapper">
-            <span className="sideKnapp1">
-              <Button.Info onClick={this.pageSwitchH}>Første Side</Button.Info>
-            </span>
-            <span className="sideKnapp2">
-              <Button.Info onClick={this.pageSwitchP}>Forrige Side</Button.Info>
-            </span>
-            <span className="sideKnapp3">
-              <Button.Info onClick={this.pageSwitchN}>Neste Side</Button.Info>
-            </span>
-          </div>
+            <div className="sideKnapper">
+              <span className="sideKnapp1">
+                <Button.Info onClick={this.pageSwitchH}>Første Side</Button.Info>
+              </span>
+              <span className="sideKnapp2">
+                <Button.Info onClick={this.pageSwitchP}>Forrige Side</Button.Info>
+              </span>
+              <span className="sideKnapp3">
+                <Button.Info onClick={this.pageSwitchN}>Neste Side</Button.Info>
+              </span>
+            </div>
             <Table>
               <Table.Rad>
                 <th>Bestillingsnummer</th>

@@ -125,10 +125,10 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Info onClick={this.prevPage}>
+                <Button.Primary onClick={this.prevPage}>
                   <ion-icon name="arrow-back" />
                   Tilbake
-                </Button.Info>
+                </Button.Primary>
               </Column>
               <Column>
                 <Button.Success id="nesteUtleie" onClick={this.nextPage}>

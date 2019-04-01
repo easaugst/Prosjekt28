@@ -211,6 +211,16 @@ class ButtonInfo extends Component {
   }
 }
 
+class ButtonPrimary extends Component {
+  render() {
+    return (
+      <button type="button" id={this.props.id} className="btn returnKnapp" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
 // export class SelectSearch extends Component {
 //   $('#select-kunde').selectize(options);
 // }
@@ -222,6 +232,7 @@ export class Button {
   static DangerOl = ButtonDangerOutline;
   static Light = ButtonLight;
   static Info = ButtonInfo;
+  static Primary = ButtonPrimary;
 }
 
 // Renders a form label using Bootstrap styles
@@ -256,12 +267,3 @@ export class Form {
   static Label = FormLabel;
   static Input = FormInput;
 }
-
-class Widgets {
-  topFunction() {
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    console.log('');
-  }
-}
-
-export let widgets = new Widgets();

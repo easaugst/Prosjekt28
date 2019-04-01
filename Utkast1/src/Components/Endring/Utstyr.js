@@ -57,7 +57,6 @@ export class UtstyrEndring extends Component {
     );
   }
   mounted() {
-    window.scrollTo(0, 0);
     utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
     });
@@ -145,7 +144,6 @@ export class UtstyrEndringMeny extends Component {
     );
   }
   mounted() {
-    window.scrollTo(0, 0);
     utstyrService.getUtstyrEndring(this.props.match.params.utstyrsid, utstyr => {
       this.utstyr = utstyr;
     });
