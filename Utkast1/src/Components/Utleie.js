@@ -22,7 +22,7 @@ export class Utleie extends Component {
   // 	  'SELECT utstyrstypeid, COUNT(utstyrsid) AS tilgjengelig FROM Utstyr WHERE ustatus = "Lager" GROUP BY utstyrstypeid'
 
   // 	Legg det til i tabell på utleiesiden
-
+  
   kunde = [];
   kundenr = '';
   kundeDrop = [];
@@ -188,7 +188,6 @@ export class Utleie extends Component {
     ('00' + this.ttid.getHours()).slice(-2) + ':' +
     ('00' + this.ttid.getMinutes()).slice(-2) + ':' +
     ('00' + this.ttid.getSeconds()).slice(-2);
-    
     console.log(this.ttid);
     console.log(this.ftid);
   }
