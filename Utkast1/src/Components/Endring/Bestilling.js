@@ -139,7 +139,7 @@ export class BestillingsEndringMeny extends Component {
               <Button.Success onClick={this.save}>Lagre endring</Button.Success>
             </span>
             <span className="tilbakeMeny">
-              <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
+              <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
               <Button.DangerOl onClick={this.slett}>Slett bestilling</Button.DangerOl>
@@ -250,8 +250,8 @@ export class UbestillingsEndringMeny extends Component {
               </Table.Rad>
             ))}
           </Table>
-          <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+          <span className="tilbakeMeny2">
+            <Button.Primary onClick={this.cancel}>Tilbake</Button.Primary>
           </span>
         </div>
       </div>
@@ -324,7 +324,7 @@ export class UbestillingsEndring extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Tilbake</Button.Light>
+            <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
             <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>

@@ -126,7 +126,7 @@ export class KundeEndringMeny extends Component {
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Avbryt endring</Button.Light>
+            <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
             <Button.DangerOl onClick={this.slett}>Slett kunde</Button.DangerOl>
