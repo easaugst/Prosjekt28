@@ -156,6 +156,7 @@ export class Utleie extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;

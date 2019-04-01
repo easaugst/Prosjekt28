@@ -79,6 +79,7 @@ export class KundeOversikt extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     kundeService.countKunder(kunder => {
       this.kunder = parseInt(kunder.substr(kunder.lastIndexOf(':') + 1));
       console.log(this.kunder);

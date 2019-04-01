@@ -63,6 +63,7 @@ export class AnsattOversikt extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     ansattService.countAnsatt(ansatte => {
       this.ansatte = parseInt(ansatte.substr(ansatte.lastIndexOf(':') + 1));
       console.log(this.ansatte);

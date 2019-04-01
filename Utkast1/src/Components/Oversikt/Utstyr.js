@@ -69,6 +69,7 @@ export class UtstyrOversikt extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     utstyrService.countUtstyr(utstyr => {
       this.utstyr = parseInt(utstyr.substr(utstyr.lastIndexOf(':') + 1));
       console.log(this.utstyr);

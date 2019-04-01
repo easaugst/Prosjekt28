@@ -50,6 +50,7 @@ export class SykkelEndring extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     sykkelService.getSykkel(sykkel => {
       this.sArray = sykkel;
     });
@@ -144,6 +145,7 @@ export class SykkelEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     sykkelService.getSykkelEndring(this.props.match.params.regnr, sykkel => {
       this.sykkel = sykkel;
     });

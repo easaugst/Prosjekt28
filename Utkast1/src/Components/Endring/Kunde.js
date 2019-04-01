@@ -61,6 +61,7 @@ export class KundeEndring extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     kundeService.getKunde(kunde => {
       this.kArray = kunde;
     });
@@ -135,6 +136,7 @@ export class KundeEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     kundeService.getKundeEndring(this.props.match.params.kundenr, kunde => {
       this.kunde = kunde;
     });

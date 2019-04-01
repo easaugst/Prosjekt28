@@ -83,6 +83,7 @@ export class BestillingOversikt extends Component {
   }
 
   mounted() {
+    window.scrollTo(0, 0);
     bestillingsService.countBestilling(bestilling => {
       this.bestillinger = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
       console.log(this.bestillinger);

@@ -75,6 +75,7 @@ export class SykkelOversikt extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     sykkelService.countSykler(sykler => {
       this.sykler = parseInt(sykler.substr(sykler.lastIndexOf(':') + 1));
       console.log(this.sykler);
