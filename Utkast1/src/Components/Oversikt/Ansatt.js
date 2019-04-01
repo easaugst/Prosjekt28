@@ -30,9 +30,17 @@ export class AnsattOversikt extends Component {
       </div>
       {this.sider.map(mengde => (
         <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
-        <Button.Light onClick={this.pageSwitchH}>Første Side</Button.Light>
-        <Button.Light onClick={this.pageSwitchP}>Forrige Side</Button.Light>
-        <Button.Light onClick={this.pageSwitchN}>Neste Side</Button.Light>
+        <div className="sideKnapper">
+          <span className="sideKnapp1">
+            <Button.Info onClick={this.pageSwitchH}>Første Side</Button.Info>
+          </span>
+          <span className="sideKnapp2">
+            <Button.Info onClick={this.pageSwitchP}>Forrige Side</Button.Info>
+          </span>
+          <span className="sideKnapp3">
+            <Button.Info onClick={this.pageSwitchN}>Neste Side</Button.Info>
+          </span>
+        </div>
             <Table>
               <Table.Rad>
                 <th>Ansattnummer</th>
