@@ -37,7 +37,9 @@ export class Utleie extends Component {
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  bId = ''; runU = 0; runS = 0;
+  bId = '';
+  runU = 0;
+  runS = 0;
   sykkelType = '';
   utstyrType = '';
 
@@ -125,15 +127,11 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Primary onClick={this.prevPage}>
-                  <ion-icon name="arrow-back" />
-                  Tilbake
-                </Button.Primary>
+                <Button.Primary onClick={this.prevPage}>Tilbake</Button.Primary>
               </Column>
               <Column>
                 <Button.Success id="nesteUtleie" onClick={this.nextPage}>
                   Neste side
-                  <ion-icon name="arrow-forward" />
                 </Button.Success>
               </Column>
             </Row>
@@ -160,7 +158,7 @@ export class Utleie extends Component {
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
-    })
+    });
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
@@ -171,25 +169,31 @@ export class Utleie extends Component {
     this.ttid = new Date();
     switch (this.uType) {
       case 'Timesleie':
-        this.ttid.setHours( this.ttid.getHours() + 1 );
+        this.ttid.setHours(this.ttid.getHours() + 1);
         break;
       case 'Dagsleie':
-        this.ttid.setDate( this.ttid.getDate() + 1 );
+        this.ttid.setDate(this.ttid.getDate() + 1);
         break;
       case 'Tredagersleie':
-        this.ttid.setDate( this.ttid.getDate() + 3 );
+        this.ttid.setDate(this.ttid.getDate() + 3);
         break;
       case 'Ukesleie':
-        this.ttid.setDate( this.ttid.getDate() + 7 );
+        this.ttid.setDate(this.ttid.getDate() + 7);
         break;
     }
-    this.ttid = this.ttid.getFullYear() + '-' +
-    ('00' + (this.ttid.getMonth()+1)).slice(-2) + '-' +
-    ('00' + this.ttid.getDate()).slice(-2) + ' ' +
-    ('00' + this.ttid.getHours()).slice(-2) + ':' +
-    ('00' + this.ttid.getMinutes()).slice(-2) + ':' +
-    ('00' + this.ttid.getSeconds()).slice(-2);
-    
+    this.ttid =
+      this.ttid.getFullYear() +
+      '-' +
+      ('00' + (this.ttid.getMonth() + 1)).slice(-2) +
+      '-' +
+      ('00' + this.ttid.getDate()).slice(-2) +
+      ' ' +
+      ('00' + this.ttid.getHours()).slice(-2) +
+      ':' +
+      ('00' + this.ttid.getMinutes()).slice(-2) +
+      ':' +
+      ('00' + this.ttid.getSeconds()).slice(-2);
+
     console.log(this.ttid);
     console.log(this.ftid);
   }
@@ -206,36 +210,51 @@ export class Utleie extends Component {
       this.ttid = new Date();
       switch (this.uType) {
         case 'Timesleie':
-          this.ttid.setHours( this.ttid.getHours() + 1 );
+          this.ttid.setHours(this.ttid.getHours() + 1);
           break;
         case 'Dagsleie':
-          this.ttid.setDate( this.ttid.getDate() + 1 );
+          this.ttid.setDate(this.ttid.getDate() + 1);
           break;
         case 'Tredagersleie':
-          this.ttid.setDate( this.ttid.getDate() + 3 );
+          this.ttid.setDate(this.ttid.getDate() + 3);
           break;
         case 'Ukesleie':
-          this.ttid.setDate( this.ttid.getDate() + 7 );
+          this.ttid.setDate(this.ttid.getDate() + 7);
           break;
       }
-      this.ttid = this.ttid.getFullYear() + '-' +
-      ('00' + (this.ttid.getMonth()+1)).slice(-2) + '-' +
-      ('00' + this.ttid.getDate()).slice(-2) + ' ' +
-      ('00' + this.ttid.getHours()).slice(-2) + ':' +
-      ('00' + this.ttid.getMinutes()).slice(-2) + ':' +
-      ('00' + this.ttid.getSeconds()).slice(-2);
+      this.ttid =
+        this.ttid.getFullYear() +
+        '-' +
+        ('00' + (this.ttid.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('00' + this.ttid.getDate()).slice(-2) +
+        ' ' +
+        ('00' + this.ttid.getHours()).slice(-2) +
+        ':' +
+        ('00' + this.ttid.getMinutes()).slice(-2) +
+        ':' +
+        ('00' + this.ttid.getSeconds()).slice(-2);
       console.log(this.ttid);
 
-      utleieService.addBestilling(this.state.values[0].key, window.ansatt, this.uType, this.kontant, this.ftid, this.ttid, this.gruppe, () => {
-        console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.ttid, this.gruppe);
-        utleieService.getBestilling(bestilling => {
-          this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
-          console.log('Bestillingsid: ' + this.bId);
-          this.registrerSykkel();
-          this.registrerUtstyr();
-        });
-        history.push('/oversikt/bestilling/');
-      });
+      utleieService.addBestilling(
+        this.state.values[0].key,
+        window.ansatt,
+        this.uType,
+        this.kontant,
+        this.ftid,
+        this.ttid,
+        this.gruppe,
+        () => {
+          console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.ttid, this.gruppe);
+          utleieService.getBestilling(bestilling => {
+            this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
+            console.log('Bestillingsid: ' + this.bId);
+            this.registrerSykkel();
+            this.registrerUtstyr();
+          });
+          history.push('/oversikt/bestilling/');
+        }
+      );
     }
   }
   registrerSykkel() {
