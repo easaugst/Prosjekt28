@@ -33,6 +33,7 @@
   font-size: 1.2vw;
   height: 122%;
   width: 19vw;
+  border-right: groove;
 
   /* font-family: 'Trebuchet MS'; */
 }
