@@ -318,6 +318,7 @@ p {
   filter: brightness(85%);
 }
 
+/* Redigerknapper */
 .tabellKnapper {
   font-weight: bold;
   text-align: center;
