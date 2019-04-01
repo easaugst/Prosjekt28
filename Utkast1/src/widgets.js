@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { ValidatorComponent } from 'react-form-validator-core';
 import { NavLink } from 'react-router-dom';
 import $ from 'jquery';
 
@@ -166,6 +167,17 @@ class ButtonSuccess extends Component {
     );
   }
 }
+class ButtonSuccess2 extends Component {
+  render() {
+    return (
+      <button type="button" id={this.props.id} className="btn btn-success" type="submit">
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
+
 
 // Renders a danger button using Bootstrap styles
 // Attributes: onClick
@@ -228,6 +240,7 @@ class ButtonPrimary extends Component {
 // Renders a button using Bootstrap styles
 export class Button {
   static Success = ButtonSuccess;
+  static Success2 = ButtonSuccess2;
   static Danger = ButtonDanger;
   static DangerOl = ButtonDangerOutline;
   static Light = ButtonLight;
@@ -266,4 +279,35 @@ class FormInput extends Component {
 export class Form {
   static Label = FormLabel;
   static Input = FormInput;
+}
+
+export class TextValidator extends ValidatorComponent {
+
+    render() {
+        const { errorMessages, validators, requiredError, validatorListener, ...rest } = this.props;
+
+        return (
+            <div>
+                <input
+                    {...rest}
+                    ref={(r) => { this.input = r; }}
+                />
+                {this.errorText()}
+            </div>
+        );
+    }
+
+    errorText() {
+        const { isValid } = this.state;
+
+        if (isValid) {
+            return null;
+        }
+
+        return (
+            <div style={{ color: 'red' }}>
+                {this.getErrorMessage()}
+            </div>
+        );
+    }
 }

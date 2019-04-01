@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { ValidatorForm } from 'react-form-validator-core';
 
 import { sykkelService } from '../../Services/Sykkel';
 import { kundeService } from '../../Services/Kunde';
@@ -11,7 +12,7 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../../widgets';
 const history = createHashHistory();
 
 export class AnsattReg extends Component {
@@ -26,19 +27,51 @@ export class AnsattReg extends Component {
   render() {
     return (
       <div className="mainView">
+      <ValidatorForm
+            ref="form"
+            onSubmit ={this.add}
+        >
         <h3>Legg til ansatt</h3>
         <Card title="Ansattinformasjon">
           <Form.Label>Tlf. nr.:</Form.Label>
-          <Form.Input type="text" value={this.tlfnr} onChange={event => (this.tlfnr = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.tlfnr = event.target.value)}
+              name="email"
+              value={this.tlfnr}
+              validators={['required', 'isNumber']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig telefonnummer']}
+              className="form-control"
+          />
 
           <Form.Label>Epost:</Form.Label>
-          <Form.Input type="text" value={this.epost} onChange={event => (this.epost = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.epost = event.target.value)}
+              name="email"
+              value={this.epost}
+              validators={['required', 'isEmail']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
+              className="form-control"
+          />
 
           <Form.Label>Fornavn:</Form.Label>
-          <Form.Input type="text" value={this.fnavn} onChange={event => (this.fnavn = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.fnavn = event.target.value)}
+              name="email"
+              value={this.fnavn}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
+              className="form-control"
+          />
 
           <Form.Label>Etternavn:</Form.Label>
-          <Form.Input type="text" value={this.enavn} onChange={event => (this.enavn = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.enavn = event.target.value)}
+              name="email"
+              value={this.enavn}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
+              className="form-control"
+          />
 
           <Form.Label>Admin:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.admin = event.target.value)}>
@@ -48,7 +81,14 @@ export class AnsattReg extends Component {
           </select>
 
           <Form.Label>Utleiested:</Form.Label>
-          <Form.Input type="text" value={this.utleienavn} onChange={event => (this.utleienavn = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.utleienavn = event.target.value)}
+              name="email"
+              value={this.utleienavn}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
+              className="form-control"
+          />
 
           <Form.Label>Stilling:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.stilling = event.target.value)}>
@@ -63,12 +103,13 @@ export class AnsattReg extends Component {
         <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.add}>Registrer ansatt</Button.Success>
+            <Button.Success2>Registrer ansatt</Button.Success2>
           </span>
           <span className="tilbakeMeny">
             <Button.Primary onClick={this.cancel}>Avbryt registrering</Button.Primary>
           </span>
         </div>
+        </ValidatorForm>
       </div>
     );
   }

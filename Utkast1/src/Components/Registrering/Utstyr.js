@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { ValidatorForm } from 'react-form-validator-core';
 
 import { sykkelService } from '../../Services/Sykkel';
 import { kundeService } from '../../Services/Kunde';
@@ -11,7 +12,7 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../../widgets';
 const history = createHashHistory();
 
 export class UtstyrReg extends Component {
@@ -23,6 +24,10 @@ export class UtstyrReg extends Component {
   render() {
     return (
       <div className="mainView">
+      <ValidatorForm
+            ref="form"
+            onSubmit ={this.add}
+        >
         <h3>Legg til utstyr</h3>
         <Card title="Utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
@@ -46,23 +51,37 @@ export class UtstyrReg extends Component {
             <option value="Service">Service</option>
             <option value="Stjålet">Stjålet</option>
           </select>
-
           <Form.Label>Befinnelse:</Form.Label>
-          <Form.Input type="text" value={this.ubefinnelse} onChange={event => (this.ubefinnelse = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.ubefinnelse = event.target.value)}
+              name="email"
+              value={this.ubefinnelse}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
+              className="form-control"
+          />
 
           <Form.Label>Tilhører utleiested:</Form.Label>
-          <Form.Input type="text" value={this.utsutleienavn} onChange={event => (this.utsutleienavn = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.utsutleienavn = event.target.value)}
+              name="email"
+              value={this.utsutleienavn}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig utleiested']}
+              className="form-control"
+          />
         </Card>
         <br />
 
         <div className="knapper">
           <span className="tilbakeMeny2">
-            <Button.Success onClick={this.add}>Registrer utstyr</Button.Success>
+            <Button.Success2>Registrer utstyr</Button.Success2>
           </span>
           <span className="tilbakeMeny">
             <Button.Primary onClick={this.cancel}>Avbryt registrering</Button.Primary>
           </span>
         </div>
+          </ValidatorForm>
       </div>
     );
   }

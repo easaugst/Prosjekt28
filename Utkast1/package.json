@@ -21,6 +21,7 @@
     "react-bootstrap": "^1.0.0-beta.6",
     "react-confirm-alert": "^2.4.0",
     "react-dropdown-select": "^2.2.3",
+    "react-form-validator-core": "^0.6.2",
     "react-inputs-validation": "^2.2.0",
     "react-router-dom": "^4.3.1",
     "react-simplified": "^1.5.2"

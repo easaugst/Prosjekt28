@@ -59,6 +59,16 @@ class StatistikkService {
       }
     );
   }
+  antallDelBestillinger(success) {
+    connection.query(
+      'select COUNT(ubid) from Ubestilling',
+      (error, results) => {
+        if (error) return console.error(error);
+        success(JSON.stringify(results));
+      }
+    );
+  }
+
 
 
 }

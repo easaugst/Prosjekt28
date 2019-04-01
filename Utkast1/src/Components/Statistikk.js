@@ -29,6 +29,7 @@ export class Statistikk extends Component {
   restUtstyr = 0;
 
   antallBestillinger = 0;
+  antallDelBestillinger = 0;
 
   antallKunder = 0;
 
@@ -108,8 +109,16 @@ export class Statistikk extends Component {
                 striped
                 variant="success"
                 now={this.antallBestillinger}
-                max={this.antallBestillinger * 1.5}
-                label={this.antallBestillinger + ' bestillinger'}
+                label={this.antallBestillinger + ' hoved'}
+                max={this.antallBestillinger}
+                key={1}
+              />
+              <ProgressBar
+                striped
+                variant="info"
+                now={this.antallDelBestillinger}
+                label={this.antallDelBestillinger + ' under'}
+                max={this.antallDelBestillinger}
                 key={2}
               />
             </ProgressBar>
@@ -151,6 +160,9 @@ export class Statistikk extends Component {
     //Bestillingstatistikk
     statistikkService.antallBestillinger(bestillingTot => {
       this.antallBestillinger = parseInt(bestillingTot.substr(bestillingTot.lastIndexOf(':') + 1));
+    });
+    statistikkService.antallDelBestillinger(bestillingDelTot => {
+      this.antallDelBestillinger = parseInt(bestillingDelTot.substr(bestillingDelTot.lastIndexOf(':') + 1));
     });
   }
 }
