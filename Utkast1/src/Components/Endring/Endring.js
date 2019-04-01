@@ -49,7 +49,7 @@ export class Endring extends Component {
         </div>
         <div id="mainViewSide9">
           <NavCol.Link to="/endring/ansatt">
-            <input id="bildeInput9" type="image" src="http://chittagongit.com//images/customer-icon/customer-icon-2.jpg" />
+            <input id="bildeInput9" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
             <p>Endre ansatt</p>
           </NavCol.Link>
@@ -85,7 +85,7 @@ export class EndringVertMenu extends Component {
           Endre utstyr
         </NavCol.Link>
         <NavCol.Link to="/endring/ansatt">
-          <ion-icon name="contacts" />
+          <ion-icon name="contact" />
           Endre ansatt
         </NavCol.Link>
       </NavCol>

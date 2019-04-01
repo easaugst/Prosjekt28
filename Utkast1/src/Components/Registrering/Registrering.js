@@ -42,7 +42,7 @@ export class Registrering extends Component {
         </div>
         <div id="mainViewSide4">
           <NavCol.Link to="/registrering/ansatt">
-            <input id="bildeInput4" type="image" src="http://chittagongit.com//images/customer-icon/customer-icon-2.jpg" />
+            <input id="bildeInput4" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
             <p>Registrer ansatt</p>
           </NavCol.Link>
@@ -72,7 +72,7 @@ export class RegVertMenu extends Component {
         </NavCol.Link>
 
         <NavCol.Link to="/registrering/ansatt">
-          <ion-icon name="contacts" />
+          <ion-icon name="contact" />
           Registrere ansatt
         </NavCol.Link>
       </NavCol>

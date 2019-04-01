@@ -45,7 +45,7 @@ export class OversiktVertMenu extends Component {
           Utstyr
         </NavCol.Link>
         <NavCol.Link to="/oversikt/ansatt">
-          <ion-icon name="contacts" />
+          <ion-icon name="contact" />
           Ansatt
         </NavCol.Link>
       </NavCol>
