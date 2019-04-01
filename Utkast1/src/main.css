@@ -138,6 +138,7 @@ a.logo {
 }
 
 #fontSideMenyen.active {
+  background-color: #417ff4;
 }
 
 .fontSideMeny:hover {
@@ -195,7 +196,7 @@ a.logo {
 .card-title {
   font-weight: bold;
 }
-[id^="side"] {
+[id^='side'] {
   display: none;
 }
 .carousel-inner > .item > img,
@@ -310,4 +311,13 @@ p {
   position: absolute;
   margin-left: 43vw;
   margin-top: 7vh;
+}
+
+.returnKnapp {
+  background-color: #417ff4;
+  color: white;
+}
+
+.returnKnapp:hover {
+  filter: brightness(85%);
 }

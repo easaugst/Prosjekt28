@@ -16,12 +16,6 @@ import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
 export class Utleie extends Component {
-  //  Sjekk antall tilgjengelige sykler, ikke tillat bestilling hvis valgt antall går over tilgjengelig antall
-  // 	  'SELECT sykkeltypeid, COUNT(regnr) AS tilgjengelig FROM Sykkel WHERE status = "Lager" GROUP BY sykkeltypeid'
-  //  Sjekk tilgjengelig utstyr, ikke tillat bestilling hvis valgt antall går over tilgjengelig antall
-  // 	  'SELECT utstyrstypeid, COUNT(utstyrsid) AS tilgjengelig FROM Utstyr WHERE ustatus = "Lager" GROUP BY utstyrstypeid'
-
-  // 	Legg det til i tabell på utleiesiden
   //Henting av kunder og valg av kunde
   kunde = [];
   kundenr = '';
@@ -33,11 +27,12 @@ export class Utleie extends Component {
   uType = '';
   kontant = '';
   ftid = '';
-  ttid = '';
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  bId = ''; runU = 0; runS = 0;
+  bId = '';
+  runU = 0;
+  runS = 0;
   sykkelType = '';
   utstyrType = '';
 
@@ -125,10 +120,10 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Info onClick={this.prevPage}>
+                <Button.Primary onClick={this.prevPage}>
                   <ion-icon name="arrow-back" />
                   Tilbake
-                </Button.Info>
+                </Button.Primary>
               </Column>
               <Column>
                 <Button.Success id="nesteUtleie" onClick={this.nextPage}>
@@ -159,81 +154,38 @@ export class Utleie extends Component {
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
-    })
+    });
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
   }
   log() {
-    console.log(this.ftid, this.uType);
-    this.ttid = new Date();
-    switch (this.uType) {
-      case 'Timesleie':
-        this.ttid.setHours( this.ttid.getHours() + 1 );
-        break;
-      case 'Dagsleie':
-        this.ttid.setDate( this.ttid.getDate() + 1 );
-        break;
-      case 'Tredagersleie':
-        this.ttid.setDate( this.ttid.getDate() + 3 );
-        break;
-      case 'Ukesleie':
-        this.ttid.setDate( this.ttid.getDate() + 7 );
-        break;
-    }
-    this.ttid = this.ttid.getFullYear() + '-' +
-    ('00' + (this.ttid.getMonth()+1)).slice(-2) + '-' +
-    ('00' + this.ttid.getDate()).slice(-2) + ' ' +
-    ('00' + this.ttid.getHours()).slice(-2) + ':' +
-    ('00' + this.ttid.getMinutes()).slice(-2) + ':' +
-    ('00' + this.ttid.getSeconds()).slice(-2);
-    console.log(this.ttid);
-    console.log(this.ftid);
+    console.log(this.utleieTyper);
   }
 
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
     //Overbestilling opprettes
-    if (this.gruppe == 'Gruppe' && this.sykler.length == 1) {
-      alert('For få sykler for gruppebestilling');
-    } else {
-      this.sykler.sort();
-      this.utstyr.sort();
-
-      this.ttid = new Date();
-      switch (this.uType) {
-        case 'Timesleie':
-          this.ttid.setHours( this.ttid.getHours() + 1 );
-          break;
-        case 'Dagsleie':
-          this.ttid.setDate( this.ttid.getDate() + 1 );
-          break;
-        case 'Tredagersleie':
-          this.ttid.setDate( this.ttid.getDate() + 3 );
-          break;
-        case 'Ukesleie':
-          this.ttid.setDate( this.ttid.getDate() + 7 );
-          break;
-      }
-      this.ttid = this.ttid.getFullYear() + '-' +
-      ('00' + (this.ttid.getMonth()+1)).slice(-2) + '-' +
-      ('00' + this.ttid.getDate()).slice(-2) + ' ' +
-      ('00' + this.ttid.getHours()).slice(-2) + ':' +
-      ('00' + this.ttid.getMinutes()).slice(-2) + ':' +
-      ('00' + this.ttid.getSeconds()).slice(-2);
-      console.log(this.ttid);
-
-      utleieService.addBestilling(this.state.values[0].key, window.ansatt, this.uType, this.kontant, this.ftid, this.ttid, this.gruppe, () => {
-        console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.ttid, this.gruppe);
+    this.sykler.sort();
+    this.utstyr.sort();
+    utleieService.addBestilling(
+      this.state.values[0].key,
+      window.ansatt,
+      this.uType,
+      this.kontant,
+      this.ftid,
+      this.gruppe,
+      () => {
+        console.log(this.state.values[0].key, this.uType, this.kontant, this.ftid, this.gruppe);
         utleieService.getBestilling(bestilling => {
           this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
           console.log('Bestillingsid: ' + this.bId);
           this.registrerSykkel();
           this.registrerUtstyr();
         });
-      });
-    }
+      }
+    );
   }
   registrerSykkel() {
     //Delbestillinger for sykler opprettes
