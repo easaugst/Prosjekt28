@@ -103,7 +103,9 @@ export class Utleie extends Component {
                 <option value="13">Racersykkel</option>
                 <option value="14">Barnesykkel</option>
               </select>
-              <Button.Light onClick={this.addSykkel}>Legg til sykkel</Button.Light>
+              <span className="leggTil">
+              <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
+              </span>
               <br />
               <br />
               <label>Utstyr</label>
@@ -118,7 +120,9 @@ export class Utleie extends Component {
                 <option value="10">Beskytter</option>
                 <option value="11">Lås</option>
               </select>
-              <Button.Light onClick={this.addUtstyr}>Legg til utstyr</Button.Light>
+              <span className="leggTil">
+              <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
+              </span>
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>

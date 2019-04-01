@@ -69,6 +69,11 @@
 #dBestOversikt {
   display: block;
 }
+.leggTil {
+  position: absolute;
+  margin-left: 16vw;
+  margin-top: -4.4vh;
+}
 
 /* CSS for registre og avbrytknapp*/
 .knapper {
@@ -102,7 +107,7 @@
   font-family: 'Trebuchet MS';
   font-weight: bold;
   height: 4em;
-  z-index: 40;
+  z-index: 1;
 }
 a.logo {
   font-size: 1.5vw;
