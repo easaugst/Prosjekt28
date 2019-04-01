@@ -137,6 +137,7 @@ export class Utleie extends Component {
             <Table.Rad>
               <th>Produkt</th>
               <th>Antall</th>
+              <th>Ledige</th>
             </Table.Rad>
             {this.utleieType.map(type => (
               <Table.Rad key={type.utid}>
