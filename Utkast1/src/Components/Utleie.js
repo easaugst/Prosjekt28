@@ -22,7 +22,7 @@ export class Utleie extends Component {
   // 	  'SELECT utstyrstypeid, COUNT(utstyrsid) AS tilgjengelig FROM Utstyr WHERE ustatus = "Lager" GROUP BY utstyrstypeid'
 
   // 	Legg det til i tabell på utleiesiden
-  //Henting av kunder og valg av kunde
+  
   kunde = [];
   kundenr = '';
   kundeDrop = [];
