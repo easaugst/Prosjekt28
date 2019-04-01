@@ -256,3 +256,12 @@ export class Form {
   static Label = FormLabel;
   static Input = FormInput;
 }
+
+class Widgets {
+  topFunction() {
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    console.log('');
+  }
+}
+
+export let widgets = new Widgets();

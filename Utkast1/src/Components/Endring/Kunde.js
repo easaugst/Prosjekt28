@@ -11,7 +11,7 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
+import { widgets, Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
 export class KundeEndring extends Component {
@@ -61,6 +61,7 @@ export class KundeEndring extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     kundeService.getKunde(kunde => {
       this.kArray = kunde;
     });
@@ -135,6 +136,7 @@ export class KundeEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     kundeService.getKundeEndring(this.props.match.params.kundenr, kunde => {
       this.kunde = kunde;
     });

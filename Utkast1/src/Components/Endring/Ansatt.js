@@ -52,6 +52,7 @@ export class AnsattEndring extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
       this.aArray = ansatt;
     });
@@ -165,6 +166,7 @@ export class AnsattEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     ansattService.getAnsattEndring(this.ansattnr, ansatt => {
       this.ansatt = ansatt;
     });

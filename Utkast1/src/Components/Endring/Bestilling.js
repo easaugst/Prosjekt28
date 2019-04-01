@@ -66,6 +66,7 @@ export class BestillingsEndring extends Component {
   }
 
   mounted() {
+    window.scrollTo(0, 0);
     bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
       this.bArray = bestilling;
     });
@@ -149,6 +150,7 @@ export class BestillingsEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
       this.bestilling = bestilling;
     });
@@ -256,6 +258,7 @@ export class UbestillingsEndringMeny extends Component {
     );
   }
   mounted() {
+    window.scrollTo(0, 0);
     bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
       this.dbArray = delbestilling;
     });
