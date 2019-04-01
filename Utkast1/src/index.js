@@ -41,7 +41,6 @@ class Menu extends Component {
   tbm = "Du må ha administratortilgang for å slette data";
   render() {
     window.tbm = this.tbm;
-    window.ansatt = 1;
     return (
       <div className="NavBar">
         <NavBar brand="Sykkelutleie 9000">

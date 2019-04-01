@@ -232,6 +232,7 @@ export class Utleie extends Component {
           this.registrerSykkel();
           this.registrerUtstyr();
         });
+        history.push('/oversikt/bestilling/');
       });
     }
   }
