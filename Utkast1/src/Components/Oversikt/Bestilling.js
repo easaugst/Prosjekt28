@@ -184,9 +184,9 @@ export class BestillingOversiktMeny extends Component {
           ))}
         </Table>
 
-        <Button.DangerOl onClick={this.cancel}>
+        <Button.Primary onClick={this.cancel}>
           Gå tilbake
-        </Button.DangerOl>
+        </Button.Primary>
       </div>
     );
   }

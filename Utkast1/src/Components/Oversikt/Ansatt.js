@@ -32,13 +32,13 @@ export class AnsattOversikt extends Component {
         <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
         <div className="sideKnapper">
           <span className="sideKnapp1">
-            <Button.Info onClick={this.pageSwitchH}>Første Side</Button.Info>
+            <Button.Primary onClick={this.pageSwitchH}>Første Side</Button.Primary>
           </span>
           <span className="sideKnapp2">
-            <Button.Info onClick={this.pageSwitchP}>Forrige Side</Button.Info>
+            <Button.Primary onClick={this.pageSwitchP}>Forrige Side</Button.Primary>
           </span>
           <span className="sideKnapp3">
-            <Button.Info onClick={this.pageSwitchN}>Neste Side</Button.Info>
+            <Button.Primary onClick={this.pageSwitchN}>Neste Side</Button.Primary>
           </span>
         </div>
             <Table>

@@ -71,7 +71,7 @@ export class SykkelReg extends Component {
             <Button.Success onClick={this.add}>Registrer sykkel</Button.Success>
           </span>
           <span className="tilbakeMeny">
-            <Button.Light onClick={this.cancel}>Avbryt registrering</Button.Light>
+            <Button.Primary onClick={this.cancel}>Avbryt registrering</Button.Primary>
           </span>
         </div>
       </div>
