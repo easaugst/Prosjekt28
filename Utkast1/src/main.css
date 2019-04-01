@@ -31,35 +31,22 @@
   margin-top: -6vh;
   padding-top: 8vh;
   font-size: 1.2vw;
-  height: 92%;
+  height: 122%;
   width: 19vw;
 
   /* font-family: 'Trebuchet MS'; */
 }
-/*
-.sideKnapp {
-  margin-top: 5vh;
-  list-style: none;
+
+/* Forrige og neste side oversikt */
+.sideKnapper {
+  margin-bottom: 2vh;
 }
-.meny {
-  border: solid black 1px;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  padding-right: 2vw;
-  padding-left: 2vw;
-  text-align: center;
-  background-color: lightsteelblue;
-  width: 14%;
-  position: absolute;
+.sideKnapp2 {
+  padding-left: 2vh;
 }
-.sideKnapp:hover {
-  filter: brightness(85%);
+.sideKnapp3 {
+  padding-left: 1vw;
 }
-/* NavLink farge og understrek */
-/* a {
-  text-decoration: none;
-  color: #f8f8ff;
-} */
 
 /* Gå tilbake fra utleieknapp */
 .utleieMainView {
