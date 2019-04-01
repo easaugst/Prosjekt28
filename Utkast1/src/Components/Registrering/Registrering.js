@@ -18,37 +18,41 @@ export class Registrering extends Component {
   render() {
     return (
       <div className="mainView">
-      <h2>Velg hva du ønsker å registrere</h2>
+        <h2>Velg hva du ønsker å registrere</h2>
         <div id="mainViewSide1">
           <NavCol.Link to="/registrering/kunde">
             <input id="bildeInput1" type="image" src="http://cdn.onlinewebfonts.com/svg/img_385846.png" />
             <br />
-            <p>Registrer kunde</p>
+            <p>Kunde</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide2">
           <NavCol.Link to="/registrering/sykkel">
-            <input id="bildeInput2" type="image" src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg" />
+            <input
+              id="bildeInput2"
+              type="image"
+              src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg"
+            />
             <br />
-            <p>Registrer sykkel</p>
+            <p>Sykkel</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide3">
           <NavCol.Link to="/registrering/utstyr">
             <input id="bildeInput3" type="image" src="http://cdn.onlinewebfonts.com/svg/img_547.png" />
             <br />
-            <p>Registrer utstyr</p>
+            <p>Utstyr</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide4">
           <NavCol.Link to="/registrering/ansatt">
             <input id="bildeInput4" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
-            <p>Registrer ansatt</p>
+            <p>Ansatt</p>
           </NavCol.Link>
         </div>
       </div>
-    )
+    );
   }
 }
 

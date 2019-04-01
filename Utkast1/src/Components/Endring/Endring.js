@@ -18,44 +18,48 @@ export class Endring extends Component {
   render() {
     return (
       <div className="mainView">
-      <h2>Velg hva du ønsker å endre</h2>
+        <h2>Velg hva du ønsker å endre</h2>
         <div id="mainViewSide5">
           <NavCol.Link to="/endring/bestillinger">
             <input id="bildeInput5" type="image" src="http://cdn.onlinewebfonts.com/svg/img_369247.png" />
             <br />
-            <p>Endre bestilling</p>
+            <p>Bestilling</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide6">
           <NavCol.Link to="/endring/kunde">
             <input id="bildeInput6" type="image" src="https://image.flaticon.com/icons/svg/686/686348.svg" />
             <br />
-            <p>Endre kundeinformasjon</p>
+            <p>Kundeinformasjon</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide7">
           <NavCol.Link to="/endring/sykkel">
-            <input id="bildeInput7" type="image" src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg" />
+            <input
+              id="bildeInput7"
+              type="image"
+              src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg"
+            />
             <br />
-            <p>Endre sykkel</p>
+            <p>Sykkel</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide8">
           <NavCol.Link to="/endring/utstyr">
             <input id="bildeInput8" type="image" src="http://cdn.onlinewebfonts.com/svg/img_547.png" />
             <br />
-            <p>Endre utstyr</p>
+            <p>Utstyr</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide9">
           <NavCol.Link to="/endring/ansatt">
             <input id="bildeInput9" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
-            <p>Endre ansatt</p>
+            <p>Ansatt</p>
           </NavCol.Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
