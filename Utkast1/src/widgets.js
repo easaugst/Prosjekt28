@@ -23,7 +23,7 @@ export class Card extends Component {
 class ListItem extends Component {
   render() {
     return this.props.to ? (
-      <NavLink className="list-group-item" activeClassName="active" to={this.props.to}>
+      <NavLink className="list-group-item tabellKnapper" activeClassName="active" to={this.props.to}>
         {this.props.children}
       </NavLink>
     ) : (
