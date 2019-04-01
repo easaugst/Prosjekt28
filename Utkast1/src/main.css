@@ -102,6 +102,7 @@
   font-family: 'Trebuchet MS';
   font-weight: bold;
   height: 4em;
+  z-index: 40;
 }
 a.logo {
   font-size: 1.5vw;

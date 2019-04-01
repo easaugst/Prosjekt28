@@ -81,7 +81,7 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm bg-light navbar-light fontNavbar">
+      <nav className="navbar navbar-expand-sm bg-secondary navbar-dark fontNavbar">
         {
           <NavLink className="navbar-brand logo" activeClassName="active" exact to="/">
             {this.props.brand}
