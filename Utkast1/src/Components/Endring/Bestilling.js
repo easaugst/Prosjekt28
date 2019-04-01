@@ -142,7 +142,7 @@ export class BestillingsEndringMeny extends Component {
               <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett bestilling</Button.DangerOl>
+              <Button.DangerOl onClick={this.slett}>Slett hovedbestilling</Button.DangerOl>
             </span>
           </div>
         </div>
@@ -320,15 +320,18 @@ export class UbestillingsEndring extends Component {
               />
             </Card>
           ))}
-          <span className="tilbakeMeny2">
-            <Button.Success onClick={this.save}>Lagre endring</Button.Success>
-          </span>
-          <span className="tilbakeMeny">
-            <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
-          </span>
-          <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett</Button.DangerOl>
-          </span>
+          <br />
+          <div className="knapper">
+            <span className="tilbakeMeny2">
+              <Button.Success onClick={this.save}>Lagre endring</Button.Success>
+            </span>
+            <span className="tilbakeMeny">
+              <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
+            </span>
+            <span className="tilbakeMeny">
+              <Button.DangerOl onClick={this.slett}>Slett delbestilling</Button.DangerOl>
+            </span>
+          </div>
         </div>
       </div>
     );
