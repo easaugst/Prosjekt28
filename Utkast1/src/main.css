@@ -67,7 +67,11 @@
   display: none;
 }
 #dBestOversikt {
+  position: absolute;
   display: block;
+  margin-left: 35vw;
+  top: 0vh;
+  width: 17vw;
 }
 .leggTil {
   position: absolute;
