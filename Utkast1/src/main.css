@@ -31,14 +31,14 @@
   margin-top: -6vh;
   padding-top: 8vh;
   font-size: 1.2vw;
-  height: 122%;
+  height: 125%;
   width: 19vw;
   border-right: groove;
 
   /* font-family: 'Trebuchet MS'; */
 }
 
-/* Forrige og neste side oversikt */
+/* Forrige og neste side på oversikt (avstand) */
 .sideKnapper {
   margin-bottom: 2vh;
 }
@@ -84,7 +84,6 @@
   text-align: center;
   width: 5vw;
 }
-
 .tilbakeMeny:hover {
   filter: brightness(85%);
 }
@@ -114,7 +113,7 @@ a.logo {
   position: relative;
 }
 
-/* CSS for sidemenyen */
+/* CSS for sidemenyknappene */
 .fontSideMeny {
   font-size: 1.2vw;
   font-family: 'Trebuchet MS';
@@ -125,15 +124,14 @@ a.logo {
 .bootStrapIkon {
   padding-right: 0.5vw;
 }
-
 #fontSideMenyen.active {
   background-color: #007bff;
 }
-
 .fontSideMeny:hover {
   filter: brightness(100%);
 }
 
+/* CSS for et eller annet */
 .mainViewUtleie h3 {
   font-weight: bold;
 }
@@ -302,11 +300,11 @@ p {
   margin-top: 7vh;
 }
 
+/* Alle Primaryknapper */
 .returnKnapp {
   background-color: #007bff;
   color: white;
 }
-
 .returnKnapp:hover {
   filter: brightness(85%);
 }
