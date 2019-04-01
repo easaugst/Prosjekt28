@@ -3,8 +3,9 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { ValidatorForm } from 'react-form-validator-core';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../widgets';
 import { ansattService } from '../Services/Ansatt';
 const history = createHashHistory();
 
@@ -28,26 +29,35 @@ export class Login extends Component {
   render() {
     return (
       <div className="mainView-signin">
-        <form className="form-signin">
+        <ValidatorForm
+              ref="form"
+              onSubmit ={this.signIn}
+              className = "form-signin"
+          >
           <h1>Vennligst logg inn</h1>
-          <input
-            type="email"
-            className="form-control"
-            value={this.email}
-            placeholder="E-post adresse"
-            onChange={event => (this.email = event.target.value)}
+          <TextValidator
+              onChange={event => (this.email = event.target.value)}
+              name="email"
+              placeholder="E-post adresse"
+              value={this.email}
+              validators={['required', 'isEmail']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
+              className="form-control"
           />
-          <input
-            type="password"
-            className="form-control"
-            value={this.pwd}
-            placeholder="Passord"
-            onChange={event => (this.pwd = event.target.value)}
+          <TextValidator
+              onChange={event => (this.pwd = event.target.value)}
+              name="passord"
+              placeholder="Passord"
+              value={this.pwd}
+              type="password"
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', '']}
+              className="form-control"
           />
-          <button className="btn btn-lg btn-primary btn-block" id="inputPassword" type="submit" onClick={this.signIn}>
+          <Button.Success2 className="btn btn-lg btn-primary btn-block">
             Logg inn
-          </button>
-        </form>
+          </Button.Success2>
+          </ValidatorForm>
       </div>
     );
   }
@@ -89,6 +99,7 @@ export class Login extends Component {
       } else if (this.verification == 0) {
         this.email = '';
         this.pwd = '';
+        alert("Ugyldig innloggingsdetaljer");
       }
     });
   }
