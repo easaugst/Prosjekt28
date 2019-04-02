@@ -30,13 +30,6 @@ export class KundeEndring extends Component {
           <Form.Label>Filtrer:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
-      {/*
-        <select id="sidemengde" className="form-control" onChange={this.pages}>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        </select>
-        */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
