@@ -11,6 +11,8 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
+import img from '../../../public/Bilder/RegKunde.png'
+
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
@@ -21,7 +23,7 @@ export class Registrering extends Component {
         <h2>Velg hva du ønsker å registrere</h2>
         <div id="mainViewSide1">
           <NavCol.Link to="/registrering/kunde">
-            <input id="bildeInput1" type="image" src="http://cdn.onlinewebfonts.com/svg/img_385846.png" />
+            <img id="bildeInput1" src={window.location.origin + '/Bilder/RegKunde.png'} />
             <br />
             <p>Kunde</p>
           </NavCol.Link>
