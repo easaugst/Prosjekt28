@@ -41,7 +41,7 @@ export class Login extends Component {
               name="email"
               placeholder="E-post adresse"
               value={this.email}
-              validators={['required', 'isEmail']}
+              validators={['required', 'isEmail' ]}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
               className="form-control"
           />
@@ -108,6 +108,10 @@ export class Login extends Component {
     });
   }
   mounted() {
+
+    window.ansatt = "";
+    window.ansattnavn = "";
+
     ansattService.adminSjekk(admin => {
       this.aArray = admin;
       this.lengde = this.aArray.length;
