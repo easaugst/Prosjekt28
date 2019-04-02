@@ -102,6 +102,10 @@ export class SykkelReg extends Component {
   }
 
   add() {
+    if(this.sykkeltypeid == "" ||  this.status == "") {
+      alert("Du må fylle inn skjemaet riktig");
+    }
+    else{
     sykkelService.addSykkel(
       this.sykkeltypeid,
       this.status,
@@ -112,6 +116,7 @@ export class SykkelReg extends Component {
         history.push('/oversikt/sykkel');
       }
     );
+   }
   }
   cancel() {
     history.push('/registrering/');

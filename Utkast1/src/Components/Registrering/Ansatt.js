@@ -115,7 +115,7 @@ export class AnsattReg extends Component {
   }
 
   add() {
-    if(this.fnavn == "" || this.tlfnr == ""  || this.enavn == ""  || this.epost == "" || this.admin == "" || this.utleienavn == ""  || this.stilling == "") {
+    if(this.admin == "" ||  this.stilling == "") {
       alert("Du må fylle inn skjemaet riktig");
     }
     else{

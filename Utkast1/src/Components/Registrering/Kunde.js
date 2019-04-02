@@ -73,7 +73,15 @@ export class KundeReg extends Component {
           />
 
           <Form.Label>Fødselsdag:</Form.Label>
-          <Form.Input type="date" value={this.fdag} onChange={event => (this.fdag = event.target.value)} />
+          <TextValidator
+              onChange={event => (this.fdag = event.target.value)}
+              placeholder="Ola@Nordmann.no"
+              value={this.fdag}
+              validators={['required', 'required']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig dato']}
+              className="form-control"
+              type="date"
+          />
         </Card>
         <br />
         <div className="knapper">

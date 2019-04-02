@@ -87,10 +87,14 @@ export class UtstyrReg extends Component {
   }
 
   add() {
-    console.log(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn);
+    if(this.utstyrstypeid == "" ||  this.ustatus == "") {
+      alert("Du må fylle inn skjemaet riktig");
+    }
+    else{
     utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, () => {
       history.push('/oversikt/utstyr');
     });
+   }
   }
 
   cancel() {
