@@ -32,7 +32,7 @@ export class UtstyrReg extends Component {
         <Card title="Utstyrsinformasjon">
           <Form.Label>Utstyrstype:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.utstyrstypeid = event.target.value)}>
-            <option value="4">Velg type her</option>
+            <option>Velg type her</option>
             <option value="4">Hjelm</option>
             <option value="5">Lappesett</option>
             <option value="6">Sykkelveske</option>
@@ -45,7 +45,7 @@ export class UtstyrReg extends Component {
 
           <Form.Label>Utstyrstatus:</Form.Label>
           <select className="form-control" form="formen" onChange={event => (this.ustatus = event.target.value)}>
-            <option value="Lager">Velg status</option>
+            <option >Velg status</option>
             <option value="Lager">Lager</option>
             <option value="Utleid">Utleid</option>
             <option value="Service">Service</option>
