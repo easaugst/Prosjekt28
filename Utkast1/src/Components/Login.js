@@ -10,22 +10,14 @@ import { ansattService } from '../Services/Ansatt';
 const history = createHashHistory();
 
 export class Login extends Component {
-  verification = 0;
+  verification = 0; lengde = 0; adminS = 0; teller = 0;
+  ansattnavn = ""; email = ''; pwd = '';
+  admin = ''; var = '';
   ansatt = null;
-  ansattnavn = "";
-  email = '';
-  pwd = '';
-  admin = '';
-  var = '';
-  lengde = 0;
   sjekker = false;
-  adminS = 0;
-  teller = 0;
-
-  admin2 = [];
-  aArray = [];
-
   administrator = false;
+
+  admin2 = []; aArray = [];
 
   render() {
     return (

@@ -44,7 +44,6 @@ class Menu extends Component {
     return (
       <div className="NavBar">
         <NavBar brand="Sykkelutleie 9000">
-          {' '}
           {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
           <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
           <NavBar.Link to="/utleie">Ny bestilling</NavBar.Link>
