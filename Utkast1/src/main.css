@@ -1,3 +1,12 @@
+/* Logg inn */
+.mainView-signin h1 {
+  font-family: 'Trebuchet MS';
+}
+.loggInnInput {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
 /* Tekst forside */
 .mainView {
   position: absolute;
@@ -34,8 +43,7 @@
   height: 125%;
   width: 19vw;
   border-right: groove;
-
-  /* font-family: 'Trebuchet MS'; */
+  font-family: 'Trebuchet MS';
 }
 
 /* Forrige og neste side på oversikt (avstand) */
