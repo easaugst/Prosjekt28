@@ -17,7 +17,6 @@ import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
 export class Utleie extends Component {
-
   kunde = [];
   kundenr = '';
   kundeDrop = [];
@@ -32,12 +31,20 @@ export class Utleie extends Component {
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
 
-  tilgjengeligeSykler = []; tilgjengeligUtstyr = [];
-  bId = ''; runU = 0; runS = 0;
-  sykkelType = ''; utstyrType = '';
+  tilgjengeligeSykler = [];
+  tilgjengeligUtstyr = [];
+  bId = '';
+  runU = 0;
+  runS = 0;
+  sykkelType = '';
+  utstyrType = '';
 
-  sykler = []; vSykler = []; sTyper = [];
-  utstyr = []; vUtstyr = []; uTyper = [];
+  sykler = [];
+  vSykler = [];
+  sTyper = [];
+  utstyr = [];
+  vUtstyr = [];
+  uTyper = [];
 
   number = 1;
 
@@ -80,6 +87,19 @@ export class Utleie extends Component {
                 value={this.ftid}
                 onChange={event => (this.ftid = event.target.value)}
               />
+              <br />
+              <Row>
+                <Column>
+                  <Button.Primary id="tilbake" onClick={this.prevPage}>
+                    Tilbake
+                  </Button.Primary>
+                </Column>
+                <Column>
+                  <Button.Primary id="nesteUtleie" onClick={this.nextPage}>
+                    Neste side
+                  </Button.Primary>
+                </Column>
+              </Row>
             </div>
             <div className="form-group" id="utleie2">
               <label>Sykkeltype</label>
@@ -93,7 +113,7 @@ export class Utleie extends Component {
                 <option value="14">Barnesykkel</option>
               </select>
               <span className="leggTil">
-              <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
+                <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
               </span>
               <br />
               <br />
@@ -110,24 +130,42 @@ export class Utleie extends Component {
                 <option value="11">Lås</option>
               </select>
               <span className="leggTil">
-              <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
-              </span>
+                <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
+              </span>{' '}
+              <br />
+              <Row>
+                <Column>
+                  <Button.Primary id="tilbake" onClick={this.prevPage}>
+                    Tilbake
+                  </Button.Primary>
+                </Column>
+                <Column>
+                  <Button.Primary id="nesteUtleie" onClick={this.nextPage}>
+                    Neste side
+                  </Button.Primary>
+                </Column>
+              </Row>
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
               <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} /> Kort <br />
               <input type="radio" name="betaling" id="kontant" onChange={this.betalingValg} /> Kontant
+              <br />
+              <br />
+              <Row>
+                <Column>
+                  <Button.Primary id="tilbake" onClick={this.prevPage}>
+                    Tilbake
+                  </Button.Primary>
+                </Column>
+                <Column>
+                  <Button.Success id="nesteUtleie" onClick={this.order}>
+                    Fullfør
+                  </Button.Success>
+                </Column>
+              </Row>
             </div>
-            <Row>
-              <Column>
-                <Button.Primary id="tilbake" onClick={this.prevPage}>Tilbake</Button.Primary>
-              </Column>
-              <Column>
-                <Button.Success id="nesteUtleie" onClick={this.nextPage}>
-                  Neste side
-                </Button.Success>
-              </Column>
-            </Row>
+
             <br />
             <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
@@ -153,7 +191,7 @@ export class Utleie extends Component {
     );
   }
   mounted() {
-    document.getElementById('tilbake').style.display = "none";
+    document.getElementById('tilbake').style.display = 'none';
     window.scrollTo(0, 0);
     this.kundeDropDown();
     utleieService.getTyper(typer => {
@@ -167,19 +205,18 @@ export class Utleie extends Component {
       tilgjengelig.map(sykler => {
         document.getElementById('antallT' + sykler.sykkeltypeid).innerHTML = '(' + sykler.tilgjengelig + ')';
         this.tilgjengeligeSykler[sykler.sykkeltypeid] = sykler.tilgjengelig;
-      })
+      });
       console.log(this.tilgjengeligeSykler);
-    })
+    });
     utleieService.tilgjengeligUtstyr(tilgjengelig => {
       tilgjengelig.map(utstyr => {
         document.getElementById('antallT' + utstyr.utstyrstypeid).innerHTML = '(' + utstyr.tilgjengelig + ')';
         this.tilgjengeligUtstyr[utstyr.utstyrstypeid] = utstyr.tilgjengelig;
-      })
+      });
       console.log(this.tilgjengeligUtstyr);
-    })
+    });
   }
-  log() {
-  }
+  log() {}
 
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
@@ -324,21 +361,32 @@ export class Utleie extends Component {
     console.log(this.kundeDrop);
   }
   addSykkel() {
-    if (document.getElementById('antall' + this.sykkelType).innerHTML < this.tilgjengeligeSykler[parseInt(this.sykkelType)]) {
+    if (
+      document.getElementById('antall' + this.sykkelType).innerHTML <
+      this.tilgjengeligeSykler[parseInt(this.sykkelType)]
+    ) {
       this.sykler.push(parseInt(this.sykkelType));
       this.sykler.sort();
       console.log(this.sykler);
-      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
+      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(
+        this.sykler,
+        parseInt(this.sykkelType)
+      );
     } else {
       alert('Ikke flere tilgjengelige sykler av denne typen');
     }
   }
   addUtstyr() {
-    if (document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]) {
+    if (
+      document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]
+    ) {
       this.utstyr.push(parseInt(this.utstyrType));
       this.sykler.sort();
       console.log(this.utstyr);
-      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
+      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(
+        this.utstyr,
+        parseInt(this.utstyrType)
+      );
     } else {
       alert('Ikke mer utstyr av denne typen tilgjengelig');
     }
@@ -358,8 +406,8 @@ export class Utleie extends Component {
     }
   }
   prevPage() {
-    if(this.number == 2) {
-        document.getElementById('tilbake').style.display = 'none';
+    if (this.number == 2) {
+      document.getElementById('tilbake').style.display = 'none';
     }
     if (this.number > 1) {
       console.log(this.number);
