@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { ValidatorForm } from 'react-form-validator-core';
 
 import { sykkelService } from '../Services/Sykkel';
 import { kundeService } from '../Services/Kunde';
@@ -11,7 +12,7 @@ import { ansattService } from '../Services/Ansatt';
 import { bestillingsService } from '../Services/Bestilling';
 import { utleieService } from '../Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../widgets';
 import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
@@ -119,7 +120,7 @@ export class Utleie extends Component {
             </div>
             <Row>
               <Column>
-                <Button.Primary onClick={this.prevPage}>Tilbake</Button.Primary>
+                <Button.Primary id="tilbake" onClick={this.prevPage}>Tilbake</Button.Primary>
               </Column>
               <Column>
                 <Button.Success id="nesteUtleie" onClick={this.nextPage}>
@@ -152,6 +153,7 @@ export class Utleie extends Component {
     );
   }
   mounted() {
+    document.getElementById('tilbake').style.display = "none";
     window.scrollTo(0, 0);
     this.kundeDropDown();
     utleieService.getTyper(typer => {
@@ -344,6 +346,7 @@ export class Utleie extends Component {
   nextPage() {
     if (this.number < 3) {
       console.log(this.number);
+      document.getElementById('tilbake').style.display = 'block';
       document.getElementById('utleie' + this.number).style.display = 'none';
       this.number++;
       document.getElementById('utleie' + this.number).style.display = 'block';
@@ -355,6 +358,9 @@ export class Utleie extends Component {
     }
   }
   prevPage() {
+    if(this.number == 2) {
+        document.getElementById('tilbake').style.display = 'none';
+    }
     if (this.number > 1) {
       console.log(this.number);
       document.getElementById('utleie' + this.number).style.display = 'none';
