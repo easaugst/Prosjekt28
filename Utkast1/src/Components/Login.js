@@ -35,26 +35,29 @@ export class Login extends Component {
               className = "form-signin"
           >
           <h1>Vennligst logg inn</h1>
+          <Form.Label>E-postadresse:</Form.Label>
           <TextValidator
               autoFocus
               onChange={event => (this.email = event.target.value)}
               name="email"
-              placeholder="E-post adresse"
+              placeholder="ola.nordmann@eksempel.com"
               value={this.email}
               validators={['required', 'isEmail' ]}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
-              className="form-control"
+              className="form-control loggInnInput"
           />
+          <Form.Label>Passord:</Form.Label>
           <TextValidator
               onChange={event => (this.pwd = event.target.value)}
               name="passord"
-              placeholder="Passord"
+              placeholder="Topp hemmelig"
               value={this.pwd}
               type="password"
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', '']}
-              className="form-control"
+              className="form-control loggInnInput"
           />
+          <br />
           <Button.Success2 className="btn btn-lg btn-primary btn-block">
             Logg inn
           </Button.Success2>
