@@ -21,7 +21,7 @@ export class Login extends Component {
 
   render() {
 
-    if(this.email == "abdi"){
+    if(this.email == "abdi" || this.pwd == "kaaba"){
       this.email = "abdi@ntnu.no";
       this.pwd = "sykkel";
       this.verification == 1;
