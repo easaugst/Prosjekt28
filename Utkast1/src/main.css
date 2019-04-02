@@ -328,3 +328,15 @@ p {
   text-align: center;
 }
 /**/
+
+/* CSS for statistikk */
+.statistikk1 {
+  position: absolute;
+  margin-left: -15vw;
+  width: 40vw;
+}
+.statistikk2 {
+  position: absolute;
+  margin-left: 25vw;
+  width: 40vw;
+}

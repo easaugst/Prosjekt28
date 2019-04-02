@@ -36,96 +36,98 @@ export class Statistikk extends Component {
   render() {
     return (
       <div className="mainView">
-      <div className="justify-content-center">
-        <div className="col-auto mb-3">
-        <Card title="Lagerbeholdning for sykler">
-          <div>
-            <ProgressBar>
-              <ProgressBar
-                striped
-                variant="success"
-                now={this.restSykler}
-                max={this.totaltAntallSykler}
-                label={this.restSykler + ' Ledige'}
-                key={1}
-              />
-            <ProgressBar
-                striped
-                variant="danger"
-                now={this.utleidAntallSykler}
-                max={this.totaltAntallSykler}
-                label={this.utleidAntallSykler + ' Opptatt'}
-                key={2}
-              />
-          </ProgressBar>
-        </div>
-      </Card></div>
-      <div className="col-auto mb-">
-          <Card title="Lagerbeholdning for utstyr">
-          <div>
-            <ProgressBar>
-              <ProgressBar
-                striped
-                variant="success"
-                now={this.restUtstyr}
-                max={this.totaltAntallUtstyr}
-                label={this.restUtstyr + ' Ledige'}
-                key={1}
-              />
-            <ProgressBar
-                striped
-                variant="danger"
-                now={this.utleidAntallUtstyr}
-                max={this.totaltAntallUtstyr}
-                label={this.utleidAntallUtstyr + ' Opptatt'}
-                key={2}
-                />
-              </ProgressBar>
+        <div className="justify-content-center statistikk1">
+            <div className="col-auto mb-3 delstatistikk1" >
+              <Card title="Lagerbeholdning for sykler">
+                <div>
+                  <ProgressBar>
+                    <ProgressBar
+                      striped
+                      variant="success"
+                      now={this.restSykler}
+                      max={this.totaltAntallSykler}
+                      label={this.restSykler + ' Ledige'}
+                      key={1}
+                    />
+                    <ProgressBar
+                      striped
+                      variant="danger"
+                      now={this.utleidAntallSykler}
+                      max={this.totaltAntallSykler}
+                      label={this.utleidAntallSykler + ' Opptatt'}
+                      key={2}
+                    />
+                  </ProgressBar>
+                </div>
+              </Card>
             </div>
-          </Card>
+            <div className="col-auto mb-3 delstatistikk1">
+              <Card title="Lagerbeholdning for utstyr">
+                <div>
+                  <ProgressBar>
+                    <ProgressBar
+                      striped
+                      variant="success"
+                      now={this.restUtstyr}
+                      max={this.totaltAntallUtstyr}
+                      label={this.restUtstyr + ' Ledige'}
+                      key={1}
+                    />
+                    <ProgressBar
+                      striped
+                      variant="danger"
+                      now={this.utleidAntallUtstyr}
+                      max={this.totaltAntallUtstyr}
+                      label={this.utleidAntallUtstyr + ' Opptatt'}
+                      key={2}
+                    />
+                  </ProgressBar>
+                </div>
+              </Card>
+            </div>
+            </div>
+            <div className="justify-content-center statistikk2">
+            <div className="col-auto mb-3 delstatistikk2">
+              <Card title="Antall registrerte kunder">
+                <div>
+                  <ProgressBar>
+                    <ProgressBar
+                      striped
+                      variant="success"
+                      now={this.antallKunder}
+                      max={this.antallKunder * 1.4}
+                      label={this.antallKunder + ' Kunder'}
+                      key={1}
+                    />
+                  </ProgressBar>
+                </div>
+              </Card>
+            </div>
+            <div className="col-auto mb-3 delstatistikk2">
+              <Card title="Antall registrerte bestillinger">
+                <div>
+                  <ProgressBar>
+                    <ProgressBar
+                      striped
+                      variant="success"
+                      now={this.antallBestillinger}
+                      label={this.antallBestillinger + ' Hoved'}
+                      max={this.antallBestillinger}
+                      key={1}
+                    />
+                    <ProgressBar
+                      striped
+                      variant="info"
+                      now={this.antallDelBestillinger}
+                      label={this.antallDelBestillinger + ' Del'}
+                      max={this.antallDelBestillinger}
+                      key={2}
+                    />
+                  </ProgressBar>
+                </div>
+              </Card>
+            </div>
         </div>
-
-      <div className="col-auto mb-3">
-      <Card title="Antall registrerte kunder">
-        <div>
-          <ProgressBar>
-            <ProgressBar
-              striped
-              variant="success"
-              now={this.antallKunder}
-              max={this.antallKunder * 1.4}
-              label={this.antallKunder + ' kunder'}
-              key={1}
-            />
-          </ProgressBar>
-        </div>
-      </Card>
-      </div>
-      <div className="col-auto mb-3">
-        <Card title="Antall registrerte bestillinger">
-          <div>
-            <ProgressBar>
-              <ProgressBar
-                striped
-                variant="success"
-                now={this.antallBestillinger}
-                label={this.antallBestillinger + ' hoved'}
-                max={this.antallBestillinger}
-                key={1}
-              />
-              <ProgressBar
-                striped
-                variant="info"
-                now={this.antallDelBestillinger}
-                label={this.antallDelBestillinger + ' under'}
-                max={this.antallDelBestillinger}
-                key={2}
-              />
-            </ProgressBar>
-          </div>
-        </Card>
-      </div>
-      </div>
       </div>
 
 
