@@ -41,6 +41,9 @@ export class BestillingOversikt extends Component {
               <span className="sideKnapp3">
                 <Button.Primary onClick={this.pageSwitchN}>Neste Side</Button.Primary>
               </span>
+              <span className="sideKnapp4">
+                <Button.Primary onClick={this.pageSwitchL}>Siste Side</Button.Primary>
+              </span>
             </div>
             <Table>
               <Table.Rad>
@@ -133,6 +136,12 @@ export class BestillingOversikt extends Component {
         this.aktivSide--;
       }
     }
+    pageSwitchL() {
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+      this.aktivSide = this.sider.length - 1;
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
+    }
+    
   bestillingSortering() {
     if (this.bestillinger > this.sideMengde) {
       this.sisteSide = this.bestillinger % this.sideMengde;

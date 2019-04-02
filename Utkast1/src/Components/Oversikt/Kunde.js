@@ -48,6 +48,9 @@ export class KundeOversikt extends Component {
             <span className="sideKnapp3">
               <Button.Primary onClick={this.pageSwitchN}>Neste Side</Button.Primary>
             </span>
+            <span className="sideKnapp4">
+              <Button.Primary onClick={this.pageSwitchL}>Siste Side</Button.Primary>
+            </span>
           </div>
             <Table>
               <Table.Rad>
@@ -136,6 +139,11 @@ export class KundeOversikt extends Component {
         this.pageSwitch(this.aktivSide - 1);
         this.aktivSide--;
       }
+    }
+    pageSwitchL() {
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
+      this.aktivSide = this.sider.length - 1;
+      document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
     }
 
   kundeSortering() {
