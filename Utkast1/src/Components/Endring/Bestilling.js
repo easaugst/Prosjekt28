@@ -65,19 +65,19 @@ export class BestillingsEndring extends Component {
                   <td>{bestilling.utleietype}</td>
                   <td>{bestilling.kontant}</td>
                   <td>
-                    {JSON.stringify(bestilling.btid)
-                    .replace(/T|Z|"/g, ' ')
-                    .slice(0, -6)}
+                    {bestilling.btid.toLocaleString()
+                    .replace(/,/g, '')
+                    .slice(0, -3)}
                   </td>
                   <td>
-                    {JSON.stringify(bestilling.ftid)
-                    .replace(/T|Z|"/g, ' ')
-                    .slice(0, -9)}
+                    {bestilling.ftid.toLocaleString()
+                    .replace(/,/g, '')
+                    .slice(0, -3)}
                   </td>
                   <td>
-                    {JSON.stringify(bestilling.ttid)
-                    .replace(/T|Z|"/g, ' ')
-                    .slice(0, -9)}
+                    {bestilling.ttid.toLocaleString()
+                    .replace(/,/g, ' ')
+                    .slice(0, -3)}
                   </td>
                   <td>{bestilling.gruppe}</td>
                   <td>

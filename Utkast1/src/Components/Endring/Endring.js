@@ -23,7 +23,7 @@ export class Endring extends Component {
           <NavCol.Link to="/endring/bestillinger">
             <input id="bildeInput5" type="image" src="http://cdn.onlinewebfonts.com/svg/img_369247.png" />
             <br />
-            <p>Bestilling</p>
+            <p>Bestillinger</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide6">
@@ -41,7 +41,7 @@ export class Endring extends Component {
               src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg"
             />
             <br />
-            <p>Sykkel</p>
+            <p>Sykler</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide8">
@@ -55,7 +55,7 @@ export class Endring extends Component {
           <NavCol.Link to="/endring/ansatt">
             <input id="bildeInput9" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
-            <p>Ansatt</p>
+            <p>Ansatte</p>
           </NavCol.Link>
         </div>
       </div>

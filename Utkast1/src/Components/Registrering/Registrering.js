@@ -23,7 +23,7 @@ export class Registrering extends Component {
           <NavCol.Link to="/registrering/kunde">
             <input id="bildeInput1" type="image" src="http://cdn.onlinewebfonts.com/svg/img_385846.png" />
             <br />
-            <p>Kunde</p>
+            <p>Kunder</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide2">
@@ -34,7 +34,7 @@ export class Registrering extends Component {
               src="https://upload.wikimedia.org/wikipedia/commons/d/db/USDOT_highway_sign_bicycle_symbol_-_black.svg"
             />
             <br />
-            <p>Sykkel</p>
+            <p>Sykler</p>
           </NavCol.Link>
         </div>
         <div id="mainViewSide3">
@@ -48,7 +48,7 @@ export class Registrering extends Component {
           <NavCol.Link to="/registrering/ansatt">
             <input id="bildeInput4" type="image" src="https://png.pngtree.com/svg/20170116/ad3dddaf9c.svg" />
             <br />
-            <p>Ansatt</p>
+            <p>Ansatte</p>
           </NavCol.Link>
         </div>
       </div>
@@ -62,22 +62,22 @@ export class RegVertMenu extends Component {
       <NavCol>
         <NavCol.Link to="/registrering/kunde">
           <ion-icon name="person-add" />
-          Registrere kunde
+          Registrer kunde
         </NavCol.Link>
 
         <NavCol.Link to="/registrering/sykkel">
           <ion-icon name="bicycle" />
-          Registrere sykkel
+          Registrer sykkel
         </NavCol.Link>
 
         <NavCol.Link to="/registrering/utstyr">
           <ion-icon name="cube" />
-          Registrere utstyr
+          Registrer utstyr
         </NavCol.Link>
 
         <NavCol.Link to="/registrering/ansatt">
           <ion-icon name="contact" />
-          Registrere ansatt
+          Registrer ansatt
         </NavCol.Link>
       </NavCol>
     );

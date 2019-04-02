@@ -65,15 +65,15 @@ export class KundeEndring extends Component {
                   <td>{kunde.epost}</td>
                   <td>{kunde.tlf}</td>
                   <td>
-                    {JSON.stringify(kunde.fdag)
-                      .replace(/T|Z|"/g, ' ')
-                      .slice(0, -15)}
+                    {kunde.fdag.toLocaleString()
+                      .replace(/,/g, '')
+                      .slice(0, -9)}
                   </td>
                   <td>
                     <center>
-                      {JSON.stringify(kunde.rtid)
-                        .replace(/T|Z|"/g, ' ')
-                        .slice(0, -15)}
+                      {kunde.rtid.toLocaleString()
+                        .replace(/,/g, '')
+                        .slice(0, -9)}
                     </center>
                   </td>
                   <td>
