@@ -21,7 +21,7 @@ export class Registrering extends Component {
         <h2>Velg hva du ønsker å registrere</h2>
         <div id="mainViewSide1">
           <NavCol.Link to="/registrering/kunde">
-            <input id="bildeInput1" type="image" src="http://cdn.onlinewebfonts.com/svg/img_385846.png" />
+            <img id="bildeInput1"  />
             <br />
             <p>Kunde</p>
           </NavCol.Link>
