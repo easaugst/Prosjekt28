@@ -12,6 +12,7 @@ const history = createHashHistory();
 export class Login extends Component {
   verification = 0;
   ansatt = null;
+  ansattnavn = "";
   email = '';
   pwd = '';
   admin = '';
@@ -72,6 +73,9 @@ export class Login extends Component {
         this.pwd = '';
         this.ansatt.map(ansatt => {
           window.ansatt = ansatt.ansattnr;
+          console.log(window.ansatt)
+          window.ansattnavn = ansatt.fnavn;
+          console.log(ansatt.fnavn)
         });
         history.push('/oversikt');
 

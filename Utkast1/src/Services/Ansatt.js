@@ -50,7 +50,7 @@ class AnsattService {
   }
   ansattSignin(epost, pwd, success) {
     connection.query(
-      'SELECT ansattnr FROM FastAnsatt where epost = ? AND pwd = ?',
+      'SELECT ansattnr, fnavn FROM FastAnsatt where epost = ? AND pwd = ?',
       [epost, pwd],
       (error, results) => {
         if (error) return console.error(error);
