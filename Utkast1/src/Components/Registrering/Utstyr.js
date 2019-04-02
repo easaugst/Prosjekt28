@@ -54,7 +54,7 @@ export class UtstyrReg extends Component {
           <Form.Label>Befinnelse:</Form.Label>
           <TextValidator
               onChange={event => (this.ubefinnelse = event.target.value)}
-              name="email"
+              placeholder="Rallarvegen"
               value={this.ubefinnelse}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
@@ -64,7 +64,7 @@ export class UtstyrReg extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <TextValidator
               onChange={event => (this.utsutleienavn = event.target.value)}
-              name="email"
+              placeholder="Rallarvegen"
               value={this.utsutleienavn}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig utleiested']}

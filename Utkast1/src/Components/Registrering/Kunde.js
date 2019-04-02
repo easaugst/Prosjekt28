@@ -35,7 +35,7 @@ export class KundeReg extends Component {
           <Form.Label>Fornavn:</Form.Label>
           <TextValidator
               onChange={event => (this.fnavn = event.target.value)}
-              name="email"
+              placeholder="Ola"
               value={this.fnavn}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
@@ -45,7 +45,7 @@ export class KundeReg extends Component {
           <Form.Label>Etternavn:</Form.Label>
           <TextValidator
               onChange={event => (this.enavn = event.target.value)}
-              name="email"
+              placeholder="Nordmann"
               value={this.enavn}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
@@ -55,7 +55,7 @@ export class KundeReg extends Component {
           <Form.Label>Tlf:</Form.Label>
           <TextValidator
               onChange={event => (this.tlf = event.target.value)}
-              name="email"
+              placeholder="22446688"
               value={this.tlf}
               validators={['required', 'isNumber']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig telefonnummer']}
@@ -65,7 +65,7 @@ export class KundeReg extends Component {
           <Form.Label>Epost:</Form.Label>
           <TextValidator
               onChange={event => (this.epost = event.target.value)}
-              name="email"
+              placeholder="Ola@Nordmann.no"
               value={this.epost}
               validators={['required', 'isEmail']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}

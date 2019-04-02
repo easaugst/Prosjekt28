@@ -60,7 +60,7 @@ export class SykkelReg extends Component {
           <Form.Label>Befinnelse:</Form.Label>
           <TextValidator
               onChange={event => (this.befinnelse = event.target.value)}
-              name="email"
+              placeholder="Rallarvegen"
               value={this.befinnelse}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
@@ -70,7 +70,7 @@ export class SykkelReg extends Component {
           <Form.Label>Beskrivelse:</Form.Label>
           <TextValidator
               onChange={event => (this.beskrivelse = event.target.value)}
-              name="email"
+              placeholder="Rød og gul"
               value={this.beskrivelse}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
@@ -80,7 +80,7 @@ export class SykkelReg extends Component {
           <Form.Label>Tilhører utleiested:</Form.Label>
           <TextValidator
               onChange={event => (this.utleienavn = event.target.value)}
-              name="email"
+              placeholder="Rallarvegen"
               value={this.utleienavn}
               validators={['required', 'required']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
