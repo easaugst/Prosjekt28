@@ -41,17 +41,17 @@ class Menu extends Component {
   tbm = "Du må ha administratortilgang for å slette data";
   render() {
     window.tbm = this.tbm;
-    window.ansatt = 1;
     return (
       <div className="NavBar">
         <NavBar brand="Sykkelutleie 9000">
-          {' '}
           {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
           <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
           <NavBar.Link to="/utleie">Ny bestilling</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
+          <div>{window.ansattnavn + "(" + window.ansatt + ") er innlogget "}</div>
+          <NavBar.Link to="/"><Button.DangerOl>Logg ut</Button.DangerOl></NavBar.Link>
         </NavBar>
       </div>
     );

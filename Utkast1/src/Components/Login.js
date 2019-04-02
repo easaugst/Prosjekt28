@@ -10,21 +10,14 @@ import { ansattService } from '../Services/Ansatt';
 const history = createHashHistory();
 
 export class Login extends Component {
-  verification = 0;
+  verification = 0; lengde = 0; adminS = 0; teller = 0;
+  ansattnavn = ""; email = ''; pwd = '';
+  admin = ''; var = '';
   ansatt = null;
-  email = '';
-  pwd = '';
-  admin = '';
-  var = '';
-  lengde = 0;
   sjekker = false;
-  adminS = 0;
-  teller = 0;
-
-  admin2 = [];
-  aArray = [];
-
   administrator = false;
+
+  admin2 = []; aArray = [];
 
   render() {
     return (
@@ -40,7 +33,7 @@ export class Login extends Component {
               name="email"
               placeholder="E-post adresse"
               value={this.email}
-              validators={['required', 'isEmail']}
+              validators={['required', 'isEmail' ]}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
               className="form-control"
           />
@@ -72,6 +65,9 @@ export class Login extends Component {
         this.pwd = '';
         this.ansatt.map(ansatt => {
           window.ansatt = ansatt.ansattnr;
+          console.log(window.ansatt)
+          window.ansattnavn = ansatt.fnavn;
+          console.log(ansatt.fnavn)
         });
         history.push('/oversikt');
 
@@ -104,6 +100,10 @@ export class Login extends Component {
     });
   }
   mounted() {
+
+    window.ansatt = "";
+    window.ansattnavn = "";
+
     ansattService.adminSjekk(admin => {
       this.aArray = admin;
       this.lengde = this.aArray.length;
