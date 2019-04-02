@@ -113,6 +113,7 @@ export class Utleie extends Component {
                 <option value="14">Barnesykkel</option>
               </select>
               <span className="leggTil">
+                <Button.Info onClick={this.removeSykkel}>Fjern sykkel</Button.Info>
                 <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
               </span>
               <br />
@@ -130,6 +131,7 @@ export class Utleie extends Component {
                 <option value="11">Lås</option>
               </select>
               <span className="leggTil">
+                <Button.Info onClick={this.removeUtstyr}>Fjern utstyr</Button.Info>
                 <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
               </span>{' '}
               <br />
@@ -376,6 +378,15 @@ export class Utleie extends Component {
       alert('Ikke flere tilgjengelige sykler av denne typen');
     }
   }
+  removeSykkel(){
+    this.sykler.splice(this.sykler.lastIndexOf(parseInt(this.sykkelType)), 1);
+    if (document.getElementById('antall' + this.sykkelType).innerHTML === '1' || document.getElementById('antall' + this.sykkelType).innerHTML === '') {
+      document.getElementById('antall' + this.sykkelType).innerHTML = '';
+    } else {
+      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
+    }
+    console.log(this.sykler);
+  }
   addUtstyr() {
     if (
       document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]
@@ -390,6 +401,15 @@ export class Utleie extends Component {
     } else {
       alert('Ikke mer utstyr av denne typen tilgjengelig');
     }
+  }
+  removeUtstyr(){
+    this.utstyr.splice(this.utstyr.lastIndexOf(parseInt(this.utstyrType)), 1);
+    if (document.getElementById('antall' + this.utstyrType).innerHTML === '1' || document.getElementById('antall' + this.utstyrType).innerHTML === '') {
+      document.getElementById('antall' + this.utstyrType).innerHTML = '';
+    } else {
+      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
+    }
+    console.log(this.utstyr);
   }
   nextPage() {
     if (this.number < 3) {
