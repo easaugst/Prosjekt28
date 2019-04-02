@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
+import { NavLink, HashRouter, Route, Switch } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
 
 import { sykkelService } from './Services/Sykkel';
@@ -51,7 +51,6 @@ class Menu extends Component {
           <NavBar.Link to="/utleie">Ny bestilling</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
-          <NavBar.Link to="/login">Login</NavBar.Link>
           <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
         </NavBar>
       </div>
@@ -62,9 +61,12 @@ class Menu extends Component {
 ReactDOM.render(
   <HashRouter>
     <div>
+      <Switch>
+      <Route exact path="/" component={Login} />
+
+      <>
       <Menu />
       <Route exact path="/statistikk" component={Statistikk} />
-      <Route exact path="/login" component={Login} />
       <Route exact path="/oversikt" component={Oversikt} />
       <Route path="/oversikt" component={OversiktVertMenu} />
       <Route path="/oversikt/utstyr" component={UtstyrOversikt} />
@@ -103,6 +105,8 @@ ReactDOM.render(
       <Route exact path="/kunder" component={KundeOversikt} />
       <Route path="/registrering/sykkel" component={SykkelReg} />
       <Route path="/registrering/ansatt" component={AnsattReg} />
+      </>
+      </Switch>
     </div>
   </HashRouter>,
   document.getElementById('root')
