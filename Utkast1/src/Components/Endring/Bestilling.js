@@ -288,12 +288,11 @@ export class BestillingsEndringMeny extends Component {
   }
   slett() {
     if (window.admin == true) {
-      bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});
       bestillingsService.getAlleSykler(this.props.match.params.bestillingsid, sykler => {
-        console.log(this.sykler);
+        console.log(sykler);
         for (var i = 0; i < sykler.length; i++) {
           bestillingsService.updateSykkel(sykler[i].regnr, () => {})
-          console.log('Oppdatert: ' + this.sykler.regnr);
+          console.log('Oppdatert: ' + sykler.regnr);
         }
         bestillingsService.getAltUtstyr(this.props.match.params.bestillingsid, utstyr => {
           for (var i = 0; i < utstyr.length; i++) {
@@ -304,6 +303,7 @@ export class BestillingsEndringMeny extends Component {
             history.goBack();
           });
         });
+        bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});
       });
     } else {
       alert(window.tbm);
