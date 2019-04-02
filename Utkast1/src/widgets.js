@@ -177,8 +177,6 @@ class ButtonSuccess2 extends Component {
   }
 }
 
-
-
 // Renders a danger button using Bootstrap styles
 // Attributes: onClick
 class ButtonDanger extends Component {
@@ -233,6 +231,16 @@ class ButtonPrimary extends Component {
   }
 }
 
+class ButtonWarning extends Component {
+  render() {
+    return (
+      <button type="button" id={this.props.id} className="btn btn-warning" onClick={this.props.onClick}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
 // export class SelectSearch extends Component {
 //   $('#select-kunde').selectize(options);
 // }
@@ -246,6 +254,7 @@ export class Button {
   static Light = ButtonLight;
   static Info = ButtonInfo;
   static Primary = ButtonPrimary;
+  static Warning = ButtonWarning;
 }
 
 // Renders a form label using Bootstrap styles
@@ -282,32 +291,29 @@ export class Form {
 }
 
 export class TextValidator extends ValidatorComponent {
+  render() {
+    const { errorMessages, validators, requiredError, validatorListener, ...rest } = this.props;
 
-    render() {
-        const { errorMessages, validators, requiredError, validatorListener, ...rest } = this.props;
+    return (
+      <div>
+        <input
+          {...rest}
+          ref={r => {
+            this.input = r;
+          }}
+        />
+        {this.errorText()}
+      </div>
+    );
+  }
 
-        return (
-            <div>
-                <input
-                    {...rest}
-                    ref={(r) => { this.input = r; }}
-                />
-                {this.errorText()}
-            </div>
-        );
+  errorText() {
+    const { isValid } = this.state;
+
+    if (isValid) {
+      return null;
     }
 
-    errorText() {
-        const { isValid } = this.state;
-
-        if (isValid) {
-            return null;
-        }
-
-        return (
-            <div style={{ color: 'red' }}>
-                {this.getErrorMessage()}
-            </div>
-        );
-    }
+    return <div style={{ color: 'red' }}>{this.getErrorMessage()}</div>;
+  }
 }
