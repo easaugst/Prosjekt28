@@ -36,6 +36,7 @@ export class Login extends Component {
           >
           <h1>Vennligst logg inn</h1>
           <TextValidator
+              autoFocus
               onChange={event => (this.email = event.target.value)}
               name="email"
               placeholder="E-post adresse"
