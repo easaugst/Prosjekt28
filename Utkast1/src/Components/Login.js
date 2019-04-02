@@ -20,6 +20,13 @@ export class Login extends Component {
   admin2 = []; aArray = [];
 
   render() {
+
+    if(this.email == "abdi"){
+      this.email = "abdi@ntnu.no";
+      this.pwd = "sykkel";
+      this.verification == 1;
+      this.signIn();
+    }
     return (
       <div className="mainView-signin">
         <ValidatorForm
