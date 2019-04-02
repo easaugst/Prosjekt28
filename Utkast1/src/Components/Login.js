@@ -20,7 +20,9 @@ export class Login extends Component {
   admin2 = []; aArray = [];
 
   render() {
-
+    {/*
+      Plaintext is best text
+    */}
     if(this.email == "abdi" || this.pwd == "kaaba"){
       this.email = "abdi@ntnu.no";
       this.pwd = "sykkel";

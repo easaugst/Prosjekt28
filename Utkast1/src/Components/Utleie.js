@@ -113,8 +113,8 @@ export class Utleie extends Component {
                 <option value="14">Barnesykkel</option>
               </select>
               <span className="leggTil">
+              <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
                 <Button.Info onClick={this.removeSykkel}>Fjern sykkel</Button.Info>
-                <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
               </span>
               <br />
               <br />
@@ -131,8 +131,8 @@ export class Utleie extends Component {
                 <option value="11">Lås</option>
               </select>
               <span className="leggTil">
+              <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
                 <Button.Info onClick={this.removeUtstyr}>Fjern utstyr</Button.Info>
-                <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
               </span>{' '}
               <br />
               <Row>
