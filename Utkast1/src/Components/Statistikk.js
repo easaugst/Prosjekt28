@@ -36,6 +36,7 @@ export class Statistikk extends Component {
   render() {
     return (
       <div className="mainView">
+      <h2>Systemstatistikk for Sykkelutleie 9000</h2>
         <div className="justify-content-center statistikk1">
             <div className="col-auto mb-3 delstatistikk1" >
               <Card title="Lagerbeholdning for sykler">

@@ -7,7 +7,11 @@
   margin-bottom: 2vh;
 }
 
-/* Tekst forside */
+/* Forside og overskrift */
+.mainView h2 {
+  margin-bottom: 4vh;
+  font-family: 'Trebuchet MS';
+}
 .mainView {
   position: absolute;
   left: 25vw;
@@ -355,6 +359,7 @@ p {
   width: 40vw;
 }
 
+/* CSS for logginn */
 .loggetInn {
   margin-left: 14vw;
 }
