@@ -87,6 +87,10 @@ export class OversiktVertMenu extends Component {
           <ion-icon name="contact" />
           Ansatt
         </NavCol.Link>
+        <NavCol.Link to="/oversikt/lokasjon">
+          <ion-icon name="business" />
+          Lokasjoner
+        </NavCol.Link>
       </NavCol>
     );
   }
