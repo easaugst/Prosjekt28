@@ -20,6 +20,7 @@ export class UtstyrReg extends Component {
   ustatus = '';
   ubefinnelse = '';
   utsutleienavn = '';
+  antall = 1;
 
   render() {
     return (
@@ -70,6 +71,16 @@ export class UtstyrReg extends Component {
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig utleiested']}
               className="form-control"
           />
+
+          <Form.Label>Anall:</Form.Label>
+          <TextValidator
+              onChange={event => (this.antall = event.target.value)}
+              value={this.antall}
+              validators={['required', 'isNumber']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig antall']}
+              className="form-control"
+          />
+
         </Card>
         <br />
 
@@ -91,9 +102,11 @@ export class UtstyrReg extends Component {
       alert("Du må fylle inn skjemaet riktig");
     }
     else{
+      for(var i=0; i<this.antall;i++) {
     utstyrService.addUtstyr(this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, () => {
       history.push('/oversikt/utstyr');
-    });
+     });
+    }
    }
   }
 

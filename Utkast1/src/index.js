@@ -59,11 +59,11 @@ class Menu extends Component {
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
-          <div className="dropdown loggetInn">
+          <div class="dropdown loggUt">
             <DropdownButton
               className="dropdown-item-button btn-light"
               alignRight
-              title={window.ansattnavn + ' (AnsNr: ' + window.ansatt + ') er innlogget '}
+              title={window.ansattnavn + ' (Ansatt Nr.: ' + window.ansatt + ') er innlogget '}
               variant="light"
             >
               <Dropdown.Item

@@ -23,7 +23,7 @@ export class AnsattEndring extends Component {
     return (
       <div className="mainView">
       <div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
+          <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
       {this.sider.map(mengde => (
@@ -247,7 +247,7 @@ export class AnsattEndringMeny extends Component {
               <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett ansatt</Button.DangerOl>
+              <Button.Danger onClick={this.slett}>Slett ansatt</Button.Danger>
             </span>
           </div>
         </div>

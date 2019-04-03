@@ -22,6 +22,8 @@ export class Utleie extends Component {
   kundeDrop = [];
   state = { values: [] };
   utleieType = [];
+  utleieTypeSykkel = [];
+  utleieTypeUtstyr = [];
   utleieTyper = null;
 
   today = new Date();
@@ -56,6 +58,7 @@ export class Utleie extends Component {
           {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
+            <Card>
               <label>Kundevalg</label> <br />
               <Select
                 className="form-control"
@@ -101,8 +104,11 @@ export class Utleie extends Component {
                   </Button.Primary>
                 </Column>
               </Row>
+</Card>
             </div>
+
             <div className="form-group" id="utleie2">
+            <Card>
               <label>Sykkeltype</label>
               <select className="form-control" onChange={event => (this.sykkelType = event.target.value)}>
                 <option>Velg sykkel</option>
@@ -115,6 +121,8 @@ export class Utleie extends Component {
               </select>
               <span className="leggTil">
               <Button.Info onClick={this.addSykkel}>Legg til sykkel</Button.Info>
+              </span>
+              <span className="fjernDet">
                 <Button.Info onClick={this.removeSykkel}>Fjern sykkel</Button.Info>
               </span>
               <br />
@@ -133,6 +141,8 @@ export class Utleie extends Component {
               </select>
               <span className="leggTil">
               <Button.Info onClick={this.addUtstyr}>Legg til utstyr</Button.Info>
+              </span>
+              <span className="fjernDet">
                 <Button.Info onClick={this.removeUtstyr}>Fjern utstyr</Button.Info>
               </span>{' '}
               <br />
@@ -148,9 +158,13 @@ export class Utleie extends Component {
                   </Button.Primary>
                 </Column>
               </Row>
+              </Card>
+
             </div>
             <div className="form-group" id="utleie3">
-              <h1>Bestillingen</h1>
+            <Card>
+            <label>Betalingmetode</label>
+<br/>
               <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} /> Kort <br />
               <input type="radio" name="betaling" id="kontant" onChange={this.betalingValg} /> Kontant
               <br />
@@ -163,10 +177,11 @@ export class Utleie extends Component {
                 </Column>
                 <Column>
                   <Button.Success id="nesteUtleie" onClick={this.order}>
-                    Fullfør
+                    Fullfør bestilling
                   </Button.Success>
                 </Column>
               </Row>
+              </Card>
             </div>
 
             <br />
@@ -175,15 +190,30 @@ export class Utleie extends Component {
         </div>
         <div className="mainViewUtleie2" />
         <div id="dBestOversikt">
+
           <Table>
             <Table.Rad>
-              <th>Produkt</th>
+              <th>Sykkeltyper</th>
               <th>Antall</th>
               <th>Ledige</th>
             </Table.Rad>
-            {this.utleieType.map(type => (
+            {this.utleieTypeSykkel.map(type => (
               <Table.Rad key={type.utid}>
-                <th>{type.utnavn}</th>
+                <td>{type.utnavn}</td>
+                <td id={'antall' + type.utid} />
+                <td id={'antallT' + type.utid}>(0)</td>
+              </Table.Rad>
+            ))}
+          </Table>
+          <Table>
+            <Table.Rad>
+              <th>Utstyrstyper</th>
+              <th>Antall</th>
+              <th>Ledige</th>
+            </Table.Rad>
+            {this.utleieTypeUtstyr.map(type => (
+              <Table.Rad key={type.utid}>
+                <td>{type.utnavn}</td>
                 <td id={'antall' + type.utid} />
                 <td id={'antallT' + type.utid}>(0)</td>
               </Table.Rad>
@@ -199,6 +229,12 @@ export class Utleie extends Component {
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
+    });
+    utleieService.getSykkelTyper(typer => {
+      this.utleieTypeSykkel = typer;
+    });
+    utleieService.getUtstyrTyper(typer => {
+      this.utleieTypeUtstyr = typer;
     });
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
@@ -358,7 +394,7 @@ export class Utleie extends Component {
 
     this.kundeDrop = [];
     this.kunde.map(kunde => {
-      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn });
+      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn + ' - ' + kunde.kundenr });
     });
     this.t++;
     console.log(this.kundeDrop);

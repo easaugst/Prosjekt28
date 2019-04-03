@@ -32,7 +32,7 @@ class UtleieService {
         }
       )
   }
-  
+
   tilgjengeligeSykler(success) {
     connection.query(
       'SELECT sykkeltypeid, COUNT(regnr) AS tilgjengelig FROM Sykkel WHERE status = "Lager" GROUP BY sykkeltypeid',
@@ -89,6 +89,26 @@ class UtleieService {
   getTyper(success) {
     connection.query(
       'SELECT * FROM Utleietype',
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    )
+  }
+  getSykkelTyper(success) {
+    connection.query(
+      'SELECT * FROM Utleietype where kategori ="sykkel"',
+      (error, results) => {
+        if (error) return console.error(error);
+
+        success(results);
+      }
+    )
+  }
+  getUtstyrTyper(success) {
+    connection.query(
+      'SELECT * FROM Utleietype where kategori = "Utstyr"',
       (error, results) => {
         if (error) return console.error(error);
 

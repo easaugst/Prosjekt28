@@ -7,7 +7,11 @@
   margin-bottom: 2vh;
 }
 
-/* Tekst forside */
+/* Forside og overskrift */
+.mainView h2 {
+  margin-bottom: 4vh;
+  font-family: 'Trebuchet MS';
+}
 .mainView {
   position: absolute;
   left: 25vw;
@@ -56,12 +60,11 @@
 .sideKnapp3 {
   padding-left: 1vw;
 }
-
 .sideKnapp4 {
   padding-left: 1vw;
 }
 
-/* Gå tilbake fra utleieknapp */
+/* Utleie */
 .utleieMainView {
   padding-top: 25vh;
   left: 1vw;
@@ -88,6 +91,11 @@
 .leggTil {
   position: absolute;
   margin-left: 16vw;
+  margin-top: -4.4vh;
+}
+.fjernDet {
+  position: absolute;
+  margin-left: 24vw;
   margin-top: -4.4vh;
 }
 
@@ -152,7 +160,7 @@ a.logo {
   filter: brightness(100%);
 }
 
-/* CSS for et eller annet */
+/* Overskrifter */
 .mainViewUtleie h3 {
   font-weight: bold;
 }
@@ -162,6 +170,8 @@ a.logo {
 .mainView h2 {
   font-weight: bold;
 }
+
+/* Logge inn */
 .mainView-signin {
   position: absolute;
   left: 40vw;
@@ -171,7 +181,6 @@ a.logo {
   font-size: 1vw;
   margin-right: 10em;
 }
-
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -199,6 +208,7 @@ a.logo {
   margin-left: -23.5vw;
   position: absolute;
   width: 16vw;
+  z-index: 1;
 }
 
 .card-title {
@@ -212,12 +222,7 @@ a.logo {
   width: 70%;
   margin: auto;
 }
-/*
-.sideFarge {
-  width: 22em;
-  height: 50em;
-  position: static;
-}*/
+
 
 /* Ikoninstillinger for oversikt og endring */
 #bildeInput5 {
@@ -335,7 +340,6 @@ p {
   font-weight: bold;
   text-align: center;
 }
-/**/
 
 /* CSS for statistikk */
 .statistikk1 {
@@ -349,6 +353,7 @@ p {
   width: 40vw;
 }
 
-.loggetInn {
+/* CSS for logg ut */
+.loggUt {
   margin-left: 14vw;
 }

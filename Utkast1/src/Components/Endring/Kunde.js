@@ -27,7 +27,7 @@ export class KundeEndring extends Component {
     return (
       <div className="mainView">
       <div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
+          <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
         {this.sider.map(mengde => (
@@ -229,7 +229,7 @@ export class KundeEndringMeny extends Component {
             <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett kunde</Button.DangerOl>
+            <Button.Danger onClick={this.slett}>Slett kunde</Button.Danger>
           </span>
         </div>
       </div>
