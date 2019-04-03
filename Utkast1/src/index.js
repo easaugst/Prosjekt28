@@ -27,6 +27,7 @@ import { AnsattReg } from './Components/Registrering/Ansatt';
 import { KundeReg } from './Components/Registrering/Kunde';
 import { SykkelReg } from './Components/Registrering/Sykkel';
 import { UtstyrReg } from './Components/Registrering/Utstyr';
+import { LokasjonReg } from './Components/Registrering/Lokasjon';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
 import {
@@ -130,6 +131,7 @@ ReactDOM.render(
           <Route exact path="/kunder" component={KundeOversikt} />
           <Route path="/registrering/sykkel" component={SykkelReg} />
           <Route path="/registrering/ansatt" component={AnsattReg} />
+          <Route path="/registrering/lokasjon" component={LokasjonReg} />
         </>
       </Switch>
     </div>
