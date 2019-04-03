@@ -65,7 +65,6 @@ export class SykkelEndring extends Component {
                 <th>Status</th>
                 <th>Befinnelse</th>
                 <th>Beskrivelse</th>
-                <th>Nåværende bestilling</th>
                 <th>Tilhører utleiested</th>
                 <th>Rediger</th>
               </Table.Rad>
@@ -76,7 +75,6 @@ export class SykkelEndring extends Component {
                   <td>{sykkel.status}</td>
                   <td>{sykkel.befinnelse}</td>
                   <td>{sykkel.beskrivelse}</td>
-                  <td>{sykkel.bestillingsid}</td>
                   <td>{sykkel.utleienavn}</td>
                   <td>
                     <List.Item to={'/endring/sykkel/' + sykkel.regnr + '/'}>Rediger</List.Item>

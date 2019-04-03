@@ -65,7 +65,6 @@ export class SykkelOversikt extends Component {
                 <th>Status</th>
                 <th>Befinnelse</th>
                 <th>Beskrivelse</th>
-                <th>Nåværende bestilling</th>
                 <th>Tilhører utleiested</th>
               </Table.Rad>
               {this.sArray.slice(mengde.forrigeSide, mengde.sideMengde).map(sykkel => (
@@ -75,7 +74,6 @@ export class SykkelOversikt extends Component {
                   <td>{sykkel.status}</td>
                   <td>{sykkel.befinnelse}</td>
                   <td>{sykkel.beskrivelse}</td>
-                  <td>{sykkel.bestillingsid}</td>
                   <td>{sykkel.utleienavn}</td>
                 </Table.Rad>
               ))}
