@@ -162,8 +162,9 @@ export class Utleie extends Component {
 
             </div>
             <div className="form-group" id="utleie3">
-            <Card >
-              <h1>Bestillingen</h1>
+            <Card>
+            <label>Betalingmetode</label>
+<br/>
               <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} /> Kort <br />
               <input type="radio" name="betaling" id="kontant" onChange={this.betalingValg} /> Kontant
               <br />
@@ -176,7 +177,7 @@ export class Utleie extends Component {
                 </Column>
                 <Column>
                   <Button.Success id="nesteUtleie" onClick={this.order}>
-                    Fullfør
+                    Fullfør bestilling
                   </Button.Success>
                 </Column>
               </Row>
