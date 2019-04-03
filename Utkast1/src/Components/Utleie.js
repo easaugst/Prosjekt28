@@ -56,6 +56,7 @@ export class Utleie extends Component {
           {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
+            <Card>
               <label>Kundevalg</label> <br />
               <Select
                 className="form-control"
@@ -101,8 +102,11 @@ export class Utleie extends Component {
                   </Button.Primary>
                 </Column>
               </Row>
+</Card>
             </div>
+
             <div className="form-group" id="utleie2">
+            <Card>
               <label>Sykkeltype</label>
               <select className="form-control" onChange={event => (this.sykkelType = event.target.value)}>
                 <option>Velg sykkel</option>
@@ -152,6 +156,8 @@ export class Utleie extends Component {
                   </Button.Primary>
                 </Column>
               </Row>
+              </Card>
+
             </div>
             <div className="form-group" id="utleie3">
               <h1>Bestillingen</h1>
@@ -179,6 +185,7 @@ export class Utleie extends Component {
         </div>
         <div className="mainViewUtleie2" />
         <div id="dBestOversikt">
+        
           <Table>
             <Table.Rad>
               <th>Produkt</th>
