@@ -90,6 +90,11 @@
   margin-left: 16vw;
   margin-top: -4.4vh;
 }
+.fjernDet {
+  position: absolute;
+  margin-left: 24vw;
+  margin-top: -4.4vh;
+}
 
 /* CSS for registre og avbrytknapp*/
 .knapper {
