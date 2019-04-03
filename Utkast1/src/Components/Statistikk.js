@@ -111,7 +111,7 @@ export class Statistikk extends Component {
                       striped
                       variant="success"
                       now={this.antallBestillinger}
-                      label={this.antallBestillinger + ' Hoved'}
+                      label={this.antallBestillinger + ' Hovedbestilling'}
                       max={this.antallBestillinger}
                       key={1}
                     />
@@ -119,7 +119,7 @@ export class Statistikk extends Component {
                       striped
                       variant="info"
                       now={this.antallDelBestillinger}
-                      label={this.antallDelBestillinger + ' Del'}
+                      label={this.antallDelBestillinger + ' Delbestilling'}
                       max={this.antallDelBestillinger}
                       key={2}
                     />
