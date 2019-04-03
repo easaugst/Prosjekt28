@@ -17,16 +17,10 @@ import Select from 'react-dropdown-select'; //npm install react-dropdown-select
 const history = createHashHistory();
 
 export class Utleie extends Component {
-  kunde = [];
-  kundenr = '';
-  kundeDrop = [];
+  kunde = []; kundenr = ''; kundeDrop = [];
+  utleieType = []; utleieTypeSykkel = []; utleieTypeUtstyr = []; utleieTyper = null;
   state = { values: [] };
-  utleieType = [];
-  utleieTypeSykkel = [];
-  utleieTypeUtstyr = [];
-  utleieTyper = null;
 
-  today = new Date();
   uType = '';
   kontant = '';
   ftid = '';
@@ -37,17 +31,11 @@ export class Utleie extends Component {
   tilgjengeligeSykler = [];
   tilgjengeligUtstyr = [];
   bId = '';
-  runU = 0;
-  runS = 0;
-  sykkelType = '';
-  utstyrType = '';
+  runU = 0; runS = 0;
+  sykkelType = ''; utstyrType = '';
 
-  sykler = [];
-  vSykler = [];
-  sTyper = [];
-  utstyr = [];
-  vUtstyr = [];
-  uTyper = [];
+  sykler = []; vSykler = []; sTyper = [];
+  utstyr = []; vUtstyr = []; uTyper = [];
 
   number = 1;
 
