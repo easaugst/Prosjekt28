@@ -27,7 +27,7 @@ export class UtstyrEndring extends Component {
     return (
       <div className="mainView">
         <div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
+          <Form.Label>Filtrér:</Form.Label>
           <select id="drop" className="form-control" form="formen" onChange={this.filter}>
             <option value="0">Alle</option>
             <option value="4">Hjelmer</option>
@@ -161,7 +161,7 @@ export class UtstyrEndring extends Component {
     }
     console.log(this.sider);
     document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
-  }  
+  }
 }
 
 export class UtstyrEndringMeny extends Component {
