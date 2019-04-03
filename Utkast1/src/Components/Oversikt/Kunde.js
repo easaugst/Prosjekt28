@@ -26,7 +26,7 @@ export class KundeOversikt extends Component {
     return (
       <div className="mainView">
       <div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
+          <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
       {/*
