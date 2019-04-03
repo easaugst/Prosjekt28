@@ -62,7 +62,7 @@ class Menu extends Component {
             <DropdownButton
               className="dropdown-item-button btn-light"
               alignRight
-              title={window.ansattnavn + ' (AnsNr: ' + window.ansatt + ') er innlogget '}
+              title={window.ansattnavn + ' (Ansatt Nr.: ' + window.ansatt + ') er innlogget '}
               variant="light"
             >
               <Dropdown.Item
