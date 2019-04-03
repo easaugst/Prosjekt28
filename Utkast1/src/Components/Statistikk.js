@@ -47,7 +47,7 @@ export class Statistikk extends Component {
                       variant="success"
                       now={this.restSykler}
                       max={this.totaltAntallSykler}
-                      label={this.restSykler + ' Ledige'}
+                      label={this.restSykler + ' Tilgjengelig'}
                       key={1}
                     />
                     <ProgressBar
@@ -71,7 +71,7 @@ export class Statistikk extends Component {
                       variant="success"
                       now={this.restUtstyr}
                       max={this.totaltAntallUtstyr}
-                      label={this.restUtstyr + ' Ledige'}
+                      label={this.restUtstyr + ' Tilgjengelig'}
                       key={1}
                     />
                     <ProgressBar
