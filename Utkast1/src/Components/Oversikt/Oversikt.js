@@ -54,6 +54,13 @@ export class Oversikt extends Component {
             <p>Ansatte</p>
           </NavCol.Link>
         </div>
+        <div id="mainViewSide10">
+          <NavCol.Link to="/oversikt/lokasjon">
+            <input id="bildeInput10" type="image" src="https://static.thenounproject.com/png/37358-200.png" />
+            <br />
+            <p>Lokasjoner</p>
+          </NavCol.Link>
+        </div>
       </div>
     )
   }

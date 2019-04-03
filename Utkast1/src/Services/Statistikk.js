@@ -32,7 +32,7 @@ class StatistikkService {
   }
   getUtstyrUtleidAntall(success) {
     connection.query(
-      'select COUNT(utstyrsid) from Utstyr where ustatus = "Utleid"',
+      'select COUNT(utstyrsid) from Utstyr where ustatus != "Lager"',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));

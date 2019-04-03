@@ -79,6 +79,11 @@ export class RegVertMenu extends Component {
           <ion-icon name="contact" />
           Registrer ansatt
         </NavCol.Link>
+
+        <NavCol.Link to="/registrering/lokasjon">
+          <ion-icon name="business" />
+          Registrer lokasjon
+        </NavCol.Link>
       </NavCol>
     );
   }
