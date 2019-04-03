@@ -235,7 +235,7 @@ export class BestillingsEndringMeny extends Component {
               <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett hovedbestilling</Button.DangerOl>
+              <Button.Danger onClick={this.slett}>Slett hovedbestilling</Button.Danger>
             </span>
           </div>
         </div>
@@ -422,7 +422,7 @@ export class UbestillingsEndring extends Component {
               <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett delbestilling</Button.DangerOl>
+              <Button.Danger onClick={this.slett}>Slett delbestilling</Button.Danger>
             </span>
           </div>
         </div>
