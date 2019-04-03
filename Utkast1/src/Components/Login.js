@@ -26,7 +26,6 @@ export class Login extends Component {
     if(this.email == "abdi" || this.pwd == "kaaba"){
       this.email = "abdi@ntnu.no";
       this.pwd = "sykkel";
-      window.admin = true;
       this.verification == 1;
       this.signIn();
     }
@@ -85,13 +84,10 @@ export class Login extends Component {
         });
         history.push('/oversikt');
 
-
           for(var j=0;j<=window.admin2.length-1;j++){
           if(window.admin2[j] == window.ansatt){
               this.adminS = window.admin2[j];
-            }
-            else {
-
+              console.log(this.adminS)
             }
           }
 
