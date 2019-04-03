@@ -23,6 +23,7 @@ export class SykkelReg extends Component {
   beskrivelse = '';
   bestilling = '';
   utleienavn = '';
+  antall= 1;
 
   render() {
     return (
@@ -86,6 +87,14 @@ export class SykkelReg extends Component {
               errorMessages={['Dette feltet kan ikke stå tomt', 'ikke gyldig befinnelse']}
               className="form-control"
           />
+          <Form.Label>Antall:</Form.Label>
+          <TextValidator
+              onChange={event => (this.antall = event.target.value)}
+              value={this.antall}
+              validators={['required', 'isNumber']}
+              errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig antall']}
+              className="form-control"
+          />
         </Card>
         <br />
         <div className="knapper">
@@ -106,6 +115,7 @@ export class SykkelReg extends Component {
       alert("Du må fylle inn skjemaet riktig");
     }
     else{
+    for(var i=0;i<this.antall;i++) {
     sykkelService.addSykkel(
       this.sykkeltypeid,
       this.status,
@@ -114,10 +124,10 @@ export class SykkelReg extends Component {
       this.utleienavn,
       () => {
         history.push('/oversikt/sykkel');
-      }
-    );
+      });
+     }
+    }
    }
-  }
   cancel() {
     history.push('/registrering/');
   }

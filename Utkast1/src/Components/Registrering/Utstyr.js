@@ -20,7 +20,7 @@ export class UtstyrReg extends Component {
   ustatus = '';
   ubefinnelse = '';
   utsutleienavn = '';
-  antall = null;
+  antall = 1;
 
   render() {
     return (
@@ -75,7 +75,6 @@ export class UtstyrReg extends Component {
           <Form.Label>Anall:</Form.Label>
           <TextValidator
               onChange={event => (this.antall = event.target.value)}
-              placeholder="1"
               value={this.antall}
               validators={['required', 'isNumber']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig antall']}
