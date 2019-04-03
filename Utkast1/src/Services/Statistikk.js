@@ -14,7 +14,7 @@ class StatistikkService {
   }
   getSykkelUtleidAntall(success) {
     connection.query(
-      'select COUNT(regnr) from Sykkel where status = "Utleid"',
+      'select COUNT(regnr) from Sykkel where status != "Lager"',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
