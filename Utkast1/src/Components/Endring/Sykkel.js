@@ -249,7 +249,7 @@ export class SykkelEndringMeny extends Component {
             <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett sykkel</Button.DangerOl>
+            <Button.Danger onClick={this.slett}>Slett sykkel</Button.Danger>
           </span>
         </div>
       </div>
