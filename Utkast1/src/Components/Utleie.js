@@ -24,6 +24,7 @@ export class Utleie extends Component {
   utleieType = [];
   utleieTyper = null;
 
+  today = new Date();
   uType = '';
   kontant = '';
   ftid = '';
@@ -83,7 +84,7 @@ export class Utleie extends Component {
               <label>Bestilling begynner</label>
               <input
                 className="form-control"
-                type="date"
+                type="datetime-local"
                 value={this.ftid}
                 onChange={event => (this.ftid = event.target.value)}
               />
@@ -229,7 +230,7 @@ export class Utleie extends Component {
       this.sykler.sort();
       this.utstyr.sort();
 
-      this.ttid = new Date();
+      this.ttid = new Date(Date.parse(this.ftid));
       switch (this.uType) {
         case 'Timesleie':
           this.ttid.setHours(this.ttid.getHours() + 1);
