@@ -247,7 +247,7 @@ export class AnsattEndringMeny extends Component {
               <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
             </span>
             <span className="tilbakeMeny">
-              <Button.DangerOl onClick={this.slett}>Slett ansatt</Button.DangerOl>
+              <Button.Danger onClick={this.slett}>Slett ansatt</Button.Danger>
             </span>
           </div>
         </div>

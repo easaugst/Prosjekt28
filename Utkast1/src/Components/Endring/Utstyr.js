@@ -238,7 +238,7 @@ export class UtstyrEndringMeny extends Component {
             <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett utstyr</Button.DangerOl>
+            <Button.Danger onClick={this.slett}>Slett utstyr</Button.Danger>
           </span>
         </div>
       </div>

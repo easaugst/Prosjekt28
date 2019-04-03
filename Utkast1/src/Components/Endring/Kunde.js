@@ -229,7 +229,7 @@ export class KundeEndringMeny extends Component {
             <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
           </span>
           <span className="tilbakeMeny">
-            <Button.DangerOl onClick={this.slett}>Slett kunde</Button.DangerOl>
+            <Button.Danger onClick={this.slett}>Slett kunde</Button.Danger>
           </span>
         </div>
       </div>
