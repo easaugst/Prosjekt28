@@ -60,9 +60,9 @@ export class Login extends Component {
               className="form-control loggInnInput"
           />
           <br />
-          <Button.Success2 className="btn btn-lg btn-primary btn-block">
+          <button className="btn btn-lg btn-primary btn-block">
             Logg inn
-          </Button.Success2>
+          </button>
           </ValidatorForm>
       </div>
     );

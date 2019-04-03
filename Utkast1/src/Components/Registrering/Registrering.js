@@ -51,6 +51,13 @@ export class Registrering extends Component {
             <p>Ansatte</p>
           </NavCol.Link>
         </div>
+        <div id="mainViewSide0">
+          <NavCol.Link to="/registrering/lokasjon">
+            <input id="bildeInput0" type="image" src="https://static.thenounproject.com/png/37358-200.png" />
+            <br />
+            <p>Lokasjoner</p>
+          </NavCol.Link>
+        </div>
       </div>
     );
   }
@@ -78,6 +85,11 @@ export class RegVertMenu extends Component {
         <NavCol.Link to="/registrering/ansatt">
           <ion-icon name="contact" />
           Registrer ansatt
+        </NavCol.Link>
+
+        <NavCol.Link to="/registrering/lokasjon">
+          <ion-icon name="business" />
+          Registrer lokasjon
         </NavCol.Link>
       </NavCol>
     );

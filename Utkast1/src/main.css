@@ -204,7 +204,7 @@ a.logo {
 
 /* Filter input under sidemenyknapper */
 .filterView {
-  margin-top: 32vh;
+  margin-top: 37vh;
   margin-left: -23.5vw;
   position: absolute;
   width: 16vw;
@@ -291,6 +291,11 @@ p {
 }
 
 /* Ikoninstillinger for registrering */
+#bildeInput0 {
+  height: 19vh;
+  margin-left: 1.5vw;
+  margin-bottom: -2vh;
+}
 #bildeInput1 {
   height: 15vh;
   margin-left: 2.7vw;
@@ -310,6 +315,12 @@ p {
   text-align: center;
   font-size: 3vh;
   color: black;
+}
+#mainViewSide0 {
+  width: 15vw;
+  position: absolute;
+  margin-top: 5vh;
+  margin-left: 58vw;
 }
 #mainViewSide1 {
   width: 15vw;
