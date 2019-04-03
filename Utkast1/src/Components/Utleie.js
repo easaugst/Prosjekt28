@@ -393,7 +393,7 @@ export class Utleie extends Component {
 
     this.kundeDrop = [];
     this.kunde.map(kunde => {
-      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn });
+      this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn + ' - ' + kunde.kundenr });
     });
     this.t++;
     console.log(this.kundeDrop);
