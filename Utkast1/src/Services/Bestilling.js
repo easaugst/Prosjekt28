@@ -2,7 +2,9 @@ import { connection } from '../mysql_connection';
 
 class BestillingsService {
   getBestilling(bestillingsid, success) {
-    connection.query('SELECT * FROM Bestilling B, Kunde K WHERE B.kundenr = K.kundenr', [bestillingsid], (error, results) => {
+    connection.query('SELECT * FROM Bestilling B, Kunde K WHERE B.kundenr = K.kundenr',
+    [bestillingsid],
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);
@@ -18,7 +20,9 @@ class BestillingsService {
   }
 
   getDelbestilling(bestillingsid, ubid, success) {
-    connection.query('SELECT Distinct B.bestillingsid, U.regnr, U.ubid, U.utstyrsid, UT.utnavn FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UY, Utleietype UT WHERE U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND S.regnr = U.regnr AND S.sykkeltypeid = UT.utid OR (U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND UY.utstyrsid = U.utstyrsid AND UY.utstyrstypeid = UT.utid) ORDER BY U.ubid', [bestillingsid, bestillingsid, ubid], (error, results) => {
+    connection.query('SELECT Distinct B.bestillingsid, U.regnr, U.ubid, U.utstyrsid, UT.utnavn FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UY, Utleietype UT WHERE U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND S.regnr = U.regnr AND S.sykkeltypeid = UT.utid OR (U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND UY.utstyrsid = U.utstyrsid AND UY.utstyrstypeid = UT.utid) ORDER BY U.ubid',
+    [bestillingsid, bestillingsid, ubid],
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);

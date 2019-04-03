@@ -20,6 +20,7 @@ import { KundeOversikt } from './Components/Oversikt/Kunde';
 import { BestillingOversikt, BestillingOversiktMeny } from './Components/Oversikt/Bestilling';
 import { SykkelOversikt } from './Components/Oversikt/Sykkel';
 import { UtstyrOversikt } from './Components/Oversikt/Utstyr';
+import { LokasjonOversikt } from './Components/Oversikt/Lokasjon';
 
 import { Registrering, RegVertMenu } from './Components/Registrering/Registrering';
 import { AnsattReg } from './Components/Registrering/Ansatt';
@@ -97,6 +98,7 @@ ReactDOM.render(
           <Route path="/oversikt/kunde" component={KundeOversikt} />
           <Route exact path="/oversikt/bestilling" component={BestillingOversikt} />
           <Route path="/oversikt/ansatt" component={AnsattOversikt} />
+          <Route path="/oversikt/lokasjon" component={LokasjonOversikt} />
 
           <Route exact path="/oversikt/bestilling/:id" component={BestillingOversiktMeny} />
 
