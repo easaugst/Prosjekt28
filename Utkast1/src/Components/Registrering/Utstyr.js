@@ -72,7 +72,7 @@ export class UtstyrReg extends Component {
               className="form-control"
           />
 
-          <Form.Label>Anall:</Form.Label>
+          <Form.Label>Antall:</Form.Label>
           <TextValidator
               onChange={event => (this.antall = event.target.value)}
               value={this.antall}

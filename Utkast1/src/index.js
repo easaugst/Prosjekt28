@@ -60,7 +60,7 @@ class Menu extends Component {
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
-          <div class="dropdown loggUt">
+          <div className="dropdown loggUt">
             <DropdownButton
               className="dropdown-item-button btn-light"
               alignRight
