@@ -244,6 +244,10 @@ a.logo {
   height: 15vh;
   margin-left: 2vw;
 }
+#bildeInput10 {
+  height: 18vh;
+  margin-left: 1.5vw;
+}
 p {
   text-align: center;
   font-size: 3vh;
@@ -278,6 +282,12 @@ p {
   position: absolute;
   margin-left: 58vw;
   margin-top: 7vh;
+}
+#mainViewSide10 {
+  width: 15vw;
+  position: absolute;
+  margin-left: -3vw;
+  margin-top: 35vh;
 }
 
 /* Ikoninstillinger for registrering */
