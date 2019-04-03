@@ -22,6 +22,8 @@ export class Utleie extends Component {
   kundeDrop = [];
   state = { values: [] };
   utleieType = [];
+  utleieTypeSykkel = [];
+  utleieTypeUtstyr = [];
   utleieTyper = null;
 
   today = new Date();
@@ -190,13 +192,27 @@ export class Utleie extends Component {
 
           <Table>
             <Table.Rad>
-              <th>Produkt</th>
+              <th>Sykkeltyper</th>
               <th>Antall</th>
               <th>Ledige</th>
             </Table.Rad>
-            {this.utleieType.map(type => (
+            {this.utleieTypeSykkel.map(type => (
               <Table.Rad key={type.utid}>
-                <th>{type.utnavn}</th>
+                <td>{type.utnavn}</td>
+                <td id={'antall' + type.utid} />
+                <td id={'antallT' + type.utid}>(0)</td>
+              </Table.Rad>
+            ))}
+          </Table>
+          <Table>
+            <Table.Rad>
+              <th>Utstyrstyper</th>
+              <th>Antall</th>
+              <th>Ledige</th>
+            </Table.Rad>
+            {this.utleieTypeUtstyr.map(type => (
+              <Table.Rad key={type.utid}>
+                <td>{type.utnavn}</td>
                 <td id={'antall' + type.utid} />
                 <td id={'antallT' + type.utid}>(0)</td>
               </Table.Rad>
@@ -212,6 +228,12 @@ export class Utleie extends Component {
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
+    });
+    utleieService.getSykkelTyper(typer => {
+      this.utleieTypeSykkel = typer;
+    });
+    utleieService.getUtstyrTyper(typer => {
+      this.utleieTypeUtstyr = typer;
     });
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
