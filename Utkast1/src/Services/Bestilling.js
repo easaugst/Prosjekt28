@@ -30,7 +30,7 @@ class BestillingsService {
   }
 
   getBestillingEndring(bestillingsid, success) {
-    connection.query('SELECT gruppe, kontant, kundenr, utleietype, bestillingsid FROM Bestilling WHERE bestillingsid = ?', [bestillingsid], (error, results) => {
+    connection.query('SELECT * FROM Bestilling WHERE bestillingsid = ?', [bestillingsid], (error, results) => {
       if (error) return console.error(error);
 
       success(results);
@@ -43,10 +43,10 @@ class BestillingsService {
       success(results);
     })
   }
-  updateBestilling(kundenr, utleietype, kontant, gruppe, bestillingsid, success) {
+  updateBestilling(kundenr, utleiested, utleietype, kontant, gruppe, bestillingsid, success) {
     connection.query(
-      'UPDATE Bestilling SET kundenr=?, utleietype=?, kontant=?, gruppe =? WHERE bestillingsid=?',
-      [kundenr, utleietype, kontant, gruppe, bestillingsid],
+      'UPDATE Bestilling SET kundenr=?, utleiested=?, utleietype=?, kontant=?, gruppe =? WHERE bestillingsid=?',
+      [kundenr, utleiested, utleietype, kontant, gruppe, bestillingsid],
       (error, results) => {
         if (error) return console.error(error);
 

@@ -214,6 +214,11 @@ export class Utleie extends Component {
   mounted() {
     document.getElementById('tilbake').style.display = 'none';
     window.scrollTo(0, 0);
+    var d = new Date();
+      d.setHours(d.getHours() + 2);
+        this.ftid = JSON.stringify(d).replace(/Z/g, ' ').replace(/"/g, '').slice(0, -8);
+        this.minTid = JSON.stringify(d).replace(/Z/g, ' ').replace(/"/g, '').slice(0, -8);
+
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
