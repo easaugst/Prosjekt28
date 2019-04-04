@@ -396,6 +396,8 @@ export class Utleie extends Component {
   teller(array, char) {
     if (array.includes(char)) {
       return array.lastIndexOf(char) - array.indexOf(char) + 1;
+    } else {
+      return 0;
     }
   }
 
