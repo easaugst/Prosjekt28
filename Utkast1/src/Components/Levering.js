@@ -21,7 +21,7 @@ export class Levering extends Component {
   render() {
     return (
       <div className="mainView">
-        <button>Lever sykkel</button><button>Lever Utstyr</button>
+        <button>Lever bestilling</button>
       </div>
 
 
@@ -29,5 +29,8 @@ export class Levering extends Component {
   }
   mounted() {
 
+  }
+  levering() {
+    
   }
 }

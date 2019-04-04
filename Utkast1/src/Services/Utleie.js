@@ -161,20 +161,12 @@ class UtleieService {
       }
     );
   }
-  sjekkBagasjebrett(success) {
-    connection.query('SELECT utid FROM Utleietype WHERE bagasjebrett = 1',
+  levering(success) {
+    connection.query('',
     (error, results) => {
       if (error) return console.error(error);
 
       success(results);
-    });
-  }
-  sykkelInnlevering(success, regnr) {
-    connection.query('UPDATE Sykkel set status = "Lager" where regnr = ?', [regnr],
-    (error, results) => {
-      if (error) return console.error(error);
-
-      success();
     });
   }
 
