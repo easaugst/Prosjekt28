@@ -103,7 +103,6 @@ export class KundeReg extends Component {
     kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
       history.push('/oversikt/kunde');
     });
-    kundeService.newDate(() => {});
   }
 
   cancel() {

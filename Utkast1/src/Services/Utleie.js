@@ -161,6 +161,14 @@ class UtleieService {
       }
     );
   }
+  sjekkBagasjebrett(success) {
+    connection.query('SELECT utid FROM Utleietype WHERE bagasjebrett = 1',
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
 }
 
 export let utleieService = new UtleieService();
