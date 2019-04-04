@@ -34,12 +34,6 @@ export class Levering extends Component {
 
     );
   }
-  mounted() {
-
-  }
-  levering() {
-
-  }
 }
 
 export class Levering2 extends Component {
@@ -70,7 +64,7 @@ export class Levering2 extends Component {
   }
 
   levering() {
-
+        console.log(this.bestillingsid)
         utleieService.levering(
           this.bestillingsid,
           () => {
