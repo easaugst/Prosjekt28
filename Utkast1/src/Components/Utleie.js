@@ -490,9 +490,7 @@ export class Utleie extends Component {
     utleieService.sjekkBagasjebrett(brett => {
       this.tilgjengeligeBrett = 0;
       brett.map(brett => {
-        if (this.sykler.includes(brett.utid)) {
-          this.tilgjengeligeBrett += this.teller(this.sykler, brett.utid);
-        }
+        this.tilgjengeligeBrett += this.teller(this.sykler, brett.utid);
       });
       console.log('Tilgjengelige bagasjebrett: ' + this.tilgjengeligeBrett);
     });

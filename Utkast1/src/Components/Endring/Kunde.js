@@ -48,11 +48,11 @@ export class KundeEndring extends Component {
           </div>
             <Table>
               <Table.Rad>
-                <th>Kundenummer</th>
+                <th>Kunde</th>
                 <th>Fornavn</th>
                 <th>Etternavn</th>
                 <th>E-post</th>
-                <th>Telefonnummer</th>
+                <th>Telefon</th>
                 <th>Fødselsdato</th>
                 <th>Dato registrert</th>
                 <th>Rediger</th>
