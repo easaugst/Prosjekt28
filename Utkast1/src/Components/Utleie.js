@@ -20,10 +20,11 @@ export class Utleie extends Component {
   kunde = []; kundenr = ''; kundeDrop = [];
   utleieType = []; utleieTypeSykkel = []; utleieTypeUtstyr = []; utleieTyper = null;
   state = { values: [] };
+  utleiested = 'Rallarvegen';
 
   uType = '';
   kontant = '';
-  ftid = '';
+  minTid = ''; ftid = '';
   ttid = '';
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
@@ -63,6 +64,14 @@ export class Utleie extends Component {
                 Gruppebestilling
                 <br />
                 <br />
+                <label>Utleiested</label>
+                <Form.Input
+                  type="text"
+                  placeholder="Rallarvegen"
+                  value={this.utleiested}
+                  onChange={event => (this.utleiested = event.target.value)}
+                />
+                <br />
                 <label>Type leie</label>
                 <select className="form-control" onChange={event => (this.uType = event.target.value)}>
                   <option>Velg tid</option>
@@ -77,6 +86,7 @@ export class Utleie extends Component {
                   className="form-control"
                   type="datetime-local"
                   value={this.ftid}
+                  min={this.minTid}
                   onChange={event => (this.ftid = event.target.value)}
                 />
                 <br />
@@ -296,6 +306,7 @@ export class Utleie extends Component {
       utleieService.addBestilling(
         this.state.values[0].key,
         window.ansatt,
+        this.utleiested,
         this.uType,
         this.kontant,
         this.ftid,
@@ -385,8 +396,6 @@ export class Utleie extends Component {
   teller(array, char) {
     if (array.includes(char)) {
       return array.lastIndexOf(char) - array.indexOf(char) + 1;
-    } else {
-      return 0;
     }
   }
 
