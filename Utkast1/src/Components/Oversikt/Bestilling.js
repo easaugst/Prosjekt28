@@ -203,6 +203,7 @@ export class BestillingOversiktMeny extends Component {
   }
 
   mounted() {
+    window.scrollTo(0,0);
     bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid,  delbestilling => {
       this.dbArray = delbestilling;
     });
