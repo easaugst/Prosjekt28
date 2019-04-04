@@ -25,7 +25,7 @@ export class Levering extends Component {
       <div className="mainView">
         <h2>Lever bestilling her:</h2>
           <NavCol.Link to="/utleie/levering/levering2">
-            <input id="bildeInput5" type="image" src="http://cdn.onlinewebfonts.com/svg/img_152088.png" />
+            <input id="bildeInput5" type="image" src="https://images.all-free-download.com/images/graphiclarge/archive_icon_clip_art_9642.jpg" />
             <br />
           </NavCol.Link>
 
