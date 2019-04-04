@@ -171,6 +171,7 @@ export class BestillingsEndring extends Component {
 export class BestillingsEndringMeny extends Component {
   bestillingsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
   bestilling = [];
+  utleiested = '';
   utleietype = null;
   gruppe = null;
   kontant = null;
@@ -190,6 +191,15 @@ export class BestillingsEndringMeny extends Component {
                 value={this.kundenr}
                 placeholder={bestilling.kundenr}
                 onChange={event => (this.kundenr = event.target.value)}
+              />
+
+              <Form.Label>Utleiested:</Form.Label>
+              <Form.Input
+                type="text"
+                id="utleiestedInput"
+                value={this.utleiested}
+                placeholder={bestilling.utleiested}
+                onChange={event => (this.utleiested = event.target.value)}
               />
 
               <Form.Label>Utleietype:</Form.Label>
@@ -252,27 +262,14 @@ export class BestillingsEndringMeny extends Component {
     console.log(this.kundenr);
   }
   save() {
-    this.log();
-    bestillingsService.updateBestilling(
-      this.kundenr,
-      this.utleietype,
-      this.kontant,
-      this.gruppe,
-      this.bestillingsid,
-      () => {
-        history.push('/endring/bestillinger');
-      }
-    );
-  }
-  cancel() {
-    history.goBack();
-  }
-
-  log() {
     this.bestilling.map(bestilling => {
       if (document.getElementById('kundeInput').value === '') {
         this.kundenr = bestilling.kundenr;
         console.log(this.kundenr);
+      }
+      if (document.getElementById('utleiestedInput').value === '') {
+        this.utleiested = bestilling.utleiested;
+        console.log(this.utleiested);
       }
       if (this.utleietype === null) {
         this.utleietype = bestilling.utleietype;
@@ -287,7 +284,24 @@ export class BestillingsEndringMeny extends Component {
         console.log(this.gruppe);
       }
     });
+    
+    bestillingsService.updateBestilling(
+      this.kundenr,
+      this.utleiested,
+      this.utleietype,
+      this.kontant,
+      this.gruppe,
+      this.bestillingsid,
+      () => {
+        history.push('/endring/bestillinger');
+      }
+    );
   }
+  cancel() {
+    history.goBack();
+  }
+
+  log() {}
   slett() {
     if (window.admin == true) {
       bestillingsService.getAlleSykler(this.props.match.params.bestillingsid, sykler => {
