@@ -43,6 +43,7 @@ import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 import { Login } from './Components/Login.js';
+import { Levering } from './Components/Levering.js';
 import { Statistikk } from './Components/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
@@ -119,7 +120,8 @@ ReactDOM.render(
 
           <Route exact path="/utleie" component={Utleie} />
           <Route path="/utleie" component={UtleieVertMenu} />
-          <Route path="/utleie/kundereg" component={KundeReg} />
+          <Route exact path="/utleie/kundereg" component={KundeReg} />
+          <Route exact path="/utleie/levering" component={Levering} />
 
           <Route exact path="/endring" component={Endring} />
           <Route path="/endring" component={EndringVertMenu} />
