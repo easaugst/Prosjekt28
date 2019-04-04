@@ -127,7 +127,7 @@ export class Utleie extends Component {
               <br />
               <label>Utstyr</label>
               <select className="form-control" onChange={event => (this.utstyrType = event.target.value)}>
-                <option>Ingen</option>
+                <option>Velg utstyr</option>
                 <option value="4">Hjelm</option>
                 <option value="5">Lappesett</option>
                 <option value="6">Sykkelveske</option>
