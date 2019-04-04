@@ -58,7 +58,7 @@ export class UtstyrOversikt extends Component {
           </div>
             <Table>
               <Table.Rad>
-                <th>Utstyrsnr</th>
+                <th>Utstyr</th>
                 <th>Utstyrstype</th>
                 <th>Status</th>
                 <th>Befinnelse</th>

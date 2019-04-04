@@ -44,8 +44,8 @@ export class AnsattEndring extends Component {
         </div>
             <Table>
               <Table.Rad>
-                <th>Ansattnummer</th>
-                <th>Tlf.nr</th>
+                <th>Ansatt</th>
+                <th>Telefon</th>
                 <th>Epost</th>
                 <th>Fornavn</th>
                 <th>Etternavn</th>

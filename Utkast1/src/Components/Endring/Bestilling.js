@@ -46,9 +46,10 @@ export class BestillingsEndring extends Component {
             </div>
             <Table>
               <Table.Rad>
-                <th>Bestillingsnummer</th>
-                <th>Kundenummer</th>
-                <th>Ansattnummer</th>
+                <th>Bestilling</th>
+                <th>Kunde</th>
+                <th>Ansatt</th>
+                <th>Utleiested</th>
                 <th>Utleietype</th>
                 <th>Betalingsmåte</th>
                 <th>Tidspunkt bestilling</th>
@@ -62,6 +63,7 @@ export class BestillingsEndring extends Component {
                   <td>{bestilling.bestillingsid}</td>
                   <td>{bestilling.kundenr}</td>
                   <td>{bestilling.ansattnr}</td>
+                  <td>{bestilling.utleiested}</td>
                   <td>{bestilling.utleietype}</td>
                   <td>{bestilling.kontant}</td>
                   <td>
