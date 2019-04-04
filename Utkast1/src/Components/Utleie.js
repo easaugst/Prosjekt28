@@ -23,7 +23,7 @@ export class Utleie extends Component {
 
   uType = '';
   kontant = '';
-  ftid = '';
+  minTid = ''; ftid = '';
   ttid = '';
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
@@ -77,6 +77,7 @@ export class Utleie extends Component {
                   className="form-control"
                   type="datetime-local"
                   value={this.ftid}
+                  min={this.minTid}
                   onChange={event => (this.ftid = event.target.value)}
                 />
                 <br />
@@ -152,7 +153,7 @@ export class Utleie extends Component {
             <div className="form-group" id="utleie3">
             <Card>
             <label>Betalingmetode</label>
-<br/>
+            <br/>
               <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} /> Kort <br />
               <input type="radio" name="betaling" id="kontant" onChange={this.betalingValg} /> Kontant
               <br />
@@ -214,6 +215,10 @@ export class Utleie extends Component {
   mounted() {
     document.getElementById('tilbake').style.display = 'none';
     window.scrollTo(0, 0);
+    var d = new Date();
+    d.setHours(d.getHours() + 2);
+    this.ftid = JSON.stringify(d).replace(/Z/g, ' ').replace(/"/g, '').slice(0, -8);
+    this.minTid = JSON.stringify(d).replace(/Z/g, ' ').replace(/"/g, '').slice(0, -8);
     this.kundeDropDown();
     utleieService.getTyper(typer => {
       this.utleieType = typer;
@@ -248,7 +253,7 @@ export class Utleie extends Component {
       console.log(this.tilgjengeligUtstyr);
     });
   }
-  log() {}
+  log() {console.log(this.minTid, this.ftid);}
 
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
@@ -500,8 +505,13 @@ export class UtleieVertMenu extends Component {
   render() {
     return (
       <NavCol>
+<<<<<<< HEAD
         <NavCol.Link to="/utleie">
           <ion-icon name="create" />
+=======
+        <NavCol.Link to="/utleie/utleie">
+          <ion-icon name="person-add" />
+>>>>>>> 51d9b5fcd5aefe6075a0e70376a3f758f5890d8b
           Legg inn bestilling
         </NavCol.Link>
         <NavCol.Link to="/utleie/kundereg">
@@ -509,8 +519,13 @@ export class UtleieVertMenu extends Component {
           Registrer kunde
         </NavCol.Link>
         <NavCol.Link to="/utleie/levering">
+<<<<<<< HEAD
           <ion-icon name="archive" />
           Lever sykkel/utstyr
+=======
+          <ion-icon name="person-add" />
+          Levering
+>>>>>>> 51d9b5fcd5aefe6075a0e70376a3f758f5890d8b
         </NavCol.Link>
       </NavCol>
     );
