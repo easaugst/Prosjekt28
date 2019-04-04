@@ -57,7 +57,7 @@ export class AnsattReg extends Component {
               onChange={event => (this.tlfnr = event.target.value)}
               placeholder="22446688"
               value={this.tlfnr}
-              validators={['required', 'isNumber']}
+              validators={['required','maxNumber:99999999', 'matchRegexp:^[0-8]$']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig telefonnummer']}
               className="form-control"
           />

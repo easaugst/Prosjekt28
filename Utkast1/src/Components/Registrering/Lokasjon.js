@@ -89,10 +89,16 @@ export class LokasjonReg extends Component {
   }
 
   add() {
+
+    if(window.admin == true) {
     lokasjonService.addLokasjon(this.utleienavn, this.adresse, this.postnr, this.poststed, () => {
       history.push('/oversikt/lokasjon');
     });
   }
+  else {
+    alert("Du må ha administratortilgang for å legge til lokasjoner");
+    }
+}
 
   cancel() {
     history.push('/registrering/');
