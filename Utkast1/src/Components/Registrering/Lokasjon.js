@@ -92,7 +92,6 @@ export class LokasjonReg extends Component {
     lokasjonService.addLokasjon(this.utleienavn, this.adresse, this.postnr, this.poststed, () => {
       history.push('/oversikt/lokasjon');
     });
-    lokasjonService.newDate(() => {});
   }
 
   cancel() {

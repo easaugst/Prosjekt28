@@ -29,7 +29,7 @@ export class Utleie extends Component {
   detaljer = 'Ikke spesifisert';
 
   tilgjengeligeSykler = [];
-  tilgjengeligUtstyr = [];
+  tilgjengeligUtstyr = []; tilgjengeligeBrett = 0;
   bId = '';
   runU = 0; runS = 0;
   sykkelType = ''; utstyrType = '';
@@ -46,53 +46,53 @@ export class Utleie extends Component {
           {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
-            <Card>
-              <label>Kundevalg</label> <br />
-              <Select
-                className="form-control"
-                options={this.kundeDrop}
-                valueField="key"
-                labelField="text"
-                placeholder="Velg kunde..."
-                onChange={values => this.setState({ values })}
-                onDropdownOpen={this.kundeDropDown}
-                clearable
-              />
-              <br />
-              <input type="checkbox" id="gruppeInput" onChange={this.gruppeValg} />
-              Gruppebestilling
-              <br />
-              <br />
-              <label>Type leie</label>
-              <select className="form-control" onChange={event => (this.uType = event.target.value)}>
-                <option>Velg tid</option>
-                <option value="Timesleie">Timesutleie</option>
-                <option value="Dagsleie">Dagsutleie</option>
-                <option value="Tredagersleie">3-dagersutleie</option>
-                <option value="Ukesleie">Ukesleie</option>
-              </select>
-              <br />
-              <label>Bestilling begynner</label>
-              <input
-                className="form-control"
-                type="datetime-local"
-                value={this.ftid}
-                onChange={event => (this.ftid = event.target.value)}
-              />
-              <br />
-              <Row>
-                <Column>
-                  <Button.Primary id="tilbake" onClick={this.prevPage}>
-                    Tilbake
-                  </Button.Primary>
-                </Column>
-                <Column>
-                  <Button.Primary id="nesteUtleie" onClick={this.nextPage}>
-                    Neste side
-                  </Button.Primary>
-                </Column>
-              </Row>
-</Card>
+              <Card>
+                <label>Kundevalg</label> <br />
+                <Select
+                  className="form-control"
+                  options={this.kundeDrop}
+                  valueField="key"
+                  labelField="text"
+                  placeholder="Velg kunde..."
+                  onChange={values => this.setState({ values })}
+                  onDropdownOpen={this.kundeDropDown}
+                  clearable
+                />
+                <br />
+                <input type="checkbox" id="gruppeInput" onChange={this.gruppeValg} />
+                Gruppebestilling
+                <br />
+                <br />
+                <label>Type leie</label>
+                <select className="form-control" onChange={event => (this.uType = event.target.value)}>
+                  <option>Velg tid</option>
+                  <option value="Timesleie">Timesutleie</option>
+                  <option value="Dagsleie">Dagsutleie</option>
+                  <option value="Tredagersleie">3-dagersutleie</option>
+                  <option value="Ukesleie">Ukesleie</option>
+                </select>
+                <br />
+                <label>Bestilling begynner</label>
+                <input
+                  className="form-control"
+                  type="datetime-local"
+                  value={this.ftid}
+                  onChange={event => (this.ftid = event.target.value)}
+                />
+                <br />
+                <Row>
+                  <Column>
+                    <Button.Primary id="tilbake" onClick={this.prevPage}>
+                      Tilbake
+                    </Button.Primary>
+                  </Column>
+                  <Column>
+                    <Button.Primary id="nesteUtleie" onClick={this.nextPage}>
+                      Neste side
+                    </Button.Primary>
+                  </Column>
+                </Row>
+              </Card>
             </div>
 
             <div className="form-group" id="utleie2">
@@ -218,16 +218,20 @@ export class Utleie extends Component {
     utleieService.getTyper(typer => {
       this.utleieType = typer;
     });
+
     utleieService.getSykkelTyper(typer => {
       this.utleieTypeSykkel = typer;
     });
+
     utleieService.getUtstyrTyper(typer => {
       this.utleieTypeUtstyr = typer;
     });
+
     utleieService.countTyper(typer => {
       this.utleieTyper = parseInt(typer.substr(typer.lastIndexOf(':') + 1));
       console.log(this.utleieTyper);
     });
+
     utleieService.tilgjengeligeSykler(tilgjengelig => {
       tilgjengelig.map(sykler => {
         document.getElementById('antallT' + sykler.sykkeltypeid).innerHTML = '(' + sykler.tilgjengelig + ')';
@@ -235,6 +239,7 @@ export class Utleie extends Component {
       });
       console.log(this.tilgjengeligeSykler);
     });
+
     utleieService.tilgjengeligUtstyr(tilgjengelig => {
       tilgjengelig.map(utstyr => {
         document.getElementById('antallT' + utstyr.utstyrstypeid).innerHTML = '(' + utstyr.tilgjengelig + ')';
@@ -373,8 +378,13 @@ export class Utleie extends Component {
   }
 
   teller(array, char) {
-    return array.lastIndexOf(char) - array.indexOf(char) + 1;
+    if (array.includes(char)) {
+      return array.lastIndexOf(char) - array.indexOf(char) + 1;
+    } else {
+      return 0;
+    }
   }
+
   kundeDropDown() {
     utleieService.getDropdown(kundenr => {
       this.kunde = JSON.parse(kundenr);
@@ -395,13 +405,11 @@ export class Utleie extends Component {
       this.sykler.push(parseInt(this.sykkelType));
       this.sykler.sort();
       console.log(this.sykler);
-      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(
-        this.sykler,
-        parseInt(this.sykkelType)
-      );
+      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
     } else {
       alert('Ikke flere tilgjengelige sykler av denne typen');
     }
+    this.sjekkBagasjebrett();
   }
   removeSykkel(){
     this.sykler.splice(this.sykler.lastIndexOf(parseInt(this.sykkelType)), 1);
@@ -413,16 +421,14 @@ export class Utleie extends Component {
     console.log(this.sykler);
   }
   addUtstyr() {
-    if (
-      document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]
-    ) {
+    console.log(this.tilgjengeligeBrett);
+    if (parseInt(this.utstyrType) == 6 && this.teller(this.utstyr, parseInt(this.utstyrType)) >= this.tilgjengeligeBrett) {
+      alert('Ikke nok sykler med bagasjebrett');
+    } else if (document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]) {
       this.utstyr.push(parseInt(this.utstyrType));
       this.sykler.sort();
       console.log(this.utstyr);
-      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(
-        this.utstyr,
-        parseInt(this.utstyrType)
-      );
+      document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
     } else {
       alert('Ikke mer utstyr av denne typen tilgjengelig');
     }
@@ -479,6 +485,17 @@ export class Utleie extends Component {
     } else if (document.getElementById('kontant').checked == true) {
       this.kontant = 'Kontant';
     }
+  }
+  sjekkBagasjebrett() {
+    utleieService.sjekkBagasjebrett(brett => {
+      this.tilgjengeligeBrett = 0;
+      brett.map(brett => {
+        if (this.sykler.includes(brett.utid)) {
+          this.tilgjengeligeBrett += this.teller(this.sykler, brett.utid);
+        }
+      });
+      console.log('Tilgjengelige bagasjebrett: ' + this.tilgjengeligeBrett);
+    });
   }
 }
 export class UtleieVertMenu extends Component {
