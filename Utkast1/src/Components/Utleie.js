@@ -20,6 +20,7 @@ export class Utleie extends Component {
   kunde = []; kundenr = ''; kundeDrop = [];
   utleieType = []; utleieTypeSykkel = []; utleieTypeUtstyr = []; utleieTyper = null;
   state = { values: [] };
+  utleiested = 'Rallarvegen';
 
   uType = '';
   kontant = '';
@@ -62,6 +63,14 @@ export class Utleie extends Component {
                 <input type="checkbox" id="gruppeInput" onChange={this.gruppeValg} />
                 Gruppebestilling
                 <br />
+                <br />
+                <label>Utleiested</label>
+                <Form.Input
+                  type="text"
+                  placeholder="Rallarvegen"
+                  value={this.utleiested}
+                  onChange={event => (this.utleiested = event.target.value)}
+                />
                 <br />
                 <label>Type leie</label>
                 <select className="form-control" onChange={event => (this.uType = event.target.value)}>
@@ -296,6 +305,7 @@ export class Utleie extends Component {
       utleieService.addBestilling(
         this.state.values[0].key,
         window.ansatt,
+        this.utleiested,
         this.uType,
         this.kontant,
         this.ftid,
@@ -385,8 +395,6 @@ export class Utleie extends Component {
   teller(array, char) {
     if (array.includes(char)) {
       return array.lastIndexOf(char) - array.indexOf(char) + 1;
-    } else {
-      return 0;
     }
   }
 

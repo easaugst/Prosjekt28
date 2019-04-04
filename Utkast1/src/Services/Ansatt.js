@@ -60,27 +60,26 @@ class AnsattService {
     )
   }
   adminSjekk(success){
-  connection.query('Select ansattnr from FastAnsatt where admin = 1', [] , (error, results) => {
-    if(error) return console.error(error);
+    connection.query('Select ansattnr from FastAnsatt where admin = 1', [] , (error, results) => {
+      if(error) return console.error(error);
 
-    success(results);
-  });
-}
+      success(results);
+    });
+  }
   slettAnsatt(ansattnr, success){
-  connection.query('delete from FastAnsatt where ansattnr = ?', [ansattnr] , (error, results) => {
-    if(error) return console.error(error);
+    connection.query('delete from FastAnsatt where ansattnr = ?', [ansattnr] , (error, results) => {
+      if(error) return console.error(error);
 
-    success();
-  });
-}
-getAnsattFilt(fnavn, enavn,success) {
-  connection.query('SELECT * FROM FastAnsatt Where fnavn LIKE ? OR enavn LIKE ?', [fnavn,enavn], (error, results) => {
-    if (error) return console.error(error);
+      success();
+    });
+  }
+  getAnsattFilt(fnavn, enavn,success) {
+    connection.query('SELECT * FROM FastAnsatt Where fnavn LIKE ? OR enavn LIKE ?', [fnavn,enavn], (error, results) => {
+      if (error) return console.error(error);
 
-    success(results);
-  });
-}
-
+      success(results);
+    });
+  }
 }
 
 export let ansattService = new AnsattService();
