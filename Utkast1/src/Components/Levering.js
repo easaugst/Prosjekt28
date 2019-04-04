@@ -21,6 +21,30 @@ export class Levering extends Component {
   render() {
     return (
       <div className="mainView">
+        <h2>Lever bestilling her:</h2>
+          <NavCol.Link to="/utleie/levering/nyside">
+            <input id="bildeInput5" type="image" src="http://cdn.onlinewebfonts.com/svg/img_152088.png" />
+            <br />
+          </NavCol.Link>
+
+      </div>
+
+
+    );
+  }
+  mounted() {
+
+  }
+  levering() {
+
+  }
+}
+
+export class Levering2 extends Component {
+
+  render() {
+    return (
+      <div className="mainView">
         <button>Lever bestilling</button>
       </div>
 
@@ -31,6 +55,6 @@ export class Levering extends Component {
 
   }
   levering() {
-    
+
   }
 }
