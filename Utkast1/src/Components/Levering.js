@@ -56,7 +56,7 @@ export class Levering2 extends Component {
             autoFocus
         />
       </Card>
-          <Button.Success2>Lever bestilling</Button.Success2>
+          <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
         </ValidatorForm>
       </div>
 
@@ -68,7 +68,7 @@ export class Levering2 extends Component {
         utleieService.levering(
           this.bestillingsid,
           () => {
-            history.push('/utleie/utleie');
+            history.push('/oversikt/bestilling');
           }
         );
       }
