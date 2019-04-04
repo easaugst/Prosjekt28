@@ -56,7 +56,12 @@ export class Levering2 extends Component {
             autoFocus
         />
       </Card>
-          <Button.Success2>Lever bestilling</Button.Success2>
+          <span className="tilbakeMeny2">
+            <Button.Primary onClick={this.cancel}>Avbryt levering</Button.Primary>
+          </span>
+          <span className="tilbakeMeny">
+            <Button.Success2>Lever bestilling</Button.Success2>
+          </span>
         </ValidatorForm>
       </div>
 
@@ -71,5 +76,8 @@ export class Levering2 extends Component {
             history.push('/utleie/utleie');
           }
         );
+      }
+      cancel() {
+        history.goBack();
       }
 }
