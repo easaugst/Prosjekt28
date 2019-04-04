@@ -24,7 +24,7 @@ export class Utleie extends Component {
 
   uType = '';
   kontant = '';
-  ftid = '';
+  minTid = ''; ftid = '';
   ttid = '';
   gruppe = 'Enkel';
   detaljer = 'Ikke spesifisert';
@@ -86,6 +86,7 @@ export class Utleie extends Component {
                   className="form-control"
                   type="datetime-local"
                   value={this.ftid}
+                  min={this.minTid}
                   onChange={event => (this.ftid = event.target.value)}
                 />
                 <br />
