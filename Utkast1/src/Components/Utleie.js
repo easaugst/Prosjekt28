@@ -501,7 +501,7 @@ export class UtleieVertMenu extends Component {
     return (
       <NavCol>
         <NavCol.Link to="/utleie">
-          <ion-icon name="person-add" />
+          <ion-icon name="create" />
           Legg inn bestilling
         </NavCol.Link>
         <NavCol.Link to="/utleie/kundereg">
@@ -509,7 +509,7 @@ export class UtleieVertMenu extends Component {
           Registrer kunde
         </NavCol.Link>
         <NavCol.Link to="/utleie/levering">
-          <ion-icon name="person-add" />
+          <ion-icon name="archive" />
           Lever sykkel/utstyr
         </NavCol.Link>
       </NavCol>
