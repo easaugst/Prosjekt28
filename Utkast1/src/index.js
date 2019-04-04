@@ -43,6 +43,7 @@ import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 import { Login } from './Components/Login.js';
+import { Levering } from './Components/Levering.js';
 import { Statistikk } from './Components/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
@@ -56,7 +57,7 @@ class Menu extends Component {
         <NavBar brand="Sykkelutleie 9000">
           {/*Container for den  horisontale navigjasjonsmenyen, inneholder applikasjonsnavn som presenteres som "Home"*/}
           <NavBar.Link to="/oversikt">Oversikt</NavBar.Link> {/*Navbar.Link er hvert alternativ i menyen*/}
-          <NavBar.Link to="/utleie">Ny bestilling</NavBar.Link>
+          <NavBar.Link to="/utleie/utleie">Ny bestilling</NavBar.Link>
           <NavBar.Link to="/endring">Endring</NavBar.Link>
           <NavBar.Link to="/registrering">Registrering</NavBar.Link>
           <NavBar.Link to="/statistikk">Statistikk</NavBar.Link>
@@ -117,9 +118,10 @@ ReactDOM.render(
           <Route exact path="/endring/kunde/:kundenr" component={KundeEndringMeny} />
           <Route exact path="/endring/ansatt/:ansattnr" component={AnsattEndringMeny} />
 
-          <Route exact path="/utleie" component={Utleie} />
+          <Route exact path="/utleie/utleie" component={Utleie} />
           <Route path="/utleie" component={UtleieVertMenu} />
-          <Route path="/utleie/kundereg" component={KundeReg} />
+          <Route exact path="/utleie/kundereg" component={KundeReg} />
+          <Route exact path="/utleie/levering" component={Levering} />
 
           <Route exact path="/endring" component={Endring} />
           <Route path="/endring" component={EndringVertMenu} />

@@ -169,6 +169,15 @@ class UtleieService {
       success(results);
     });
   }
+  sykkelInnlevering(success, regnr) {
+    connection.query('UPDATE Sykkel set status = "Lager" where regnr = ?', [regnr],
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
+
 }
 
 export let utleieService = new UtleieService();
