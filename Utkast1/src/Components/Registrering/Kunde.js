@@ -57,7 +57,7 @@ export class KundeReg extends Component {
               onChange={event => (this.tlf = event.target.value)}
               placeholder="22446688"
               value={this.tlf}
-              validators={['required', 'maxNumber:99999999', 'matchRegexp:^[0-8]$']}
+              validators={['required', 'maxNumber:99999999']}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig telefonnummer']}
               className="form-control"
           />
