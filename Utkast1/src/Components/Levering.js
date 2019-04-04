@@ -31,6 +31,25 @@ export class Levering extends Component {
 
   }
   levering() {
-    
+
+  }
+}
+
+export class Levering2 extends Component {
+
+  render() {
+    return (
+      <div className="mainView">
+        <button>Lever bestilling</button>
+      </div>
+
+
+    );
+  }
+  mounted() {
+
+  }
+  levering() {
+
   }
 }
