@@ -526,7 +526,14 @@ export class Levering extends Component {
         />
       </Card>
       <br />
+      <div className="knapper">
+        <span className="tilbakeMeny2">
           <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
+        </span>
+        <span className="tilbakeMeny">
+          <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
+        </span>
+        </div>
         </ValidatorForm>
       </div>
     );
@@ -542,5 +549,8 @@ export class Levering extends Component {
       this.bestillingsid, () => {
         history.push('/oversikt/bestilling');
     });
+  }
+  cancel() {
+    history.goBack();
   }
 }
