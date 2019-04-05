@@ -516,11 +516,13 @@ export class Levering extends Component {
             onChange={event => (this.bestillingsid = event.target.value)}
             value={this.bestillingsid}
             validators={['required', 'isNumber']}
+            placeholder={this.bestillingsid}
             errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig bestillingsnummer']}
             className="form-control"
             autoFocus
         />
       </Card>
+      <br />
           <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
         </ValidatorForm>
       </div>
