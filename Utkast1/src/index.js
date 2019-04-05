@@ -30,12 +30,7 @@ import { UtstyrReg } from './Components/Registrering/Utstyr';
 import { LokasjonReg } from './Components/Registrering/Lokasjon';
 
 import { Endring, EndringVertMenu } from './Components/Endring/Endring';
-import {
-  BestillingsEndring,
-  BestillingsEndringMeny,
-  UbestillingsEndringMeny,
-  UbestillingsEndring
-} from './Components/Endring/Bestilling';
+import { BestillingsEndring, BestillingsEndringMeny, UbestillingsEndringMeny, UbestillingsEndring, Levering } from './Components/Endring/Bestilling';
 import { AnsattEndring, AnsattEndringMeny } from './Components/Endring/Ansatt';
 import { KundeEndring, KundeEndringMeny } from './Components/Endring/Kunde';
 import { SykkelEndring, SykkelEndringMeny } from './Components/Endring/Sykkel';
@@ -43,7 +38,7 @@ import { UtstyrEndring, UtstyrEndringMeny } from './Components/Endring/Utstyr';
 
 import { UtleieVertMenu, Utleie } from './Components/Utleie';
 import { Login } from './Components/Login.js';
-import { Levering, Levering2 } from './Components/Levering.js';
+import { Levering2 } from './Components/Levering.js';
 import { Statistikk } from './Components/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from './widgets';
 const history = createHashHistory();
