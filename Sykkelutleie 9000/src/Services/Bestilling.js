@@ -122,13 +122,19 @@ class BestillingsService {
     });
   }
   levering(bestillingsid, success) {
-    connection.query('UPDATE Sykkel S, Ubestilling U, Bestilling B, Utstyr UT Set S.status = "Lager" WHERE S.regnr = U.regnr AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
+    connection.query('UPDATE Sykkel S, Ubestilling U, Bestilling B, Utstyr UT SET S.status = "Lager" WHERE S.regnr = U.regnr AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 
       success();
     });
-    connection.query('UPDATE Ubestilling U, Bestilling B, Utstyr UT Set UT.ustatus = "Lager" WHERE UT.utstyrsid = U.utstyrsid AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
+    connection.query('UPDATE Ubestilling U, Bestilling B, Utstyr UT SET UT.ustatus = "Lager" WHERE UT.utstyrsid = U.utstyrsid AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+    connection.query('UPDATE Bestilling SET status = "Inaktiv" WHERE bestillingsid = ?', [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 
