@@ -169,21 +169,6 @@ class UtleieService {
       success(results);
     });
   }
-  levering(bestillingsid, success) {
-    connection.query('UPDATE Sykkel S, Ubestilling U, Bestilling B, Utstyr UT Set S.status = "Lager" WHERE S.regnr = U.regnr AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
-    (error, results) => {
-      if (error) return console.error(error);
-
-      success();
-    });
-    connection.query('UPDATE Ubestilling U, Bestilling B, Utstyr UT Set UT.ustatus = "Lager" WHERE UT.utstyrsid = U.utstyrsid AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
-    (error, results) => {
-      if (error) return console.error(error);
-
-      success();
-    });
-  }
-
 }
 
 export let utleieService = new UtleieService();

@@ -33,18 +33,19 @@
 
 /* Oversikt hovedmeny */
 .NavBar {
-  position: static;
+  position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 /* Oversikt sidemeny */
 .sideMeny {
-  position: absolute;
+  position: fixed;
   width: 20%;
-  margin-top: -6vh;
+  margin-top: 6vh;
   padding-top: 8vh;
   font-size: 1.2vw;
-  height: 125%;
+  height: 100%;
   width: 19vw;
   border-right: groove;
   font-family: 'Trebuchet MS';
@@ -206,7 +207,7 @@ a.logo {
 .filterView {
   margin-top: 37vh;
   margin-left: -23.5vw;
-  position: absolute;
+  position: fixed;
   width: 16vw;
   z-index: 1;
 }
