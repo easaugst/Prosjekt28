@@ -117,12 +117,12 @@ ReactDOM.render(
           <Route exact path="/endring/sykkel/:regnr" component={SykkelEndringMeny} />
           <Route exact path="/endring/kunde/:kundenr" component={KundeEndringMeny} />
           <Route exact path="/endring/ansatt/:ansattnr" component={AnsattEndringMeny} />
+          <Route exact path="/endring/levering/:bestillingsid" component={Levering} />
 
           <Route exact path="/utleie/utleie" component={Utleie} />
           <Route path="/utleie" component={UtleieVertMenu} />
           <Route exact path="/utleie/kundereg" component={KundeReg} />
-          <Route exact path="/utleie/levering" component={Levering} />
-          <Route exact path="/utleie/levering/levering2" component={Levering2} />
+          <Route exact path="/utleie/levering" component={Levering2} />
 
           <Route exact path="/endring" component={Endring} />
           <Route path="/endring" component={EndringVertMenu} />

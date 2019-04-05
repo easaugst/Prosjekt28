@@ -57,6 +57,7 @@ export class BestillingsEndring extends Component {
                 <th>Til</th>
                 <th>Type bestilling</th>
                 <th>Rediger</th>
+                <th>Levering</th>
               </Table.Rad>
               {this.bArray.slice(mengde.forrigeSide, mengde.sideMengde).map(bestilling => (
                 <Table.Rad key={bestilling.bestillingsid}>
@@ -85,6 +86,9 @@ export class BestillingsEndring extends Component {
                   <td>
                     <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Hovedbestilling</List.Item>
                     <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Underbestillinger</List.Item>
+                  </td>
+                  <td>
+                    <List.Item to={'/endring/levering/' + bestilling.bestillingsid}>Lever</List.Item>
                   </td>
                 </Table.Rad>
               ))}
@@ -284,7 +288,7 @@ export class BestillingsEndringMeny extends Component {
         console.log(this.gruppe);
       }
     });
-    
+
     bestillingsService.updateBestilling(
       this.kundenr,
       this.utleiested,
@@ -494,4 +498,47 @@ export class UbestillingsEndring extends Component {
       alert(window.tbm);
     }
   }
+}
+
+export class Levering extends Component {
+  bestillingsid = ""
+  render() {
+    return (
+      <div className="mainView">
+      <ValidatorForm
+            ref="form"
+            onSubmit ={this.levering}
+        >
+      <Card title="Lever her">
+        <Form.Label>Bestillingsnummer:</Form.Label>
+        <TextValidator
+            onChange={event => (this.bestillingsid = event.target.value)}
+            value={this.bestillingsid}
+            validators={['required', 'isNumber']}
+            errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig bestillingsnummer']}
+            className="form-control"
+            autoFocus
+        />
+      </Card>
+          <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
+        </ValidatorForm>
+      </div>
+
+    );
+  }
+  mounted() {
+    window.scrollTo(0, 0);
+    utleieService.levering(this.bestillingsid, levering => {
+    });
+  }
+
+  levering() {
+        console.log(this.bestillingsid)
+        utleieService.levering(
+          this.bestillingsid,
+          () => {
+            history.push('/oversikt/bestilling');
+          }
+        );
+      }
 }

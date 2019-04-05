@@ -18,7 +18,7 @@ import { statistikkService } from '../Services/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../widgets';
 const history = createHashHistory();
 
-export class Levering extends Component {
+export class Levering2 extends Component {
 
   render() {
     return (
@@ -36,7 +36,7 @@ export class Levering extends Component {
   }
 }
 
-export class Levering2 extends Component {
+/*export class Levering2 extends Component {
   bestillingsid = ""
   render() {
     return (
@@ -72,4 +72,4 @@ export class Levering2 extends Component {
           }
         );
       }
-}
+}*/
