@@ -15,7 +15,10 @@ require('electron-reload')(path.join(__dirname, 'src'), {
 let mainWindow;
 app.on('ready', () => {
   mainWindow = new BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true } });
-mainWindow.maximize()
+  mainWindow.maximize()
+  mainWindow.setFullScreen(true)
+  mainWindow.setFullScreenable(false)
+  mainWindow.setMenu(null)
   // Open Development Tools
   mainWindow.openDevTools();
 
