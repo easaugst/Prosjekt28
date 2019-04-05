@@ -379,3 +379,7 @@ p {
 .loggUt {
   margin-left: 14vw;
 }
+
+::-webkit-scrollbar {
+display: none;
+}

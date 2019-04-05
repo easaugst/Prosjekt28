@@ -502,7 +502,7 @@ export class UbestillingsEndring extends Component {
 }
 
 export class Levering extends Component {
-  bestillingsid = ""
+  bestillingsid = null;
   render() {
     return (
       <div className="mainView">
@@ -515,6 +515,7 @@ export class Levering extends Component {
         <TextValidator
             onChange={event => (this.bestillingsid = event.target.value)}
             value={this.bestillingsid}
+            onChange={event => (this.bestillingsid = event.target.value)}
             validators={['required', 'isNumber']}
             errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig bestillingsnummer']}
             className="form-control"
@@ -524,11 +525,11 @@ export class Levering extends Component {
           <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
         </ValidatorForm>
       </div>
-
     );
   }
   mounted() {
     window.scrollTo(0, 0);
+    this.bestillingsid = this.props.match.params.bestillingsid;
     bestillingsService.levering(this.bestillingsid, levering => {
     });
   }
