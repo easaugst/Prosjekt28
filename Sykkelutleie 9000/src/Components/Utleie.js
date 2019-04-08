@@ -268,6 +268,8 @@ export class Utleie extends Component {
     //Overbestilling opprettes
     if (this.gruppe == 'Gruppe' && this.sykler.length == 1) {
       alert('For få sykler for gruppebestilling');
+    } else if(this.kontant === '') {
+      alert('Du har ikke valgt betalingsmetode');
     } else {
       this.sykler.sort();
       this.utstyr.sort();
