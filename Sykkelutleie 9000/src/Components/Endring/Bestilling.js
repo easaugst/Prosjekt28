@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import createHashHistory from 'history/createHashHistory';
+import { ValidatorForm } from 'react-form-validator-core';
 
 import { sykkelService } from '../../Services/Sykkel';
 import { kundeService } from '../../Services/Kunde';
@@ -11,7 +12,7 @@ import { ansattService } from '../../Services/Ansatt';
 import { bestillingsService } from '../../Services/Bestilling';
 import { utleieService } from '../../Services/Utleie';
 
-import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
+import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../../widgets';
 const history = createHashHistory();
 
 export class BestillingsEndring extends Component {
@@ -49,6 +50,7 @@ export class BestillingsEndring extends Component {
                 <th>Bestilling</th>
                 <th>Kunde</th>
                 <th>Ansatt</th>
+                <th>Status</th>
                 <th>Utleiested</th>
                 <th>Utleietype</th>
                 <th>Betalingsmåte</th>
@@ -57,12 +59,14 @@ export class BestillingsEndring extends Component {
                 <th>Til</th>
                 <th>Type bestilling</th>
                 <th>Rediger</th>
+                <th>Levering</th>
               </Table.Rad>
               {this.bArray.slice(mengde.forrigeSide, mengde.sideMengde).map(bestilling => (
                 <Table.Rad key={bestilling.bestillingsid}>
                   <td>{bestilling.bestillingsid}</td>
                   <td>{bestilling.kundenr}</td>
                   <td>{bestilling.ansattnr}</td>
+                  <td>{bestilling.status}</td>
                   <td>{bestilling.utleiested}</td>
                   <td>{bestilling.utleietype}</td>
                   <td>{bestilling.kontant}</td>
@@ -85,6 +89,9 @@ export class BestillingsEndring extends Component {
                   <td>
                     <List.Item to={'/endring/bestilling/' + bestilling.bestillingsid}>Hovedbestilling</List.Item>
                     <List.Item to={'/endring/bestilling/2/' + bestilling.bestillingsid}>Underbestillinger</List.Item>
+                  </td>
+                  <td>
+                    <List.Item to={'/endring/levering/' + bestilling.bestillingsid}>Lever</List.Item>
                   </td>
                 </Table.Rad>
               ))}
@@ -284,7 +291,7 @@ export class BestillingsEndringMeny extends Component {
         console.log(this.gruppe);
       }
     });
-    
+
     bestillingsService.updateBestilling(
       this.kundenr,
       this.utleiested,
@@ -493,5 +500,57 @@ export class UbestillingsEndring extends Component {
     } else {
       alert(window.tbm);
     }
+  }
+}
+
+export class Levering extends Component {
+  bestillingsid = '';
+  render() {
+    return (
+      <div className="mainView">
+      <ValidatorForm
+            ref="form"
+            onSubmit ={this.levering}
+        >
+      <Card title="Lever her">
+        <Form.Label>Bestillingsnummer:</Form.Label>
+        <TextValidator
+            onChange={event => (this.bestillingsid = event.target.value)}
+            value={this.bestillingsid}
+            onChange={event => (this.bestillingsid = event.target.value)}
+            validators={['required', 'isNumber']}
+            placeholder={this.bestillingsid}
+            errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig bestillingsnummer']}
+            className="form-control"
+            autoFocus
+        />
+      </Card>
+      <br />
+      <div className="knapper">
+        <span className="tilbakeMeny2">
+          <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
+        </span>
+        <span className="tilbakeMeny">
+          <Button.Primary onClick={this.cancel}>Avbryt endring</Button.Primary>
+        </span>
+        </div>
+        </ValidatorForm>
+      </div>
+    );
+  }
+  mounted() {
+    window.scrollTo(0, 0);
+    this.bestillingsid = this.props.match.params.bestillingsid;
+  }
+
+  levering() {
+    console.log(this.bestillingsid)
+    bestillingsService.levering(
+      this.bestillingsid, () => {
+        history.push('/oversikt/bestilling');
+    });
+  }
+  cancel() {
+    history.goBack();
   }
 }

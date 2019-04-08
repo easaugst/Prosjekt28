@@ -47,7 +47,7 @@ export class Utleie extends Component {
           {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
-              <Card>
+              <Card title="Bestillingsinformasjon">
                 <label>Kundevalg</label> <br />
                 <Select
                   className="form-control"
@@ -106,7 +106,7 @@ export class Utleie extends Component {
             </div>
 
             <div className="form-group" id="utleie2">
-            <Card>
+            <Card title="Bestillingsinformasjon">
               <label>Sykkeltype</label>
               <select className="form-control" onChange={event => (this.sykkelType = event.target.value)}>
                 <option>Velg sykkel</option>
@@ -160,7 +160,7 @@ export class Utleie extends Component {
 
             </div>
             <div className="form-group" id="utleie3">
-            <Card>
+            <Card title="Bestillingsinformasjon">
             <label>Betalingmetode</label>
 <br/>
               <input type="radio" name="betaling" id="kort" onChange={this.betalingValg} /> Kort <br />
@@ -181,9 +181,6 @@ export class Utleie extends Component {
               </Row>
               </Card>
             </div>
-
-            <br />
-            <Button.Light onClick={this.log}>Logg Select</Button.Light>
           </form>
         </div>
         <div className="mainViewUtleie2" />
@@ -270,6 +267,8 @@ export class Utleie extends Component {
     //Overbestilling opprettes
     if (this.gruppe == 'Gruppe' && this.sykler.length == 1) {
       alert('For få sykler for gruppebestilling');
+    } else if(this.kontant === '') {
+      alert('Du har ikke valgt betalingsmetode');
     } else {
       this.sykler.sort();
       this.utstyr.sort();
@@ -396,6 +395,8 @@ export class Utleie extends Component {
   teller(array, char) {
     if (array.includes(char)) {
       return array.lastIndexOf(char) - array.indexOf(char) + 1;
+    } else {
+      return 0;
     }
   }
 
@@ -517,14 +518,6 @@ export class UtleieVertMenu extends Component {
         <NavCol.Link to="/utleie/utleie">
           <ion-icon name="create" />
           Legg inn bestilling
-        </NavCol.Link>
-        <NavCol.Link to="/utleie/kundereg">
-          <ion-icon name="person-add" />
-          Registrer kunde
-        </NavCol.Link>
-        <NavCol.Link to="/utleie/levering">
-          <ion-icon name="archive" />
-          Levering
         </NavCol.Link>
       </NavCol>
     );

@@ -18,7 +18,7 @@ import { statistikkService } from '../Services/Statistikk';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValidator } from '../widgets';
 const history = createHashHistory();
 
-export class Levering extends Component {
+export class Levering2 extends Component {
 
   render() {
     return (
@@ -36,7 +36,7 @@ export class Levering extends Component {
   }
 }
 
-export class Levering2 extends Component {
+/*export class Levering2 extends Component {
   bestillingsid = ""
   render() {
     return (
@@ -56,12 +56,7 @@ export class Levering2 extends Component {
             autoFocus
         />
       </Card>
-          <span className="tilbakeMeny2">
-            <Button.Primary onClick={this.cancel}>Avbryt levering</Button.Primary>
-          </span>
-          <span className="tilbakeMeny">
-            <Button.Success2>Lever bestilling</Button.Success2>
-          </span>
+          <Button.Success2 onClick={this.levering} >Lever bestilling</Button.Success2>
         </ValidatorForm>
       </div>
 
@@ -73,11 +68,8 @@ export class Levering2 extends Component {
         utleieService.levering(
           this.bestillingsid,
           () => {
-            history.push('/utleie/utleie');
+            history.push('/oversikt/bestilling');
           }
         );
       }
-      cancel() {
-        history.goBack();
-      }
-}
+}*/

@@ -50,6 +50,7 @@ export class BestillingOversikt extends Component {
                 <th>Bestilling</th>
                 <th>Kunde</th>
                 <th>Ansatt</th>
+                <th>Status</th>
                 <th>Utleiested</th>
                 <th>Utleietype</th>
                 <th>Betalingsmåte</th>
@@ -64,6 +65,7 @@ export class BestillingOversikt extends Component {
                   <td>{bestilling.bestillingsid}</td>
                   <td>{bestilling.kundenr}</td>
                   <td>{bestilling.ansattnr}</td>
+                  <td>{bestilling.status}</td>
                   <td>{bestilling.utleiested}</td>
                   <td>{bestilling.utleietype}</td>
                   <td>{bestilling.kontant}</td>
@@ -203,6 +205,7 @@ export class BestillingOversiktMeny extends Component {
   }
 
   mounted() {
+    window.scrollTo(0,0);
     bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid,  delbestilling => {
       this.dbArray = delbestilling;
     });
