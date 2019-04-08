@@ -47,6 +47,7 @@ export class Utleie extends Component {
           {/*kundenr, utleietype, ftid, ttid, gruppe*/}
           <form>
             <div className="form-group" id="utleie1">
+            <h1> Ny bestilling </h1>
               <Card title="Bestillingsinformasjon">
                 <label>Kundevalg</label> <br />
                 <Select
