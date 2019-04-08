@@ -260,7 +260,6 @@ export class Utleie extends Component {
       console.log(this.tilgjengeligUtstyr);
     });
   }
-  log() {}
 
   order() {
     //Sjekker om det er tilstrekkelig med tilgjengelige sykler og utstyr på lager
