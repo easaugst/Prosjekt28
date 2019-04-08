@@ -55,7 +55,7 @@ export class Statistikk extends Component {
                       variant="danger"
                       now={this.utleidAntallSykler}
                       max={this.totaltAntallSykler}
-                      label={this.utleidAntallSykler + ' utilgjengelig'}
+                      label={this.utleidAntallSykler + ' Utilgjengelig'}
                       key={2}
                     />
                   </ProgressBar>
@@ -79,7 +79,7 @@ export class Statistikk extends Component {
                       variant="danger"
                       now={this.utleidAntallUtstyr}
                       max={this.totaltAntallUtstyr}
-                      label={this.utleidAntallUtstyr + ' utilgjengelig'}
+                      label={this.utleidAntallUtstyr + ' Utilgjengelig'}
                       key={2}
                     />
                   </ProgressBar>
