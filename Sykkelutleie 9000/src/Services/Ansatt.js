@@ -33,7 +33,7 @@ class AnsattService {
     });
   }
 
-  addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
+  addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {   //Legger til ny ansatt
     connection.query(
       'INSERT INTO FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) VALUES (?, ?, ?, ?, ?,?,?)',
       [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
@@ -45,7 +45,7 @@ class AnsattService {
     );
   }
 
-  updateAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
+  updateAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {    //Endrer en spesifikk ansatt
     connection.query(
       'UPDATE FastAnsatt SET tlfnr=?, epost =?, fnavn=?, enavn =?, admin =?, utleienavn =?, stilling =? WHERE ansattnr=?',
       [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
@@ -56,7 +56,7 @@ class AnsattService {
       }
     );
   }
-  slettAnsatt(ansattnr, success){
+  slettAnsatt(ansattnr, success){   //Sletter en spesifikk ansatt
     connection.query('DELETE FROM FastAnsatt WHERE ansattnr = ?', [ansattnr] , (error, results) => {
       if(error) return console.error(error);
 
@@ -64,7 +64,7 @@ class AnsattService {
     });
   }
 
-  ansattSignin(epost, pwd, success) {
+  ansattSignin(epost, pwd, success) {   //Sjekker login
     connection.query(
       'SELECT ansattnr, fnavn FROM FastAnsatt WHERE epost = ? AND pwd = ?',
       [epost, pwd],
@@ -75,7 +75,7 @@ class AnsattService {
       }
     )
   }
-  adminSjekk(success){
+  adminSjekk(success){    //Sjekker om ansatt er admin
     connection.query('SELECT ansattnr FROM FastAnsatt WHERE admin = 1', [] , (error, results) => {
       if(error) return console.error(error);
 
