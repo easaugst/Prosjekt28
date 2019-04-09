@@ -1,14 +1,30 @@
 import { connection } from '../mysql_connection';
 
 class AnsattService {
-  getAnsatt(ansattnr, success) {
-    connection.query('SELECT * FROM FastAnsatt', [ansattnr], (error, results) => {
+  getAnsatt(success) {
+    connection.query('SELECT * FROM FastAnsatt', (error, results) => {
       if (error) return console.error(error);
 
       success(results);
     });
   }
-  countAnsatt(success) {
+  getAnsattFilt(navn, success) {    //Henter kun ansatte som har fornavn eller etternavn som likner på det brukeren skrev inn i søkefeltet
+    connection.query('SELECT * FROM FastAnsatt WHERE fnavn LIKE ? OR enavn LIKE ?', [navn, navn], (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+  getAnsattEndring(ansattnr, success) {   //Henter spesifikk ansatt utifra ansattnr
+    connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?', [ansattnr],
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success(results);
+    });
+  }
+
+  countAnsatt(success) {    //Teller ansatte
     connection.query('SELECT COUNT(ansattnr) FROM FastAnsatt',
     (error, results) => {
       if (error) return console.error(error);
@@ -16,18 +32,10 @@ class AnsattService {
       success(JSON.stringify(results));
     });
   }
-  getAnsattEndring(ansattnr, success) {
-    connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?', [ansattnr],
-      (error, results) => {
-        if (error) return console.error(error);
-
-        success(results);
-      });
-  }
 
   addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
     connection.query(
-      'insert into FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) values (?, ?, ?, ?, ?,?,?)',
+      'INSERT INTO FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) VALUES (?, ?, ?, ?, ?,?,?)',
       [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
       (error, results) => {
         if (error) return console.error(error);
@@ -39,7 +47,7 @@ class AnsattService {
 
   updateAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {
     connection.query(
-      'update FastAnsatt set tlfnr=?, epost =?, fnavn=?, enavn =?, admin =?, utleienavn =?, stilling =? where ansattnr=?',
+      'UPDATE FastAnsatt SET tlfnr=?, epost =?, fnavn=?, enavn =?, admin =?, utleienavn =?, stilling =? WHERE ansattnr=?',
       [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
       (error, results) => {
         if (error) return console.error(error);
@@ -48,9 +56,17 @@ class AnsattService {
       }
     );
   }
+  slettAnsatt(ansattnr, success){
+    connection.query('DELETE FROM FastAnsatt WHERE ansattnr = ?', [ansattnr] , (error, results) => {
+      if(error) return console.error(error);
+
+      success();
+    });
+  }
+
   ansattSignin(epost, pwd, success) {
     connection.query(
-      'SELECT ansattnr, fnavn FROM FastAnsatt where epost = ? AND pwd = ?',
+      'SELECT ansattnr, fnavn FROM FastAnsatt WHERE epost = ? AND pwd = ?',
       [epost, pwd],
       (error, results) => {
         if (error) return console.error(error);
@@ -60,22 +76,8 @@ class AnsattService {
     )
   }
   adminSjekk(success){
-    connection.query('Select ansattnr from FastAnsatt where admin = 1', [] , (error, results) => {
+    connection.query('SELECT ansattnr FROM FastAnsatt WHERE admin = 1', [] , (error, results) => {
       if(error) return console.error(error);
-
-      success(results);
-    });
-  }
-  slettAnsatt(ansattnr, success){
-    connection.query('delete from FastAnsatt where ansattnr = ?', [ansattnr] , (error, results) => {
-      if(error) return console.error(error);
-
-      success();
-    });
-  }
-  getAnsattFilt(fnavn, enavn,success) {
-    connection.query('SELECT * FROM FastAnsatt Where fnavn LIKE ? OR enavn LIKE ?', [fnavn,enavn], (error, results) => {
-      if (error) return console.error(error);
 
       success(results);
     });
