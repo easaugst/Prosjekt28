@@ -16,7 +16,6 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValid
 const history = createHashHistory();
 
 export class KundeReg extends Component {
-  kundenr = '';
   fdag = '';
   fnavn = '';
   enavn = '';
@@ -100,7 +99,7 @@ export class KundeReg extends Component {
   }
 
   add() {
-    kundeService.addKunde(this.fnavn, this.enavn, this.tlf, this.epost, this.fdag, this.props.match.params.id, () => {
+    kundeService.addKunde(this.fnavn, this.enavn, this.epost, this.tlf, this.fdag, () => {
       history.push('/oversikt/kunde');
     });
   }

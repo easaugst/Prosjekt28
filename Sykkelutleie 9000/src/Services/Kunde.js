@@ -21,7 +21,7 @@ class KundeService {
     )
   }
   getKundeFilt(navn, success){
-    connection.query('SELECT * FROM Kunde where fnavn LIKE ? OR (enavn LIKE ?)', [navn, navn] , (error, results) => {
+    connection.query('SELECT * FROM Kunde WHERE fnavn LIKE ? OR (enavn LIKE ?)', [navn, navn] , (error, results) => {
       if(error) return console.error(error);
 
       success(results);
@@ -38,7 +38,7 @@ class KundeService {
 
   updateKunde(kundenr, fnavn, enavn, epost, tlf, success) {
     connection.query(
-      'update Kunde set fnavn=?, enavn =?, epost=?, tlf =? where kundenr=?',
+      'UPDATE Kunde SET fnavn=?, enavn =?, epost=?, tlf =? WHERE kundenr=?',
       [fnavn, enavn, epost, tlf, kundenr],
       (error, results) => {
         if (error) return console.error(error);
@@ -48,10 +48,10 @@ class KundeService {
     );
   }
 
-  addKunde(kundenr, fnavn, enavn, epost, tlf, fdag, success) {
+  addKunde(fnavn, enavn, epost, tlf, fdag, success) {
     connection.query(
-      'insert into Kunde (fnavn, enavn, tlf, epost, fdag) values (?, ?, ?, ?, ?)',
-      [kundenr, fnavn, enavn, epost, tlf, fdag],
+      'INSERT INTO Kunde (fnavn, enavn, epost, tlf, fdag) VALUES (?, ?, ?, ?, ?)',
+      [fnavn, enavn, epost, tlf, fdag],
       (error, results) => {
         if (error) return console.error(error);
 
@@ -61,8 +61,7 @@ class KundeService {
   }
   newDate(success) {
     connection.query(
-      'UPDATE Kunde set fdag = DATE_ADD(fdag,INTERVAL 1 DAY) ORDER BY kundenr DESC LIMIT 1',
-      [],
+      'UPDATE Kunde SET fdag = DATE_ADD(fdag,INTERVAL 1 DAY) ORDER BY kundenr DESC LIMIT 1',
       (error,results) => {
         if (error) return console.error(error);
 
@@ -71,7 +70,7 @@ class KundeService {
     );
   }
   slettKunde(kundenr, success){
-    connection.query('delete from Kunde where kundenr = ?', [kundenr] , (error, results) => {
+    connection.query('DELETE FROM Kunde WHERE kundenr = ?', [kundenr] , (error, results) => {
       if(error) return console.error(error);
 
       success();

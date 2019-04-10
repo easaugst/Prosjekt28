@@ -2,21 +2,25 @@ import { connection } from '../mysql_connection';
 
 class AnsattService {
   getAnsatt(success) {
-    connection.query('SELECT * FROM FastAnsatt', (error, results) => {
+    connection.query('SELECT * FROM FastAnsatt',
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);
     });
   }
   getAnsattFilt(navn, success) {    //Henter kun ansatte som har fornavn eller etternavn som likner på det brukeren skrev inn i søkefeltet
-    connection.query('SELECT * FROM FastAnsatt WHERE fnavn LIKE ? OR enavn LIKE ?', [navn, navn], (error, results) => {
+    connection.query('SELECT * FROM FastAnsatt WHERE fnavn LIKE ? OR enavn LIKE ?',
+    [navn, navn],
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);
     });
   }
   getAnsattEndring(ansattnr, success) {   //Henter spesifikk ansatt utifra ansattnr
-    connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?', [ansattnr],
+    connection.query('SELECT * FROM FastAnsatt WHERE ansattnr = ?',
+    [ansattnr],
     (error, results) => {
       if (error) return console.error(error);
 
@@ -57,7 +61,9 @@ class AnsattService {
     );
   }
   slettAnsatt(ansattnr, success){   //Sletter en spesifikk ansatt
-    connection.query('DELETE FROM FastAnsatt WHERE ansattnr = ?', [ansattnr] , (error, results) => {
+    connection.query('DELETE FROM FastAnsatt WHERE ansattnr = ?',
+    [ansattnr],
+    (error, results) => {
       if(error) return console.error(error);
 
       success();
@@ -76,7 +82,8 @@ class AnsattService {
     )
   }
   adminSjekk(success){    //Sjekker om ansatt er admin
-    connection.query('SELECT ansattnr FROM FastAnsatt WHERE admin = 1', [] , (error, results) => {
+    connection.query('SELECT ansattnr FROM FastAnsatt WHERE admin = 1',
+    (error, results) => {
       if(error) return console.error(error);
 
       success(results);

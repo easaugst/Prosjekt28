@@ -10,7 +10,8 @@ class BestillingsService {
     });
   }
   getDelbestilling(bestillingsid, success) {
-    connection.query('SELECT Distinct B.bestillingsid, U.regnr, U.ubid, U.utstyrsid, UT.utnavn FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UY, Utleietype UT WHERE U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND S.regnr = U.regnr AND S.sykkeltypeid = UT.utid OR (U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND UY.utstyrsid = U.utstyrsid AND UY.utstyrstypeid = UT.utid) ORDER BY U.ubid',
+    connection.query(
+    'SELECT Distinct B.bestillingsid, U.regnr, U.ubid, U.utstyrsid, UT.utnavn FROM Ubestilling U, Bestilling B, Sykkel S, Utstyr UY, Utleietype UT WHERE U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND S.regnr = U.regnr AND S.sykkeltypeid = UT.utid OR (U.bestillingsid = B.bestillingsid and U.bestillingsid = ? AND UY.utstyrsid = U.utstyrsid AND UY.utstyrstypeid = UT.utid) ORDER BY U.ubid',
     [bestillingsid, bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
@@ -33,7 +34,9 @@ class BestillingsService {
     })
   }
   getBestillingFilt(navn, success) {
-    connection.query('SELECT * FROM Bestilling B, Kunde K WHERE B.kundenr = K.kundenr AND K.fnavn LIKE ? OR (B.kundenr = K.kundenr AND K.enavn LIKE ?)', [navn, navn], (error, results) => {
+    connection.query('SELECT * FROM Bestilling B, Kunde K WHERE B.kundenr = K.kundenr AND K.fnavn LIKE ? OR (B.kundenr = K.kundenr AND K.enavn LIKE ?)',
+    [navn, navn],
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);
@@ -93,47 +96,58 @@ class BestillingsService {
     })
   }
   getAltUtstyr(bestillingsid, success) {    //Henter utstyrsid fra alt utstyr koblet opp mot spesifisert bestilling
-    connection.query('SELECT U.utstyrsid FROM Ubestilling UB INNER JOIN Utstyr U WHERE UB.bestillingsid = ? AND U.utstyrsid = UB.Utstyrsid', [bestillingsid], (error, results) => {
+    connection.query('SELECT U.utstyrsid FROM Ubestilling UB INNER JOIN Utstyr U WHERE UB.bestillingsid = ? AND U.utstyrsid = UB.Utstyrsid',
+    [bestillingsid],
+    (error, results) => {
       if (error) return console.error(error);
 
       success(results);
     })
   }
   updateSykkel(sykkel, success) {   //Oppdaterer status på spesifisert sykel
-    connection.query('UPDATE Sykkel SET status = "Lager" WHERE regnr = ?', [sykkel], (error, results) => {
+    connection.query('UPDATE Sykkel SET status = "Lager" WHERE regnr = ?',
+    [sykkel],
+    (error, results) => {
       if (error) return console.error(error);
 
       success();
     })
   }
   updateUtstyr(utstyr, success) {   //Oppdaterer status på spesifisert utstyr
-    connection.query('UPDATE Utstyr SET ustatus = "Lager" WHERE utstyrsid = ?', [utstyr], (error, results) => {
+    connection.query('UPDATE Utstyr SET ustatus = "Lager" WHERE utstyrsid = ?',
+    [utstyr],
+    (error, results) => {
       if (error) return console.error(error);
 
       success();
     })
   }
   slettAlleUbestilling(bestillingsid, success){   //Sletter alle delbestillinger koblet opp mot spesifisert bestilling
-  connection.query('DELETE FROM Ubestilling WHERE bestillingsid = ?', [bestillingsid] , (error, results) => {
+  connection.query('DELETE FROM Ubestilling WHERE bestillingsid = ?',
+  [bestillingsid],
+  (error, results) => {
     if(error) return console.error(error);
 
     success();
   });
   }
   levering(bestillingsid, success) {    //Opdaterer bestilling til inaktiv og endrer status på utstyr og sykler til "Lager"
-    connection.query('UPDATE Sykkel S, Ubestilling U, Bestilling B, Utstyr UT SET S.status = "Lager" WHERE S.regnr = U.regnr AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
+    connection.query('UPDATE Sykkel S, Ubestilling U, Bestilling B, Utstyr UT SET S.status = "Lager" WHERE S.regnr = U.regnr AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?',
+    [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 
       success();
     });
-    connection.query('UPDATE Ubestilling U, Bestilling B, Utstyr UT SET UT.ustatus = "Lager" WHERE UT.utstyrsid = U.utstyrsid AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?', [bestillingsid],
+    connection.query('UPDATE Ubestilling U, Bestilling B, Utstyr UT SET UT.ustatus = "Lager" WHERE UT.utstyrsid = U.utstyrsid AND U.bestillingsid = B.bestillingsid AND B.bestillingsid = ?',
+    [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 
       success();
     });
-    connection.query('UPDATE Bestilling SET status = "Inaktiv" WHERE bestillingsid = ?', [bestillingsid],
+    connection.query('UPDATE Bestilling SET status = "Inaktiv" WHERE bestillingsid = ?',
+    [bestillingsid],
     (error, results) => {
       if (error) return console.error(error);
 

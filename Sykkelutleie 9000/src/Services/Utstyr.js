@@ -26,7 +26,7 @@ class UtstyrService {
 
   getUtstyrFilt(utstyrstypeid, success) {
     connection.query(
-      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = ?',
+      'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid AND U.utstyrstypeid = ?',
       [utstyrstypeid],
       (error, results) => {
         if (error) return console.error(error);
@@ -45,7 +45,7 @@ class UtstyrService {
 
   addUtstyr(utstyrstypeid, ustatus, ubefinnelse, utsutleienavn, success) {
     connection.query(
-      'insert into Utstyr (utstyrstypeid, ustatus, ubefinnelse, utsutleienavn) values (?, ?, ?, ?)',
+      'INSERT INTO Utstyr (utstyrstypeid, ustatus, ubefinnelse, utsutleienavn) VALUES (?, ?, ?, ?)',
       [utstyrstypeid, ustatus, ubefinnelse, utsutleienavn],
       (error, results) => {
         if (error) return console.error(error);
@@ -68,7 +68,7 @@ class UtstyrService {
   }
 
   slettUtstyr(utstyrsid, success){
-  connection.query('delete from Utstyr where utstyrsid = ?', [utstyrsid] , (error, results) => {
+  connection.query('DELETE FROM Utstyr WHERE utstyrsid = ?', [utstyrsid] , (error, results) => {
     if(error) return console.error(error);
 
     success();

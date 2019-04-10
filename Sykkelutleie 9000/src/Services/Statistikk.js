@@ -5,7 +5,7 @@ class StatistikkService {
 
   getSykkelAntall(success) {
     connection.query(
-      'select COUNT(regnr) from Sykkel',
+      'SELECT COUNT(regnr) FROM Sykkel',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -14,7 +14,7 @@ class StatistikkService {
   }
   getSykkelUtleidAntall(success) {
     connection.query(
-      'select COUNT(regnr) from Sykkel where status != "Lager"',
+      'SELECT COUNT(regnr) FROM Sykkel WHERE status != "Lager"',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -23,7 +23,7 @@ class StatistikkService {
   }
   getUtstyrAntall(success) {
     connection.query(
-      'select COUNT(utstyrsid) from Utstyr',
+      'SELECT COUNT(utstyrsid) FROM Utstyr',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -32,7 +32,7 @@ class StatistikkService {
   }
   getUtstyrUtleidAntall(success) {
     connection.query(
-      'select COUNT(utstyrsid) from Utstyr where ustatus != "Lager"',
+      'SELECT COUNT(utstyrsid) FROM Utstyr WHERE ustatus != "Lager"',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -42,7 +42,7 @@ class StatistikkService {
 
   antallKunder(success) {
     connection.query(
-      'select COUNT(kundenr) from Kunde',
+      'SELECT COUNT(kundenr) FROM Kunde',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -52,7 +52,7 @@ class StatistikkService {
 
   antallBestillinger(success) {
     connection.query(
-      'select COUNT(bestillingsid) from Bestilling',
+      'SELECT COUNT(bestillingsid) FROM Bestilling',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));
@@ -61,7 +61,7 @@ class StatistikkService {
   }
   antallDelBestillinger(success) {
     connection.query(
-      'select COUNT(ubid) from Ubestilling',
+      'SELECT COUNT(ubid) FROM Ubestilling',
       (error, results) => {
         if (error) return console.error(error);
         success(JSON.stringify(results));

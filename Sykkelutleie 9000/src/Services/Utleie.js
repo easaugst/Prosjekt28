@@ -98,7 +98,7 @@ class UtleieService {
   }
   getSykkelTyper(success) {
     connection.query(
-      'SELECT * FROM Utleietype where kategori ="sykkel"',
+      'SELECT * FROM Utleietype WHERE kategori ="sykkel"',
       (error, results) => {
         if (error) return console.error(error);
 
@@ -108,7 +108,7 @@ class UtleieService {
   }
   getUtstyrTyper(success) {
     connection.query(
-      'SELECT * FROM Utleietype where kategori = "Utstyr"',
+      'SELECT * FROM Utleietype WHERE kategori = "Utstyr"',
       (error, results) => {
         if (error) return console.error(error);
 
@@ -118,7 +118,7 @@ class UtleieService {
   }
   addBestilling(kundenr, ansattnr, utleiested, utleietype, kontant, ftid, ttid, gruppe, success) {
     connection.query(
-      'INSERT INTO Bestilling (kundenr, ansattnr, utleiested, utleietype, kontant, ftid, ttid, gruppe) values (?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO Bestilling (kundenr, ansattnr, utleiested, utleietype, kontant, ftid, ttid, gruppe) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
       [kundenr, ansattnr, utleiested, utleietype, kontant, ftid, ttid, gruppe],
       (error, results) => {
         if (error) return console.error(error);
@@ -130,7 +130,7 @@ class UtleieService {
 
   addUBestillingSykkel(regnr, bestillingsid, success) {
     connection.query(
-      'INSERT INTO Ubestilling (regnr, bestillingsid) values (?, ?)',
+      'INSERT INTO Ubestilling (regnr, bestillingsid) VALUES (?, ?)',
       [regnr, bestillingsid],
       (error, results) => {
         if (error) return console.error(error);
@@ -141,7 +141,7 @@ class UtleieService {
   }
   addUBestillingUtstyr(utstyrsid, bestillingsid, success) {
     connection.query(
-      'INSERT INTO Ubestilling (utstyrsid, bestillingsid) values (?, ?)',
+      'INSERT INTO Ubestilling (utstyrsid, bestillingsid) VALUES (?, ?)',
       [utstyrsid, bestillingsid],
       (error, results) => {
         if (error) return console.error(error);

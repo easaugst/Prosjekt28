@@ -44,7 +44,7 @@ class SykkelService {
 
   addSykkel(sykkeltypeid, status, befinnelse, beskrivelse, utleienavn, success) {
     connection.query(
-      'insert into Sykkel (sykkeltypeid, status, befinnelse, beskrivelse, utleienavn) values (?, ?, ?, ?, ?)',
+      'INSERT INTO Sykkel (sykkeltypeid, status, befinnelse, beskrivelse, utleienavn) VALUES (?, ?, ?, ?, ?)',
       [sykkeltypeid, status, befinnelse, beskrivelse, utleienavn],
       (error, results) => {
         if (error) return console.error(error);
@@ -55,7 +55,7 @@ class SykkelService {
 
   updateSykkel(regnr, sykkeltypeid, status, befinnelse, beskrivelse, utleienavn, success) {
     connection.query(
-      'update Sykkel set sykkeltypeid=?, status=?, befinnelse=?, beskrivelse=?, utleienavn=? where regnr=?',
+      'UPDATE Sykkel SET sykkeltypeid=?, status=?, befinnelse=?, beskrivelse=?, utleienavn=? WHERE regnr=?',
       [regnr, sykkeltypeid, status, befinnelse, beskrivelse, utleienavn],
       (error, results) => {
         if (error) return console.error(error);
@@ -66,7 +66,7 @@ class SykkelService {
   }
 
   slettSykkel(regnr, success){
-  connection.query('delete from Sykkel where regnr = ?', [regnr] , (error, results) => {
+  connection.query('DELETE FROM Sykkel WHERE regnr = ?', [regnr] , (error, results) => {
     if(error) return console.error(error);
 
     success();
