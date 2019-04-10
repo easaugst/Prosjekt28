@@ -80,7 +80,7 @@ export class AnsattOversikt extends Component {
       console.log(this.ansatte);
       this.ansattSortering();
     })
-    ansattService.getAnsatt(this.props.match.params.ansattnr, ansatt => {
+    ansattService.getAnsatt(ansatt => {
       this.aArray = ansatt;
     });
   }

@@ -15,10 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class SykkelEndring extends Component {
-  sArray = [];
-  number = 0;
+  sArray = [];    //Inneholder ansatte hentet fra databasen. Brukes for .map() av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  sykler = '';
+  sykler = '';    //Antall sykler lagres her. Brukes til å dele tabelloversiken inn i flere sider
 
   render() {
     return (
@@ -35,13 +36,7 @@ export class SykkelEndring extends Component {
             <option value="14">Barnesykkel</option>
           </select>
         </div>
-        {/*
-          <select id="sidemengde" className="form-control" onChange={this.pages}>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          </select>
-          */}
+        {/*  Se ./Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -68,6 +63,7 @@ export class SykkelEndring extends Component {
                 <th>Tilhører utleiested</th>
                 <th>Rediger</th>
               </Table.Rad>
+              {/*  Se ./Asatt  */}
               {this.sArray.slice(mengde.forrigeSide, mengde.sideMengde).map(sykkel => (
                 <Table.Rad key={sykkel.regnr}>
                   <td>{sykkel.regnr}</td>
@@ -98,10 +94,10 @@ export class SykkelEndring extends Component {
       this.sArray = sykkel;
     });
   }
-  filter() {
-    this.number = document.getElementById('drop').value;
-    if ((this.number <= 3 && this.number != 0) || this.number >= 12) {
-      sykkelService.getSykkelFilt(this.number, sykkelF => {
+  filter() {    //Filtrerer etter sykkeltype valgt i dropdown
+    var number = document.getElementById('drop').value;
+    if ((number <= 3 && number != 0) || number >= 12) {
+      sykkelService.getSykkelFilt(number, sykkelF => {
         this.sArray = sykkelF;
       });
     } else {
@@ -169,7 +165,7 @@ export class SykkelEndring extends Component {
 }
 
 export class SykkelEndringMeny extends Component {
-  regnr = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  regnr = '';
   sykkel = [];
   sykkeltypeid = null;
   status = null;
@@ -257,19 +253,14 @@ export class SykkelEndringMeny extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
-    sykkelService.getSykkelEndring(this.props.match.params.regnr, sykkel => {
+    this.regnr = this.props.match.params.regnr;
+    sykkelService.getSykkelEndring(this.regnr, sykkel => {
       this.sykkel = sykkel;
     });
   }
   save() {
-    this.log();
-    sykkelService.updateSykkel(
-      this.sykkeltypeid,
-      this.status,
-      this.befinnelse,
-      this.beskrivelse,
-      this.utleienavn,
-      this.props.match.params.regnr,
+    this.sjekkFelt();
+    sykkelService.updateSykkel( this.sykkeltypeid, this.status, this.befinnelse, this.beskrivelse, this.utleienavn, this.regnr,
       () => {
         history.push('/endring/sykkel');
       }
@@ -280,31 +271,29 @@ export class SykkelEndringMeny extends Component {
   }
   slett() {
     if (window.admin == true) {
-      sykkelService.slettSykkel(this.props.match.params.regnr, () => {
+      sykkelService.slettSykkel(this.regnr, () => {
         history.push('/endring/sykkel');
       });
     } else {
       alert(window.tbm);
     }
   }
-  log() {
-    this.sykkel.map(sykkel => {
-      if (this.sykkeltypeid === null) {
-        this.sykkeltypeid = sykkel.sykkeltypeid;
-      }
-      if (this.status === null) {
-        this.status = sykkel.status;
-      }
-      if (document.getElementById('befinnelseInput').value == '') {
-        this.befinnelse = sykkel.befinnelse;
-      }
-      if (document.getElementById('beskrivelseInput').value == '') {
-        this.beskrivelse = sykkel.beskrivelse;
-      }
-      if (document.getElementById('utleienavnInput').value == '') {
-        this.utleienavn = sykkel.utleienavn;
-      }
-    });
+  sjekkFelt() {
+    if (this.sykkeltypeid === null) {
+      this.sykkeltypeid = this.sykkel[0].sykkeltypeid;
+    }
+    if (this.status === null) {
+      this.status = this.sykkel[0].status;
+    }
+    if (document.getElementById('befinnelseInput').value == '') {
+      this.befinnelse = this.sykkel[0].befinnelse;
+    }
+    if (document.getElementById('beskrivelseInput').value == '') {
+      this.beskrivelse = this.sykkel[0].beskrivelse;
+    }
+    if (document.getElementById('utleienavnInput').value == '') {
+      this.utleienavn = this.sykkel[0].utleienavn;
+    }
     console.log(this.sykkeltypeid, this.status, this.befinnelse, this.beskrivelse, this.utleienavn);
   }
 }

@@ -1,3 +1,5 @@
+//Se ./Ansatt for flere kommentarer på koden
+
 import React from 'react';
 import { Component } from 'react-simplified';
 import ReactDOM from 'react-dom';
@@ -16,11 +18,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValid
 const history = createHashHistory();
 
 export class BestillingsEndring extends Component {
-  bArray = [];
-  tekst = "";
-  ftekst ="";
+  bArray = [];    //Inneholder bestillinger hentet fra databasen. Brukes for .map() av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  bestillinger = '';
+  bestillinger = '';   //Antall bestillinger lagres her. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -29,6 +31,7 @@ export class BestillingsEndring extends Component {
         <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
+        {/*  Se ./Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
             <div className="sideKnapper">
@@ -61,6 +64,7 @@ export class BestillingsEndring extends Component {
                 <th>Rediger</th>
                 <th>Levering</th>
               </Table.Rad>
+              {/*  Se ./Ansatt  */}
               {this.bArray.slice(mengde.forrigeSide, mengde.sideMengde).map(bestilling => (
                 <Table.Rad key={bestilling.bestillingsid}>
                   <td>{bestilling.bestillingsid}</td>
@@ -71,16 +75,19 @@ export class BestillingsEndring extends Component {
                   <td>{bestilling.utleietype}</td>
                   <td>{bestilling.kontant}</td>
                   <td>
+                    {/*  Viser tid i lokal tidssone. Fjerner ',' og siste tegnene fra strengen  */}
                     {bestilling.btid.toLocaleString()
                     .replace(/,/g, '')
                     .slice(0, -3)}
                   </td>
                   <td>
+                    {/*  Se over  */}
                     {bestilling.ftid.toLocaleString()
                     .replace(/,/g, '')
                     .slice(0, -3)}
                   </td>
                   <td>
+                    {/*  Se over  */}
                     {bestilling.ttid.toLocaleString()
                     .replace(/,/g, ' ')
                     .slice(0, -3)}
@@ -108,18 +115,17 @@ export class BestillingsEndring extends Component {
       this.bestillinger = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
       console.log(this.bestillinger);
       this.bestillingSortering();
-    })
-    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
+    });
+    bestillingsService.getBestilling(bestilling => {
       this.bArray = bestilling;
     });
   }
-  filter() {
-    this.tekst = document.getElementById('input').value;
-    this.ftekst = "%" + this.tekst + "%";
-
-      bestillingsService.getBestillingFilt(this.ftekst, this.ftekst, bestillingF => {
-        this.bArray = bestillingF;
-      });
+  filter() {    //Lik som for Ansatt
+    var tekst = document.getElementById('input').value;
+    tekst = "%" + tekst + "%";
+    bestillingsService.getBestillingFilt(tekst, bestillingF => {
+      this.bArray = bestillingF;
+    });
     this.pageSwitchH();
     this.forceUpdate();
   }
@@ -151,7 +157,7 @@ export class BestillingsEndring extends Component {
       document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
     }
 
-  bestillingSortering() {
+  bestillingSortering() {   //Lager "reglene" for sideinndeling. Se ./Ansatt
     if (this.bestillinger > this.sideMengde) {
       this.sisteSide = this.bestillinger % this.sideMengde;
       this.bestillinger -= this.sisteSide;
@@ -185,7 +191,6 @@ export class BestillingsEndringMeny extends Component {
   kundenr = '';
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div>
         <div className="mainView">
@@ -269,37 +274,27 @@ export class BestillingsEndringMeny extends Component {
     console.log(this.kundenr);
   }
   save() {
-    this.bestilling.map(bestilling => {
-      if (document.getElementById('kundeInput').value === '') {
-        this.kundenr = bestilling.kundenr;
-        console.log(this.kundenr);
-      }
-      if (document.getElementById('utleiestedInput').value === '') {
-        this.utleiested = bestilling.utleiested;
-        console.log(this.utleiested);
-      }
-      if (this.utleietype === null) {
-        this.utleietype = bestilling.utleietype;
-        console.log(this.utleietype);
-      }
-      if (this.kontant === null) {
-        this.kontant = bestilling.kontant;
-        console.log(this.kontant);
-      }
-      if (this.gruppe === null) {
-        this.gruppe = bestilling.gruppe;
-        console.log(this.gruppe);
-      }
-    });
-
-    bestillingsService.updateBestilling(
-      this.kundenr,
-      this.utleiested,
-      this.utleietype,
-      this.kontant,
-      this.gruppe,
-      this.bestillingsid,
-      () => {
+    if (document.getElementById('kundeInput').value === '') {
+      this.kundenr = this.bestilling[0].kundenr;
+      console.log(this.kundenr);
+    }
+    if (document.getElementById('utleiestedInput').value === '') {
+      this.utleiested = this.bestilling[0].utleiested;
+      console.log(this.utleiested);
+    }
+    if (this.utleietype === null) {
+      this.utleietype = this.bestilling[0].utleietype;
+      console.log(this.utleietype);
+    }
+    if (this.kontant === null) {
+      this.kontant = this.bestilling[0].kontant;
+      console.log(this.kontant);
+    }
+    if (this.gruppe === null) {
+      this.gruppe = this.bestilling[0].gruppe;
+      console.log(this.gruppe);
+    }
+    bestillingsService.updateBestilling(this.kundenr, this.utleiested, this.utleietype, this.kontant, this.gruppe, this.bestillingsid, () => {
         history.push('/endring/bestillinger');
       }
     );
@@ -307,26 +302,24 @@ export class BestillingsEndringMeny extends Component {
   cancel() {
     history.goBack();
   }
-
-  log() {}
-  slett() {
+  slett() {   //Sletter bestillingen fra databasen hvis brukeren er administrator. Endrer status på utstyr og sykler til "Lager".
     if (window.admin == true) {
       bestillingsService.getAlleSykler(this.props.match.params.bestillingsid, sykler => {
         console.log(sykler);
-        for (var i = 0; i < sykler.length; i++) {
+        for (var i = 0; i < sykler.length; i++) {   //Kjører ikke før databasen har gitt svar til .getAlleSykler(...)
           bestillingsService.updateSykkel(sykler[i].regnr, () => {})
           console.log('Oppdatert: ' + sykler.regnr);
         }
-        bestillingsService.getAltUtstyr(this.props.match.params.bestillingsid, utstyr => {
-          for (var i = 0; i < utstyr.length; i++) {
+        bestillingsService.getAltUtstyr(this.props.match.params.bestillingsid, utstyr => {    //Kjører ikke før databasen har gitt svar til .getAlleSykler(...)
+          for (var i = 0; i < utstyr.length; i++) {   //Kjører først når databasen har gitt svar til .getAltUtstyr(...)
             bestillingsService.updateUtstyr(utstyr[i].utstyrsid, () => {})
             console.log('Oppdatert: ' + utstyr.utstyrsid);
           }
-          bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => {
+          bestillingsService.slettAlleUbestilling(this.props.match.params.bestillingsid, () => { //Kjører først når databasen har gitt svar til .getAltUtstyr(...)
             history.goBack();
           });
         });
-        bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});
+        bestillingsService.slettBestilling(this.props.match.params.bestillingsid, () => {});    //Kjører først når databasen har gitt svar til .getAlleSykler(...)
       });
     } else {
       alert(window.tbm);
@@ -335,12 +328,12 @@ export class BestillingsEndringMeny extends Component {
 }
 
 export class UbestillingsEndringMeny extends Component {
+  //Fungerer på samme måte som BestillingsEndring
   dbArray = [];
   ubid = '';
   bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div>
         <div className="mainView">
@@ -379,12 +372,9 @@ export class UbestillingsEndringMeny extends Component {
       this.dbArray = delbestilling;
     });
   }
-  save() {}
   cancel() {
     history.goBack();
   }
-
-  log() {}
 }
 
 export class UbestillingsEndring extends Component {
@@ -396,7 +386,6 @@ export class UbestillingsEndring extends Component {
   bestillingsid = '';
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div>
         <div className="mainView">
@@ -459,14 +448,8 @@ export class UbestillingsEndring extends Component {
     });
   }
   save() {
-    this.log();
-    bestillingsService.updateUbestilling(
-      this.regnr,
-      this.utstyrsid,
-      this.detaljer,
-      this.bestillingsid,
-      this.ubid,
-      () => {
+    this.sjekkFelt();
+    bestillingsService.updateUbestilling(this.regnr, this.utstyrsid, this.detaljer, this.bestillingsid, this.ubid, () => {
         history.goBack();
         console.log(this.regnr, this.utstyrsid, this.detaljer, this.bestillingsid, this.ubid);
       }
@@ -476,23 +459,21 @@ export class UbestillingsEndring extends Component {
     history.goBack();
   }
 
-  log() {
-    this.dbArray.map(delbestilling => {
-      if (document.getElementById('regnr').value === '') {
-        this.regnr = delbestilling.regnr;
-      }
-      if (document.getElementById('utstyrsid').value === '') {
-        this.utstyrsid = delbestilling.utstyrsid;
-      }
-      if (document.getElementById('detaljer').value === '') {
-        this.detaljer = delbestilling.detaljer;
-      }
-      if (document.getElementById('bestillingsid').value === '') {
-        this.bestillingsid = delbestilling.bestillingsid;
-      }
-    });
+  sjekkFelt() {
+    if (document.getElementById('regnr').value === '') {
+      this.regnr = this.dbArray[0].regnr;
+    }
+    if (document.getElementById('utstyrsid').value === '') {
+      this.utstyrsid = this.dbArray[0].utstyrsid;
+    }
+    if (document.getElementById('detaljer').value === '') {
+      this.detaljer = this.dbArray[0].detaljer;
+    }
+    if (document.getElementById('bestillingsid').value === '') {
+      this.bestillingsid = this.dbArray[0].bestillingsid;
+    }
   }
-  slett() {
+  slett() {   //Sletter delbestillingen fra databasen hvis brukeren er administrator
     if (window.admin == true) {
       bestillingsService.slettUbestilling(this.ubid, () => {
         history.goBack();
@@ -544,9 +525,8 @@ export class Levering extends Component {
   }
 
   levering() {
-    console.log(this.bestillingsid)
-    bestillingsService.levering(
-      this.bestillingsid, () => {
+    console.log(this.bestillingsid);
+    bestillingsService.levering(this.bestillingsid, () => {   //"Leverer" bestillingen. Markeres som inaktiv i databasen
         history.push('/oversikt/bestilling');
     });
   }

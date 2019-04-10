@@ -15,13 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class UtstyrEndring extends Component {
-  uArray = [];
+  uArray = [];    //Inneholder utstyr hentet fra databasen. Brukes for .map() av tabell
   uFArray = [];
-  number = 0;
-  a = "";
-  b = 2;
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  utstyr = '';
+  utstyr = '';    //Antall utstyr lagres her. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -40,6 +38,7 @@ export class UtstyrEndring extends Component {
             <option value="11">Lås</option>
           </select>
         </div>
+        {/*  Se ./Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -65,6 +64,7 @@ export class UtstyrEndring extends Component {
                 <th>Tilhører utleiested</th>
                 <th>Rediger</th>
               </Table.Rad>
+              {/*  Se ./Ansatt  */}
               {this.uArray.slice(mengde.forrigeSide, mengde.sideMengde).map(utstyr => (
                 <Table.Rad key={utstyr.utstyrsid}>
                   <td>{utstyr.utstyrsid}</td>
@@ -89,24 +89,23 @@ export class UtstyrEndring extends Component {
       this.utstyr = parseInt(utstyr.substr(utstyr.lastIndexOf(':') + 1));
       console.log(this.utstyr);
       this.utstyrSortering();
-    })
+    });
     utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
     });
   }
 
   filter() {
-    this.number = document.getElementById('drop').value;
-    if(this.number > 3){
-    utstyrService.getUtstyrFilt(this.number, utstyrF => {
+     var number = document.getElementById('drop').value;
+    if(number > 3){
+    utstyrService.getUtstyrFilt(number, utstyrF => {
       this.uArray = utstyrF;
     });
   }
   else {
     utstyrService.getUtstyr(utstyr => {
       this.uArray = utstyr;
-    }
-  );
+    });
   }
     this.pageSwitchH();
     this.forceUpdate();
@@ -165,7 +164,7 @@ export class UtstyrEndring extends Component {
 }
 
 export class UtstyrEndringMeny extends Component {
-  utstyrsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  utstyrsid = '';
   utstyr = [];
   utstyrstypeid = null;
   ustatus = null;
@@ -246,66 +245,52 @@ export class UtstyrEndringMeny extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
-    utstyrService.getUtstyrEndring(this.props.match.params.utstyrsid, utstyr => {
+    this.utstyrsid = this.props.match.params.utstyrsid;
+    utstyrService.getUtstyrEndring(this.utstyrsid, utstyr => {
       this.utstyr = utstyr;
     });
   }
   save() {
-    this.log();
+    this.sjekkFelt();
     console.log(
       this.utstyrstypeid,
       this.ustatus,
       this.ubefinnelse,
       this.utsutleienavn,
-      this.props.match.params.utstyrsid
+      this.utstyrsid
     );
-    utstyrService.updateUtstyr(
-      this.utstyrstypeid,
-      this.ustatus,
-      this.ubefinnelse,
-      this.utsutleienavn,
-      this.props.match.params.utstyrsid,
-      () => {
+    utstyrService.updateUtstyr( this.utstyrstypeid, this.ustatus, this.ubefinnelse, this.utsutleienavn, this.utstyrsid, () => {
         history.push('/endring/utstyr');
       }
     );
   }
-  cancel() {
-    history.goBack();
-  }
   slett() {
-    // var test = new Login();
-    //
-    // console.log(test.admin)
-    //
-    // if(admin == true) {
     if (window.admin == true) {
-      utstyrService.slettUtstyr(this.props.match.params.utstyrsid, () => {
+      utstyrService.slettUtstyr(this.utstyrsid, () => {
         history.push('/endring/utstyr');
       });
     } else {
       alert(window.tbm);
     }
   }
-  // } else {
-  //   alert("Du har ikke administratorrettigheter");
-  // }
-  log() {
-    this.utstyr.map(utstyr => {
-      if (this.utstyrstypeid === null) {
-        this.utstyrstypeid = utstyr.utstyrstypeid;
-      }
-      if (this.ustatus === null) {
-        this.ustatus = utstyr.ustatus;
-      }
-      if (document.getElementById('ubefinnelseInput').value == '') {
-        this.ubefinnelse = utstyr.ubefinnelse;
-        console.log(1 + this.ubefinnelse);
-      }
-      if (document.getElementById('utsutleienavnInput').value == '') {
-        this.utsutleienavn = utstyr.utsutleienavn;
-        console.log(2 + this.utsutleienavn);
-      }
-    });
+  sjekkFelt() {
+    if (this.utstyrstypeid === null) {
+      this.utstyrstypeid = this.utstyr[0].utstyrstypeid;
+    }
+    if (this.ustatus === null) {
+      this.ustatus = this.utstyr[0].ustatus;
+    }
+    if (document.getElementById('ubefinnelseInput').value == '') {
+      this.ubefinnelse = this.utstyr[0].ubefinnelse;
+      console.log(1 + this.ubefinnelse);
+    }
+    if (document.getElementById('utsutleienavnInput').value == '') {
+      this.utsutleienavn = this.utstyr[0].utsutleienavn;
+      console.log(2 + this.utsutleienavn);
+    }
+  }
+
+  cancel() {
+    history.goBack();
   }
 }

@@ -15,13 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class KundeEndring extends Component {
-  kArray = [];
-  tid = '';
-  tid = '';
-  tekst = "";
-  ftekst = "";
+  kArray = [];    //Inneholder kunder hentet fra databasen. Brukes for .map() av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  kunder = '';
+  kunder = '';    //Antall kunder lagres her. Brukes ti lå dele tabelloversikten inn i flere sider.
 
   render() {
     return (
@@ -30,6 +28,7 @@ export class KundeEndring extends Component {
           <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
+      {/*  Se ./Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -57,6 +56,7 @@ export class KundeEndring extends Component {
                 <th>Dato registrert</th>
                 <th>Rediger</th>
               </Table.Rad>
+              {/*  Se ./Ansatt  */}
               {this.kArray.slice(mengde.forrigeSide, mengde.sideMengde).map(kunde => (
                 <Table.Rad key={kunde.kundenr}>
                   <td>{kunde.kundenr}</td>
@@ -65,12 +65,14 @@ export class KundeEndring extends Component {
                   <td>{kunde.epost}</td>
                   <td>{kunde.tlf}</td>
                   <td>
+                    {/*  Viser tid i lokal tidssone  */}
                     {kunde.fdag.toLocaleString()
                       .replace(/,/g, '')
                       .slice(0, -9)}
                   </td>
                   <td>
                     <center>
+                    {/*  Viser tid i lokal tidssone  */}
                       {kunde.rtid.toLocaleString()
                         .replace(/,/g, '')
                         .slice(0, -9)}
@@ -98,11 +100,10 @@ export class KundeEndring extends Component {
       this.kArray = kunde;
     });
   }
-  filter() {
-    this.tekst = document.getElementById('input').value;
-    this.ftekst = "%" + this.tekst + "%";
-
-      kundeService.getKundeFilt(this.ftekst, this.ftekst, kundeF => {
+  filter() {    //Filtrerer ut fra kundenavn
+    var tekst = document.getElementById('input').value;
+    tekst = "%" + tekst + "%";
+      kundeService.getKundeFilt(tekst, kundeF => {
         this.kArray = kundeF;
       });
     this.pageSwitchH();
@@ -177,7 +178,6 @@ export class KundeEndringMeny extends Component {
   tlf = '';
 
   render() {
-    //  if (!this.utstyrstypeid && !this.ustatus) return null;
     return (
       <div className="mainView">
         {this.kunde.map(kunde => (
@@ -219,8 +219,8 @@ export class KundeEndringMeny extends Component {
             />
           </Card>
         ))}
-        <br />
 
+        <br />
         <div className="knapper">
           <span className="tilbakeMeny2">
             <Button.Success onClick={this.save}>Lagre endring</Button.Success>
@@ -242,16 +242,13 @@ export class KundeEndringMeny extends Component {
     });
   }
   save() {
-    this.log();
+    this.sjekkFelt();
     kundeService.updateKunde(this.props.match.params.kundenr, this.fnavn, this.enavn, this.epost, this.tlf, () => {
       history.push('/endring/kunde');
     });
     console.log(this.fnavn, this.enavn, this.epost, this.tlf);
   }
-  cancel() {
-    history.goBack();
-  }
-  slett() {
+  slett() {   //Sletter kunden hvis brukeren er administrator
     if (window.admin == true) {
       kundeService.slettKunde(this.props.match.params.kundenr, () => {
         history.goBack();
@@ -260,21 +257,23 @@ export class KundeEndringMeny extends Component {
       alert(window.tbm);
     }
   }
-  log() {
-    this.kunde.map(kunde => {
-      if (document.getElementById('fnavnInput').value === '') {
-        this.fnavn = kunde.fnavn;
-      }
-      if (document.getElementById('enavnInput').value === '') {
-        this.enavn = kunde.enavn;
-      }
-      if (document.getElementById('epostInput').value === '') {
-        this.epost = kunde.epost;
-      }
-      if (document.getElementById('tlfInput').value === '') {
-        this.tlf = kunde.tlf;
-      }
-    });
+  sjekkFelt() {
+    if (document.getElementById('fnavnInput').value === '') {
+      this.fnavn = this.kunde[0].fnavn;
+    }
+    if (document.getElementById('enavnInput').value === '') {
+      this.enavn = this.kunde[0].enavn;
+    }
+    if (document.getElementById('epostInput').value === '') {
+      this.epost = this.kunde[0].epost;
+    }
+    if (document.getElementById('tlfInput').value === '') {
+      this.tlf = this.kunde[0].tlf;
+    }
     console.log(this.fnavn, this.enavn, this.epost, this.tlf);
+  }
+
+  cancel() {
+    history.goBack();
   }
 }

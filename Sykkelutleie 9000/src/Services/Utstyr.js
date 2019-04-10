@@ -12,14 +12,6 @@ class UtstyrService {
       }
     );
   }
-  countUtstyr(success) {
-    connection.query('SELECT COUNT(utstyrsid) FROM Utstyr',
-    (error, results) => {
-      if (error) return console.error(error);
-
-      success(JSON.stringify(results));
-    });
-  }
   getUtstyrEndring(utstyrsid, success) {
     connection.query(
       'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid AND U.utstyrsid = ?',
@@ -35,12 +27,20 @@ class UtstyrService {
   getUtstyrFilt(utstyrstypeid, success) {
     connection.query(
       'SELECT * FROM Utstyr U, Utleietype UT WHERE U.utstyrstypeid = UT.utid and U.utstyrstypeid = ?',
-      [ utstyrstypeid],
+      [utstyrstypeid],
       (error, results) => {
         if (error) return console.error(error);
         success(results);
       }
     )
+  }
+  countUtstyr(success) {
+    connection.query('SELECT COUNT(utstyrsid) FROM Utstyr',
+    (error, results) => {
+      if (error) return console.error(error);
+
+      success(JSON.stringify(results));
+    });
   }
 
   addUtstyr(utstyrstypeid, ustatus, ubefinnelse, utsutleienavn, success) {

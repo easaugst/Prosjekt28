@@ -4,21 +4,12 @@ class SykkelService {
   getSykkel(success) {
     connection.query(
       'SELECT * FROM Sykkel S, Utleietype UT WHERE S.sykkeltypeid = UT.utid',
-      [],
       (error, results) => {
         if (error) return console.error(error);
 
         success(results);
       }
     );
-  }
-  countSykler(success) {
-    connection.query('SELECT COUNT(regnr) FROM Sykkel',
-    (error, results) => {
-      if (error) console.error(error);
-
-      success(JSON.stringify(results));
-    });
   }
   getSykkelFilt(sykkeltypeid, success) {
     connection.query(
@@ -41,6 +32,14 @@ class SykkelService {
         success(results);
       }
     )
+  }
+  countSykler(success) {
+    connection.query('SELECT COUNT(regnr) FROM Sykkel',
+    (error, results) => {
+      if (error) console.error(error);
+
+      success(JSON.stringify(results));
+    });
   }
 
   addSykkel(sykkeltypeid, status, befinnelse, beskrivelse, utleienavn, success) {

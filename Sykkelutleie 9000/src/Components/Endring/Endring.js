@@ -14,7 +14,7 @@ import { utleieService } from '../../Services/Utleie';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
-export class Endring extends Component {
+export class Endring extends Component {    //Startside for endring
   render() {
     return (
       <div className="mainView">
@@ -63,7 +63,7 @@ export class Endring extends Component {
   }
 }
 
-export class EndringVertMenu extends Component {
+export class EndringVertMenu extends Component {    //Sidemeny for alle sider under Endring
   render() {
     return (
       <NavCol>
