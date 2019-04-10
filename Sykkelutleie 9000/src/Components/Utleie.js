@@ -316,61 +316,54 @@ export class Utleie extends Component {
           utleieService.getBestilling(bestilling => {
             this.bId = parseInt(bestilling.substr(bestilling.lastIndexOf(':') + 1));
             console.log('Bestillingsid: ' + this.bId);
-            this.registrerSykkel();
-            this.registrerUtstyr();
+            this.registrerSykkel();   //Registrerer syklene som skal leies ut
+            this.registrerUtstyr();   //Registrerer utstyret som skal leies ut
           });
           history.push('/oversikt/bestilling/');
         }
       );
     }
   }
-  registrerSykkel() {
-    //Delbestillinger for sykler opprettes
+  registrerSykkel() {   //Registrerer syklene som leies ut
     this.vSykler = [];
     for (var i = 0; i < this.utleieTyper; i++) {
       if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
-        this.sTyper.push(i);
-      } //If-setningen kjører som den skal
-    } //Løkken kjører som den skal
+        this.sTyper.push(i);    //Legger til utstyrstype i array hvis det er i this.sykler og ikke er lagt til tidligere
+      }
+    }
     console.log(this.sTyper);
 
-    for (var j = 0; j < this.sTyper.length; j++) {
+    for (var j = 0; j < this.sTyper.length; j++) {    //Kjører for alle gjenstander i this.sTyper
       console.log('antall: ' + this.teller(this.sykler, this.sTyper[j]), 'type: ' + this.sTyper[j]);
 
-      utleieService.getSykler(this.sTyper[j], this.teller(this.sykler, this.sTyper[j]), tSykler => {
+      utleieService.getSykler(this.sTyper[j], this.teller(this.sykler, this.sTyper[j]), tSykler => {    //Henter antallet sykler av sykkeltypene lagt inn i this.sTyper
         tSykler.map(sykler => {
-          this.vSykler.push({ regnr: sykler.regnr });
+          this.vSykler.push({ regnr: sykler.regnr });   //Legger tilgjengelige sykler hentet fra databasen inn i this.vSykler
         });
         this.runS++;
-        this.bestillSykler();
+        this.bestillSykler();   //Oppretter delbestillinger og markerer syklene i disse
         console.log('Svar fra database, del 1 kjører!! ' + j, this.vSykler, this.sTyper.length);
       });
     }
-
-    /*
-      Løkken venter ikke på svar fra databasen før den kjører ny runde. Når databasen til slutt svarer, har den feil verdi for j i kjøringen til
-      ( "success" ). Spørringen gir fortsatt riktig svar fra databasen.
-      */
     console.log('Program slutt');
   }
-  bestillSykler() {
+  bestillSykler() {   //Oppretter delbestillinger og markerer syklene i disse
     for (var k = 0; k < this.vSykler.length && this.runS == this.sTyper.length; k++) {
-      utleieService.addUBestillingSykkel(this.vSykler[k].regnr, this.bId, results => {});
-      utleieService.updateSykkel(this.vSykler[k].regnr, 'Utleid', () => {});
+      utleieService.addUBestillingSykkel(this.vSykler[k].regnr, this.bId, results => {});   //Oppretter delbestillinger
+      utleieService.updateSykkel(this.vSykler[k].regnr, 'Utleid', () => {});    //Markerer syklene
       console.log('Underbestilling for sykkel ' + this.vSykler[k].regnr + ' lagt til');
     }
   }
-  registrerUtstyr() {
-    //Delbestillinger for utstyr opprettes
+  registrerUtstyr() {   //Registrerer utstyret som skal leies ut. Fungerer slik som registrerSykkel
     this.vUtstyr = [];
     for (var i = 0; i < this.utleieTyper; i++) {
       if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
         this.uTyper.push(i);
-      } //If-setningen kjører som den skal
-    } //Løkken kjører som den skal
+      }
+    }
     console.log(this.uTyper);
 
-    for (var j = 0; j < this.uTyper.length; j++) {
+    for (var j = 0; j < this.uTyper.length; j++) {    //Kjører en gang for hver utstyrstype det er valgt en eller flere enheter av
       console.log('antall: ' + this.teller(this.utstyr, this.uTyper[j]), 'type: ' + this.uTyper[j]);
 
       utleieService.getUtstyr(this.uTyper[j], this.teller(this.utstyr, this.uTyper[j]), tUtstyr => {
@@ -384,15 +377,16 @@ export class Utleie extends Component {
     }
     console.log('Program slutt');
   }
-  bestillUtstyr() {
+  bestillUtstyr() {   //Bestiller utstyret som har blitt valgt i this.utstyr
     for (var k = 0; k < this.vUtstyr.length && this.runU == this.uTyper.length; k++) {
-      utleieService.addUBestillingUtstyr(this.vUtstyr[k].utstyrsid, this.bId, results => {});
-      utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, 'Utleid', () => {});
+      utleieService.addUBestillingUtstyr(this.vUtstyr[k].utstyrsid, this.bId, results => {});   //Lager en ny delbestilling med valg utstyr
+      utleieService.updateUtstyr(this.vUtstyr[k].utstyrsid, 'Utleid', () => {});    //Oppdaterer status på utstyret
       console.log('Underbestilling for utstyr ' + this.vUtstyr[k].utstyrsid + ' lagt til');
     }
   }
 
-  teller(array, char) {
+  teller(array, char) {   //Teller antall gjenstander (char) i et array (array).
+    array.sort();
     if (array.includes(char)) {
       return array.lastIndexOf(char) - array.indexOf(char) + 1;
     } else {
@@ -400,55 +394,50 @@ export class Utleie extends Component {
     }
   }
 
-  kundeDropDown() {
+  kundeDropDown() {   //Henter kunder fra databasen og legger dem inn i kundeDrop som nye objekt
     utleieService.getDropdown(kundenr => {
       this.kunde = JSON.parse(kundenr);
     });
 
-    this.kundeDrop = [];
-    this.kunde.map(kunde => {
+    this.kundeDrop = [];    //Tømmer array slik at vi ikke får dobbelt opp med kunder
+    this.kunde.map(kunde => {   //.map(...) kjører gjennom hele arrayet
       this.kundeDrop.push({ key: parseInt(kunde.kundenr), text: kunde.fnavn + ' ' + kunde.enavn + ' - ' + kunde.kundenr });
     });
-    this.t++;
     console.log(this.kundeDrop);
   }
-  addSykkel() {
-    if (
-      document.getElementById('antall' + this.sykkelType).innerHTML <
-      this.tilgjengeligeSykler[parseInt(this.sykkelType)]
-    ) {
-      this.sykler.push(parseInt(this.sykkelType));
-      this.sykler.sort();
+  addSykkel() {   //Legger til ny sykkel i array this.sykler
+    if (document.getElementById('antall' + this.sykkelType).innerHTML < this.tilgjengeligeSykler[parseInt(this.sykkelType)]) {
+      this.sykler.push(parseInt(this.sykkelType));    //En sykkel markeres kun med sykkeltypeid. Det er typen som pushes inn i array
       console.log(this.sykler);
-      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
+      document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));    //Viser antall valgte sykler for brukeren
     } else {
       alert('Ikke flere tilgjengelige sykler av denne typen');
     }
     this.sjekkBagasjebrett();
   }
-  removeSykkel(){
-    this.sykler.splice(this.sykler.lastIndexOf(parseInt(this.sykkelType)), 1);
+  removeSykkel(){   //Fjerner tidligere valgt sykkel fra this.sykler
+    this.sykler.splice(this.sykler.lastIndexOf(parseInt(this.sykkelType)), 1);    //Fjerner siste gjenstand av spesifisert sykkeltype i array
     if (document.getElementById('antall' + this.sykkelType).innerHTML === '1' || document.getElementById('antall' + this.sykkelType).innerHTML === '') {
-      document.getElementById('antall' + this.sykkelType).innerHTML = '';
+      document.getElementById('antall' + this.sykkelType).innerHTML = '';   //Tømmer celle som teller antall valgt av typen i tabellen dersom det ikke lenger vil være flere av denne typen valgt
     } else {
       document.getElementById('antall' + this.sykkelType).innerHTML = this.teller(this.sykler, parseInt(this.sykkelType));
     }
     console.log(this.sykler);
   }
-  addUtstyr() {
+  addUtstyr() {   //Legger til nytt utstyr i array this.sykler. Fungerer likt som addSykkel unntatt første if-setning
     console.log(this.tilgjengeligeBrett);
+    //Sjekker om brukeren prøver å legge til sykkelveske (Dette krever bagasjebrett, noe som blir sjekket hver gang en sykkel legges til)
     if (parseInt(this.utstyrType) == 6 && this.teller(this.utstyr, parseInt(this.utstyrType)) >= this.tilgjengeligeBrett) {
       alert('Ikke nok sykler med bagasjebrett');
     } else if (document.getElementById('antall' + this.utstyrType).innerHTML < this.tilgjengeligUtstyr[parseInt(this.utstyrType)]) {
       this.utstyr.push(parseInt(this.utstyrType));
-      this.sykler.sort();
       console.log(this.utstyr);
       document.getElementById('antall' + this.utstyrType).innerHTML = this.teller(this.utstyr, parseInt(this.utstyrType));
     } else {
       alert('Ikke mer utstyr av denne typen tilgjengelig');
     }
   }
-  removeUtstyr(){
+  removeUtstyr(){   //Fjerner tidligere valgt utstyr fra this.utstyr. Fungerer likt som removeSykkel
     this.utstyr.splice(this.utstyr.lastIndexOf(parseInt(this.utstyrType)), 1);
     if (document.getElementById('antall' + this.utstyrType).innerHTML === '1' || document.getElementById('antall' + this.utstyrType).innerHTML === '') {
       document.getElementById('antall' + this.utstyrType).innerHTML = '';
@@ -487,25 +476,25 @@ export class Utleie extends Component {
       console.log(this.number);
     }
   }
-  gruppeValg() {
+  gruppeValg() {    //Sjeker om checkboxen for gruppe er huket av. Definerer verdi utfra dette
     if (document.getElementById('gruppeInput').checked == true) {
       this.gruppe = 'Gruppe';
     } else {
       this.gruppe = 'Enkel';
     }
   }
-  betalingValg() {
+  betalingValg() {    //Sjekker hvilken radioknapp som er valgt. Definerer verdi utfra dette
     if (document.getElementById('kort').checked == true) {
       this.kontant = 'Kort';
     } else if (document.getElementById('kontant').checked == true) {
       this.kontant = 'Kontant';
     }
   }
-  sjekkBagasjebrett() {
+  sjekkBagasjebrett() {   //Sjekker hvilke sykkeltyper som har bagasjebrett og teller så hvor mange av de valgte syklene som er av disse typene
     utleieService.sjekkBagasjebrett(brett => {
       this.tilgjengeligeBrett = 0;
-      brett.map(brett => {
-        this.tilgjengeligeBrett += this.teller(this.sykler, brett.utid);
+      brett.map(brett => {    //Kjører gjennom alle svarene fra databasen
+        this.tilgjengeligeBrett += this.teller(this.sykler, brett.utid);    //Teller hvor mange sykler i this.sykler som har bagasjebrett og legger det til i tligjengeligeBrett
       });
       console.log('Tilgjengelige bagasjebrett: ' + this.tilgjengeligeBrett);
     });
