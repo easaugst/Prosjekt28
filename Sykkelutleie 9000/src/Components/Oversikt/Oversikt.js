@@ -14,7 +14,7 @@ import { utleieService } from '../../Services/Utleie';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
-export class Oversikt extends Component {
+export class Oversikt extends Component {   //Hovedside for oversikt
   render() {
     return (
       <div className="mainView">
@@ -66,7 +66,7 @@ export class Oversikt extends Component {
   }
 }
 
-export class OversiktVertMenu extends Component {
+export class OversiktVertMenu extends Component {   //Sidemeny for alle sidene under oversikt
   render() {
     return (
       <NavCol>

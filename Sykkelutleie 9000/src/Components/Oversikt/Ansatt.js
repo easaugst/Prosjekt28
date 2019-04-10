@@ -15,11 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class AnsattOversikt extends Component {
-  aArray = [];
-  tekst = "";
-  ftekst = "";
+  aArray = [];    //Inneholder ansatte hentet fra databasen. Brukes for .map() av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  ansatte = '';
+  ansatte = '';   //Antall ansatte lagres her. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -28,6 +28,7 @@ export class AnsattOversikt extends Component {
           <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
+      {/*  Se ../Endring/Ansatt  */}
       {this.sider.map(mengde => (
         <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
         <div className="sideKnapper">
@@ -55,6 +56,7 @@ export class AnsattOversikt extends Component {
                 <th>Arbeidsplass</th>
                 <th>Stilling</th>
               </Table.Rad>
+              {/*  Se ../Endring/Ansatt  */}
               {this.aArray.slice(mengde.forrigeSide, mengde.sideMengde).map(ansatt => (
                 <Table.Rad key={ansatt.ansattnr}>
                   <td>{ansatt.ansattnr}</td>
@@ -85,10 +87,10 @@ export class AnsattOversikt extends Component {
     });
   }
   filter() {
-    this.tekst = document.getElementById('input').value;
-    this.ftekst = "%" + this.tekst + "%";
+    var tekst = document.getElementById('input').value;
+    tekst = "%" + tekst + "%";
 
-      ansattService.getAnsattFilt(this.ftekst, this.ftekst, ansattF => {
+      ansattService.getAnsattFilt(tekst, ansattF => {
         this.aArray = ansattF;
       });
     this.pageSwitchH();

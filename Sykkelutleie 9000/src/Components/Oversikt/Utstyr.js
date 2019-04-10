@@ -15,13 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class UtstyrOversikt extends Component {
-  uArray = [];
-  uFArray = [];
-  number = 0;
-  a = "";
-  b = 2;
+  uArray = [];    //Inneholder utstyr hentet fra databasen. Brukes for .map(...) av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  utstyr = '';
+  utstyr = '';    //Antall utstyr. Bruker til å dele inn tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -40,6 +38,7 @@ export class UtstyrOversikt extends Component {
             <option value="11">Lås</option>
           </select>
         </div>
+        {/*  Se ../Endring/Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -64,6 +63,7 @@ export class UtstyrOversikt extends Component {
                 <th>Befinnelse</th>
                 <th>Tilhører utleiested</th>
               </Table.Rad>
+              {/*  Se ../Endring/Ansatt  */}
               {this.uArray.slice(mengde.forrigeSide, mengde.sideMengde).map(utstyr => (
                 <Table.Rad key={utstyr.utstyrsid}>
                   <td>{utstyr.utstyrsid}</td>
@@ -92,21 +92,20 @@ export class UtstyrOversikt extends Component {
   }
 
   filter() {
-    this.number = document.getElementById('drop').value;
-    if(this.number > 3){
-    utstyrService.getUtstyrFilt(this.number, utstyrF => {
-      this.uArray = utstyrF;
-    });
-  }
-  else {
-    utstyrService.getUtstyr(utstyr => {
-      this.uArray = utstyr;
+    var number = document.getElementById('drop').value;
+    if(number > 3){
+      utstyrService.getUtstyrFilt(number, utstyrF => {
+        this.uArray = utstyrF;
+      });
     }
-  );
-  }
+    else {
+      utstyrService.getUtstyr(utstyr => {
+        this.uArray = utstyr;
+      });
+    }
     this.pageSwitchH();
     this.forceUpdate();
-  }
+    }
 
   pageSwitch(retning) {
     document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'none';
@@ -158,26 +157,4 @@ export class UtstyrOversikt extends Component {
     console.log(this.sider);
     document.getElementById('side' + this.sider[this.aktivSide].sideMengde).style.display = 'block';
   }
-
-  // start() {
-  //   while(this.b <=3) {
-  //     this.a = ('utstyr' + this.b);
-  //     document.getElementById(this.a).style.display = "none";
-  //     this.b ++;
-  //   }
-  // }
-  //
-  // vis() {
-  //   for(var i=1;i<=3;i++) {
-  //     if(i == this.number ){
-  //         this.a = ('utstyr' + this.number);
-  //         document.getElementById(this.a).style.display = "block";
-  //     }
-  //     else {
-  //       this.a = ('utstyr' + i);
-  //       document.getElementById(this.a).style.display = "none";
-  //     }
-  // }
-  // }
-
 }

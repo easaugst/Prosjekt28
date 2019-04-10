@@ -16,26 +16,16 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class LokasjonOversikt extends Component {
-  lArray = [];
-  number = 0;
+  lArray = [];    //Inneholder lokasjoner he tet fra databasen. Brukes for .map(...) av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  lokasjoner = '';
+  lokasjoner = '';    //Antall lokasjoner. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
       <div className="mainView">
-        {/*<div className="filterView">
-          <Form.Label>Filtrer:</Form.Label>
-          <select id="drop" className="form-control" form="formen" onChange={this.filter}>
-            <option value="0">Alle</option>
-            <option value="1">Terrengsykkel</option>
-            <option value="2">Landeveissykkel</option>
-            <option value="3">Tandemsykkel</option>
-            <option value="12">Downhillsykkel</option>
-            <option value="13">Racersykkel</option>
-            <option value="14">Barnesykkel</option>
-          </select>
-        </div>*/}
+        {/*  Se ..Endring/Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -59,6 +49,7 @@ export class LokasjonOversikt extends Component {
                 <th>Postnr</th>
                 <th>Poststed</th>
               </Table.Rad>
+              {/*  Se ..Endring/Ansatt  */}
               {this.lArray.slice(mengde.forrigeSide, mengde.sideMengde).map(lokasjon => (
                 <Table.Rad key={lokasjon.postnr}>
                   <td>{lokasjon.utleienavn}</td>
@@ -85,8 +76,6 @@ export class LokasjonOversikt extends Component {
       console.log(lokasjon);
     });
   }
-
-  filter() {}
 
   pages() {
     this.sideMengde = parseInt(document.getElementById('sidemengde').value);

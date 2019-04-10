@@ -15,12 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class KundeOversikt extends Component {
-  kArray = [];
-  tid = '';
-  tekst = "";
-  ftekst = "";
+  kArray = [];    //Inneholder kunder hentet fra databasen. Brukes for .map(...) av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  kunder = '';
+  kunder = '';    //Antall kunder. Bruker til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -29,13 +28,7 @@ export class KundeOversikt extends Component {
           <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
-      {/*
-        <select id="sidemengde" className="form-control" onChange={this.pages}>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        </select>
-        */}
+      {/*  Se ../Endring/Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -62,6 +55,7 @@ export class KundeOversikt extends Component {
                 <th>Fødselsdato</th>
                 <th>Dato registrert</th>
               </Table.Rad>
+              {/*  Se ../Endring/Ansatt  */}
               {this.kArray.slice(mengde.forrigeSide, mengde.sideMengde).map(kunde => (
                 <Table.Rad key={kunde.kundenr}>
                   <td>{kunde.kundenr}</td>
@@ -101,10 +95,9 @@ export class KundeOversikt extends Component {
     });
   }
   filter() {
-    this.tekst = document.getElementById('input').value;
-    this.ftekst = "%" + this.tekst + "%";
-
-      kundeService.getKundeFilt(this.ftekst, this.ftekst, kundeF => {
+    var tekst = document.getElementById('input').value;
+    tekst = "%" + tekst + "%";
+      kundeService.getKundeFilt(tekst, kundeF => {
         this.kArray = kundeF;
       });
     this.pageSwitchH();

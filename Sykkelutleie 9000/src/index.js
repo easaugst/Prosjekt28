@@ -96,7 +96,7 @@ ReactDOM.render(
           <Route path="/oversikt/ansatt" component={AnsattOversikt} />
           <Route path="/oversikt/lokasjon" component={LokasjonOversikt} />
 
-          <Route exact path="/oversikt/bestilling/:id" component={BestillingOversiktMeny} />
+          <Route exact path="/oversikt/bestilling/:bestillingsid" component={BestillingOversiktMeny} />
 
           <Route exact path="/endring/kunde" component={KundeEndring} />
           <Route exact path="/endring/sykkel" component={SykkelEndring} />

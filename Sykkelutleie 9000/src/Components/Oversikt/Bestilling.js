@@ -16,11 +16,11 @@ const history = createHashHistory();
 
 
 export class BestillingOversikt extends Component {
-  bArray = [];
-  tekst = "";
-  ftekst ="";
+  bArray = [];    //Inneholder bestillinger hentet fra databasen. Brukes for .map(...) av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  bestillinger = '';
+  bestillinger = '';    //Antall bestillinger. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -29,6 +29,7 @@ export class BestillingOversikt extends Component {
         <Form.Label>Filtrér:</Form.Label>
         <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
       </div>
+        {/*  Se ../Endring/Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
             <div className="sideKnapper">
@@ -60,6 +61,7 @@ export class BestillingOversikt extends Component {
                 <th>Type bestilling</th>
                 <th>Delbestilling</th>
               </Table.Rad>
+              {/*  Se ../Endring/Ansatt  */}
               {this.bArray.slice(mengde.forrigeSide, mengde.sideMengde).map(bestilling => (
                 <Table.Rad key={bestilling.bestillingsid}>
                   <td>{bestilling.bestillingsid}</td>
@@ -104,15 +106,15 @@ export class BestillingOversikt extends Component {
       console.log(this.bestillinger);
       this.bestillingSortering();
     })
-    bestillingsService.getBestilling(this.props.match.params.bestillingsid, bestilling => {
+    bestillingsService.getBestilling(bestilling => {
       this.bArray = bestilling;
     });
   }
   filter() {
-    this.tekst = document.getElementById('input').value;
-    this.ftekst = "%" + this.tekst + "%";
+    var tekst = document.getElementById('input').value;
+    tekst = "%" + tekst + "%";
 
-      bestillingsService.getBestillingFilt(this.ftekst, this.ftekst, bestillingF => {
+      bestillingsService.getBestillingFilt(tekst, bestillingF => {
         this.bArray = bestillingF;
       });
     this.pageSwitchH();
@@ -172,9 +174,7 @@ export class BestillingOversikt extends Component {
 
 export class BestillingOversiktMeny extends Component {
   dbArray = [];
-  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
 
-  test = new BestillingOversikt();
   render() {
     return (
       <div className="mainView">
@@ -186,6 +186,7 @@ export class BestillingOversiktMeny extends Component {
             <th>Utstyrsid</th>
             <th>Type</th>
           </Table.Rad>
+          {/*  Se ../Endring/Ansatt  */}
           {this.dbArray.map(delbestilling => (
             <Table.Rad key={delbestilling.ubid}>
               <td>{delbestilling.bestillingsid}</td>
@@ -206,7 +207,7 @@ export class BestillingOversiktMeny extends Component {
 
   mounted() {
     window.scrollTo(0,0);
-    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid,  delbestilling => {
+    bestillingsService.getDelbestilling(this.props.match.params.bestillingsid, delbestilling => {
       this.dbArray = delbestilling;
     });
 

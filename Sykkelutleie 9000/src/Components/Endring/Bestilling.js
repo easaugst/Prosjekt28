@@ -182,7 +182,7 @@ export class BestillingsEndring extends Component {
 }
 
 export class BestillingsEndringMeny extends Component {
-  bestillingsid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  bestillingsid = '';
   bestilling = [];
   utleiested = '';
   utleietype = null;
@@ -268,6 +268,7 @@ export class BestillingsEndringMeny extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
+    this.bestillingsid = this.props.match.params.bestillingsid;
     bestillingsService.getBestillingEndring(this.bestillingsid, bestilling => {
       this.bestilling = bestilling;
     });
@@ -331,7 +332,7 @@ export class UbestillingsEndringMeny extends Component {
   //Fungerer på samme måte som BestillingsEndring
   dbArray = [];
   ubid = '';
-  bid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  bid = '';
 
   render() {
     return (
@@ -368,7 +369,7 @@ export class UbestillingsEndringMeny extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
-    bestillingsService.getDelbestilling(this.bid, this.props.match.params.ubid, delbestilling => {
+    bestillingsService.getDelbestilling(this.props.match.params.bestillingsid, delbestilling => {
       this.dbArray = delbestilling;
     });
   }
@@ -379,7 +380,7 @@ export class UbestillingsEndringMeny extends Component {
 
 export class UbestillingsEndring extends Component {
   dbArray = [];
-  ubid = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  ubid = '';
   regnr = '';
   utstyrsid = '';
   detaljer = '';
@@ -443,6 +444,7 @@ export class UbestillingsEndring extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
+    this.ubid = this.props.match.params.bestillingsid;
     bestillingsService.getDelbestillingEndring(this.ubid, delbestilling => {
       this.dbArray = delbestilling;
     });
@@ -485,7 +487,6 @@ export class UbestillingsEndring extends Component {
 }
 
 export class Levering extends Component {
-  bestillingsid = '';
   render() {
     return (
       <div className="mainView">
@@ -521,12 +522,11 @@ export class Levering extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
-    this.bestillingsid = this.props.match.params.bestillingsid;
   }
 
   levering() {
-    console.log(this.bestillingsid);
-    bestillingsService.levering(this.bestillingsid, () => {   //"Leverer" bestillingen. Markeres som inaktiv i databasen
+    console.log(this.props.match.params.bestillingsid);
+    bestillingsService.levering(this.props.match.params.bestillingsid, () => {   //"Leverer" bestillingen. Markeres som inaktiv i databasen
         history.push('/oversikt/bestilling');
     });
   }

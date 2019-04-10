@@ -15,10 +15,11 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class SykkelOversikt extends Component {
-  sArray = [];
-  number = 0;
+  sArray = [];    //Inneholder sykler hentet fra databasen. Brukes for .map(...) av tabell
+
+  //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  sykler = '';
+  sykler = '';    //Antall sykler. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -35,13 +36,7 @@ export class SykkelOversikt extends Component {
             <option value="14">Barnesykkel</option>
           </select>
         </div>
-        {/*
-          <select id="sidemengde" className="form-control" onChange={this.pages}>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          </select>
-          */}
+        {/*  Se ../Endring/Ansatt  */}
         {this.sider.map(mengde => (
           <div id={'side' + mengde.sideMengde} key={mengde.sideMengde.toString()}>
           <div className="sideKnapper">
@@ -67,6 +62,7 @@ export class SykkelOversikt extends Component {
                 <th>Beskrivelse</th>
                 <th>Tilhører utleiested</th>
               </Table.Rad>
+              {/*  Se ../Endring/Ansatt  */}
               {this.sArray.slice(mengde.forrigeSide, mengde.sideMengde).map(sykkel => (
                 <Table.Rad key={sykkel.regnr}>
                   <td>{sykkel.regnr}</td>
@@ -95,9 +91,9 @@ export class SykkelOversikt extends Component {
     });
   }
   filter() {
-    this.number = document.getElementById('drop').value;
-    if ((this.number <= 3 && this.number != 0) || this.number >= 12) {
-      sykkelService.getSykkelFilt(this.number, sykkelF => {
+    var number = document.getElementById('drop').value;
+    if ((number <= 3 && number != 0) || number >= 12) {
+      sykkelService.getSykkelFilt(number, sykkelF => {
         this.sArray = sykkelF;
       });
     } else {
