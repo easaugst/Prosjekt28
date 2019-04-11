@@ -377,7 +377,8 @@ p {
 
 /* CSS for logg ut */
 .loggUt {
-  margin-left: 14vw;
+  margin-left: 12vw;
+  margin-top: 0.5vh;
 }
 
 ::-webkit-scrollbar {
