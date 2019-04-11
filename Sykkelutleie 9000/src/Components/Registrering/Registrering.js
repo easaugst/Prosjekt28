@@ -14,7 +14,7 @@ import { utleieService } from '../../Services/Utleie';
 import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '../../widgets';
 const history = createHashHistory();
 
-export class Registrering extends Component {
+export class Registrering extends Component {   //Hovedside for registrering
   render() {
     return (
       <div className="mainView">
@@ -63,7 +63,7 @@ export class Registrering extends Component {
   }
 }
 
-export class RegVertMenu extends Component {
+export class RegVertMenu extends Component {    //Sidemeny for alle sidene under registrering
   render() {
     return (
       <NavCol>

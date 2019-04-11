@@ -19,7 +19,7 @@ export class KundeEndring extends Component {
 
   //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  kunder = '';    //Antall kunder lagres her. Brukes ti lå dele tabelloversikten inn i flere sider.
+  kunder = '';    //Antall kunder. Brukes ti lå dele tabelloversikten inn i flere sider.
 
   render() {
     return (

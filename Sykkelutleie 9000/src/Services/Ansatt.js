@@ -37,10 +37,10 @@ class AnsattService {
     });
   }
 
-  addAnsatt(ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {   //Legger til ny ansatt
+  addAnsatt(tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling, success) {   //Legger til ny ansatt
     connection.query(
-      'INSERT INTO FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) VALUES (?, ?, ?, ?, ?,?,?)',
-      [ansattnr, tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
+      'INSERT INTO FastAnsatt (tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [tlfnr, epost, fnavn, enavn, admin, utleienavn, stilling],
       (error, results) => {
         if (error) return console.error(error);
 

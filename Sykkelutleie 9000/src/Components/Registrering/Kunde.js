@@ -16,6 +16,10 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValid
 const history = createHashHistory();
 
 export class KundeReg extends Component {
+  /*
+    Alle registreringssidene fungerer på samme måte som endringssidene. Hovedforskjellen er at det ikke hentes tidligere informasjon
+    fra databasen på registreringssidene
+  */
   fdag = '';
   fnavn = '';
   enavn = '';

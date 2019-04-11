@@ -19,7 +19,7 @@ export class SykkelEndring extends Component {
 
   //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  sykler = '';    //Antall sykler lagres her. Brukes til å dele tabelloversiken inn i flere sider
+  sykler = '';    //Antall sykler. Brukes til å dele tabelloversiken inn i flere sider
 
   render() {
     return (

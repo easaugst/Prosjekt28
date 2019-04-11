@@ -16,10 +16,10 @@ const history = createHashHistory();
 
 export class UtstyrEndring extends Component {
   uArray = [];    //Inneholder utstyr hentet fra databasen. Brukes for .map() av tabell
-  
+
   //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  utstyr = '';    //Antall utstyr lagres her. Brukes til å dele tabelloversikten inn i flere sider
+  utstyr = '';    //Antall utstyr. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
