@@ -14,7 +14,7 @@
 }
 .mainView {
   position: absolute;
-  left: 25vw;
+  left: 22vw;
   top: 17vh;
   height: 70%;
   font-family: sans-serif;
@@ -206,7 +206,7 @@ a.logo {
 /* Filter input under sidemenyknapper */
 .filterView {
   margin-top: 37vh;
-  margin-left: -23.5vw;
+  margin-left: -20.5vw;
   position: fixed;
   width: 16vw;
   z-index: 1;
