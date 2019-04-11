@@ -326,7 +326,7 @@ export class Utleie extends Component {
   }
   registrerSykkel() {   //Registrerer syklene som leies ut
     this.vSykler = [];
-    for (var i = 0; i < this.utleieTyper; i++) {
+    for (var i = 0; i <= this.utleieTyper; i++) {
       if (this.sykler.includes(i) == true && this.sTyper.includes(i) == false) {
         this.sTyper.push(i);    //Legger til utstyrstype i array hvis det er i this.sykler og ikke er lagt til tidligere
       }
@@ -356,7 +356,7 @@ export class Utleie extends Component {
   }
   registrerUtstyr() {   //Registrerer utstyret som skal leies ut. Fungerer slik som registrerSykkel
     this.vUtstyr = [];
-    for (var i = 0; i < this.utleieTyper; i++) {
+    for (var i = 0; i <= this.utleieTyper; i++) {
       if (this.utstyr.includes(i) == true && this.uTyper.includes(i) == false) {
         this.uTyper.push(i);
       }
