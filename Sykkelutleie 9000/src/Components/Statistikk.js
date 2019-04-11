@@ -17,9 +17,6 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table } from '..
 const history = createHashHistory();
 
 export class Statistikk extends Component {
-  sArray = [];
-  stArray = [];
-
   totaltAntallSykler = 0;
   utleidAntallSykler = 0;
   restSykler = 0;
@@ -136,7 +133,6 @@ export class Statistikk extends Component {
   }
   mounted() {
     //Sykkelstatistikk
-
     statistikkService.getSykkelAntall(sykkelTot => {
       this.totaltAntallSykler = parseInt(sykkelTot.substr(sykkelTot.lastIndexOf(':') + 1));
     });
@@ -144,8 +140,8 @@ export class Statistikk extends Component {
       this.utleidAntallSykler = parseInt(sykkelUt.substr(sykkelUt.lastIndexOf(':') + 1));
       this.restSykler = this.totaltAntallSykler - this.utleidAntallSykler;
     });
-    //Utstyrstatistikk
 
+    //Utstyrstatistikk
     statistikkService.getUtstyrAntall(utstyrTot => {
       this.totaltAntallUtstyr = parseInt(utstyrTot.substr(utstyrTot.lastIndexOf(':') + 1));
     });
@@ -154,8 +150,7 @@ export class Statistikk extends Component {
       this.restUtstyr = this.totaltAntallUtstyr - this.utleidAntallUtstyr;
     });
 
-    //kundestatistikk
-
+    //Kundestatistikk
     statistikkService.antallKunder(kunderTot => {
       this.antallKunder = parseInt(kunderTot.substr(kunderTot.lastIndexOf(':') + 1));
     });
