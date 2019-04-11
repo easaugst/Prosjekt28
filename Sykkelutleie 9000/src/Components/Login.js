@@ -41,7 +41,7 @@ export class Login extends Component {
               autoFocus
               onChange={event => (this.email = event.target.value)}
               name="email"
-              placeholder="ola.nordmann@eksempel.com"
+              placeholder="ola@nordmann.no"
               value={this.email}
               validators={['required', 'isEmail' ]}
               errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke gyldig epostadresse']}
