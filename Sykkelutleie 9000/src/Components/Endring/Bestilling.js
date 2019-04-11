@@ -22,7 +22,7 @@ export class BestillingsEndring extends Component {
 
   //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  bestillinger = '';   //Antall bestillinger lagres her. Brukes til å dele tabelloversikten inn i flere sider
+  bestillinger = '';   //Antall bestillinger. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (
@@ -487,6 +487,7 @@ export class UbestillingsEndring extends Component {
 }
 
 export class Levering extends Component {
+  bestillingsid = '';
   render() {
     return (
       <div className="mainView">
@@ -522,11 +523,12 @@ export class Levering extends Component {
   }
   mounted() {
     window.scrollTo(0, 0);
+    this.bestillingsid = this.props.match.params.bestillingsid;
   }
 
   levering() {
     console.log(this.props.match.params.bestillingsid);
-    bestillingsService.levering(this.props.match.params.bestillingsid, () => {   //"Leverer" bestillingen. Markeres som inaktiv i databasen
+    bestillingsService.levering(this.bestillingsid, () => {   //"Leverer" bestillingen. Markeres som inaktiv i databasen
         history.push('/oversikt/bestilling');
     });
   }

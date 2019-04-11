@@ -19,7 +19,7 @@ export class AnsattOversikt extends Component {
 
   //sideMengde, sider, aktivSide og sisteSide brukes til å dele tabelloversikten inn i flere sider. 'sider' brukes for .map() av sidene
   sideMengde = 25; sider = []; aktivSide = 0; sisteSide = '';
-  ansatte = '';   //Antall ansatte lagres her. Brukes til å dele tabelloversikten inn i flere sider
+  ansatte = '';   //Antall ansatte. Brukes til å dele tabelloversikten inn i flere sider
 
   render() {
     return (

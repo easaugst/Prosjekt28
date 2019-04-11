@@ -16,6 +16,10 @@ import { Card, List, Row, Column, NavBar, Button, Form, NavCol, Table, TextValid
 const history = createHashHistory();
 
 export class AnsattReg extends Component {
+  /*
+    Alle registreringssidene fungerer på samme måte som endringssidene. Hovedforskjellen er at det ikke hentes tidligere informasjon
+    fra databasen på registreringssidene
+  */
   tlfnr = '';
   epost = '';
   fnavn = '';
@@ -128,7 +132,6 @@ export class AnsattReg extends Component {
       this.admin,
       this.utleienavn,
       this.stilling,
-      this.props.match.params.id,
       () => {
         history.push('/oversikt/ansatt');
       }
@@ -139,7 +142,6 @@ export class AnsattReg extends Component {
     }
   }
 }
-
 
   cancel() {
     history.push('/registrering/');
