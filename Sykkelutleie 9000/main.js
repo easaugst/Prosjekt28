@@ -20,7 +20,7 @@ app.on('ready', () => {
   mainWindow.setFullScreenable(false)
   mainWindow.setMenu(null)
   // Open Development Tools
-  mainWindow.openDevTools();
+  // mainWindow.openDevTools();
 
   mainWindow.loadURL('file://' + __dirname + '/public/index.html');
 });

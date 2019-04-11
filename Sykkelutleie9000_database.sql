@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 05, 2019 at 12:48 PM
+-- Generation Time: Apr 11, 2019 at 11:58 AM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.2.15-0ubuntu0.18.04.2
 
@@ -223,7 +223,8 @@ ALTER TABLE `Ubestilling`
 -- Indexes for table `Utleiested`
 --
 ALTER TABLE `Utleiested`
-  ADD PRIMARY KEY (`utleienavn`);
+  ADD PRIMARY KEY (`utleienavn`),
+  ADD KEY `postnr` (`postnr`);
 
 --
 -- Indexes for table `Utleietype`
@@ -276,6 +277,16 @@ ALTER TABLE `Ubestilling`
 --
 ALTER TABLE `Utstyr`
   MODIFY `utstyrsid` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Utleiested`
+--
+ALTER TABLE `Utleiested`
+  ADD CONSTRAINT `Utleiested_ibfk_1` FOREIGN KEY (`postnr`) REFERENCES `Lokasjon` (`postnr`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
