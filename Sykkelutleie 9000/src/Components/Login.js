@@ -52,7 +52,7 @@ export class Login extends Component {
           <TextValidator
               onChange={event => (this.pwd = event.target.value)}
               name="passord"
-              placeholder="Topp hemmelig"
+              placeholder="Passord"
               value={this.pwd}
               type="password"
               validators={['required', 'required']}
