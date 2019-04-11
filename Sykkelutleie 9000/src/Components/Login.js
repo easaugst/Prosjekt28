@@ -10,14 +10,13 @@ import { ansattService } from '../Services/Ansatt';
 const history = createHashHistory();
 
 export class Login extends Component {
-  verification = 0; lengde = 0; adminS = 0; teller = 0;
+  verification = 0; adminS = 0;
   ansattnavn = ""; email = ''; pwd = '';
-  admin = ''; var = '';
+  admin = '';
   ansatt = null;
-  sjekker = false;
   administrator = false;
 
-  admin2 = []; aArray = [];
+  admin2 = [];
 
   render() {
     {/*
@@ -67,6 +66,21 @@ export class Login extends Component {
       </div>
     );
   }
+  mounted() {
+    window.ansatt = "";       //Logger ut brukeren
+    window.ansattnavn = "";   //Logger ut brukeren
+
+    ansattService.adminSjekk(admin => {
+      var aArray = admin;
+      var lengde = aArray.length;
+
+      for(var i=0;i<=lengde-1;i++){
+        var j = (aArray[i].ansattnr);
+        this.admin2.push(j);
+      }
+      window.admin2 = this.admin2;
+    });
+  }
 
   signIn() {
     ansattService.ansattSignin(this.email, this.pwd, resultat => {
@@ -107,22 +121,6 @@ export class Login extends Component {
         this.pwd = '';
         alert("Ugyldig innloggingsdetaljer");
       }
-    });
-  }
-  mounted() {
-
-    window.ansatt = "";
-    window.ansattnavn = "";
-
-    ansattService.adminSjekk(admin => {
-      this.aArray = admin;
-      this.lengde = this.aArray.length;
-
-      for(var i=0;i<=this.lengde-1;i++){
-        this.var = (this.aArray[i].ansattnr);
-        this.admin2.push(this.var);
-      }
-      window.admin2 = this.admin2;
     });
   }
 }

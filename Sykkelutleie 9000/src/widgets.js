@@ -279,6 +279,7 @@ class FormInput extends Component {
         pattern={this.props.pattern}
         placeholder={this.props.placeholder}
         disabled={this.props.disabled}
+        autoFocus={this.props.autoFocus}
       />
     );
   }

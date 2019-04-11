@@ -29,7 +29,7 @@ export class BestillingsEndring extends Component {
       <div className="mainView">
       <div className="filterView">
         <Form.Label>Filtrér:</Form.Label>
-        <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn"></Form.Input>
+        <Form.Input id="input" onChange={this.filter} placeholder="Skriv inn navn" autoFocus></Form.Input>
       </div>
         {/*  Se ./Ansatt  */}
         {this.sider.map(mengde => (
