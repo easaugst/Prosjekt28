@@ -56,10 +56,9 @@ export class BestillingsEndring extends Component {
                 <th>Status</th>
                 <th>Utleiested</th>
                 <th>Utleietype</th>
-                <th>Betalingsmåte</th>
+                <th>Betaling</th>
                 <th>Tidspunkt bestilling</th>
-                <th>Fra</th>
-                <th>Til</th>
+                <th>Varighet</th>
                 <th>Type bestilling</th>
                 <th>Rediger</th>
                 <th>Levering</th>
@@ -82,11 +81,12 @@ export class BestillingsEndring extends Component {
                   </td>
                   <td>
                     {/*  Se over  */}
+                    <h6>Fra: </h6>
                     {bestilling.ftid.toLocaleString()
                     .replace(/,/g, '')
                     .slice(0, -3)}
-                  </td>
-                  <td>
+                    <p />
+                    <h6> Til:</h6>
                     {/*  Se over  */}
                     {bestilling.ttid.toLocaleString()
                     .replace(/,/g, ' ')
@@ -500,7 +500,6 @@ export class Levering extends Component {
         <TextValidator
             onChange={event => (this.bestillingsid = event.target.value)}
             value={this.bestillingsid}
-            onChange={event => (this.bestillingsid = event.target.value)}
             validators={['required', 'isNumber']}
             placeholder={this.bestillingsid}
             errorMessages={['Dette feltet kan ikke stå tomt', 'Ikke et gyldig bestillingsnummer']}
